@@ -36,6 +36,7 @@
 
     .container{max-width:var(--container);margin:auto;padding:var(--space)}
     header,section,footer{padding-inline:var(--space)}
+
     /* HEADER */
     header{border-bottom:1px solid var(--stroke)}
     .bar{max-width:var(--container);margin:auto;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;padding-block:12px}
@@ -46,20 +47,21 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer;white-space:nowrap}
     .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
     .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
+
     /* HERO */
     .hero{padding-block:56px;border-bottom:1px solid var(--stroke)}
     .hero h1{font-size:clamp(26px,6vw,44px);line-height:1.15;margin:0 0 12px}
     .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+
     /* SECTIONS */
     .section{padding-block:26px}
     .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
     .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px}
     .note{color:#9ea0a4;font-size:14px}
 
-    /* GRIDS: fluide, évite les chevauchements */
+    /* GRIDS */
     .grid{display:grid;gap:16px}
-    /* auto-fit avec minmax garantit qu’on empile correctement sur mobile */
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:10px}
     .shot{aspect-ratio:1;border-radius:12px;background:#0f0f12;border:1px dashed #2a2a2e;display:grid;place-items:center;color:#6d6e72;font-size:12px}
@@ -70,12 +72,12 @@
     /* FOOTER */
     footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:30px;padding:20px var(--space)}
 
-    /* PETITS ÉCRANS : affiner espacements/tailles */
+    /* MOBILE */
     @media (max-width:480px){
       :root{--space:18px}
       .brand img{width:36px;height:36px}
-      .btn{width:100%}            /* boutons pleine largeur pour éviter les chevauchements */
-      .nav .btn{width:auto}       /* mais les petits liens du header peuvent rester auto */
+      .btn{width:100%}
+      .nav .btn{width:auto}
       .hero{padding-block:40px}
       .card{padding:14px}
     }
@@ -92,7 +94,7 @@
   <header>
     <div class="bar">
       <div class="brand">
-        <img src="assets/logo.png" alt="R3D PRINT CI">
+        <img id="logoR3D" src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
         <span>R3D PRINT CI</span>
       </div>
       <nav class="nav" aria-label="Navigation principale">
@@ -120,15 +122,15 @@
     <div class="grid cols-3">
       <article class="card">
         <h3>Impression 3D</h3>
-        <p class="note">FDM rapide et précise. Matériaux : PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+        <p class="note">FDM rapide et précise. Matériaux : PLA, PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
       </article>
       <article class="card">
         <h3>Gravure Laser</h3>
-        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal (inox/anodisé), cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
+        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal, cuir. Trophées, plaques, cartes professionnelles, signalétique.</p>
       </article>
       <article class="card">
         <h3>Design & Prototypage</h3>
-        <p class="note">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
+        <p class="note">Modélisation 3D, ajustements, finitions, conception personnalisée selon vos besoins.</p>
       </article>
     </div>
   </section>
@@ -137,10 +139,10 @@
   <section id="realisations" class="section container">
     <h2 class="section-title">Quelques réalisations</h2>
     <div class="gallery">
-      <div class="shot">/assets/shot1.jpg</div>
-      <div class="shot">/assets/shot2.jpg</div>
-      <div class="shot">/assets/shot3.jpg</div>
-      <div class="shot">/assets/shot4.jpg</div>
+      <div class="shot">photo 1</div>
+      <div class="shot">photo 2</div>
+      <div class="shot">photo 3</div>
+      <div class="shot">photo 4</div>
     </div>
     <p class="note" style="margin-top:8px">Tu remplaceras ces emplacements par tes photos réelles (trophées, plaques, prints FDM, etc.).</p>
   </section>
@@ -163,14 +165,10 @@
   </footer>
 
   <script>
-    // Année
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // WhatsApp – normalisation numéro CI
     const phone = "002250757841323".replace(/^00/, "");
     const msg = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
     const link = "https://wa.me/" + phone + "?text=" + msg;
-
     ["cta","cta2","cta3"].forEach(id=>{
       const a=document.getElementById(id);
       if(a) a.href=link;
