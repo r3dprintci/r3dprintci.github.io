@@ -17,19 +17,10 @@
 
   <style>
     :root{
-      --brand:#d32f2f;
-      --brand-weak:#ff6b6b;
-
-      /* Light (par défaut) */
-      --bg:#f7f7f8;
-      --bg-soft:#ffffff;
-      --text:#0c0d0e;
-      --muted:#4b4d52;
-      --stroke:#e6e7ea;
-
-      --radius:14px;
-      --container:1100px;
-      --space:24px;
+      --brand:#d32f2f; --brand-weak:#ff6b6b;
+      /* Light */
+      --bg:#f7f7f8; --bg-soft:#ffffff; --text:#0c0d0e; --muted:#4b4d52; --stroke:#e6e7ea;
+      --radius:14px; --container:1100px; --space:24px;
       --shadow-sm:0 2px 10px rgba(0,0,0,.06);
       --shadow-md:0 8px 24px rgba(0,0,0,.08);
     }
@@ -38,7 +29,6 @@
       --shadow-sm:0 2px 10px rgba(0,0,0,.35);
       --shadow-md:0 8px 28px rgba(0,0,0,.45);
     }
-
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
     img{max-width:100%;height:auto;display:block}
@@ -59,31 +49,23 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer;white-space:nowrap}
     .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
     .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
-    .theme-toggle{border:1px solid var(--stroke);background:var(--bg-soft);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+    .theme-toggle, .lang-select{border:1px solid var(--stroke);background:var(--bg-soft);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+    .lang-select{appearance:none}
 
-    /* HERO (avec parallax + textures FDM & halos laser) */
+    /* HERO + effets */
     .hero{position:relative;overflow:hidden;padding-block:68px;border-bottom:1px solid var(--stroke)}
     .hero h1{font-size:clamp(26px,6vw,44px);line-height:1.15;margin:0 0 12px}
     .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
-    /* texture “couches FDM” */
     .hero::before{
       content:"";position:absolute;inset:-20% -10% auto -10%;height:55%;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(0,0,0,.04), rgba(0,0,0,.04) 2px,
-          transparent 2px, transparent 6px
-        );
-      transform:translateY(var(--parallaxY,0px));
-      pointer-events:none;
+      background:repeating-linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.04) 2px, transparent 2px, transparent 6px);
+      transform:translateY(var(--parallaxY,0px));pointer-events:none;
     }
-    /* halos laser animés */
     .hero::after{
       content:"";position:absolute;top:-80px;left:50%;width:520px;height:520px;
       background:radial-gradient( ellipse at center, rgba(211,47,47,.18), transparent 60%);
-      filter:blur(12px);transform:translateX(-50%) translateY(var(--parallaxY2,0px));
-      pointer-events:none;
+      filter:blur(12px);transform:translateX(-50%) translateY(var(--parallaxY2,0px));pointer-events:none;
     }
 
     /* KPI */
@@ -96,12 +78,7 @@
     .section{padding-block:32px}
     .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
     .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    /* bordure “gravure” subtile */
-    .card::after{
-      content:"";position:absolute;inset:0;border-radius:inherit;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);
-      pointer-events:none;
-    }
+    .card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);pointer-events:none}
     .note{color:var(--muted);font-size:14px}
 
     /* GRIDS */
@@ -110,6 +87,13 @@
     .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:10px}
     .shot{aspect-ratio:1;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.06));border:1px dashed var(--stroke);display:grid;place-items:center;color:#6d6e72;font-size:12px;cursor:pointer}
 
+    /* AVANT/APRÈS */
+    .before-after{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--stroke);box-shadow:var(--shadow-sm);background:#000}
+    .before-after img{display:block;width:100%;height:auto}
+    .before-after .top{position:absolute;inset:0;overflow:hidden}
+    .before-after .top img{width:100%;height:100%;object-fit:cover}
+    .before-after input[type="range"]{position:absolute;left:0;right:0;bottom:12px;width:60%;margin:auto}
+
     /* CONTACT */
     .contact-block{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
@@ -117,26 +101,33 @@
     form.quote{display:grid;gap:12px}
     .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     label{font-weight:700;font-size:14px}
-    input, select, textarea{
-      width:100%;border-radius:10px;border:1px solid var(--stroke);
-      background:var(--bg);color:var(--text);padding:10px 12px;
-    }
+    input, select, textarea{width:100%;border-radius:10px;border:1px solid var(--stroke);background:var(--bg);color:var(--text);padding:10px 12px}
     textarea{min-height:110px;resize:vertical}
     .hint{font-size:12px;color:var(--muted)}
-    .toast{
-      position:fixed;right:16px;bottom:16px;background:var(--bg-soft);border:1px solid var(--stroke);
-      color:var(--text);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-md);display:none;z-index:200
-    }
+    .colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .chip{border:1px solid var(--stroke);border-radius:999px;padding:8px 12px;cursor:pointer;background:var(--bg-soft)}
+    .chip.active{border-color:var(--brand);box-shadow:0 0 0 2px rgba(211,47,47,.15)}
+    .toast{position:fixed;right:16px;bottom:16px;background:var(--bg-soft);border:1px solid var(--stroke);color:var(--text);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-md);display:none;z-index:200}
     .toast.show{display:block}
 
-    /* FOOTER */
-    footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:32px;padding:20px var(--space)}
+    /* TÉMOIGNAGES */
+    .testis{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .testi{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:12px;padding:14px;box-shadow:var(--shadow-sm)}
+    .stars{color:#f5a524;font-size:14px;margin-bottom:6px}
 
-    /* REVEAL */
-    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.is-visible{opacity:1;transform:none}
+    /* FLOTTEURS */
+    .fab-wa{position:fixed;right:16px;bottom:88px;z-index:60}
+    .fab-wa a{display:grid;place-items:center;width:56px;height:56px;border-radius:999px;background:#25D366;color:#fff;font-weight:900;box-shadow:var(--shadow-md);text-decoration:none}
+    .mobile-bar{position:fixed;left:0;right:0;bottom:0;background:var(--bg-soft);border-top:1px solid var(--stroke);display:none;gap:8px;padding:8px;z-index:55}
+    .mobile-bar .btn{flex:1}
+    @media (max-width:820px){.mobile-bar{display:flex}}
 
-    /* MODAL (Lightbox) */
+    /* UP */
+    .to-top{position:fixed;right:16px;bottom:152px;display:none;z-index:50}
+    .to-top.show{display:block}
+    .to-top a{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--stroke);text-decoration:none;color:var(--text)}
+
+    /* MODAL */
     .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
     .modal.open{display:flex}
     .modal img{max-width:92vw;max-height:82vh;border-radius:12px;box-shadow:var(--shadow-md)}
@@ -163,11 +154,15 @@
         <img id="logoR3D" src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
         <span>R3D PRINT CI</span>
       </div>
-      <nav class="nav" aria-label="Navigation principale">
-        <a class="btn ghost" href="#services">Services</a>
-        <a class="btn ghost" href="#realisations">Réalisations</a>
-        <a class="btn ghost" href="#devis">Devis rapide</a>
-        <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener">Contactez-nous</a>
+      <nav class="nav" aria-label="Navigation">
+        <a class="btn ghost" href="#services" data-i18n="nav_services">Services</a>
+        <a class="btn ghost" href="#realisations" data-i18n="nav_work">Réalisations</a>
+        <a class="btn ghost" href="#devis" data-i18n="nav_quote">Devis rapide</a>
+        <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener" data-i18n="nav_contact">Contactez-nous</a>
+        <select id="langSel" class="lang-select" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+        </select>
         <button id="themeBtn" class="theme-toggle" type="button" aria-label="Changer de thème">🌞/🌙</button>
       </nav>
     </div>
@@ -175,66 +170,99 @@
 
   <!-- HERO -->
   <section class="hero container" id="hero">
-    <h1 class="reveal">Impression 3D & Gravure Laser à Abidjan</h1>
-    <p class="reveal">Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.</p>
+    <h1 class="reveal" data-i18n="hero_title">Impression 3D & Gravure Laser à Abidjan</h1>
+    <p class="reveal" data-i18n="hero_sub">Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.</p>
     <div class="cta-row reveal">
-      <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener">Contactez-nous sur WhatsApp</a>
+      <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener" data-i18n="cta_whatsapp">Contactez-nous sur WhatsApp</a>
       <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
       <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">Instagram</a>
     </div>
 
     <div class="kpis">
-      <div class="kpi reveal"><strong data-count="48">0</strong><span>Moyenne h prod/sem</span></div>
-      <div class="kpi reveal"><strong data-count="0.6">0</strong><span>Buse max (mm)</span></div>
-      <div class="kpi reveal"><strong data-count="2">0</strong><span>Lasers (450/1064)</span></div>
-      <div class="kpi reveal"><strong data-count="72">0</strong><span>Délai typique (h)</span></div>
+      <div class="kpi reveal"><strong data-count="48">0</strong><span data-i18n="kpi_prod">Moyenne h prod/sem</span></div>
+      <div class="kpi reveal"><strong data-count="0.6">0</strong><span data-i18n="kpi_nozzle">Buse max (mm)</span></div>
+      <div class="kpi reveal"><strong data-count="2">0</strong><span data-i18n="kpi_lasers">Lasers (450/1064)</span></div>
+      <div class="kpi reveal"><strong data-count="72">0</strong><span data-i18n="kpi_lead">Délai typique (h)</span></div>
     </div>
   </section>
 
   <!-- SERVICES -->
   <section id="services" class="section container">
-    <h2 class="section-title reveal">Nos services</h2>
+    <h2 class="section-title reveal" data-i18n="services_title">Nos services</h2>
     <div class="grid cols-3">
       <article class="card reveal">
-        <h3>Impression 3D</h3>
-        <p class="note">FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+        <h3 data-i18n="svc_print">Impression 3D</h3>
+        <p class="note" data-i18n="svc_print_desc">FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
       </article>
       <article class="card reveal">
-        <h3>Gravure Laser</h3>
-        <p class="note">450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
+        <h3 data-i18n="svc_laser">Gravure Laser</h3>
+        <p class="note" data-i18n="svc_laser_desc">450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
       </article>
       <article class="card reveal">
-        <h3>Design & Prototypage</h3>
-        <p class="note">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
+        <h3 data-i18n="svc_design">Design & Prototypage</h3>
+        <p class="note" data-i18n="svc_design_desc">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
       </article>
     </div>
   </section>
 
+  <!-- AVANT / APRÈS -->
+  <section class="section container">
+    <h2 class="section-title reveal" data-i18n="beforeafter_title">Avant / Après</h2>
+    <div class="before-after reveal" id="ba">
+      <!-- Remplacez ces images par vos réelles : /assets/before.jpg & /assets/after.jpg -->
+      <img src="assets/before.jpg" alt="Avant (placeholder)">
+      <div class="top" id="baTop" style="width:50%">
+        <img src="assets/after.jpg" alt="Après (placeholder)">
+      </div>
+      <input id="baRange" type="range" min="0" max="100" value="50" aria-label="Comparateur avant/après">
+    </div>
+    <p class="note" style="margin-top:8px" data-i18n="beforeafter_note">Glissez le curseur pour comparer la préparation et le rendu final (gravure/impression).</p>
+  </section>
+
   <!-- RÉALISATIONS -->
   <section id="realisations" class="section container">
-    <h2 class="section-title reveal">Quelques réalisations</h2>
+    <h2 class="section-title reveal" data-i18n="work_title">Quelques réalisations</h2>
     <div class="gallery">
-      <!-- Remplace ces placeholders par tes images /assets/shot1.jpg etc. -->
       <img class="shot reveal" loading="lazy" src="assets/shot1.jpg" alt="Réa 1 (à remplacer)">
       <img class="shot reveal" loading="lazy" src="assets/shot2.jpg" alt="Réa 2 (à remplacer)">
       <img class="shot reveal" loading="lazy" src="assets/shot3.jpg" alt="Réa 3 (à remplacer)">
       <img class="shot reveal" loading="lazy" src="assets/shot4.jpg" alt="Réa 4 (à remplacer)">
     </div>
-    <p class="note" style="margin-top:8px">Cliquez pour agrandir. Vous pourrez remplacer ces images par vos photos réelles.</p>
+    <p class="note" style="margin-top:8px" data-i18n="work_note">Cliquez pour agrandir. Vous pourrez remplacer ces images par vos photos réelles.</p>
   </section>
 
-  <!-- DEVIS RAPIDE (WhatsApp) -->
+  <!-- NUAGE MATIÈRES / COULEURS -->
+  <section class="section container">
+    <h2 class="section-title reveal" data-i18n="swatch_title">Matières & couleurs</h2>
+    <div class="card reveal">
+      <div class="colors" id="chips">
+        <span class="chip" data-fill="qMaterial" data-val="FDM — PLA">PLA</span>
+        <span class="chip" data-fill="qMaterial" data-val="FDM — PETG">PETG</span>
+        <span class="chip" data-fill="qMaterial" data-val="FDM — ASA">ASA</span>
+        <span class="chip" data-fill="qMaterial" data-val="Laser — Bois">Bois</span>
+        <span class="chip" data-fill="qMaterial" data-val="Laser — Acrylique">Acrylique</span>
+        <span class="chip" data-fill="qMaterial" data-val="Laser — Métal (anodisé/inox)">Métal</span>
+        <span class="chip" data-fill="qColors" data-val="Rouge">Rouge</span>
+        <span class="chip" data-fill="qColors" data-val="Noir">Noir</span>
+        <span class="chip" data-fill="qColors" data-val="Or">Or</span>
+        <span class="chip" data-fill="qColors" data-val="Argent">Argent</span>
+      </div>
+      <p class="hint" style="margin-top:8px" data-i18n="swatch_hint">Astuce : cliquez pour pré-remplir le formulaire de devis.</p>
+    </div>
+  </section>
+
+  <!-- DEVIS RAPIDE -->
   <section id="devis" class="section container">
-    <h2 class="section-title reveal">Demande de devis rapide</h2>
+    <h2 class="section-title reveal" data-i18n="quote_title">Demande de devis rapide</h2>
     <div class="card reveal">
       <form class="quote" id="quoteForm">
         <div class="row">
           <div>
-            <label for="qName">Nom / Société</label>
+            <label for="qName" data-i18n="f_name">Nom / Société</label>
             <input id="qName" type="text" placeholder="Ex : Monsieur K., Société X">
           </div>
           <div>
-            <label for="qPhone">Téléphone / WhatsApp</label>
+            <label for="qPhone" data-i18n="f_phone">Téléphone / WhatsApp</label>
             <input id="qPhone" type="tel" placeholder="+225 07 00 00 00 00">
           </div>
           <div>
@@ -245,34 +273,46 @@
 
         <div class="row">
           <div>
-            <label for="qNature">Nature de l’objet</label>
+            <label for="qNature" data-i18n="f_nature">Nature de l’objet</label>
             <input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…">
           </div>
           <div>
-            <label for="qDimensions">Dimensions (mm)</label>
-            <input id="qDimensions" type="text" placeholder="L × l × h (ex : 180 × 70 × 40)">
-            <div class="hint">Astuce : indiquez millimètres si possible.</div>
+            <label data-i18n="f_dims">Dimensions</label>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)">
+              <input id="dimL" type="number" min="0" step="0.1" placeholder="L">
+              <input id="dimW" type="number" min="0" step="0.1" placeholder="l">
+              <input id="dimH" type="number" min="0" step="0.1" placeholder="h">
+              <select id="dimUnit">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+            <div class="hint" data-i18n="f_dims_hint">Nous convertissons automatiquement en millimètres.</div>
           </div>
           <div>
-            <label for="qStorage">Environnement</label>
+            <label for="qStorage" data-i18n="f_env">Environnement</label>
             <select id="qStorage">
-              <option value="">Sélectionner…</option>
-              <option>Intérieur</option>
-              <option>Extérieur</option>
-              <option>Mixte</option>
+              <option value="" data-i18n="sel_choose">Sélectionner…</option>
+              <option data-i18n="env_in">Intérieur</option>
+              <option data-i18n="env_out">Extérieur</option>
+              <option data-i18n="env_mix">Mixte</option>
             </select>
           </div>
         </div>
 
         <div class="row">
           <div>
-            <label for="qColors">Couleurs souhaitées</label>
-            <input id="qColors" type="text" placeholder="Ex : Rouge / Noir / Or, etc.">
+            <label for="qColors" data-i18n="f_colors">Couleurs souhaitées</label>
+            <input id="qColors" type="text" placeholder="Ex : Rouge / Noir / Or">
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <input id="colorPick" type="color" value="#d32f2f" title="Choisir une couleur">
+              <button type="button" class="btn ghost" id="addColor" data-i18n="btn_add_color">Ajouter cette couleur</button>
+            </div>
           </div>
           <div>
-            <label for="qMaterial">Matière / Technologie</label>
+            <label for="qMaterial" data-i18n="f_material">Matière / Technologie</label>
             <select id="qMaterial">
-              <option value="">À conseiller</option>
+              <option value="" data-i18n="mat_advise">À conseiller</option>
               <option>FDM — PLA</option>
               <option>FDM — PETG</option>
               <option>FDM — ASA</option>
@@ -283,41 +323,63 @@
             </select>
           </div>
           <div>
-            <label for="qQty">Quantité</label>
+            <label for="qQty" data-i18n="f_qty">Quantité</label>
             <input id="qQty" type="number" min="1" placeholder="1">
           </div>
         </div>
 
         <div class="row">
           <div>
-            <label for="qDeadline">Délai souhaité</label>
+            <label for="qDeadline" data-i18n="f_deadline">Délai souhaité</label>
             <input id="qDeadline" type="text" placeholder="Ex : 3 jours, cette semaine, date précise…">
           </div>
           <div>
-            <label for="qBudget">Budget indicatif (CFA)</label>
+            <label for="qBudget" data-i18n="f_budget">Budget indicatif (CFA)</label>
             <input id="qBudget" type="text" placeholder="Ex : 30 000 CFA">
           </div>
           <div>
-            <label for="qLink">Lien fichier (Drive/WeTransfer)</label>
+            <label for="qLink" data-i18n="f_link">Lien fichier (Drive/WeTransfer)</label>
             <input id="qLink" type="url" placeholder="URL de votre fichier ou croquis">
           </div>
         </div>
 
         <div>
-          <label for="qNotes">Notes / précisions</label>
+          <label for="qNotes" data-i18n="f_notes">Notes / précisions</label>
           <textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea>
         </div>
 
         <div class="row">
-          <button type="button" class="btn primary" id="sendWhatsApp">Envoyer sur WhatsApp</button>
-          <button type="reset" class="btn ghost">Effacer</button>
+          <button type="button" class="btn primary" id="sendWhatsApp" data-i18n="btn_send_wa">Envoyer sur WhatsApp</button>
+          <button type="reset" class="btn ghost" data-i18n="btn_clear">Effacer</button>
         </div>
-        <div class="hint">Le bouton prépare un message complet et ouvre votre WhatsApp avec toutes les infos pré-remplies.</div>
+        <div class="hint" data-i18n="f_hint">Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies.</div>
       </form>
     </div>
   </section>
 
-  <!-- LIGHTBOX MODAL -->
+  <!-- TÉMOIGNAGES -->
+  <section class="section container">
+    <h2 class="section-title reveal" data-i18n="testi_title">Ils nous font confiance</h2>
+    <div class="testis">
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t1">“Super réactifs. Plaques gravées nickel pour notre événement.”</p>
+        <p class="note">— Agence Événementielle, Abidjan</p>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t2">“Prototype imprimé en 48h, ajustements parfaits, on recommande.”</p>
+        <p class="note">— Startup Hardware</p>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t3">“Trophées personnalisés très propres, délai respecté.”</p>
+        <p class="note">— Association Sportive</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL GALERIE -->
   <div class="modal" id="lightbox" aria-hidden="true">
     <img id="lightboxImg" alt="Aperçu">
     <div class="controls">
@@ -332,54 +394,122 @@
     © <span id="year"></span> R3D PRINT CI — Tous droits réservés.
   </footer>
 
+  <!-- FLOATING ACTIONS -->
+  <div class="fab-wa"><a id="fabWa" href="#" aria-label="WhatsApp">🟢</a></div>
+  <div class="to-top" id="toTop"><a href="#hdr">↑</a></div>
+  <div class="mobile-bar">
+    <a class="btn primary" id="mbWa" href="#">WhatsApp</a>
+    <a class="btn ghost" href="tel:+2250757841323" data-i18n="call">Appeler</a>
+    <a class="btn ghost" href="#devis" data-i18n="quick_quote">Devis</a>
+  </div>
+
   <div class="toast" id="toast">Message WhatsApp prêt ✅</div>
 
   <script>
-    // ===== Année
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // ========== TEXTES FR/EN ==========
+    const I18N = {
+      fr: {
+        nav_services:"Services", nav_work:"Réalisations", nav_quote:"Devis rapide", nav_contact:"Contactez-nous",
+        hero_title:"Impression 3D & Gravure Laser à Abidjan",
+        hero_sub:"Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.",
+        cta_whatsapp:"Contactez-nous sur WhatsApp",
+        kpi_prod:"Moyenne h prod/sem", kpi_nozzle:"Buse max (mm)", kpi_lasers:"Lasers (450/1064)", kpi_lead:"Délai typique (h)",
+        services_title:"Nos services",
+        svc_print:"Impression 3D", svc_print_desc:"FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.",
+        svc_laser:"Gravure Laser", svc_laser_desc:"450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.",
+        svc_design:"Design & Prototypage", svc_design_desc:"Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.",
+        beforeafter_title:"Avant / Après", beforeafter_note:"Glissez le curseur pour comparer la préparation et le rendu final (gravure/impression).",
+        work_title:"Quelques réalisations", work_note:"Cliquez pour agrandir. Vous pourrez remplacer ces images par vos photos réelles.",
+        swatch_title:"Matières & couleurs", swatch_hint:"Astuce : cliquez pour pré-remplir le formulaire de devis.",
+        quote_title:"Demande de devis rapide",
+        f_name:"Nom / Société", f_phone:"Téléphone / WhatsApp", f_nature:"Nature de l’objet", f_dims:"Dimensions", f_dims_hint:"Nous convertissons automatiquement en millimètres.",
+        f_env:"Environnement", sel_choose:"Sélectionner…", env_in:"Intérieur", env_out:"Extérieur", env_mix:"Mixte",
+        f_colors:"Couleurs souhaitées", btn_add_color:"Ajouter cette couleur", f_material:"Matière / Technologie", mat_advise:"À conseiller",
+        f_qty:"Quantité", f_deadline:"Délai souhaité", f_budget:"Budget indicatif (CFA)", f_link:"Lien fichier (Drive/WeTransfer)", f_notes:"Notes / précisions",
+        btn_send_wa:"Envoyer sur WhatsApp", btn_clear:"Effacer", f_hint:"Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies.",
+        testi_title:"Ils nous font confiance", t1:"“Super réactifs. Plaques gravées nickel pour notre événement.”", t2:"“Prototype imprimé en 48h, ajustements parfaits, on recommande.”", t3:"“Trophées personnalisés très propres, délai respecté.”",
+        call:"Appeler", quick_quote:"Devis"
+      },
+      en: {
+        nav_services:"Services", nav_work:"Works", nav_quote:"Quick quote", nav_contact:"Contact us",
+        hero_title:"3D Printing & Laser Engraving in Abidjan",
+        hero_sub:"Rapid prototyping, small series, trophies, signage, goodies. Tell us your need — we reply fast and clearly.",
+        cta_whatsapp:"Message us on WhatsApp",
+        kpi_prod:"Avg prod hours/week", kpi_nozzle:"Max nozzle (mm)", kpi_lasers:"Lasers (450/1064)", kpi_lead:"Typical lead time (h)",
+        services_title:"Our services",
+        svc_print:"3D Printing", svc_print_desc:"Fast, precise FDM. PLA (standard/silk/transparent), PETG, ASA. Prototypes, functional parts, decorative items.",
+        svc_laser:"Laser Engraving", svc_laser_desc:"450 nm & 1064 nm: wood, acrylic, anodized/SS metal, leather. Trophies, plates, business cards, signage, dynamic QR.",
+        svc_design:"Design & Prototyping", svc_design_desc:"3D modeling (Shapr3D/Blender), DfAM, adjustments, finishing. Clear quote & quick iterations.",
+        beforeafter_title:"Before / After", beforeafter_note:"Slide to compare preparation and final result (engraving/print).",
+        work_title:"Selected works", work_note:"Click to enlarge. Replace these placeholders with your real photos.",
+        swatch_title:"Materials & colors", swatch_hint:"Tip: click to prefill the quote form.",
+        quote_title:"Quick quote request",
+        f_name:"Name / Company", f_phone:"Phone / WhatsApp", f_nature:"Object nature", f_dims:"Dimensions", f_dims_hint:"We convert automatically to millimeters.",
+        f_env:"Environment", sel_choose:"Choose…", env_in:"Indoor", env_out:"Outdoor", env_mix:"Mixed",
+        f_colors:"Desired colors", btn_add_color:"Add this color", f_material:"Material / Technology", mat_advise:"Recommend for me",
+        f_qty:"Quantity", f_deadline:"Desired deadline", f_budget:"Indicative budget (CFA)", f_link:"File link (Drive/WeTransfer)", f_notes:"Notes / details",
+        btn_send_wa:"Send on WhatsApp", btn_clear:"Clear", f_hint:"The button builds the message and opens WhatsApp with all details prefilled.",
+        testi_title:"Trusted by", t1:"“Very responsive. Clean engraved plates for our event.”", t2:"“Prototype in 48h, perfect adjustments, highly recommend.”", t3:"“Custom trophies, great finish, on time.”",
+        call:"Call", quick_quote:"Quote"
+      }
+    };
 
-    // ===== WhatsApp – normalisation
+    // ===== Utilitaires
+    const $ = (s,ctx=document)=>ctx.querySelector(s);
+    const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
+    const setText = (el,txt)=>{ if(el) el.textContent = txt; };
+    const setI18n = (lang)=>{
+      $$("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(I18N[lang][key]) setText(el, I18N[lang][key]);
+      });
+    };
+
+    // ===== Année
+    $("#year").textContent = new Date().getFullYear();
+
+    // ===== WhatsApp – normalisation + liens
     const rawPhoneR3D = "002250757841323";
     const waNumber = rawPhoneR3D.replace(/^00/, ""); // 225...
-    const msgDefault = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
-    const waLinkDefault = "https://wa.me/" + waNumber + "?text=" + msgDefault;
-    ["cta","cta2","cta3"].forEach(id=>{
-      const a=document.getElementById(id);
-      if(a) a.href=waLinkDefault;
-    });
+    const defaultMsg = (lang)=> encodeURIComponent(lang==="en" ? "Hello R3D PRINT CI, I'd like a quote." : "Bonjour R3D PRINT CI, j'aimerais un devis.");
+    const setWaLinks = (lang="fr")=>{
+      const url = "https://wa.me/" + waNumber + "?text=" + defaultMsg(lang);
+      ["cta","cta2","mbWa","fabWa"].forEach(id=>{ const a=$("#"+id); if(a) a.href=url; });
+    };
 
-    // ===== Header sticky shadow
-    const hdr = document.getElementById('hdr');
-    const onScrollHdr = () => { if(window.scrollY>6) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled'); };
+    // ===== Header sticky + toTop
+    const hdr = $("#hdr"), toTop = $("#toTop");
+    const onScrollHdr = () => {
+      if(window.scrollY>6) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
+      if(window.scrollY>400) toTop.classList.add('show'); else toTop.classList.remove('show');
+    };
     onScrollHdr(); window.addEventListener('scroll', onScrollHdr);
 
-    // ===== Parallax dynamique (héros)
-    const hero = document.getElementById('hero');
+    // ===== Parallax (héros)
+    const hero = $("#hero");
     const onScrollParallax = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      const rel = Math.min(1, y/400);
       hero.style.setProperty('--parallaxY', (y*0.12)+'px');
       hero.style.setProperty('--parallaxY2', (y*0.08)+'px');
     };
     onScrollParallax(); window.addEventListener('scroll', onScrollParallax, {passive:true});
 
-    // ===== Révélations au scroll
+    // ===== Révélations
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
       });
     }, {threshold:.15});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    $$(".reveal").forEach(el=>io.observe(el));
 
-    // ===== Compteurs animés
+    // ===== Compteurs
     const animateCount = (el, target, duration=1200) => {
       const isFloat = String(target).includes('.');
       const end = parseFloat(target);
       const startTime = performance.now();
       const step = (now) => {
         const p = Math.min(1, (now - startTime) / duration);
-        const val = (end * p);
-        el.textContent = isFloat ? val.toFixed(1) : Math.round(val);
+        const val = end * p; el.textContent = isFloat ? val.toFixed(1) : Math.round(val);
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
@@ -393,92 +523,121 @@
         }
       });
     }, {threshold:.5});
-    document.querySelectorAll('.kpi').forEach(k=>ioKpi.observe(k));
+    $$(".kpi").forEach(k=>ioKpi.observe(k));
 
-    // ===== Lightbox (galerie)
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    const shots = Array.from(document.querySelectorAll('.gallery .shot'));
+    // ===== Lightbox
+    const lb = $("#lightbox"), lbImg = $("#lightboxImg");
+    const shots = $$(".gallery .shot");
     let lbIndex = 0;
-    const openLb = (idx)=>{ lbIndex = idx; lbImg.src = shots[lbIndex].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); };
+    const openLb = (i)=>{ lbIndex=i; lbImg.src=shots[i].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); };
     const closeLb = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); };
-    const nextLb = ()=>{ lbIndex = (lbIndex+1)%shots.length; lbImg.src = shots[lbIndex].src; };
-    const prevLb = ()=>{ lbIndex = (lbIndex-1+shots.length)%shots.length; lbImg.src = shots[lbIndex].src; };
-    shots.forEach((img, i)=> img.addEventListener('click', ()=>openLb(i)));
-    document.getElementById('lbClose').addEventListener('click', closeLb);
-    document.getElementById('lbNext').addEventListener('click', nextLb);
-    document.getElementById('lbPrev').addEventListener('click', prevLb);
+    const nextLb = ()=>{ lbIndex=(lbIndex+1)%shots.length; lbImg.src=shots[lbIndex].src; };
+    const prevLb = ()=>{ lbIndex=(lbIndex-1+shots.length)%shots.length; lbImg.src=shots[lbIndex].src; };
+    shots.forEach((im,i)=> im.addEventListener('click', ()=>openLb(i)));
+    $("#lbClose").addEventListener('click', closeLb);
+    $("#lbNext").addEventListener('click', nextLb);
+    $("#lbPrev").addEventListener('click', prevLb);
     lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
     window.addEventListener('keydown', (e)=>{ if(lb.classList.contains('open')){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowRight') nextLb(); if(e.key==='ArrowLeft') prevLb(); }});
 
-    // ===== Thème clair/sombre + mémoire
-    const root = document.documentElement;
-    const btnTheme = document.getElementById('themeBtn');
+    // ===== Avant/Après slider
+    const baRange = $("#baRange"), baTop = $("#baTop");
+    if(baRange && baTop){ baRange.addEventListener('input', e=>{ baTop.style.width = e.target.value + "%"; }); }
+
+    // ===== Thème
+    const root = document.documentElement, btnTheme = $("#themeBtn");
     const setTheme = (mode)=>{ root.setAttribute('data-theme', mode); localStorage.setItem('r3d_theme', mode); };
-    const saved = localStorage.getItem('r3d_theme'); if(saved){ setTheme(saved); }
-    btnTheme.addEventListener('click', ()=>{
-      const current = root.getAttribute('data-theme') || 'light';
-      setTheme(current==='light' ? 'dark' : 'light');
+    const savedTheme = localStorage.getItem('r3d_theme'); if(savedTheme){ setTheme(savedTheme); }
+    btnTheme.addEventListener('click', ()=>{ const cur=root.getAttribute('data-theme')||'light'; setTheme(cur==='light'?'dark':'light'); });
+
+    // ===== Langue
+    const langSel = $("#langSel");
+    const setLang = (lang)=>{ document.documentElement.lang = lang; localStorage.setItem('r3d_lang', lang); setI18n(lang); setWaLinks(lang); };
+    const savedLang = localStorage.getItem('r3d_lang') || 'fr';
+    langSel.value = savedLang; setLang(savedLang);
+    langSel.addEventListener('change', e=> setLang(e.target.value));
+
+    // ===== Toast
+    const toast = $("#toast");
+    const showToast = (txt)=>{ toast.textContent=txt; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2200); };
+
+    // ===== Chips (pré-remplissage)
+    $("#chips").addEventListener('click', (e)=>{
+      const chip = e.target.closest('.chip'); if(!chip) return;
+      const fill = chip.dataset.fill, val = chip.dataset.val;
+      if(fill && $("#"+fill)){
+        const cur = $("#"+fill).value.trim();
+        if(fill==="qColors"){
+          $("#"+fill).value = cur ? (cur+", "+val) : val;
+        } else {
+          $("#"+fill).value = val;
+        }
+        chip.classList.add('active'); setTimeout(()=>chip.classList.remove('active'), 800);
+      }
     });
 
-    // ===== Devis rapide → WhatsApp
-    const toast = document.getElementById('toast');
-    const showToast = (txt="Message WhatsApp prêt ✅")=>{
-      toast.textContent = txt; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2200);
-    };
+    // ===== Color picker → ajoute dans qColors
+    $("#addColor").addEventListener('click', ()=>{
+      const hex = $("#colorPick").value;
+      const field = $("#qColors");
+      field.value = field.value ? (field.value + ", " + hex) : hex;
+    });
 
-    function sanitize(s){ return (s||"").trim(); }
-    function buildQuoteMessage(){
-      const name = sanitize(document.getElementById('qName').value);
-      const phone = sanitize(document.getElementById('qPhone').value);
-      const email = sanitize(document.getElementById('qEmail').value);
-      const nature = sanitize(document.getElementById('qNature').value);
-      const dims = sanitize(document.getElementById('qDimensions').value);
-      const env = sanitize(document.getElementById('qStorage').value);
-      const colors = sanitize(document.getElementById('qColors').value);
-      const material = sanitize(document.getElementById('qMaterial').value);
-      const qty = sanitize(document.getElementById('qQty').value);
-      const deadline = sanitize(document.getElementById('qDeadline').value);
-      const budget = sanitize(document.getElementById('qBudget').value);
-      const link = sanitize(document.getElementById('qLink').value);
-      const notes = sanitize(document.getElementById('qNotes').value);
+    // ===== Devis → WhatsApp
+    function sanitize(s){ return (s||"").toString().trim(); }
+    function dimsToMM(){
+      const L = parseFloat($("#dimL").value)||0, W = parseFloat($("#dimW").value)||0, H = parseFloat($("#dimH").value)||0;
+      const unit = $("#dimUnit").value; const k = (unit==="cm") ? 10 : 1;
+      return {L: L*k, W: W*k, H: H*k, unit:"mm"};
+    }
+    function buildQuoteMessage(lang){
+      const t = (fr,en)=> lang==="en"?en:fr;
+      const name=sanitize($("#qName").value), phone=sanitize($("#qPhone").value), email=sanitize($("#qEmail").value);
+      const nature=sanitize($("#qNature").value), env=sanitize($("#qStorage").value);
+      const colors=sanitize($("#qColors").value), material=sanitize($("#qMaterial").value);
+      const qty=sanitize($("#qQty").value), deadline=sanitize($("#qDeadline").value), budget=sanitize($("#qBudget").value);
+      const link=sanitize($("#qLink").value), notes=sanitize($("#qNotes").value);
+      const d=dimsToMM(); const dims = (d.L||d.W||d.H) ? `${Math.round(d.L)} × ${Math.round(d.W)} × ${Math.round(d.H)} ${d.unit}` : "";
 
       const lines = [
-        "Bonjour R3D PRINT CI, je souhaite un devis :",
+        t("Bonjour R3D PRINT CI, je souhaite un devis :", "Hello R3D PRINT CI, I'd like a quote:"),
         "",
-        name ? "• Nom / Société : " + name : "",
-        phone ? "• Téléphone : " + phone : "",
-        email ? "• E-mail : " + email : "",
-        nature ? "• Nature de l'objet : " + nature : "",
-        dims ? "• Dimensions (mm) : " + dims : "",
-        env ? "• Environnement : " + env : "",
-        colors ? "• Couleurs : " + colors : "",
-        material ? "• Matière / Techno : " + material : "",
-        qty ? "• Quantité : " + qty : "",
-        deadline ? "• Délai souhaité : " + deadline : "",
-        budget ? "• Budget indicatif : " + budget + " CFA" : "",
-        link ? "• Lien fichier : " + link : "",
-        notes ? "• Notes : " + notes : ""
+        name ? t("• Nom / Société : ","• Name / Company: ")+name : "",
+        phone ? t("• Téléphone : ","• Phone: ")+phone : "",
+        email ? "• E-mail : "+email : "",
+        nature ? t("• Nature de l'objet : ","• Object nature: ")+nature : "",
+        dims ? t("• Dimensions : ","• Dimensions: ")+dims : "",
+        env ? t("• Environnement : ","• Environment: ")+env : "",
+        colors ? t("• Couleurs : ","• Colors: ")+colors : "",
+        material ? t("• Matière / Techno : ","• Material / Tech: ")+material : "",
+        qty ? t("• Quantité : ","• Quantity: ")+qty : "",
+        deadline ? t("• Délai souhaité : ","• Desired deadline: ")+deadline : "",
+        budget ? t("• Budget indicatif : ","• Indicative budget: ")+budget+" CFA" : "",
+        link ? t("• Lien fichier : ","• File link: ")+link : "",
+        notes ? t("• Notes : ","• Notes: ")+notes : ""
       ].filter(Boolean);
-
       return lines.join("\n");
     }
-
     function validateMinimal(){
-      const nature = document.getElementById('qNature').value.trim();
-      const dims = document.getElementById('qDimensions').value.trim();
-      return !!nature && !!dims;
+      const nature=$("#qNature").value.trim();
+      const L=$("#dimL").value.trim(), W=$("#dimW").value.trim(), H=$("#dimH").value.trim();
+      return !!nature && (L||W||H);
     }
-
-    document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
-      if(!validateMinimal()){
-        showToast("Indique au minimum la nature et les dimensions.");
-        return;
-      }
-      const text = encodeURIComponent(buildQuoteMessage());
+    $("#sendWhatsApp").addEventListener('click', ()=>{
+      const lang = localStorage.getItem('r3d_lang') || 'fr';
+      if(!validateMinimal()){ showToast(lang==='en'?"Please provide object nature and at least one dimension.":"Indique au minimum la nature et une dimension."); return; }
+      const text = encodeURIComponent(buildQuoteMessage(lang));
       const url = "https://wa.me/" + waNumber + "?text=" + text;
-      showToast();
+      showToast(lang==='en'?"WhatsApp message ready ✅":"Message WhatsApp prêt ✅");
       window.open(url, "_blank");
+    });
+
+    // ===== Set WA links initially for current language
+    setWaLinks(savedLang);
+
+    // ===== Avant/Après: fallback si pas d'images
+    ["assets/before.jpg","assets/after.jpg"].forEach(src=>{
+      const img=new Image(); img.src=src; img.onerror=()=>{$("#ba").style.display="none";}
     });
   </script>
 </body>
