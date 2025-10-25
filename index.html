@@ -23,102 +23,155 @@
       --muted:#c6c8cc;
       --brand:#d32f2f;
       --stroke:#232428;
+      --radius:14px;
+      --container:1100px;
+      --space:24px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
-    a{color:var(--brand);text-decoration:none}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    img{max-width:100%;height:auto;display:block}
+    a{color:var(--brand);text-decoration:none;word-break:break-word}
     a:hover{text-decoration:underline}
-    header,section,footer{padding:24px}
-    .container{max-width:1100px;margin:auto}
-    header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--stroke)}
-    .brand{display:flex;align-items:center;gap:10px}
+    p,li{word-wrap:break-word}
+
+    .container{max-width:var(--container);margin:auto;padding:var(--space)}
+    header,section,footer{padding-inline:var(--space)}
+    /* HEADER */
+    header{border-bottom:1px solid var(--stroke)}
+    .bar{max-width:var(--container);margin:auto;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;padding-block:12px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
     .brand img{width:42px;height:42px;object-fit:contain}
-    .brand span{font-weight:900;letter-spacing:1px}
-    .btn{background:var(--brand);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer}
-    .btn.ghost{background:transparent;border:1px solid var(--brand);color:var(--brand)}
-    .hero{padding:60px 0;border-bottom:1px solid var(--stroke);text-align:left}
-    .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin-bottom:15px}
-    .hero p{color:var(--muted);max-width:750px;margin-bottom:25px}
-    .section-title{margin-bottom:18px;font-size:1.8rem}
-    .grid{display:grid;gap:18px}
-    @media(min-width:780px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+    .brand span{font-weight:900;letter-spacing:1px;white-space:nowrap}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+    .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
+    /* HERO */
+    .hero{padding-block:56px;border-bottom:1px solid var(--stroke)}
+    .hero h1{font-size:clamp(26px,6vw,44px);line-height:1.15;margin:0 0 12px}
+    .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    /* SECTIONS */
+    .section{padding-block:26px}
+    .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
+    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px}
     .note{color:#9ea0a4;font-size:14px}
-    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    @media(min-width:800px){.gallery{grid-template-columns:repeat(4,1fr)}}
-    .shot{aspect-ratio:1;border-radius:12px;background:#0f0f12;border:1px dashed #2a2a2e;display:flex;align-items:center;justify-content:center;color:#6d6e72;font-size:12px}
-    footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:30px;padding:20px}
+
+    /* GRIDS: fluide, évite les chevauchements */
+    .grid{display:grid;gap:16px}
+    /* auto-fit avec minmax garantit qu’on empile correctement sur mobile */
+    .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:10px}
+    .shot{aspect-ratio:1;border-radius:12px;background:#0f0f12;border:1px dashed #2a2a2e;display:grid;place-items:center;color:#6d6e72;font-size:12px}
+
+    /* CONTACT */
+    .contact-block{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:30px;padding:20px var(--space)}
+
+    /* PETITS ÉCRANS : affiner espacements/tailles */
+    @media (max-width:480px){
+      :root{--space:18px}
+      .brand img{width:36px;height:36px}
+      .btn{width:100%}            /* boutons pleine largeur pour éviter les chevauchements */
+      .nav .btn{width:auto}       /* mais les petits liens du header peuvent rester auto */
+      .hero{padding-block:40px}
+      .card{padding:14px}
+    }
+
+    /* MODE CLAIR AUTO */
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f7f7f8;--bg-soft:#ffffff;--text:#0c0d0e;--muted:#4b4d52;--stroke:#e6e7ea}
+      .shot{background:#fafafa;border-color:#d7d9dc;color:#9aa0a6}
+    }
   </style>
 </head>
 <body>
-  <header class="container">
-    <div class="brand">
-      <img src="assets/logo.png" alt="R3D PRINT CI">
-      <span>R3D PRINT CI</span>
+  <!-- HEADER -->
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="R3D PRINT CI">
+        <span>R3D PRINT CI</span>
+      </div>
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="btn ghost" href="#services">Services</a>
+        <a class="btn ghost" href="#realisations">Réalisations</a>
+        <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener">Contactez-nous</a>
+      </nav>
     </div>
-    <nav>
-      <a class="btn ghost" href="#services">Services</a>
-      <a class="btn ghost" href="#realisations">Réalisations</a>
-      <a class="btn" id="cta" href="#" target="_blank" rel="noopener">Contactez-nous</a>
-    </nav>
   </header>
 
-  <section class="container hero">
+  <!-- HERO -->
+  <section class="hero container">
     <h1>Impression 3D & Gravure Laser à Abidjan</h1>
     <p>Créatif, professionnel et accessible. Nous réalisons vos projets : prototypes, trophées, signalétique, goodies, plaques personnalisées et bien plus encore.</p>
-    <button class="btn" id="cta2">Contactez-nous sur WhatsApp</button>
+    <div class="cta-row">
+      <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener">Contactez-nous sur WhatsApp</a>
+      <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
+      <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">Instagram</a>
+    </div>
   </section>
 
-  <section id="services" class="container">
+  <!-- SERVICES -->
+  <section id="services" class="section container">
     <h2 class="section-title">Nos services</h2>
     <div class="grid cols-3">
-      <div class="card">
+      <article class="card">
         <h3>Impression 3D</h3>
-        <p class="note">FDM rapide et précise. Matériaux : PLA, PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
-      </div>
-      <div class="card">
+        <p class="note">FDM rapide et précise. Matériaux : PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+      </article>
+      <article class="card">
         <h3>Gravure Laser</h3>
-        <p class="note">Gravure 450 nm & 1064 nm sur bois, acrylique, métal, cuir. Trophées, plaques, cartes professionnelles, signalétique.</p>
-      </div>
-      <div class="card">
+        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal (inox/anodisé), cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
+      </article>
+      <article class="card">
         <h3>Design & Prototypage</h3>
-        <p class="note">Modélisation 3D, ajustements, finitions, conception personnalisée selon vos besoins.</p>
-      </div>
+        <p class="note">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
+      </article>
     </div>
   </section>
 
-  <section id="realisations" class="container">
+  <!-- RÉALISATIONS -->
+  <section id="realisations" class="section container">
     <h2 class="section-title">Quelques réalisations</h2>
     <div class="gallery">
-      <div class="shot">photo 1</div>
-      <div class="shot">photo 2</div>
-      <div class="shot">photo 3</div>
-      <div class="shot">photo 4</div>
+      <div class="shot">/assets/shot1.jpg</div>
+      <div class="shot">/assets/shot2.jpg</div>
+      <div class="shot">/assets/shot3.jpg</div>
+      <div class="shot">/assets/shot4.jpg</div>
     </div>
-    <p class="note">Tu pourras remplacer ces emplacements par tes vraies photos de trophées, impressions ou gravures.</p>
+    <p class="note" style="margin-top:8px">Tu remplaceras ces emplacements par tes photos réelles (trophées, plaques, prints FDM, etc.).</p>
   </section>
 
-  <section id="contact" class="container">
+  <!-- CONTACT -->
+  <section id="contact" class="section container">
     <h2 class="section-title">Contact</h2>
     <p class="note">Réponse rapide via WhatsApp. Pour les demandes complexes ou devis formels, utilise l’e-mail.</p>
-    <a class="btn" id="cta3" href="#" target="_blank" rel="noopener">Contactez-nous</a>
-    <p class="note" style="margin-top:10px">
-      WhatsApp : <strong>+225 07 57 84 13 23</strong><br>
-      E-mail : <a href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a><br>
-      Instagram : <a href="https://instagram.com/r3dprint.ci" target="_blank">@r3dprint.ci</a>
-    </p>
+    <div class="contact-block" style="margin-top:6px">
+      <a class="btn primary" id="cta3" href="#" target="_blank" rel="noopener">Contactez-nous</a>
+      <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
+      <span class="note">WhatsApp : <strong>+225 07 57 84 13 23</strong></span>
+      <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">@r3dprint.ci</a>
+    </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> R3D PRINT CI — Tous droits réservés.
   </footer>
 
   <script>
+    // Année
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // WhatsApp – normalisation numéro CI
     const phone = "002250757841323".replace(/^00/, "");
     const msg = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
     const link = "https://wa.me/" + phone + "?text=" + msg;
-    ["cta", "cta2", "cta3"].forEach(id=>{
+
+    ["cta","cta2","cta3"].forEach(id=>{
       const a=document.getElementById(id);
       if(a) a.href=link;
     });
