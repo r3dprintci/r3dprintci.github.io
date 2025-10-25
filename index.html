@@ -16,676 +16,143 @@
   <link rel="apple-touch-icon" sizes="512x512" href="assets/apple-touch-icon-512.png">
 
   <style>
-    :root{
-      --brand:#d32f2f; --brand-weak:#ff6b6b;
-      --bg:#f7f7f8; --bg-soft:#ffffff; --text:#0c0d0e; --muted:#4b4d52; --stroke:#e6e7ea;
-      --radius:14px; --container:1100px; --space:24px;
-      --shadow-sm:0 2px 10px rgba(0,0,0,.06);
-      --shadow-md:0 8px 24px rgba(0,0,0,.08);
+    :root {
+      --brand:#d32f2f; --bg:#f7f7f8; --bg-soft:#ffffff; --text:#0c0d0e; --muted:#4b4d52; --stroke:#e6e7ea;
+      --radius:14px; --container:1100px; --space:24px; --shadow-sm:0 2px 10px rgba(0,0,0,.06);
     }
     [data-theme="dark"]{
       --bg:#0b0b0c; --bg-soft:#121214; --text:#f6f7f8; --muted:#c6c8cc; --stroke:#232428;
-      --shadow-sm:0 2px 10px rgba(0,0,0,.35);
-      --shadow-md:0 8px 28px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
     img{max-width:100%;height:auto;display:block}
-    a{color:var(--brand);text-decoration:none;word-break:break-word}
+    a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
-    p,li{word-wrap:break-word}
     .container{max-width:var(--container);margin:auto;padding:var(--space)}
-    header,section,footer{padding-inline:var(--space)}
 
-    /* HEADER */
-    header{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--stroke);transition:box-shadow .25s ease}
-    header.is-scrolled{box-shadow:var(--shadow-sm)}
-    .bar{max-width:var(--container);margin:auto;display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap;padding-block:12px}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .brand img{width:64px;height:64px;object-fit:contain}
-    .brand span{font-weight:900;letter-spacing:1px;white-space:nowrap;font-size:clamp(18px,2.2vw,22px)}
+    header{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--stroke)}
+    .bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:12px var(--space)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:70px;height:70px;object-fit:contain}
+    .brand span{font-weight:900;font-size:clamp(18px,2.5vw,22px)}
     .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer;white-space:nowrap}
-    .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
-    .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
-    .theme-toggle{border:1px solid var(--stroke);background:var(--bg-soft);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer}
+    .btn.primary{background:var(--brand);color:#fff}
+    .btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--brand)}
 
-    /* LANG ICON + MENU (discret) */
-    .lang{position:relative}
-    .lang button{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--stroke);background:var(--bg-soft);cursor:pointer}
-    .lang button span{font-size:18px}
-    .lang .menu{position:absolute;right:0;top:46px;background:var(--bg-soft);border:1px solid var(--stroke);border-radius:10px;box-shadow:var(--shadow-md);display:none;overflow:hidden}
-    .lang .menu.open{display:block}
-    .lang .menu button{display:block;width:100%;padding:8px 12px;background:transparent;border:none;text-align:left;cursor:pointer}
-    .lang .menu button:hover{background:rgba(0,0,0,.04)}
-
-    /* HERO + effets */
-    .hero{position:relative;overflow:hidden;padding-block:68px;border-bottom:1px solid var(--stroke)}
-    .hero h1{font-size:clamp(26px,6vw,44px);line-height:1.15;margin:0 0 12px}
-    .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
+    .hero{padding-block:60px;border-bottom:1px solid var(--stroke)}
+    .hero h1{font-size:clamp(26px,6vw,44px);margin:0 0 12px}
+    .hero p{color:var(--muted);max-width:760px;margin:0 0 18px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
-    .hero::before{
-      content:"";position:absolute;inset:-20% -10% auto -10%;height:55%;
-      background:repeating-linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.04) 2px, transparent 2px, transparent 6px);
-      transform:translateY(var(--parallaxY,0px));pointer-events:none;
-    }
-    .hero::after{
-      content:"";position:absolute;top:-80px;left:50%;width:520px;height:520px;
-      background:radial-gradient( ellipse at center, rgba(211,47,47,.18), transparent 60%);
-      filter:blur(12px);transform:translateX(-50%) translateY(var(--parallaxY2,0px));pointer-events:none;
-    }
 
-    /* KPI */
-    .kpis{display:grid;gap:12px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-    .kpi{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:12px;padding:14px;text-align:center;box-shadow:var(--shadow-sm)}
-    .kpi strong{font-size:20px;display:block}
-    .kpi span{color:var(--muted);font-size:13px}
-
-    /* SECTIONS */
     .section{padding-block:32px}
     .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
-    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    .card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);pointer-events:none}
+    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
     .note{color:var(--muted);font-size:14px}
 
-    /* GRIDS */
     .grid{display:grid;gap:16px}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:10px}
-    .shot{aspect-ratio:1;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.06));border:1px solid var(--stroke);display:grid;place-items:center;color:#6d6e72;font-size:12px;cursor:pointer;overflow:hidden}
+
+    .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:10px}
+    .shot{aspect-ratio:1;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.06));border:1px solid var(--stroke);overflow:hidden;cursor:pointer}
     .shot img{width:100%;height:100%;object-fit:cover}
 
-    /* AVANT/APRÈS */
-    .before-after{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--stroke);box-shadow:var(--shadow-sm);background:#000;cursor:pointer}
-    .before-after img{display:block;width:100%;height:auto}
-    .before-after .top{position:absolute;inset:0;overflow:hidden}
-    .before-after .top img{width:100%;height:100%;object-fit:cover}
-    .before-after input[type="range"]{position:absolute;left:0;right:0;bottom:12px;width:60%;margin:auto}
+    footer{border-top:1px solid var(--stroke);text-align:center;color:var(--muted);font-size:14px;padding:20px var(--space)}
+    .fab-wa{position:fixed;right:16px;bottom:80px;z-index:55}
+    .fab-wa a{display:grid;place-items:center;width:64px;height:64px;border-radius:999px;background:#25D366;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+    .fab-wa svg{width:30px;height:30px;fill:#fff}
 
-    /* FORMULAIRE DEVIS */
-    form.quote{display:grid;gap:12px}
-    .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    label{font-weight:700;font-size:14px}
-    input, select, textarea{width:100%;border-radius:10px;border:1px solid var(--stroke);background:var(--bg);color:var(--text);padding:10px 12px}
-    textarea{min-height:110px;resize:vertical}
-    .hint{font-size:12px;color:var(--muted)}
-    .colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-    .chip{border:1px solid var(--stroke);border-radius:999px;padding:8px 12px;cursor:pointer;background:var(--bg-soft)}
-    .chip.active{border-color:var(--brand);box-shadow:0 0 0 2px rgba(211,47,47,.15)}
-    .toast{position:fixed;right:16px;bottom:16px;background:var(--bg-soft);border:1px solid var(--stroke);color:var(--text);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-md);display:none;z-index:200}
-    .toast.show{display:block}
-
-    /* TÉMOIGNAGES */
-    .testis{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .testi{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:12px;padding:14px;box-shadow:var(--shadow-sm)}
-    .stars{color:#f5a524;font-size:14px;margin-bottom:6px}
-
-    /* FLOTTANTS */
-    .fab-wa{position:fixed;right:16px;bottom:88px;z-index:55}
-    .fab-wa a{display:grid;place-items:center;width:64px;height:64px;border-radius:999px;background:#25D366;color:#fff;box-shadow:var(--shadow-md);text-decoration:none}
-    .fab-wa svg{width:30px;height:30px;display:block}
-    .mobile-bar{position:fixed;left:0;right:0;bottom:0;background:var(--bg-soft);border-top:1px solid var(--stroke);display:none;gap:8px;padding:8px;z-index:50}
-    .mobile-bar .btn{flex:1}
-    @media (max-width:820px){.mobile-bar{display:flex}}
-
-    /* UP */
-    .to-top{position:fixed;right:16px;bottom:160px;display:none;z-index:50}
-    .to-top.show{display:block}
-    .to-top a{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--stroke);text-decoration:none;color:var(--text)}
-
-    /* LANG MODAL (première visite) */
-    .lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;z-index:70;padding:16px}
-    .lang-modal.open{display:flex}
-    .lang-card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-md);padding:18px;max-width:420px;width:100%}
-    .lang-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-    .lang-actions button{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;background:var(--bg);cursor:pointer}
-
-    /* MOBILE TWEAKS */
-    @media (max-width:480px){
+    @media(max-width:480px){
       :root{--space:18px}
-      .brand img{width:56px;height:56px}
+      .brand img{width:60px;height:60px}
       .btn{width:100%}
-      .nav .btn{width:auto}
-      .hero{padding-block:48px}
-      .card{padding:14px}
+      .hero{padding-block:40px}
     }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
-  <header id="hdr">
+  <header>
     <div class="bar">
       <div class="brand">
-        <img id="logoR3D" src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
+        <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
         <span>R3D PRINT CI</span>
       </div>
-      <nav class="nav" aria-label="Navigation">
-        <a class="btn ghost" href="#services" data-i18n="nav_services">Services</a>
-        <a class="btn ghost" href="#realisations" data-i18n="nav_work">Réalisations</a>
-        <a class="btn ghost" href="#devis" data-i18n="nav_quote">Devis rapide</a>
-        <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener" data-i18n="nav_contact">Contactez-nous</a>
-        <!-- Icône langue discrète -->
-        <div class="lang" id="langBox">
-          <button id="langBtn" aria-haspopup="true" aria-expanded="false" title="Langue">
-            <span>🌐</span>
-          </button>
-          <div class="menu" id="langMenu" role="menu" aria-label="Choisir la langue">
-            <button data-lang="fr">🇫🇷 Français</button>
-            <button data-lang="en">🇬🇧 English</button>
-          </div>
-        </div>
-        <button id="themeBtn" class="theme-toggle" type="button" aria-label="Changer de thème">🌞/🌙</button>
+      <nav class="nav">
+        <a class="btn ghost" href="#services">Services</a>
+        <a class="btn ghost" href="#realisations">Réalisations</a>
+        <a class="btn primary" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero container" id="hero">
-    <h1 class="reveal" data-i18n="hero_title">Impression 3D & Gravure Laser à Abidjan</h1>
-    <p class="reveal" data-i18n="hero_sub">Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.</p>
-    <div class="cta-row reveal">
-      <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener" data-i18n="cta_whatsapp">Contactez-nous sur WhatsApp</a>
+  <section class="hero container">
+    <h1>Impression 3D & Gravure Laser à Abidjan</h1>
+    <p>Prototypage, trophées, signalétique, goodies, objets sur mesure — un service local, rapide et professionnel.</p>
+    <div class="cta-row">
+      <a class="btn primary" id="cta" href="#">WhatsApp</a>
       <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
-      <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">Instagram</a>
-    </div>
-
-    <div class="kpis">
-      <div class="kpi reveal"><strong data-count="48">0</strong><span data-i18n="kpi_prod">Moyenne h prod/sem</span></div>
-      <div class="kpi reveal"><strong data-count="0.6">0</strong><span data-i18n="kpi_nozzle">Buse max (mm)</span></div>
-      <div class="kpi reveal"><strong data-count="2">0</strong><span data-i18n="kpi_lasers">Lasers (450/1064)</span></div>
-      <div class="kpi reveal"><strong data-count="72">0</strong><span data-i18n="kpi_lead">Délai typique (h)</span></div>
+      <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank">Instagram</a>
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services" class="section container">
-    <h2 class="section-title reveal" data-i18n="services_title">Nos services</h2>
+    <h2 class="section-title">Nos services</h2>
     <div class="grid cols-3">
-      <article class="card reveal">
-        <h3 data-i18n="svc_print">Impression 3D</h3>
-        <p class="note" data-i18n="svc_print_desc">FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+      <article class="card">
+        <h3>Impression 3D</h3>
+        <p class="note">FDM rapide et précise (PLA, PETG, ASA). Prototypes, pièces fonctionnelles, objets décoratifs.</p>
       </article>
-      <article class="card reveal">
-        <h3 data-i18n="svc_laser">Gravure Laser</h3>
-        <p class="note" data-i18n="svc_laser_desc">450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
+      <article class="card">
+        <h3>Gravure Laser</h3>
+        <p class="note">Bois, acrylique, métal, cuir. Plaques, trophées, QR dynamiques, goodies personnalisés.</p>
       </article>
-      <article class="card reveal">
-        <h3 data-i18n="svc_design">Design & Prototypage</h3>
-        <p class="note" data-i18n="svc_design_desc">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
+      <article class="card">
+        <h3>Design & Prototypage</h3>
+        <p class="note">Modélisation 3D, ajustements, conceptions sur mesure. Du croquis à l’objet fini.</p>
       </article>
     </div>
   </section>
 
-  <!-- AVANT / APRÈS -->
-  <section class="section container">
-    <h2 class="section-title reveal" data-i18n="beforeafter_title">Avant / Après</h2>
-    <div class="before-after reveal" id="ba" title="Cliquez pour ouvrir">
-      <!-- Placeholders Unsplash -->
-      <img id="imgBefore" src="https://source.unsplash.com/1200x700/?laser,engraving" alt="Avant (placeholder)">
-      <div class="top" id="baTop" style="width:50%">
-        <img id="imgAfter" src="https://source.unsplash.com/1200x700/?3d-printing,prototype" alt="Après (placeholder)">
-      </div>
-      <input id="baRange" type="range" min="0" max="100" value="50" aria-label="Comparateur avant/après">
-    </div>
-    <p class="note" style="margin-top:8px" data-i18n="beforeafter_note">Glissez le curseur pour comparer ou cliquez pour agrandir.</p>
-  </section>
-
-  <!-- RÉALISATIONS (placeholders web) -->
   <section id="realisations" class="section container">
-    <h2 class="section-title reveal" data-i18n="work_title">Quelques réalisations</h2>
-    <div class="gallery" id="gallery">
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 1"><img loading="lazy" src="https://source.unsplash.com/800x800/?3d-printing" alt="Impression 3D — placeholder 1"></div>
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 2"><img loading="lazy" src="https://source.unsplash.com/800x800/?filament,3d" alt="Impression 3D — placeholder 2"></div>
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 3"><img loading="lazy" src="https://source.unsplash.com/800x800/?laser,engraving" alt="Gravure laser — placeholder 1"></div>
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 4"><img loading="lazy" src="https://source.unsplash.com/800x800/?cnc,laser" alt="Gravure/CNC — placeholder 2"></div>
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 5"><img loading="lazy" src="https://source.unsplash.com/800x800/?prototype,3d" alt="Prototypage — placeholder 1"></div>
-      <div class="shot reveal" tabindex="0" role="button" aria-label="Ouvrir image 6"><img loading="lazy" src="https://source.unsplash.com/800x800/?acrylic,laser" alt="Acrylique gravé — placeholder 1"></div>
-    </div>
-    <p class="note" style="margin-top:8px" data-i18n="work_note">Cliquez pour agrandir. Vous remplacerez ces images par vos photos réelles.</p>
-  </section>
-
-  <!-- MATIÈRES / COULEURS -->
-  <section class="section container">
-    <h2 class="section-title reveal" data-i18n="swatch_title">Matières & couleurs</h2>
-    <div class="card reveal">
-      <div class="colors" id="chips">
-        <span class="chip" data-fill="qMaterial" data-val="FDM — PLA">PLA</span>
-        <span class="chip" data-fill="qMaterial" data-val="FDM — PETG">PETG</span>
-        <span class="chip" data-fill="qMaterial" data-val="FDM — ASA">ASA</span>
-        <span class="chip" data-fill="qMaterial" data-val="Laser — Bois">Bois</span>
-        <span class="chip" data-fill="qMaterial" data-val="Laser — Acrylique">Acrylique</span>
-        <span class="chip" data-fill="qMaterial" data-val="Laser — Métal (anodisé/inox)">Métal</span>
-        <span class="chip" data-fill="qColors" data-val="Rouge">Rouge</span>
-        <span class="chip" data-fill="qColors" data-val="Noir">Noir</span>
-        <span class="chip" data-fill="qColors" data-val="Or">Or</span>
-        <span class="chip" data-fill="qColors" data-val="Argent">Argent</span>
-      </div>
-      <p class="hint" style="margin-top:8px" data-i18n="swatch_hint">Astuce : cliquez pour pré-remplir le formulaire de devis.</p>
+    <h2 class="section-title">Quelques réalisations</h2>
+    <div class="gallery">
+      <div class="shot"><img src="assets/shot1.jpg" alt="Réalisation 1" onerror="this.style.opacity='0.3'"></div>
+      <div class="shot"><img src="assets/shot2.jpg" alt="Réalisation 2" onerror="this.style.opacity='0.3'"></div>
+      <div class="shot"><img src="assets/shot3.jpg" alt="Réalisation 3" onerror="this.style.opacity='0.3'"></div>
+      <div class="shot"><img src="assets/shot4.jpg" alt="Réalisation 4" onerror="this.style.opacity='0.3'"></div>
     </div>
   </section>
 
-  <!-- DEVIS RAPIDE -->
-  <section id="devis" class="section container">
-    <h2 class="section-title reveal" data-i18n="quote_title">Demande de devis rapide</h2>
-    <div class="card reveal">
-      <form class="quote" id="quoteForm">
-        <div class="row">
-          <div>
-            <label for="qName" data-i18n="f_name">Nom / Société</label>
-            <input id="qName" type="text" placeholder="Ex : Monsieur K., Société X" autocomplete="name">
-          </div>
-          <div>
-            <label for="qPhone" data-i18n="f_phone">Téléphone / WhatsApp</label>
-            <input id="qPhone" type="tel" inputmode="tel" placeholder="+225 07 00 00 00 00" autocomplete="tel">
-          </div>
-          <div>
-            <label for="qEmail">E-mail</label>
-            <input id="qEmail" type="email" placeholder="exemple@domaine.com" autocomplete="email">
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="qNature" data-i18n="f_nature">Nature de l’objet</label>
-            <input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…" autocomplete="off">
-          </div>
-          <div>
-            <label data-i18n="f_dims">Dimensions</label>
-            <div class="row" style="grid-template-columns:repeat(4,1fr)">
-              <input id="dimL" type="number" inputmode="decimal" min="0" step="0.1" placeholder="L">
-              <input id="dimW" type="number" inputmode="decimal" min="0" step="0.1" placeholder="l">
-              <input id="dimH" type="number" inputmode="decimal" min="0" step="0.1" placeholder="h">
-              <select id="dimUnit">
-                <option value="mm">mm</option>
-                <option value="cm">cm</option>
-              </select>
-            </div>
-            <div class="hint" data-i18n="f_dims_hint">Nous convertissons automatiquement en millimètres.</div>
-          </div>
-          <div>
-            <label for="qStorage" data-i18n="f_env">Environnement</label>
-            <select id="qStorage">
-              <option value="" data-i18n="sel_choose">Sélectionner…</option>
-              <option data-i18n="env_in">Intérieur</option>
-              <option data-i18n="env_out">Extérieur</option>
-              <option data-i18n="env_mix">Mixte</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="qColors" data-i18n="f_colors">Couleurs souhaitées</label>
-            <input id="qColors" type="text" placeholder="Ex : Rouge / Noir / Or">
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="colorPick" type="color" value="#d32f2f" title="Choisir une couleur">
-              <button type="button" class="btn ghost" id="addColor" data-i18n="btn_add_color">Ajouter cette couleur</button>
-            </div>
-          </div>
-          <div>
-            <label for="qMaterial" data-i18n="f_material">Matière / Technologie</label>
-            <select id="qMaterial">
-              <option value="" data-i18n="mat_advise">À conseiller</option>
-              <option>FDM — PLA</option>
-              <option>FDM — PETG</option>
-              <option>FDM — ASA</option>
-              <option>Laser — Bois</option>
-              <option>Laser — Acrylique</option>
-              <option>Laser — Métal (anodisé/inox)</option>
-              <option>CNC légère</option>
-            </select>
-          </div>
-          <div>
-            <label for="qQty" data-i18n="f_qty">Quantité</label>
-            <input id="qQty" type="number" inputmode="numeric" min="1" step="1" placeholder="1">
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="qDeadline" data-i18n="f_deadline">Délai souhaité</label>
-            <input id="qDeadline" type="text" placeholder="Ex : 3 jours, cette semaine, date précise…">
-          </div>
-          <div>
-            <label for="qBudget" data-i18n="f_budget">Budget indicatif (CFA)</label>
-            <input id="qBudget" type="number" inputmode="numeric" min="0" step="1000" placeholder="Ex : 30000">
-          </div>
-          <div>
-            <label for="qLink" data-i18n="f_link">Lien fichier (Drive/WeTransfer)</label>
-            <input id="qLink" type="url" placeholder="URL de votre fichier ou croquis">
-          </div>
-        </div>
-
-        <div>
-          <label for="qNotes" data-i18n="f_notes">Notes / précisions</label>
-          <textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea>
-        </div>
-
-        <div class="row">
-          <button type="button" class="btn primary" id="sendWhatsApp" data-i18n="btn_send_wa">Envoyer sur WhatsApp</button>
-          <button type="reset" class="btn ghost" data-i18n="btn_clear">Effacer</button>
-        </div>
-        <div class="hint" data-i18n="f_hint">Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies.</div>
-      </form>
+  <section id="contact" class="section container">
+    <h2 class="section-title">Contact</h2>
+    <p>Besoin d’un devis ou d’une idée de conception ? Contactez-nous directement par WhatsApp.</p>
+    <div class="cta-row">
+      <a class="btn primary" id="cta2" href="#">WhatsApp</a>
+      <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
+      <span class="note">WhatsApp : <strong>+225 07 57 84 13 23</strong></span>
     </div>
   </section>
 
-  <!-- TÉMOIGNAGES -->
-  <section class="section container">
-    <h2 class="section-title reveal" data-i18n="testi_title">Ils nous font confiance</h2>
-    <div class="testis">
-      <div class="testi reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="t1">“Super réactifs. Plaques gravées nickel pour notre événement.”</p>
-        <p class="note">— Agence Événementielle, Abidjan</p>
-      </div>
-      <div class="testi reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="t2">“Prototype imprimé en 48h, ajustements parfaits, on recommande.”</p>
-        <p class="note">— Startup Hardware</p>
-      </div>
-      <div class="testi reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="t3">“Trophées personnalisés très propres, délai respecté.”</p>
-        <p class="note">— Association Sportive</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODAL LANG (première visite) -->
-  <div class="lang-modal" id="langModal" aria-hidden="true">
-    <div class="lang-card">
-      <h3 style="margin:0 0 8px">Choisissez votre langue</h3>
-      <p class="note" style="margin:0 0 12px">Vous pourrez changer plus tard via l’icône 🌐.</p>
-      <div class="lang-actions">
-        <button data-choose="fr">🇫🇷 Français</button>
-        <button data-choose="en">🇬🇧 English</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL GALERIE -->
-  <div class="modal" id="lightbox" aria-hidden="true">
-    <img id="lightboxImg" alt="Aperçu">
-    <div class="controls">
-      <button type="button" id="lbPrev" aria-label="Précédente">⟨</button>
-      <button type="button" id="lbClose" aria-label="Fermer">✕</button>
-      <button type="button" id="lbNext" aria-label="Suivante">⟩</button>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> R3D PRINT CI — Tous droits réservés.
   </footer>
 
-  <!-- FLOATING ACTIONS -->
   <div class="fab-wa">
-    <a id="fabWa" href="#" aria-label="WhatsApp" title="WhatsApp">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="16" fill="#25D366"/>
-        <path fill="#fff" d="M21.6 18.8c-.3-.2-1.8-.9-2.1-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8.6 8.6 0 0 1-2.5-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.4.1-.6l.5-.6.2-.4c.1-.2 0-.4 0-.5s-.7-1.8-1-2.4c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.6 2.6 0 0 0-.8 1.9c0 1.1.8 2.2.9 2.3s1.7 2.6 4.1 3.7 2.4 1 2.8 1.2.9.1 1.2.1 1.1-.4 1.3-.9.6-1 .5-1.1-.2-.1-.5-.3z"/>
-      </svg>
+    <a id="fabWa" href="#" target="_blank" title="Contact WhatsApp">
+      <svg viewBox="0 0 32 32"><path d="M16 .4A15.6 15.6 0 0 0 0 16a15.4 15.4 0 0 0 2.2 8L0 32l8.3-2.1A15.9 15.9 0 0 0 16 31.9a15.6 15.6 0 0 0 0-31.5ZM9.4 24l-4.6 1.2 1.3-4.4A12 12 0 0 1 4 16a12 12 0 1 1 12 12 12 12 0 0 1-6.6-2ZM24 20.4c-.3-.2-1.7-.8-2-.9-.2-.1-.4-.2-.7 0-.2.3-.7.9-.8 1-.1.1-.3.2-.6.1a8 8 0 0 1-2.3-1.4 8.5 8.5 0 0 1-1.6-2c-.2-.3 0-.4.1-.6l.5-.5.2-.4c.1-.1 0-.3 0-.5s-.6-1.7-.9-2.3c-.2-.4-.4-.3-.5-.4h-.5c-.2 0-.5.1-.7.3a2.3 2.3 0 0 0-.8 1.8c0 1 .8 2 1 2.2s1.5 2.4 3.9 3.5c2.4 1.1 2.4.8 2.8.8h.5c.2 0 .5-.3.6-.6l.4-1c.1-.2 0-.3-.3-.4Z"/></svg>
     </a>
   </div>
-  <div class="to-top" id="toTop"><a href="#hdr">↑</a></div>
-  <div class="mobile-bar">
-    <a class="btn primary" id="mbWa" href="#">WhatsApp</a>
-    <a class="btn ghost" href="tel:+2250757841323" data-i18n="call">Appeler</a>
-    <a class="btn ghost" href="#devis" data-i18n="quick_quote">Devis</a>
-  </div>
-
-  <div class="toast" id="toast">Message WhatsApp prêt ✅</div>
 
   <script>
-    // ========== TEXTES FR/EN ==========
-    const I18N = {/* (inchangé) */ fr:{nav_services:"Services",nav_work:"Réalisations",nav_quote:"Devis rapide",nav_contact:"Contactez-nous",hero_title:"Impression 3D & Gravure Laser à Abidjan",hero_sub:"Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.",cta_whatsapp:"Contactez-nous sur WhatsApp",kpi_prod:"Moyenne h prod/sem",kpi_nozzle:"Buse max (mm)",kpi_lasers:"Lasers (450/1064)",kpi_lead:"Délai typique (h)",services_title:"Nos services",svc_print:"Impression 3D",svc_print_desc:"FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.",svc_laser:"Gravure Laser",svc_laser_desc:"450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.",svc_design:"Design & Prototypage",svc_design_desc:"Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.",beforeafter_title:"Avant / Après",beforeafter_note:"Glissez le curseur pour comparer la préparation et le rendu final (gravure/impression).",work_title:"Quelques réalisations",work_note:"Cliquez pour agrandir. Vous remplacerez ces images par vos photos réelles.",swatch_title:"Matières & couleurs",swatch_hint:"Astuce : cliquez pour pré-remplir le formulaire de devis.",quote_title:"Demande de devis rapide",f_name:"Nom / Société",f_phone:"Téléphone / WhatsApp",f_nature:"Nature de l’objet",f_dims:"Dimensions",f_dims_hint:"Nous convertissons automatiquement en millimètres.",f_env:"Environnement",sel_choose:"Sélectionner…",env_in:"Intérieur",env_out:"Extérieur",env_mix:"Mixte",f_colors:"Couleurs souhaitées",btn_add_color:"Ajouter cette couleur",f_material:"Matière / Technologie",mat_advise:"À conseiller",f_qty:"Quantité",f_deadline:"Délai souhaité",f_budget:"Budget indicatif (CFA)",f_link:"Lien fichier (Drive/WeTransfer)",f_notes:"Notes / précisions",btn_send_wa:"Envoyer sur WhatsApp",btn_clear:"Effacer",f_hint:"Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies.",testi_title:"Ils nous font confiance",t1:"“Super réactifs. Plaques gravées nickel pour notre événement.”",t2:"“Prototype imprimé en 48h, ajustements parfaits, on recommande.”",t3:"“Trophées personnalisés très propres, délai respecté.”",call:"Appeler",quick_quote:"Devis"},en:{nav_services:"Services",nav_work:"Works",nav_quote:"Quick quote",nav_contact:"Contact us",hero_title:"3D Printing & Laser Engraving in Abidjan",hero_sub:"Rapid prototyping, small series, trophies, signage, goodies. Tell us your need — we reply fast and clearly.",cta_whatsapp:"Message us on WhatsApp",kpi_prod:"Avg prod hours/week",kpi_nozzle:"Max nozzle (mm)",kpi_lasers:"Lasers (450/1064)",kpi_lead:"Typical lead time (h)",services_title:"Our services",svc_print:"3D Printing",svc_print_desc:"Fast, precise FDM. PLA (standard/silk/transparent), PETG, ASA. Prototypes, functional parts, decorative items.",svc_laser:"Laser Engraving",svc_laser_desc:"450 nm & 1064 nm: wood, acrylic, anodized/SS metal, leather. Trophies, plates, business cards, signage, dynamic QR.",svc_design:"Design & Prototyping",svc_design_desc:"3D modeling (Shapr3D/Blender), DfAM, adjustments, finishing. Clear quote & quick iterations.",beforeafter_title:"Before / After",beforeafter_note:"Slide to compare preparation and final result (engraving/print).",work_title:"Selected works",work_note:"Click to enlarge. Replace these placeholders with your real photos.",swatch_title:"Materials & colors",swatch_hint:"Tip: click to prefill the quote form.",quote_title:"Quick quote request",f_name:"Name / Company",f_phone:"Phone / WhatsApp",f_nature:"Object nature",f_dims:"Dimensions",f_dims_hint:"We convert automatically to millimeters.",f_env:"Environment",sel_choose:"Choose…",env_in:"Indoor",env_out:"Outdoor",env_mix:"Mixed",f_colors:"Desired colors",btn_add_color:"Add this color",f_material:"Material / Technology",mat_advise:"Recommend for me",f_qty:"Quantity",f_deadline:"Desired deadline",f_budget:"Indicative budget (CFA)",f_link:"File link (Drive/WeTransfer)",f_notes:"Notes / details",btn_send_wa:"Send on WhatsApp",btn_clear:"Clear",f_hint:"The button builds the message and opens WhatsApp with all details prefilled.",testi_title:"Trusted by",t1:"“Very responsive. Clean engraved plates for our event.”",t2:"“Prototype in 48h, perfect adjustments, highly recommend.”",t3:"“Custom trophies, great finish, on time.”",call:"Call",quick_quote:"Quote"}};
-
-    // ===== Helpers
-    const $ = (s,ctx=document)=>ctx.querySelector(s);
-    const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
-    const setText = (el,txt)=>{ if(el) el.textContent = txt; };
-    const setI18n = (lang)=> $$("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n"); if(I18N[lang][k]) setText(el, I18N[lang][k]); });
-
-    // ===== Année
-    $("#year").textContent = new Date().getFullYear();
-
-    // ===== WhatsApp – liens
-    const rawPhoneR3D = "002250757841323";
-    const waNumber = rawPhoneR3D.replace(/^00/, "");
-    const defaultMsg = (lang)=> encodeURIComponent(lang==="en" ? "Hello R3D PRINT CI, I'd like a quote." : "Bonjour R3D PRINT CI, j'aimerais un devis.");
-    const setWaLinks = (lang="fr")=>{
-      const url = "https://wa.me/" + waNumber + "?text=" + defaultMsg(lang);
-      ["cta","cta2","mbWa","fabWa"].forEach(id=>{ const a=$("#"+id); if(a) a.href=url; });
-    };
-
-    // ===== Header sticky + toTop
-    const hdr = $("#hdr"), toTop = $("#toTop");
-    const onScrollHdr = () => {
-      if(window.scrollY>6) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
-      if(window.scrollY>400) toTop.classList.add('show'); else toTop.classList.remove('show');
-    };
-    onScrollHdr(); window.addEventListener('scroll', onScrollHdr);
-
-    // ===== Parallax (héros)
-    const hero = $("#hero");
-    const onScrollParallax = () => {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      hero.style.setProperty('--parallaxY', (y*0.12)+'px');
-      hero.style.setProperty('--parallaxY2', (y*0.08)+'px');
-    };
-    onScrollParallax(); window.addEventListener('scroll', onScrollParallax, {passive:true});
-
-    // ===== Révélations
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-      });
-    }, {threshold:.15});
-    $$(".reveal").forEach(el=>io.observe(el));
-
-    // ===== Compteurs animés
-    const animateCount = (el, target, duration=1200) => {
-      const isFloat = String(target).includes('.');
-      const end = parseFloat(target);
-      const startTime = performance.now();
-      const step = (now) => {
-        const p = Math.min(1, (now - startTime) / duration);
-        const val = end * p; el.textContent = isFloat ? val.toFixed(1) : Math.round(val);
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    const ioKpi = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const el = e.target.querySelector('strong');
-          if(el && !el.dataset.done){ animateCount(el, el.dataset.count); el.dataset.done='1'; }
-          ioKpi.unobserve(e.target);
-        }
-      });
-    }, {threshold:.5});
-    $$(".kpi").forEach(k=>ioKpi.observe(k));
-
-    // ===== Lightbox (galerie + avant/après)
-    const lb = $("#lightbox"), lbImg = $("#lightboxImg");
-    const closeLb = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); };
-    const nextBtn = $("#lbNext"), prevBtn=$("#lbPrev"), closeBtn=$("#lbClose");
-
-    let galleryNodes = []; // sera peuplé dynamiquement
-    let currentIndex = 0;
-
-    function openLbAt(index){
-      if(index<0 || index>=galleryNodes.length) return;
-      currentIndex = index;
-      lbImg.src = galleryNodes[currentIndex].src;
-      lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
-    }
-    function nextLb(){ currentIndex=(currentIndex+1)%galleryNodes.length; lbImg.src=galleryNodes[currentIndex].src; }
-    function prevLb(){ currentIndex=(currentIndex-1+galleryNodes.length)%galleryNodes.length; lbImg.src=galleryNodes[currentIndex].src; }
-
-    nextBtn.addEventListener('click', nextLb);
-    prevBtn.addEventListener('click', prevLb);
-    closeBtn.addEventListener('click', closeLb);
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
-    window.addEventListener('keydown', (e)=>{ if(lb.classList.contains('open')){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowRight') nextLb(); if(e.key==='ArrowLeft') prevLb(); }});
-
-    // --- Galerie: délégation de clic sur toute la vignette
-    const gallery = $("#gallery");
-    function refreshGalleryNodes(){
-      galleryNodes = $$("#gallery .shot img");
-    }
-    refreshGalleryNodes();
-
-    gallery.addEventListener('click', (e)=>{
-      const tile = e.target.closest('.shot');
-      if(!tile) return;
-      const img = tile.querySelector('img');
-      refreshGalleryNodes();
-      const idx = galleryNodes.findIndex(n => n === img);
-      openLbAt(idx>=0 ? idx : 0);
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const phone = "002250757841323".replace(/^00/, "");
+    const msg = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
+    const link = "https://wa.me/" + phone + "?text=" + msg;
+    ["cta","cta2","fabWa"].forEach(id=>{
+      const a=document.getElementById(id);
+      if(a) a.href=link;
     });
-    // accessibilité clavier (Entrée/Espace)
-    gallery.addEventListener('keydown', (e)=>{
-      if(e.key!=="Enter" && e.key!==" ") return;
-      const tile = e.target.closest('.shot');
-      if(!tile) return;
-      e.preventDefault();
-      const img = tile.querySelector('img');
-      refreshGalleryNodes();
-      const idx = galleryNodes.findIndex(n => n === img);
-      openLbAt(idx>=0 ? idx : 0);
-    });
-
-    // --- Avant/Après: clic ouvre aussi en grand (parcours 2 images)
-    const ba = $("#ba"), imgBefore=$("#imgBefore"), imgAfter=$("#imgAfter");
-    ba.addEventListener('click', (ev)=>{
-      // éviter que le drag du range déclenche l’ouverture
-      if(ev.target.id==="baRange") return;
-      galleryNodes = [imgBefore, imgAfter];
-      openLbAt(1); // commence sur "Après"
-    });
-
-    // Slider avant/après
-    const baRange = $("#baRange"), baTop = $("#baTop");
-    if(baRange && baTop){ baRange.addEventListener('input', e=>{ baTop.style.width = e.target.value + "%"; }); }
-
-    // ===== Thème
-    const root = document.documentElement, btnTheme = $("#themeBtn");
-    const setTheme = (mode)=>{ root.setAttribute('data-theme', mode); localStorage.setItem('r3d_theme', mode); };
-    const savedTheme = localStorage.getItem('r3d_theme'); if(savedTheme){ setTheme(savedTheme); }
-    btnTheme.addEventListener('click', ()=>{ const cur=root.getAttribute('data-theme')||'light'; setTheme(cur==='light'?'dark':'light'); });
-
-    // ===== Langue (menu discret + popup 1ère visite)
-    const langMenu = $("#langMenu"), langBtn=$("#langBtn"), langBox=$("#langBox");
-    function openLangMenu(open){ langMenu.classList.toggle("open", open); langBtn.setAttribute("aria-expanded", open?"true":"false"); }
-    langBtn.addEventListener('click', ()=> openLangMenu(!langMenu.classList.contains("open")));
-    document.addEventListener('click', (e)=>{ if(!langBox.contains(e.target)) openLangMenu(false); });
-
-    const setWaAndTexts = (lang)=>{ document.documentElement.lang = lang; localStorage.setItem('r3d_lang', lang); setI18n(lang); setWaLinks(lang); };
-
-    // Popup première visite
-    const langModal = $("#langModal");
-    const savedLang = localStorage.getItem('r3d_lang');
-    if(!savedLang){ langModal.classList.add('open'); langModal.setAttribute('aria-hidden','false'); }
-    langModal?.addEventListener('click', (e)=>{
-      if(e.target.dataset.choose){
-        const lang = e.target.dataset.choose;
-        setWaAndTexts(lang);
-        langModal.classList.remove('open'); langModal.setAttribute('aria-hidden','true');
-      } else if(e.target===langModal){
-        setWaAndTexts('fr'); // défaut FR
-        langModal.classList.remove('open'); langModal.setAttribute('aria-hidden','true');
-      }
-    });
-
-    // Choix via menu discret
-    $$("#langMenu button").forEach(b=>{
-      b.addEventListener('click', ()=>{
-        setWaAndTexts(b.dataset.lang || 'fr');
-        openLangMenu(false);
-      });
-    });
-
-    // Si langue déjà connue
-    if(savedLang){ setWaAndTexts(savedLang); } else { setWaAndTexts('fr'); }
-
-    // ===== Toast
-    const toast = $("#toast");
-    const showToast = (txt)=>{ toast.textContent=txt; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2200); };
-
-    // ===== Chips (pré-remplissage)
-    $("#chips").addEventListener('click', (e)=>{
-      const chip = e.target.closest('.chip'); if(!chip) return;
-      const fill = chip.dataset.fill, val = chip.dataset.val;
-      if(fill && $("#"+fill)){
-        const cur = $("#"+fill).value.trim();
-        if(fill==="qColors"){ $("#"+fill).value = cur ? (cur+", "+val) : val; }
-        else { $("#"+fill).value = val; }
-        chip.classList.add('active'); setTimeout(()=>chip.classList.remove('active'), 800);
-      }
-    });
-
-    // ===== Color picker → ajoute dans qColors
-    $("#addColor").addEventListener('click', ()=>{
-      const hex = $("#colorPick").value;
-      const field = $("#qColors");
-      field.value = field.value ? (field.value + ", " + hex) : hex;
-    });
-
-    // ===== Dimensions → mm
-    function dimsToMM(){
-      const L = parseFloat($("#dimL").value)||0, W = parseFloat($("#dimW").value)||0, H = parseFloat($("#dimH").value)||0;
-      const unit = $("#dimUnit").value; const k = (unit==="cm") ? 10 : 1;
-      return {L: L*k, W: W*k, H: H*k, unit:"mm"};
-    }
-
-    // ===== Devis → WhatsApp
-    function sanitize(s){ return (s||"").toString().trim(); }
-    function buildQuoteMessage(lang){
-      const t = (fr,en)=> lang==="en"?en:fr;
-      const name=sanitize($("#qName").value), phone=sanitize($("#qPhone").value), email=sanitize($("#qEmail").value);
-      const nature=sanitize($("#qNature").value), env=sanitize($("#qStorage").value);
-      const colors=sanitize($("#qColors").value), material=sanitize($("#qMaterial").value);
-      const qty=sanitize($("#qQty").value), deadline=sanitize($("#qDeadline").value), budget=sanitize($("#qBudget").value);
-      const link=sanitize($("#qLink").value), notes=sanitize($("#qNotes").value);
-      const d=dimsToMM(); const dims = (d.L||d.W||d.H) ? `${Math.round(d.L)} × ${Math.round(d.W)} × ${Math.round(d.H)} ${d.unit}` : "";
-
-      const lines = [
-        t("Bonjour R3D PRINT CI, je souhaite un devis :", "Hello R3D PRINT CI, I'd like a quote:"),
-        "",
-        name ? t("• Nom / Société : ","• Name / Company: ")+name : "",
-        phone ? t("• Téléphone : ","• Phone: ")+phone : "",
-        email ? "• E-mail : "+email : "",
-        nature ? t("• Nature de l'objet : ","• Object nature: ")+nature : "",
-        dims ? t("• Dimensions : ","• Dimensions: ")+dims : "",
-        env ? t("• Environnement : ","• Environment: ")+env : "",
-        colors ? t("• Couleurs : ","• Colors: ")+colors : "",
-        material ? t("• Matière / Techno : ","• Material / Tech: ")+material : "",
-        qty ? t("• Quantité : ","• Quantity: ")+qty : "",
-        deadline ? t("• Délai souhaité : ","• Desired deadline: ")+deadline : "",
-        budget ? t("• Budget indicatif : ","• Indicative budget: ")+budget+" CFA" : "",
-        link ? t("• Lien fichier : ","• File link: ")+link : "",
-        notes ? t("• Notes : ","• Notes: ")+notes : ""
-      ].filter(Boolean);
-      return lines.join("\n");
-    }
-    function validateMinimal(){
-      const nature=$("#qNature").value.trim();
-      const L=$("#dimL").value.trim(), W=$("#dimW").value.trim(), H=$("#dimH").value.trim();
-      return !!nature && (L||W||H);
-    }
-    $("#sendWhatsApp").addEventListener('click', ()=>{
-      const lang = localStorage.getItem('r3d_lang') || 'fr';
-      if(!validateMinimal()){ showToast(lang==='en'?"Please provide object nature and at least one dimension.":"Indique au minimum la nature et une dimension."); return; }
-      const text = encodeURIComponent(buildQuoteMessage(lang));
-      const url = "https://wa.me/" + waNumber + "?text=" + text;
-      showToast(lang==='en'?"WhatsApp message ready ✅":"Message WhatsApp prêt ✅");
-      window.open(url, "_blank");
-    });
-
-    // ===== Set WA links initially
-    setWaLinks(localStorage.getItem('r3d_lang') || 'fr');
   </script>
 </body>
 </html>
