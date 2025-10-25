@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>R3D PRINT CI — Impression 3D & Gravure Laser à Abidjan</title>
-  <meta name="description" content="R3D PRINT CI : impression 3D FDM, gravure laser, CNC légère, design & prototypage à Abidjan. Créatif, professionnel et accessible." />
+  <meta name="description" content="R3D PRINT CI : impression 3D FDM, gravure laser, CNC légère, design & prototypage à Abidjan. Devis rapide WhatsApp, créatif, professionnel et accessible." />
   <meta property="og:title" content="R3D PRINT CI — Impression 3D & Gravure Laser" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://r3dprintci.github.io/" />
@@ -33,13 +33,8 @@
       --shadow-sm:0 2px 10px rgba(0,0,0,.06);
       --shadow-md:0 8px 24px rgba(0,0,0,.08);
     }
-
     [data-theme="dark"]{
-      --bg:#0b0b0c;
-      --bg-soft:#121214;
-      --text:#f6f7f8;
-      --muted:#c6c8cc;
-      --stroke:#232428;
+      --bg:#0b0b0c; --bg-soft:#121214; --text:#f6f7f8; --muted:#c6c8cc; --stroke:#232428;
       --shadow-sm:0 2px 10px rgba(0,0,0,.35);
       --shadow-md:0 8px 28px rgba(0,0,0,.45);
     }
@@ -66,11 +61,30 @@
     .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
     .theme-toggle{border:1px solid var(--stroke);background:var(--bg-soft);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
 
-    /* HERO */
-    .hero{padding-block:56px;border-bottom:1px solid var(--stroke)}
+    /* HERO (avec parallax + textures FDM & halos laser) */
+    .hero{position:relative;overflow:hidden;padding-block:68px;border-bottom:1px solid var(--stroke)}
     .hero h1{font-size:clamp(26px,6vw,44px);line-height:1.15;margin:0 0 12px}
     .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    /* texture “couches FDM” */
+    .hero::before{
+      content:"";position:absolute;inset:-20% -10% auto -10%;height:55%;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,.04), rgba(0,0,0,.04) 2px,
+          transparent 2px, transparent 6px
+        );
+      transform:translateY(var(--parallaxY,0px));
+      pointer-events:none;
+    }
+    /* halos laser animés */
+    .hero::after{
+      content:"";position:absolute;top:-80px;left:50%;width:520px;height:520px;
+      background:radial-gradient( ellipse at center, rgba(211,47,47,.18), transparent 60%);
+      filter:blur(12px);transform:translateX(-50%) translateY(var(--parallaxY2,0px));
+      pointer-events:none;
+    }
 
     /* KPI */
     .kpis{display:grid;gap:12px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
@@ -79,9 +93,15 @@
     .kpi span{color:var(--muted);font-size:13px}
 
     /* SECTIONS */
-    .section{padding-block:26px}
+    .section{padding-block:32px}
     .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
-    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    /* bordure “gravure” subtile */
+    .card::after{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);
+      pointer-events:none;
+    }
     .note{color:var(--muted);font-size:14px}
 
     /* GRIDS */
@@ -93,8 +113,24 @@
     /* CONTACT */
     .contact-block{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
+    /* FORMULAIRE DEVIS */
+    form.quote{display:grid;gap:12px}
+    .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    label{font-weight:700;font-size:14px}
+    input, select, textarea{
+      width:100%;border-radius:10px;border:1px solid var(--stroke);
+      background:var(--bg);color:var(--text);padding:10px 12px;
+    }
+    textarea{min-height:110px;resize:vertical}
+    .hint{font-size:12px;color:var(--muted)}
+    .toast{
+      position:fixed;right:16px;bottom:16px;background:var(--bg-soft);border:1px solid var(--stroke);
+      color:var(--text);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-md);display:none;z-index:200
+    }
+    .toast.show{display:block}
+
     /* FOOTER */
-    footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:30px;padding:20px var(--space)}
+    footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:32px;padding:20px var(--space)}
 
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
@@ -114,7 +150,7 @@
       .brand img{width:36px;height:36px}
       .btn{width:100%}
       .nav .btn{width:auto}
-      .hero{padding-block:40px}
+      .hero{padding-block:48px}
       .card{padding:14px}
     }
   </style>
@@ -130,6 +166,7 @@
       <nav class="nav" aria-label="Navigation principale">
         <a class="btn ghost" href="#services">Services</a>
         <a class="btn ghost" href="#realisations">Réalisations</a>
+        <a class="btn ghost" href="#devis">Devis rapide</a>
         <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener">Contactez-nous</a>
         <button id="themeBtn" class="theme-toggle" type="button" aria-label="Changer de thème">🌞/🌙</button>
       </nav>
@@ -137,9 +174,9 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero container">
+  <section class="hero container" id="hero">
     <h1 class="reveal">Impression 3D & Gravure Laser à Abidjan</h1>
-    <p class="reveal">Créatif, professionnel et accessible. Nous réalisons vos projets : prototypes, trophées, signalétique, goodies, plaques personnalisées et bien plus encore.</p>
+    <p class="reveal">Prototypage rapide, petites séries, trophées, signalétique, goodies. Parlez-nous de votre besoin — nous vous répondons vite et bien.</p>
     <div class="cta-row reveal">
       <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener">Contactez-nous sur WhatsApp</a>
       <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
@@ -150,7 +187,7 @@
       <div class="kpi reveal"><strong data-count="48">0</strong><span>Moyenne h prod/sem</span></div>
       <div class="kpi reveal"><strong data-count="0.6">0</strong><span>Buse max (mm)</span></div>
       <div class="kpi reveal"><strong data-count="2">0</strong><span>Lasers (450/1064)</span></div>
-      <div class="kpi reveal"><strong data-count="72">0</strong><span>H délai typique (h)</span></div>
+      <div class="kpi reveal"><strong data-count="72">0</strong><span>Délai typique (h)</span></div>
     </div>
   </section>
 
@@ -160,11 +197,11 @@
     <div class="grid cols-3">
       <article class="card reveal">
         <h3>Impression 3D</h3>
-        <p class="note">FDM rapide et précise. Matériaux : PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+        <p class="note">FDM rapide et précise. PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
       </article>
       <article class="card reveal">
         <h3>Gravure Laser</h3>
-        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal (inox/anodisé), cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
+        <p class="note">450 nm & 1064 nm : bois, acrylique, inox/anodisé, cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
       </article>
       <article class="card reveal">
         <h3>Design & Prototypage</h3>
@@ -183,19 +220,100 @@
       <img class="shot reveal" loading="lazy" src="assets/shot3.jpg" alt="Réa 3 (à remplacer)">
       <img class="shot reveal" loading="lazy" src="assets/shot4.jpg" alt="Réa 4 (à remplacer)">
     </div>
-    <p class="note" style="margin-top:8px">Tu remplaceras ces emplacements par tes photos réelles (trophées, plaques, prints FDM, etc.). Clique pour agrandir.</p>
+    <p class="note" style="margin-top:8px">Cliquez pour agrandir. Vous pourrez remplacer ces images par vos photos réelles.</p>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section container">
-    <h2 class="section-title reveal">Contact</h2>
-    <p class="note reveal">Réponse rapide via WhatsApp. Pour les demandes complexes ou devis formels, utilise l’e-mail.</p>
-    <div class="contact-block" style="margin-top:6px">
-      <a class="btn primary" id="cta3" href="#" target="_blank" rel="noopener">Contactez-nous</a>
-      <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
-      <span class="note">WhatsApp : <strong>+225 07 57 84 13 23</strong></span>
-      <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">@r3dprint.ci</a>
-      <button class="btn ghost" id="copyVcf" type="button">Télécharger le contact (.vcf)</button>
+  <!-- DEVIS RAPIDE (WhatsApp) -->
+  <section id="devis" class="section container">
+    <h2 class="section-title reveal">Demande de devis rapide</h2>
+    <div class="card reveal">
+      <form class="quote" id="quoteForm">
+        <div class="row">
+          <div>
+            <label for="qName">Nom / Société</label>
+            <input id="qName" type="text" placeholder="Ex : Monsieur K., Société X">
+          </div>
+          <div>
+            <label for="qPhone">Téléphone / WhatsApp</label>
+            <input id="qPhone" type="tel" placeholder="+225 07 00 00 00 00">
+          </div>
+          <div>
+            <label for="qEmail">E-mail</label>
+            <input id="qEmail" type="email" placeholder="exemple@domaine.com">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="qNature">Nature de l’objet</label>
+            <input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…">
+          </div>
+          <div>
+            <label for="qDimensions">Dimensions (mm)</label>
+            <input id="qDimensions" type="text" placeholder="L × l × h (ex : 180 × 70 × 40)">
+            <div class="hint">Astuce : indiquez millimètres si possible.</div>
+          </div>
+          <div>
+            <label for="qStorage">Environnement</label>
+            <select id="qStorage">
+              <option value="">Sélectionner…</option>
+              <option>Intérieur</option>
+              <option>Extérieur</option>
+              <option>Mixte</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="qColors">Couleurs souhaitées</label>
+            <input id="qColors" type="text" placeholder="Ex : Rouge / Noir / Or, etc.">
+          </div>
+          <div>
+            <label for="qMaterial">Matière / Technologie</label>
+            <select id="qMaterial">
+              <option value="">À conseiller</option>
+              <option>FDM — PLA</option>
+              <option>FDM — PETG</option>
+              <option>FDM — ASA</option>
+              <option>Laser — Bois</option>
+              <option>Laser — Acrylique</option>
+              <option>Laser — Métal (anodisé/inox)</option>
+              <option>CNC légère</option>
+            </select>
+          </div>
+          <div>
+            <label for="qQty">Quantité</label>
+            <input id="qQty" type="number" min="1" placeholder="1">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="qDeadline">Délai souhaité</label>
+            <input id="qDeadline" type="text" placeholder="Ex : 3 jours, cette semaine, date précise…">
+          </div>
+          <div>
+            <label for="qBudget">Budget indicatif (CFA)</label>
+            <input id="qBudget" type="text" placeholder="Ex : 30 000 CFA">
+          </div>
+          <div>
+            <label for="qLink">Lien fichier (Drive/WeTransfer)</label>
+            <input id="qLink" type="url" placeholder="URL de votre fichier ou croquis">
+          </div>
+        </div>
+
+        <div>
+          <label for="qNotes">Notes / précisions</label>
+          <textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea>
+        </div>
+
+        <div class="row">
+          <button type="button" class="btn primary" id="sendWhatsApp">Envoyer sur WhatsApp</button>
+          <button type="reset" class="btn ghost">Effacer</button>
+        </div>
+        <div class="hint">Le bouton prépare un message complet et ouvre votre WhatsApp avec toutes les infos pré-remplies.</div>
+      </form>
     </div>
   </section>
 
@@ -214,26 +332,36 @@
     © <span id="year"></span> R3D PRINT CI — Tous droits réservés.
   </footer>
 
+  <div class="toast" id="toast">Message WhatsApp prêt ✅</div>
+
   <script>
     // ===== Année
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // ===== WhatsApp – normalisation
-    const phone = "002250757841323".replace(/^00/, "");
-    const msg = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
-    const waLink = "https://wa.me/" + phone + "?text=" + msg;
+    const rawPhoneR3D = "002250757841323";
+    const waNumber = rawPhoneR3D.replace(/^00/, ""); // 225...
+    const msgDefault = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
+    const waLinkDefault = "https://wa.me/" + waNumber + "?text=" + msgDefault;
     ["cta","cta2","cta3"].forEach(id=>{
       const a=document.getElementById(id);
-      if(a) a.href=waLink;
+      if(a) a.href=waLinkDefault;
     });
 
     // ===== Header sticky shadow
     const hdr = document.getElementById('hdr');
-    const onScrollHdr = () => {
-      if(window.scrollY>6) hdr.classList.add('is-scrolled');
-      else hdr.classList.remove('is-scrolled');
-    };
+    const onScrollHdr = () => { if(window.scrollY>6) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled'); };
     onScrollHdr(); window.addEventListener('scroll', onScrollHdr);
+
+    // ===== Parallax dynamique (héros)
+    const hero = document.getElementById('hero');
+    const onScrollParallax = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const rel = Math.min(1, y/400);
+      hero.style.setProperty('--parallaxY', (y*0.12)+'px');
+      hero.style.setProperty('--parallaxY2', (y*0.08)+'px');
+    };
+    onScrollParallax(); window.addEventListener('scroll', onScrollParallax, {passive:true});
 
     // ===== Révélations au scroll
     const io = new IntersectionObserver((entries)=>{
@@ -247,11 +375,10 @@
     const animateCount = (el, target, duration=1200) => {
       const isFloat = String(target).includes('.');
       const end = parseFloat(target);
-      const start = 0;
       const startTime = performance.now();
       const step = (now) => {
         const p = Math.min(1, (now - startTime) / duration);
-        const val = start + (end - start) * p;
+        const val = (end * p);
         el.textContent = isFloat ? val.toFixed(1) : Math.round(val);
         if (p < 1) requestAnimationFrame(step);
       };
@@ -261,10 +388,7 @@
       entries.forEach(e=>{
         if(e.isIntersecting){
           const el = e.target.querySelector('strong');
-          if(el && !el.dataset.done){
-            animateCount(el, el.dataset.count);
-            el.dataset.done = '1';
-          }
+          if(el && !el.dataset.done){ animateCount(el, el.dataset.count); el.dataset.done='1'; }
           ioKpi.unobserve(e.target);
         }
       });
@@ -276,9 +400,7 @@
     const lbImg = document.getElementById('lightboxImg');
     const shots = Array.from(document.querySelectorAll('.gallery .shot'));
     let lbIndex = 0;
-    const openLb = (idx)=>{
-      lbIndex = idx; lbImg.src = shots[lbIndex].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
-    };
+    const openLb = (idx)=>{ lbIndex = idx; lbImg.src = shots[lbIndex].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); };
     const closeLb = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); };
     const nextLb = ()=>{ lbIndex = (lbIndex+1)%shots.length; lbImg.src = shots[lbIndex].src; };
     const prevLb = ()=>{ lbIndex = (lbIndex-1+shots.length)%shots.length; lbImg.src = shots[lbIndex].src; };
@@ -289,36 +411,74 @@
     lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
     window.addEventListener('keydown', (e)=>{ if(lb.classList.contains('open')){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowRight') nextLb(); if(e.key==='ArrowLeft') prevLb(); }});
 
-    // ===== VCF (contact)
-    const vcard = `BEGIN:VCARD
-VERSION:3.0
-N:R3D PRINT CI;;;;
-FN:R3D PRINT CI
-ORG:R3D PRINT CI
-TITLE:Impression 3D & Gravure Laser
-TEL;TYPE=CELL,VOICE:+2250757841323
-EMAIL;TYPE=INTERNET:r3dprint.ci@gmail.com
-ADR;TYPE=WORK:;;Abidjan;;;;
-URL:https://r3dprintci.github.io/
-END:VCARD`.replace(/\n/g,"\r\n");
-    document.getElementById('copyVcf').addEventListener('click', ()=>{
-      const blob = new Blob([vcard], {type:'text/vcard;charset=utf-8'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'R3D_PRINT_CI.vcf';
-      document.body.appendChild(a);
-      a.click(); a.remove();
-    });
-
     // ===== Thème clair/sombre + mémoire
     const root = document.documentElement;
     const btnTheme = document.getElementById('themeBtn');
     const setTheme = (mode)=>{ root.setAttribute('data-theme', mode); localStorage.setItem('r3d_theme', mode); };
-    const saved = localStorage.getItem('r3d_theme');
-    if(saved){ setTheme(saved); }
+    const saved = localStorage.getItem('r3d_theme'); if(saved){ setTheme(saved); }
     btnTheme.addEventListener('click', ()=>{
       const current = root.getAttribute('data-theme') || 'light';
       setTheme(current==='light' ? 'dark' : 'light');
+    });
+
+    // ===== Devis rapide → WhatsApp
+    const toast = document.getElementById('toast');
+    const showToast = (txt="Message WhatsApp prêt ✅")=>{
+      toast.textContent = txt; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2200);
+    };
+
+    function sanitize(s){ return (s||"").trim(); }
+    function buildQuoteMessage(){
+      const name = sanitize(document.getElementById('qName').value);
+      const phone = sanitize(document.getElementById('qPhone').value);
+      const email = sanitize(document.getElementById('qEmail').value);
+      const nature = sanitize(document.getElementById('qNature').value);
+      const dims = sanitize(document.getElementById('qDimensions').value);
+      const env = sanitize(document.getElementById('qStorage').value);
+      const colors = sanitize(document.getElementById('qColors').value);
+      const material = sanitize(document.getElementById('qMaterial').value);
+      const qty = sanitize(document.getElementById('qQty').value);
+      const deadline = sanitize(document.getElementById('qDeadline').value);
+      const budget = sanitize(document.getElementById('qBudget').value);
+      const link = sanitize(document.getElementById('qLink').value);
+      const notes = sanitize(document.getElementById('qNotes').value);
+
+      const lines = [
+        "Bonjour R3D PRINT CI, je souhaite un devis :",
+        "",
+        name ? "• Nom / Société : " + name : "",
+        phone ? "• Téléphone : " + phone : "",
+        email ? "• E-mail : " + email : "",
+        nature ? "• Nature de l'objet : " + nature : "",
+        dims ? "• Dimensions (mm) : " + dims : "",
+        env ? "• Environnement : " + env : "",
+        colors ? "• Couleurs : " + colors : "",
+        material ? "• Matière / Techno : " + material : "",
+        qty ? "• Quantité : " + qty : "",
+        deadline ? "• Délai souhaité : " + deadline : "",
+        budget ? "• Budget indicatif : " + budget + " CFA" : "",
+        link ? "• Lien fichier : " + link : "",
+        notes ? "• Notes : " + notes : ""
+      ].filter(Boolean);
+
+      return lines.join("\n");
+    }
+
+    function validateMinimal(){
+      const nature = document.getElementById('qNature').value.trim();
+      const dims = document.getElementById('qDimensions').value.trim();
+      return !!nature && !!dims;
+    }
+
+    document.getElementById('sendWhatsApp').addEventListener('click', ()=>{
+      if(!validateMinimal()){
+        showToast("Indique au minimum la nature et les dimensions.");
+        return;
+      }
+      const text = encodeURIComponent(buildQuoteMessage());
+      const url = "https://wa.me/" + waNumber + "?text=" + text;
+      showToast();
+      window.open(url, "_blank");
     });
   </script>
 </body>
