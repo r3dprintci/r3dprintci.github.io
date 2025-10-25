@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://r3dprintci.github.io/" />
   <meta property="og:image" content="assets/logo.png" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#ffffff" />
 
   <!-- FAVICONS -->
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -17,36 +17,54 @@
 
   <style>
     :root{
+      --brand:#d32f2f;
+      --brand-weak:#ff6b6b;
+
+      /* Light (par défaut) */
+      --bg:#f7f7f8;
+      --bg-soft:#ffffff;
+      --text:#0c0d0e;
+      --muted:#4b4d52;
+      --stroke:#e6e7ea;
+
+      --radius:14px;
+      --container:1100px;
+      --space:24px;
+      --shadow-sm:0 2px 10px rgba(0,0,0,.06);
+      --shadow-md:0 8px 24px rgba(0,0,0,.08);
+    }
+
+    [data-theme="dark"]{
       --bg:#0b0b0c;
       --bg-soft:#121214;
       --text:#f6f7f8;
       --muted:#c6c8cc;
-      --brand:#d32f2f;
       --stroke:#232428;
-      --radius:14px;
-      --container:1100px;
-      --space:24px;
+      --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+      --shadow-md:0 8px 28px rgba(0,0,0,.45);
     }
+
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
     img{max-width:100%;height:auto;display:block}
     a{color:var(--brand);text-decoration:none;word-break:break-word}
     a:hover{text-decoration:underline}
     p,li{word-wrap:break-word}
-
     .container{max-width:var(--container);margin:auto;padding:var(--space)}
     header,section,footer{padding-inline:var(--space)}
 
     /* HEADER */
-    header{border-bottom:1px solid var(--stroke)}
+    header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--stroke);transition:box-shadow .25s ease}
+    header.is-scrolled{box-shadow:var(--shadow-sm)}
     .bar{max-width:var(--container);margin:auto;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;padding-block:12px}
     .brand{display:flex;align-items:center;gap:10px;min-width:0}
     .brand img{width:42px;height:42px;object-fit:contain}
     .brand span{font-weight:900;letter-spacing:1px;white-space:nowrap}
-    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer;white-space:nowrap}
     .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
     .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
+    .theme-toggle{border:1px solid var(--stroke);background:var(--bg-soft);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
 
     /* HERO */
     .hero{padding-block:56px;border-bottom:1px solid var(--stroke)}
@@ -54,23 +72,41 @@
     .hero p{color:var(--muted);max-width:780px;margin:0 0 18px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
 
+    /* KPI */
+    .kpis{display:grid;gap:12px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    .kpi{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:12px;padding:14px;text-align:center;box-shadow:var(--shadow-sm)}
+    .kpi strong{font-size:20px;display:block}
+    .kpi span{color:var(--muted);font-size:13px}
+
     /* SECTIONS */
     .section{padding-block:26px}
     .section-title{margin:0 0 16px;font-size:clamp(20px,3.6vw,28px)}
-    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px}
-    .note{color:#9ea0a4;font-size:14px}
+    .card{background:var(--bg-soft);border:1px solid var(--stroke);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+    .note{color:var(--muted);font-size:14px}
 
     /* GRIDS */
     .grid{display:grid;gap:16px}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     .gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:10px}
-    .shot{aspect-ratio:1;border-radius:12px;background:#0f0f12;border:1px dashed #2a2a2e;display:grid;place-items:center;color:#6d6e72;font-size:12px}
+    .shot{aspect-ratio:1;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.06));border:1px dashed var(--stroke);display:grid;place-items:center;color:#6d6e72;font-size:12px;cursor:pointer}
 
     /* CONTACT */
     .contact-block{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
     /* FOOTER */
     footer{border-top:1px solid var(--stroke);color:#999;text-align:center;font-size:14px;margin-top:30px;padding:20px var(--space)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+
+    /* MODAL (Lightbox) */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+    .modal.open{display:flex}
+    .modal img{max-width:92vw;max-height:82vh;border-radius:12px;box-shadow:var(--shadow-md)}
+    .modal .controls{position:fixed;bottom:20px;display:flex;gap:10px}
+    .modal .controls button{background:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer}
+    [data-theme="dark"] .modal .controls button{background:#1c1c1f;color:#fff;border:1px solid #2a2a2e}
 
     /* MOBILE */
     @media (max-width:480px){
@@ -81,17 +117,11 @@
       .hero{padding-block:40px}
       .card{padding:14px}
     }
-
-    /* MODE CLAIR AUTO */
-    @media (prefers-color-scheme: light){
-      :root{--bg:#f7f7f8;--bg-soft:#ffffff;--text:#0c0d0e;--muted:#4b4d52;--stroke:#e6e7ea}
-      .shot{background:#fafafa;border-color:#d7d9dc;color:#9aa0a6}
-    }
   </style>
 </head>
 <body>
   <!-- HEADER -->
-  <header>
+  <header id="hdr">
     <div class="bar">
       <div class="brand">
         <img id="logoR3D" src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
@@ -101,63 +131,83 @@
         <a class="btn ghost" href="#services">Services</a>
         <a class="btn ghost" href="#realisations">Réalisations</a>
         <a class="btn primary" id="cta" href="#" target="_blank" rel="noopener">Contactez-nous</a>
+        <button id="themeBtn" class="theme-toggle" type="button" aria-label="Changer de thème">🌞/🌙</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero container">
-    <h1>Impression 3D & Gravure Laser à Abidjan</h1>
-    <p>Créatif, professionnel et accessible. Nous réalisons vos projets : prototypes, trophées, signalétique, goodies, plaques personnalisées et bien plus encore.</p>
-    <div class="cta-row">
+    <h1 class="reveal">Impression 3D & Gravure Laser à Abidjan</h1>
+    <p class="reveal">Créatif, professionnel et accessible. Nous réalisons vos projets : prototypes, trophées, signalétique, goodies, plaques personnalisées et bien plus encore.</p>
+    <div class="cta-row reveal">
       <a class="btn primary" id="cta2" href="#" target="_blank" rel="noopener">Contactez-nous sur WhatsApp</a>
       <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
       <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">Instagram</a>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi reveal"><strong data-count="48">0</strong><span>Moyenne h prod/sem</span></div>
+      <div class="kpi reveal"><strong data-count="0.6">0</strong><span>Buse max (mm)</span></div>
+      <div class="kpi reveal"><strong data-count="2">0</strong><span>Lasers (450/1064)</span></div>
+      <div class="kpi reveal"><strong data-count="72">0</strong><span>H délai typique (h)</span></div>
     </div>
   </section>
 
   <!-- SERVICES -->
   <section id="services" class="section container">
-    <h2 class="section-title">Nos services</h2>
+    <h2 class="section-title reveal">Nos services</h2>
     <div class="grid cols-3">
-      <article class="card">
+      <article class="card reveal">
         <h3>Impression 3D</h3>
-        <p class="note">FDM rapide et précise. Matériaux : PLA, PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
+        <p class="note">FDM rapide et précise. Matériaux : PLA (standard/silk/transparent), PETG, ASA. Prototypes, pièces fonctionnelles, objets décoratifs.</p>
       </article>
-      <article class="card">
+      <article class="card reveal">
         <h3>Gravure Laser</h3>
-        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal, cuir. Trophées, plaques, cartes professionnelles, signalétique.</p>
+        <p class="note">450 nm & 1064 nm sur bois, acrylique, métal (inox/anodisé), cuir. Trophées, plaques, cartes pro, signalétique, QR dynamiques.</p>
       </article>
-      <article class="card">
+      <article class="card reveal">
         <h3>Design & Prototypage</h3>
-        <p class="note">Modélisation 3D, ajustements, finitions, conception personnalisée selon vos besoins.</p>
+        <p class="note">Modélisation 3D (Shapr3D/Blender), DfAM, ajustements, finitions. Devis clair & échanges rapides.</p>
       </article>
     </div>
   </section>
 
   <!-- RÉALISATIONS -->
   <section id="realisations" class="section container">
-    <h2 class="section-title">Quelques réalisations</h2>
+    <h2 class="section-title reveal">Quelques réalisations</h2>
     <div class="gallery">
-      <div class="shot">photo 1</div>
-      <div class="shot">photo 2</div>
-      <div class="shot">photo 3</div>
-      <div class="shot">photo 4</div>
+      <!-- Remplace ces placeholders par tes images /assets/shot1.jpg etc. -->
+      <img class="shot reveal" loading="lazy" src="assets/shot1.jpg" alt="Réa 1 (à remplacer)">
+      <img class="shot reveal" loading="lazy" src="assets/shot2.jpg" alt="Réa 2 (à remplacer)">
+      <img class="shot reveal" loading="lazy" src="assets/shot3.jpg" alt="Réa 3 (à remplacer)">
+      <img class="shot reveal" loading="lazy" src="assets/shot4.jpg" alt="Réa 4 (à remplacer)">
     </div>
-    <p class="note" style="margin-top:8px">Tu remplaceras ces emplacements par tes photos réelles (trophées, plaques, prints FDM, etc.).</p>
+    <p class="note" style="margin-top:8px">Tu remplaceras ces emplacements par tes photos réelles (trophées, plaques, prints FDM, etc.). Clique pour agrandir.</p>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="section container">
-    <h2 class="section-title">Contact</h2>
-    <p class="note">Réponse rapide via WhatsApp. Pour les demandes complexes ou devis formels, utilise l’e-mail.</p>
+    <h2 class="section-title reveal">Contact</h2>
+    <p class="note reveal">Réponse rapide via WhatsApp. Pour les demandes complexes ou devis formels, utilise l’e-mail.</p>
     <div class="contact-block" style="margin-top:6px">
       <a class="btn primary" id="cta3" href="#" target="_blank" rel="noopener">Contactez-nous</a>
       <a class="btn ghost" href="mailto:r3dprint.ci@gmail.com">r3dprint.ci@gmail.com</a>
       <span class="note">WhatsApp : <strong>+225 07 57 84 13 23</strong></span>
       <a class="btn ghost" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">@r3dprint.ci</a>
+      <button class="btn ghost" id="copyVcf" type="button">Télécharger le contact (.vcf)</button>
     </div>
   </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal" id="lightbox" aria-hidden="true">
+    <img id="lightboxImg" alt="Aperçu">
+    <div class="controls">
+      <button type="button" id="lbPrev" aria-label="Précédente">⟨</button>
+      <button type="button" id="lbClose" aria-label="Fermer">✕</button>
+      <button type="button" id="lbNext" aria-label="Suivante">⟩</button>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -165,13 +215,110 @@
   </footer>
 
   <script>
+    // ===== Année
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== WhatsApp – normalisation
     const phone = "002250757841323".replace(/^00/, "");
     const msg = encodeURIComponent("Bonjour R3D PRINT CI, j'aimerais un devis.");
-    const link = "https://wa.me/" + phone + "?text=" + msg;
+    const waLink = "https://wa.me/" + phone + "?text=" + msg;
     ["cta","cta2","cta3"].forEach(id=>{
       const a=document.getElementById(id);
-      if(a) a.href=link;
+      if(a) a.href=waLink;
+    });
+
+    // ===== Header sticky shadow
+    const hdr = document.getElementById('hdr');
+    const onScrollHdr = () => {
+      if(window.scrollY>6) hdr.classList.add('is-scrolled');
+      else hdr.classList.remove('is-scrolled');
+    };
+    onScrollHdr(); window.addEventListener('scroll', onScrollHdr);
+
+    // ===== Révélations au scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // ===== Compteurs animés
+    const animateCount = (el, target, duration=1200) => {
+      const isFloat = String(target).includes('.');
+      const end = parseFloat(target);
+      const start = 0;
+      const startTime = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - startTime) / duration);
+        const val = start + (end - start) * p;
+        el.textContent = isFloat ? val.toFixed(1) : Math.round(val);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const ioKpi = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const el = e.target.querySelector('strong');
+          if(el && !el.dataset.done){
+            animateCount(el, el.dataset.count);
+            el.dataset.done = '1';
+          }
+          ioKpi.unobserve(e.target);
+        }
+      });
+    }, {threshold:.5});
+    document.querySelectorAll('.kpi').forEach(k=>ioKpi.observe(k));
+
+    // ===== Lightbox (galerie)
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const shots = Array.from(document.querySelectorAll('.gallery .shot'));
+    let lbIndex = 0;
+    const openLb = (idx)=>{
+      lbIndex = idx; lbImg.src = shots[lbIndex].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    };
+    const closeLb = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); };
+    const nextLb = ()=>{ lbIndex = (lbIndex+1)%shots.length; lbImg.src = shots[lbIndex].src; };
+    const prevLb = ()=>{ lbIndex = (lbIndex-1+shots.length)%shots.length; lbImg.src = shots[lbIndex].src; };
+    shots.forEach((img, i)=> img.addEventListener('click', ()=>openLb(i)));
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbNext').addEventListener('click', nextLb);
+    document.getElementById('lbPrev').addEventListener('click', prevLb);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
+    window.addEventListener('keydown', (e)=>{ if(lb.classList.contains('open')){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowRight') nextLb(); if(e.key==='ArrowLeft') prevLb(); }});
+
+    // ===== VCF (contact)
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:R3D PRINT CI;;;;
+FN:R3D PRINT CI
+ORG:R3D PRINT CI
+TITLE:Impression 3D & Gravure Laser
+TEL;TYPE=CELL,VOICE:+2250757841323
+EMAIL;TYPE=INTERNET:r3dprint.ci@gmail.com
+ADR;TYPE=WORK:;;Abidjan;;;;
+URL:https://r3dprintci.github.io/
+END:VCARD`.replace(/\n/g,"\r\n");
+    document.getElementById('copyVcf').addEventListener('click', ()=>{
+      const blob = new Blob([vcard], {type:'text/vcard;charset=utf-8'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'R3D_PRINT_CI.vcf';
+      document.body.appendChild(a);
+      a.click(); a.remove();
+    });
+
+    // ===== Thème clair/sombre + mémoire
+    const root = document.documentElement;
+    const btnTheme = document.getElementById('themeBtn');
+    const setTheme = (mode)=>{ root.setAttribute('data-theme', mode); localStorage.setItem('r3d_theme', mode); };
+    const saved = localStorage.getItem('r3d_theme');
+    if(saved){ setTheme(saved); }
+    btnTheme.addEventListener('click', ()=>{
+      const current = root.getAttribute('data-theme') || 'light';
+      setTheme(current==='light' ? 'dark' : 'light');
     });
   </script>
 </body>
