@@ -10,18 +10,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/logo.png" />
   <meta property="og:url" content="https://r3dprintci.github.io/" />
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"R3D PRINT CI",
-    "url":"https://r3dprintci.github.io/",
-    "email":"r3dprint.ci@gmail.com",
-    "areaServed":"Côte d'Ivoire",
-    "sameAs":["https://instagram.com/r3dprint.ci"],
-    "description":"Impression 3D, gravure laser, prototypage à Abidjan."
-  }
-  </script>
   <style>
     :root{
       --bg:#f7f6f3; --ink:#0f1115; --panel:#ffffff; --muted:#5a5e66; --stroke:#e7e3da;
@@ -29,7 +17,7 @@
       --radius:16px; --container:1120px; --shadow:0 10px 30px rgba(15,17,21,.06);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;max-width:100%;overflow-x:hidden}
     img{max-width:100%;height:auto;display:block}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--container);margin:auto;padding:28px}
@@ -44,31 +32,39 @@
         radial-gradient(900px 500px at 100% 10%, rgba(15,17,21,.06), transparent 60%);
       opacity:.75;
     }
+
     /* Header + nav */
     header{border-bottom:1px solid var(--stroke);background:#f7f6f3cc;backdrop-filter:saturate(1.2) blur(8px)}
-    .bar{max-width:var(--container);margin:auto;padding:12px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:70px;height:70px;object-fit:contain}
-    .brand span{font-weight:900;letter-spacing:.5px}
-    .nav{display:flex;gap:10px;align-items:center}
+    .bar{max-width:var(--container);margin:auto;padding:12px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:nowrap}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand img{width:58px;height:58px;object-fit:contain}
+    .brand span{font-weight:900;letter-spacing:.5px;white-space:nowrap}
+    .nav{display:flex;gap:10px;align-items:center;flex-wrap:nowrap}
     .btn{
       --bg:#fff; --fg:#111; --bd:#cfc7b6;
       display:inline-flex;gap:10px;align-items:center;justify-content:center;
       padding:10px 16px;border-radius:999px;border:1px solid var(--bd);
       background:var(--bg);color:var(--fg);font-weight:700;cursor:pointer;
       box-shadow:0 2px 0 rgba(0,0,0,.05); transition:transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+      white-space:nowrap
     }
     .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
     .btn.gold{--bg:linear-gradient(180deg,#c7ab78,#b08e57);--fg:#fff;--bd:#a07f48}
     .btn svg{width:18px;height:18px}
-    /* Hamburger */
+
+    /* Hamburger + drawer */
     .hamb{display:none}
     .drawer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60}
-    .panel{position:absolute;right:0;top:0;height:100%;width:min(84%,360px);background:#fff;border-left:1px solid var(--stroke);padding:18px;display:flex;flex-direction:column;gap:10px}
+    .panel{position:absolute;right:0;top:0;height:100%;width:min(88%,360px);background:#fff;border-left:1px solid var(--stroke);padding:18px;display:flex;flex-direction:column;gap:10px}
+
+    /* Mobile fix: on masque les liens pour garder une largeur fixe */
     @media (max-width:900px){
-      .nav> a:not(.btn){display:none}
+      .brand img{width:52px;height:52px}
+      .nav .navlink, .nav .lang{display:none}   /* cache tous les liens */
       .hamb{display:inline-flex}
+      .bar{padding:10px 14px}
     }
+
     .lang{position:relative}
     .lang button{border:1px solid var(--stroke);background:#fff;border-radius:999px;padding:8px 10px;cursor:pointer}
     .lang .menu{position:absolute;right:0;top:44px;background:#fff;border:1px solid var(--stroke);border-radius:12px;box-shadow:var(--shadow);display:none}
@@ -76,7 +72,7 @@
     .lang .menu button{display:block;width:100%;padding:8px 12px;border:0;background:transparent;text-align:left;cursor:pointer}
 
     /* Hero + animation */
-    .hero{position:relative;padding-block:66px}
+    .hero{position:relative;padding-block:52px}
     .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
     .chip{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--stroke);background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.05);font-weight:600;color:#2c2f35}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
@@ -94,17 +90,17 @@
     .shot{aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--stroke);background:#f0ede7;position:relative;cursor:pointer}
     .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
     .shot:hover img{transform:scale(1.04)}
+
     /* Lightbox */
     .lb{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:80}
     .lb.open{display:flex}
     .lb img{max-width:92vw;max-height:88vh;border-radius:12px}
 
     /* Footer */
-    footer{border-top:1px solid var(--stroke);padding:22px 28px;color:var(--muted)}
-    .foot{max-width:var(--container);margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    footer{border-top:1px solid var(--stroke);padding:22px 20px;color:var(--muted)}
+    .foot{max-width:var(--container);margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .minibrand{display:flex;gap:10px;align-items:center}
     .minibrand img{width:40px;height:40px;object-fit:contain}
-    /* Scroll top */
     #toTop{position:fixed;right:16px;bottom:16px;display:none}
   </style>
 </head>
@@ -119,22 +115,23 @@
         <span>R3D PRINT CI</span>
       </div>
       <nav class="nav">
-        <a class="btn" href="services.html" data-i18n="nav_services">Services</a>
-        <a class="btn" href="realisations.html" data-i18n="nav_work">Réalisations</a>
-        <a class="btn gold" href="devis.html" data-i18n="nav_quote">Devis</a>
-        <a class="btn" id="ctaWa" href="#">
+        <!-- Tous ces liens ont la classe navlink pour être masqués sur mobile -->
+        <a class="btn navlink" href="services.html" data-i18n="nav_services">Services</a>
+        <a class="btn navlink" href="realisations.html" data-i18n="nav_work">Réalisations</a>
+        <a class="btn gold navlink" href="devis.html" data-i18n="nav_quote">Devis</a>
+        <a class="btn navlink" id="ctaWa" href="#">
           <svg viewBox="0 0 24 24" fill="none"><path d="M20 3.5A10 10 0 1 0 4.7 20.2L3 21l.9-1.6A10 10 0 1 0 20 3.5Z" stroke="#000" stroke-opacity=".18"/><path d="M17.2 14.9c-.2-.2-1.3-.7-1.6-.8-.3-.1-.5-.1-.7.2l-.5.6c-.1.1-.2.2-.4.2-.7-.1-2.2-.8-3.1-1.8-.7-.8-1.2-1.8-1.3-2.6 0-.1 0-.3.2-.4l.6-.6c.1-.1.1-.3.1-.5s-.4-1.2-.6-1.7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.7.7-1.1 1.6-1 2.6.1 1 .7 2.1 1.6 3.1 1 .9 2.6 2 4.2 2.4.4.1.8.1 1.2 0 .4-.1 1.3-.5 1.5-.9.2-.4.2-.6.1-.6Z" fill="#1f2937"/></svg>
           WhatsApp
         </a>
-        <a class="btn" href="mailto:r3dprint.ci@gmail.com">
+        <a class="btn navlink" href="mailto:r3dprint.ci@gmail.com">
           <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#c1b59a"/><path d="M4 7l8 6 8-6" stroke="#c1b59a"/></svg>
           Mail
         </a>
-        <a class="btn" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">
+        <a class="btn navlink" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#c1b59a"/><circle cx="12" cy="12" r="4.2" stroke="#c1b59a"/><circle cx="17.2" cy="6.8" r="1.1" fill="#c1b59a"/></svg>
           Instagram
         </a>
-        <div class="lang" id="langBox">
+        <div class="lang navlink" id="langBox">
           <button id="langBtn" title="Langue">🌐</button>
           <div class="menu" id="langMenu">
             <button data-lang="fr">🇫🇷 Français</button>
@@ -209,7 +206,7 @@
     </div>
   </section>
 
-  <!-- RÉALISATIONS (aperçu) + Lightbox -->
+  <!-- RÉALISATIONS (aperçu) -->
   <section id="realisations" class="section">
     <div class="container">
       <h2 class="h2 reveal" data-i18n="work_title">Quelques réalisations</h2>
@@ -250,7 +247,7 @@
       cta_quote:"Demander un devis",services_title:"Nos services",
       svc_print:"Impression 3D",svc_print_desc:"Prototypes, pièces fonctionnelles, objets décoratifs. Vitesse & précision, finitions propres.",
       svc_laser:"Gravure Laser",svc_laser_desc:"Bois, acrylique, inox/anodisé, cuir. Signalétique, plaques, trophées, QR dynamiques.",
-      svc_design:"Design & Prototypage",svc_design_desc:"Modélisation 3D, DfAM, ajustements. Du brief au fichier prêt à produire.",
+      svc_design:"Design & Prototypage",svc_design_desc:"3D modeling, DfAM, ajustements. Du brief au fichier prêt à produire.",
       see_more:"En savoir plus",work_title:"Quelques réalisations",see_gallery:"Voir la galerie"
     },en:{
       nav_services:"Services",nav_work:"Works",nav_quote:"Quote",
@@ -265,13 +262,13 @@
     const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
     function applyI18n(lang){ $$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n; if(I18N[lang][k]) el.textContent=I18N[lang][k];}); }
     const langBtn=$("#langBtn"), langMenu=$("#langMenu"), langBox=$("#langBox");
-    function openLang(o){ langMenu.classList.toggle("open",o); }
+    function openLang(o){ langMenu?.classList.toggle("open",o); }
     langBtn?.addEventListener("click",()=>openLang(!langMenu.classList.contains("open")));
-    document.addEventListener("click",(e)=>{ if(!langBox?.contains(e.target)) openLang(false); });
+    document.addEventListener("click",(e)=>{ if(langBox && !langBox.contains(e.target)) openLang(false); });
     $$("#langMenu button").forEach(b=>b.addEventListener("click",()=>{ const l=b.dataset.lang||"fr"; localStorage.setItem("r3d_lang",l); applyI18n(l); openLang(false); document.documentElement.lang=l; }));
     const savedLang = localStorage.getItem("r3d_lang") || "fr"; applyI18n(savedLang); document.documentElement.lang=savedLang;
 
-    // WhatsApp links unifiés
+    // WhatsApp liens unifiés
     const phone="002250757841323".replace(/^00/,"");
     const defaultMsg=encodeURIComponent(savedLang==="en"?"Hello R3D PRINT CI, I'd like a quote.":"Bonjour R3D PRINT CI, j'aimerais un devis.");
     const wa="https://wa.me/"+phone+"?text="+defaultMsg;
