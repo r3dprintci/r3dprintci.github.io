@@ -1,23 +1,18 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>R3D PRINT CI — L’art de donner vie à vos idées</title>
-<meta name="description" content="R3D PRINT CI : impression 3D, gravure laser et prototypage à Abidjan. L’art de donner vie à vos idées.">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>R3D PRINT CI — L'art de donner vie à vos idées</title>
+<meta name="description" content="R3D PRINT CI, spécialiste en impression 3D, gravure laser et prototypage à Abidjan. Donnez vie à vos idées grâce à des technologies de pointe.">
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
+
 <style>
-/* ---- HERO ---- */
 .hero {
-  height: 85vh;
-  background: linear-gradient(120deg, rgba(255,255,255,0.9), rgba(248,244,229,0.9)), url('assets/impression3d.webp') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(120deg, #fff, #f6f6f6);
+  padding: 100px 6% 80px;
   text-align: center;
-  flex-direction: column;
-  padding: 0 20px;
   position: relative;
   overflow: hidden;
 }
@@ -25,69 +20,111 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 20%, rgba(201,180,125,0.3), transparent 70%);
-  animation: shimmer 10s infinite linear;
+  background: radial-gradient(circle at 70% 30%, rgba(214,185,120,0.08), transparent 70%);
 }
-@keyframes shimmer {0%{background-position:0% 50%}100%{background-position:100% 50%}}
 .hero h1 {
-  font-size: clamp(36px,6vw,70px);
+  font-size: 42px;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+}
+.hero span {
   color: var(--gold-dark);
-  margin-bottom: 12px;
 }
 .hero p {
-  color: var(--text);
-  font-size: 20px;
-  max-width: 650px;
-  margin: auto;
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 28px;
 }
-.hero .cta {
-  margin-top: 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 999px;
-  font-weight: 700;
-  transition: all 0.3s ease;
+.hero .btn-primary {
+  font-size: 17px;
+  padding: 14px 26px;
 }
-.hero .cta:hover {transform: scale(1.05);}
 
-/* ---- APERÇU SERVICES ---- */
-.preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 22px;
-  margin-top: 60px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 25px;
+/* Section intro */
+.intro {
   text-align: center;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-  transition: transform .3s ease, box-shadow .3s ease;
+  padding: 70px 6%;
+  background: #fff;
 }
-.card:hover {transform: translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
-.card img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+.intro h2 {
+  color: var(--gold-dark);
   margin-bottom: 14px;
 }
-.card h3 {color: var(--gold-dark);margin-bottom:8px;}
-.card p {color: var(--muted);font-size:15px;}
+.intro p {
+  color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Aperçu services */
+.services-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 24px;
+  margin-top: 50px;
+}
+.service {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  padding: 24px;
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer;
+}
+.service:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.service img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+.service h3 {
+  color: var(--gold-dark);
+  margin-bottom: 6px;
+}
+.service p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Bande contact */
+.cta {
+  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
+  color: #fff;
+  padding: 70px 6%;
+  text-align: center;
+}
+.cta h2 {font-size: 30px;margin-bottom:16px;}
+.cta p {font-size:17px;margin-bottom:26px;}
+.cta .btn {
+  background: #fff;
+  color: var(--gold-dark);
+  font-weight: 700;
+  padding: 14px 28px;
+}
+.cta .btn:hover {
+  background: #f8f8f8;
+}
+
+/* Responsive hero */
+@media(max-width:600px){
+  .hero h1 {font-size: 30px;}
+  .hero p {font-size: 16px;}
+}
 </style>
 </head>
 
 <body>
-<header>
+
+<header id="header">
   <div class="bar">
     <a href="index.html" class="brand">
       <img src="assets/logo.png" alt="R3D PRINT CI">
-      <span><strong>R3D PRINT CI</strong></span>
     </a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
@@ -99,41 +136,53 @@
   </div>
 </header>
 
-<section class="hero">
-  <h1>L’art de donner vie à vos idées</h1>
-  <p>Impression 3D, gravure laser et prototypage professionnel à Abidjan.  
-     Des créations sur mesure pour entreprises et particuliers.</p>
-  <a href="devis.html" class="cta">Demander un devis</a>
+<!-- HERO -->
+<section class="hero fade">
+  <h1><span>L’art</span> de donner vie à vos idées</h1>
+  <p>Spécialiste de l’impression 3D, de la gravure laser et du prototypage en Côte d’Ivoire.  
+  Donnez forme à vos concepts avec précision et créativité.</p>
+  <a href="devis.html" class="btn btn-primary">Demander un devis rapide</a>
 </section>
 
-<section class="section">
-  <h1>Notre savoir-faire</h1>
-  <p class="lead">Alliant innovation, précision et design, R3D PRINT CI transforme vos concepts en réalisations concrètes.</p>
+<!-- INTRO -->
+<section class="intro fade">
+  <h2>Notre savoir-faire</h2>
+  <p>Chez <strong>R3D PRINT CI</strong>, nous transformons vos projets en réalisations concrètes grâce à une maîtrise complète des technologies de fabrication numérique : impression 3D, gravure laser et modélisation 3D.</p>
 
-  <div class="preview">
-    <div class="card">
+  <div class="services-preview">
+    <div class="service" onclick="window.location.href='services.html'">
       <img src="assets/impression3d.webp" alt="Impression 3D">
       <h3>Impression 3D</h3>
-      <p>Fabrication de pièces sur mesure, en haute précision, avec une finition impeccable.</p>
+      <p>Pièces sur mesure, prototypes ou objets décoratifs, imprimés avec précision et finitions professionnelles.</p>
     </div>
-    <div class="card">
+    <div class="service" onclick="window.location.href='services.html'">
       <img src="assets/gravurelaser.webp" alt="Gravure laser">
-      <h3>Gravure Laser</h3>
-      <p>Découpe et gravure de haute qualité sur bois, métal, acrylique et autres matériaux.</p>
+      <h3>Gravure laser</h3>
+      <p>Gravure et découpe haute précision sur bois, métal, cuir ou acrylique pour des résultats raffinés.</p>
     </div>
-    <div class="card">
+    <div class="service" onclick="window.location.href='services.html'">
       <img src="assets/prototypage.webp" alt="Prototypage">
       <h3>Prototypage & Design</h3>
-      <p>De la modélisation 3D à la pièce finale, nous donnons forme à vos idées.</p>
+      <p>De l’idée au prototype final : conception 3D, validation technique et ajustements sur mesure.</p>
     </div>
   </div>
+</section>
+
+<!-- CTA -->
+<section class="cta fade">
+  <h2>Un projet à concrétiser ?</h2>
+  <p>Contactez-nous dès aujourd’hui et recevez votre devis personnalisé sur WhatsApp.</p>
+  <a href="https://wa.me/002250757841323" class="btn">Contacter sur WhatsApp</a>
 </section>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-function toggleMenu(){document.getElementById("navMenu").classList.toggle("show");}
+function toggleMenu(){
+  document.getElementById("navMenu").classList.toggle("show");
+}
 </script>
+
 </body>
 </html>
