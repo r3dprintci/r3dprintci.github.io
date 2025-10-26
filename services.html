@@ -6,61 +6,59 @@
 <title>Services — R3D PRINT CI</title>
 <meta name="description" content="Découvrez les services R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan."/>
 <style>
-:root{--bg:#f6f6f6;--ink:#1b1b1b;--muted:#616161;--panel:#fff;--line:#e7e7e7;--gold:#bca66a;--radius:16px;--container:1160px}
+:root{
+  --bg:#f7f7f7;--ink:#1a1a1a;--muted:#6b6b6b;
+  --panel:#fff;--line:#e4e4e4;
+  --gold:#bca66a;--radius:16px;--container:1180px;
+}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
 .container{max-width:var(--container);margin:auto;padding:28px}
-.section{padding-block:48px}
-.h1{font-size:clamp(28px,5vw,48px);margin:0 0 8px}
-.h2{font-size:clamp(22px,3.2vw,32px);margin:0 0 12px}
-header{position:sticky;top:0;z-index:50;background:rgba(246,246,246,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{max-width:var(--container);margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px}
-.brand img{width:68px;height:68px;object-fit:contain}
+.section{padding-block:64px}
+.h1{font-size:clamp(32px,5.2vw,54px);margin:0 0 8px}
+.h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 12px}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:var(--container);margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:92px;height:92px;object-fit:contain;transition:.2s}
+.brand:hover img{transform:scale(1.05)}
 .nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;margin-top:10px}
-.btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer;transition:.2s}
+.btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;transition:.25s}
 .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 .btn.gold{background:var(--gold);color:#fff}
-.cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 4px 18px rgba(0,0,0,.06);cursor:pointer;transition:.3s}
+.cards{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 4px 18px rgba(0,0,0,.05);cursor:pointer;transition:.3s}
 .card:hover{transform:translateY(-3px)}
-.card-icon{width:48px;height:48px;margin-bottom:14px;stroke:var(--gold);stroke-width:1.8;fill:none}
+.card-icon{width:52px;height:52px;margin-bottom:14px;stroke:var(--gold);stroke-width:1.8;fill:none}
 .click-icon{position:absolute;top:12px;right:12px;opacity:.9;transition:transform .25s ease}
 .card:hover .click-icon{transform:translate(2px,-2px)}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:100}
 .modal.active{display:flex}
-.modal-content{background:#fff;border-radius:20px;max-width:600px;padding:28px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.2)}
-.close{position:absolute;top:12px;right:16px;font-size:24px;cursor:pointer;color:var(--muted)}
+.modal-content{background:#fff;border-radius:20px;max-width:600px;padding:32px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+.close{position:absolute;top:12px;right:16px;font-size:26px;cursor:pointer;color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);text-align:center}
 /* bouton accueil flottant */
 #homeButton{
-  position:fixed;
-  bottom:20px;
-  right:20px;
+  position:fixed;bottom:20px;right:20px;
   background:linear-gradient(180deg,#c7b37e,#a88e58);
-  border-radius:50%;
-  width:56px;height:56px;
+  border-radius:50%;width:56px;height:56px;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 4px 12px rgba(0,0,0,.25);
-  z-index:9999;
-  transition:transform .2s ease, box-shadow .2s ease;
+  z-index:9999;transition:transform .2s ease, box-shadow .2s ease;
 }
-#homeButton:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 18px rgba(0,0,0,.3);
-}
-@media(max-width:800px){.brand img{width:56px;height:56px}.cards{grid-template-columns:1fr}}
+#homeButton:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+@media(max-width:800px){.brand img{width:76px;height:76px}.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <div class="brand">
+    <a href="index.html" class="brand">
       <img src="assets/logo.png" onerror="this.src='assets/logo.jpg'" alt="R3D PRINT CI"/>
       <span><strong>R3D PRINT CI</strong></span>
-    </div>
+    </a>
     <nav class="nav">
       <a class="btn" href="index.html">Accueil</a>
       <a class="btn gold" href="services.html">Services</a>
@@ -78,55 +76,48 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
     <div class="cards">
       <!-- Impression 3D -->
       <div class="card" onclick="openModal('m3d')">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M4 4h16v4H4zM4 8v12h16V8zM8 12h8v4H8z"/>
-        </svg>
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 8v12h16V8zM8 12h8v4H8z"/></svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Impression 3D</h3>
-        <p>Prototypes, pièces techniques et objets décoratifs produits en FDM : PLA, PETG, ASA, finition soignée et sur mesure.</p>
+        <p>Prototypes, pièces techniques et objets décoratifs en FDM (PLA, PETG, ASA). Une précision optimale et une finition soignée.</p>
       </div>
 
       <!-- Gravure laser -->
       <div class="card" onclick="openModal('mLaser')">
         <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 2v3M12 19v3M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h3M19 12h3M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h3M19 12h3M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
         </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Gravure laser</h3>
-        <p>Gravure de précision sur bois, métal, cuir, acrylique et bien plus. Finition professionnelle et marquage durable.</p>
+        <p>Gravure de précision sur bois, métal, cuir, bambou ou acrylique. Un rendu net, durable et haut de gamme.</p>
       </div>
 
       <!-- Prototypage -->
       <div class="card" onclick="openModal('mProto')">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Prototypage & design</h3>
-        <p>Modélisation 3D, ajustements fonctionnels et conception produit complète — de l’idée au modèle validé.</p>
+        <p>Conception 3D, ajustements techniques et tests fonctionnels pour valider vos idées avant la production finale.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Modales -->
+<!-- Modales d'explication -->
 <div id="m3d" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m3d')">&times;</span>
-<h2>Impression 3D</h2><p>Production de pièces personnalisées en FDM : PLA, PETG, ASA. Qualité, rapidité et précision pour vos prototypes et objets finis.</p></div></div>
+<h2>Impression 3D</h2><p>Nous réalisons vos prototypes, maquettes et pièces techniques avec précision. Grâce à la technologie FDM, chaque objet est imprimé couche par couche pour une solidité optimale et une finition professionnelle.</p></div></div>
 
 <div id="mLaser" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('mLaser')">&times;</span>
-<h2>Gravure laser</h2><p>Gravure fine sur bois, métal, bambou, cuir et acrylique. Plaques, trophées, objets publicitaires et signalétique sur mesure.</p></div></div>
+<h2>Gravure laser</h2><p>Gravure fine sur de multiples supports : bois, métal, cuir, verre, plastique, bambou. Idéal pour objets personnalisés, plaques d’entreprise ou cadeaux haut de gamme.</p></div></div>
 
 <div id="mProto" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('mProto')">&times;</span>
-<h2>Prototypage & design</h2><p>De la modélisation à la validation fonctionnelle : notre service vous accompagne dans chaque étape de développement.</p></div></div>
+<h2>Prototypage & design</h2><p>Du concept à la pièce finale : conception 3D, simulation, test et rendu visuel. Nous assurons un accompagnement complet jusqu’à validation de votre projet.</p></div></div>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
 
 <!-- Bouton Accueil flottant -->
 <a href="index.html" id="homeButton" title="Retour à l'accueil">
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/>
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/></svg>
 </a>
 
 <script>
