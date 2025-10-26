@@ -3,104 +3,129 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>R3D PRINT CI — Impression 3D & Gravure Laser</title>
-  <meta name="description" content="R3D PRINT CI : impression 3D FDM, gravure laser & prototypage à Abidjan. Sobre, précis et haut de gamme." />
-  <meta name="theme-color" content="#0f1115" />
-  <meta property="og:title" content="R3D PRINT CI — Impression 3D & Gravure Laser" />
+  <title>R3D PRINT CI — L’art de donner vie à vos idées</title>
+  <meta name="description" content="Impression 3D, gravure laser et prototypage à Abidjan. R3D PRINT CI : l’art de donner vie à vos idées. Devis rapide, délais courts, finition soignée." />
+  <meta name="theme-color" content="#111111" />
+  <meta property="og:title" content="R3D PRINT CI — L’art de donner vie à vos idées" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/logo.png" />
-  <meta property="og:url" content="https://r3dprintci.github.io/" />
+  <meta property="og:url" content="https://r3dprint.pro/" />
   <style>
     :root{
-      --bg:#f7f6f3; --ink:#0f1115; --panel:#ffffff; --muted:#5a5e66; --stroke:#e7e3da;
-      --gold:#bfa06a; --gold-weak:#d9c6a0;
-      --radius:16px; --container:1120px; --shadow:0 10px 30px rgba(15,17,21,.06);
+      --bg:#f6f6f6; --ink:#1b1b1b; --muted:#616161; --panel:#ffffff; --line:#e7e7e7;
+      --gold:#bca66a; --gold-2:#e7dcc0; --ink-soft:#2a2a2a;
+      --radius:16px; --container:1160px; --shadow:0 10px 35px rgba(0,0,0,.06);
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;max-width:100%;overflow-x:hidden}
-    img{max-width:100%;height:auto;display:block}
-    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
     .container{max-width:var(--container);margin:auto;padding:28px}
-    .section{padding-block:42px}
-    .h1{font-size:clamp(28px,6vw,48px);line-height:1.12;margin:0}
-    .h2{font-size:clamp(20px,3.5vw,28px);margin:0 0 14px}
-    .lead{color:var(--muted);max-width:780px}
+    .section{padding-block:48px}
+    .h1{font-size:clamp(32px,5.8vw,56px);line-height:1.1;margin:0}
+    .h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 14px}
+    .lead{color:var(--muted);max-width:820px}
+
+    /* Texture de fond premium */
     body::before{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+      content:"";position:fixed;inset:-10% -10% auto -10%;height:60vh;z-index:-1;pointer-events:none;
       background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(191,160,106,.08), transparent 60%),
-        radial-gradient(900px 500px at 100% 10%, rgba(15,17,21,.06), transparent 60%);
-      opacity:.75;
+        radial-gradient(1000px 500px at 10% -10%, rgba(188,166,106,.12), transparent 60%),
+        radial-gradient(900px 500px at 110% -20%, rgba(0,0,0,.06), transparent 60%);
+      filter: saturate(1.05);
     }
 
-    /* Header + nav */
-    header{border-bottom:1px solid var(--stroke);background:#f7f6f3cc;backdrop-filter:saturate(1.2) blur(8px)}
-    .bar{max-width:var(--container);margin:auto;padding:12px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:nowrap}
-    .brand{display:flex;align-items:center;gap:10px;min-width:0}
-    .brand img{width:58px;height:58px;object-fit:contain}
-    .brand span{font-weight:900;letter-spacing:.5px;white-space:nowrap}
+    /* Header */
+    header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(246,246,246,.85);backdrop-filter: blur(8px)}
+    .bar{max-width:var(--container);margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center;min-width:0}
+    .brand img{width:68px;height:68px;object-fit:contain}
+    .brand span{font-weight:900;letter-spacing:.4px;white-space:nowrap}
     .nav{display:flex;gap:10px;align-items:center;flex-wrap:nowrap}
     .btn{
-      --bg:#fff; --fg:#111; --bd:#cfc7b6;
+      --bg:#fff; --fg:#111; --bd:#d9d9d9;
       display:inline-flex;gap:10px;align-items:center;justify-content:center;
       padding:10px 16px;border-radius:999px;border:1px solid var(--bd);
       background:var(--bg);color:var(--fg);font-weight:700;cursor:pointer;
-      box-shadow:0 2px 0 rgba(0,0,0,.05); transition:transform .30s ease, box-shadow .2s ease, opacity .2s ease;
-      white-space:nowrap
+      box-shadow:0 2px 0 rgba(0,0,0,.04); transition:transform .15s ease, box-shadow .2s ease, opacity .2s ease; white-space:nowrap
     }
-    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
-    .btn.gold{--bg:linear-gradient(180deg,#c7ab78,#b08e57);--fg:#fff;--bd:#a07f48}
-    .btn svg{width:18px;height:18px}
-
-    /* Hamburger + drawer */
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+    .btn.gold{--bg:linear-gradient(180deg,#c7b37e,#a88e58);--fg:#fff;--bd:#9b8450}
+    .btn.ghost{background:#fff;border-color:var(--line)}
+    .btn.icon svg{width:18px;height:18px}
+    /* Hamburger */
     .hamb{display:none}
     .drawer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60}
-    .panel{position:absolute;right:0;top:0;height:100%;width:min(88%,360px);background:#fff;border-left:1px solid var(--stroke);padding:18px;display:flex;flex-direction:column;gap:10px}
-
-    /* Mobile fix: on masque les liens pour garder une largeur fixe */
-    @media (max-width:900px){
-      .brand img{width:52px;height:52px}
-      .nav .navlink, .nav .lang{display:none}   /* cache tous les liens */
+    .panel{position:absolute;right:0;top:0;height:100%;width:min(86%,360px);background:#fff;border-left:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px}
+    @media (max-width:920px){
+      .nav .navlink{display:none}
       .hamb{display:inline-flex}
-      .bar{padding:10px 14px}
+      .brand img{width:58px;height:58px}
     }
 
-    .lang{position:relative}
-    .lang button{border:1px solid var(--stroke);background:#fff;border-radius:999px;padding:8px 10px;cursor:pointer}
-    .lang .menu{position:absolute;right:0;top:44px;background:#fff;border:1px solid var(--stroke);border-radius:12px;box-shadow:var(--shadow);display:none}
-    .lang .menu.open{display:block}
-    .lang .menu button{display:block;width:100%;padding:8px 12px;border:0;background:transparent;text-align:left;cursor:pointer}
+    /* HERO */
+    .hero{position:relative;isolation:isolate;overflow:hidden}
+    .hero-wrap{display:grid;gap:18px;align-items:center;grid-template-columns:1.1fr .9fr}
+    .hero .tag{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:700;color:#2b2b2b;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .hero p.lead{margin-top:4px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+    .hero-visual{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#ffffff,#f1f1f1)}
+    .hero-visual::after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background: radial-gradient(500px 220px at 80% 10%, rgba(188,166,106,.25), transparent 60%);
+      opacity:.7
+    }
+    .mock{aspect-ratio:4/3;display:grid;place-items:center;color:#a0a0a0;font-weight:700}
+    @media (max-width:920px){
+      .hero-wrap{grid-template-columns:1fr}
+      .mock{aspect-ratio:16/9}
+    }
 
-    /* Hero + animation */
-    .hero{position:relative;padding-block:52px}
-    .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .chip{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--stroke);background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.05);font-weight:600;color:#2c2f35}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.in{opacity:1;transform:translateY(0)}
+    /* Sections cartes & icônes */
+    .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#efe6cd,#f7f2e2);border:1px solid #e1d6bb;margin-bottom:10px}
 
-    /* Services preview */
-    .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#f1e7d5,#efe7d9);border:1px solid #e3d7c2;margin-bottom:10px}
-    .note{color:var(--muted);font-size:14px}
+    /* Pourquoi nous choisir */
+    .why{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .why .mini{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
 
-    /* Galerie */
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .shot{aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--stroke);background:#f0ede7;position:relative;cursor:pointer}
+    /* Galerie + lightbox */
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .shot{aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#efefef;cursor:pointer;position:relative}
     .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
     .shot:hover img{transform:scale(1.04)}
-
-    /* Lightbox */
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:80}
+    .lb{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:80}
     .lb.open{display:flex}
     .lb img{max-width:92vw;max-height:88vh;border-radius:12px}
 
+    /* Process */
+    .steps{display:grid;gap:8px;grid-template-columns:repeat(4,1fr);margin-top:8px}
+    .step{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:14px;min-height:120px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+    .step strong{font-size:15px}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Devis rapide */
+    .quote{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+    .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    label{font-weight:700;font-size:14px}
+    input, select, textarea{width:100%;border-radius:12px;border:1px solid var(--line);background:#fff;color:#111;padding:10px 12px}
+    input[type=number]{appearance:textfield}
+    input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{appearance:none;margin:0}
+    textarea{min-height:110px;resize:vertical}
+    .quote-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .quote-toggle{margin:10px 0 2px}
+    .hint{font-size:12px;color:var(--muted)}
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1;transform:translateY(0)}
+
     /* Footer */
-    footer{border-top:1px solid var(--stroke);padding:22px 20px;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted)}
     .foot{max-width:var(--container);margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .minibrand{display:flex;gap:10px;align-items:center}
-    .minibrand img{width:40px;height:40px;object-fit:contain}
+    .minibrand img{width:42px;height:42px;object-fit:contain}
     #toTop{position:fixed;right:16px;bottom:16px;display:none}
   </style>
 </head>
@@ -108,6 +133,7 @@
   <!-- Lightbox -->
   <div class="lb" id="lightbox" role="dialog" aria-modal="true"><img alt=""></div>
 
+  <!-- Header -->
   <header>
     <div class="bar">
       <div class="brand">
@@ -115,29 +141,14 @@
         <span>R3D PRINT CI</span>
       </div>
       <nav class="nav">
-        <!-- Tous ces liens ont la classe navlink pour être masqués sur mobile -->
-        <a class="btn navlink" href="services.html" data-i18n="nav_services">Services</a>
-        <a class="btn navlink" href="realisations.html" data-i18n="nav_work">Réalisations</a>
-        <a class="btn gold navlink" href="devis.html" data-i18n="nav_quote">Devis</a>
-        <a class="btn navlink" id="ctaWa" href="#">
+        <a class="btn navlink" href="#expertise">Expertise</a>
+        <a class="btn navlink" href="#realisations">Réalisations</a>
+        <a class="btn navlink" href="#process">Process</a>
+        <a class="btn gold navlink" href="#devis">Devis rapide</a>
+        <a class="btn navlink icon" id="ctaWa" href="#" title="WhatsApp">
           <svg viewBox="0 0 24 24" fill="none"><path d="M20 3.5A10 10 0 1 0 4.7 20.2L3 21l.9-1.6A10 10 0 1 0 20 3.5Z" stroke="#000" stroke-opacity=".18"/><path d="M17.2 14.9c-.2-.2-1.3-.7-1.6-.8-.3-.1-.5-.1-.7.2l-.5.6c-.1.1-.2.2-.4.2-.7-.1-2.2-.8-3.1-1.8-.7-.8-1.2-1.8-1.3-2.6 0-.1 0-.3.2-.4l.6-.6c.1-.1.1-.3.1-.5s-.4-1.2-.6-1.7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.7.7-1.1 1.6-1 2.6.1 1 .7 2.1 1.6 3.1 1 .9 2.6 2 4.2 2.4.4.1.8.1 1.2 0 .4-.1 1.3-.5 1.5-.9.2-.4.2-.6.1-.6Z" fill="#1f2937"/></svg>
           WhatsApp
         </a>
-        <a class="btn navlink" href="mailto:r3dprint.ci@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#c1b59a"/><path d="M4 7l8 6 8-6" stroke="#c1b59a"/></svg>
-          Mail
-        </a>
-        <a class="btn navlink" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#c1b59a"/><circle cx="12" cy="12" r="4.2" stroke="#c1b59a"/><circle cx="17.2" cy="6.8" r="1.1" fill="#c1b59a"/></svg>
-          Instagram
-        </a>
-        <div class="lang navlink" id="langBox">
-          <button id="langBtn" title="Langue">🌐</button>
-          <div class="menu" id="langMenu">
-            <button data-lang="fr">🇫🇷 Français</button>
-            <button data-lang="en">🇬🇧 English</button>
-          </div>
-        </div>
         <button class="btn hamb" id="openMenu">☰</button>
       </nav>
     </div>
@@ -147,130 +158,218 @@
   <div class="drawer" id="drawer">
     <div class="panel">
       <button class="btn" id="closeMenu">Fermer ✕</button>
-      <a class="btn" href="services.html">Services</a>
-      <a class="btn" href="realisations.html">Réalisations</a>
-      <a class="btn gold" href="devis.html">Devis</a>
+      <a class="btn" href="#expertise">Expertise</a>
+      <a class="btn" href="#realisations">Réalisations</a>
+      <a class="btn" href="#process">Process</a>
+      <a class="btn gold" href="#devis">Devis rapide</a>
       <a class="btn" id="mWa" href="#">WhatsApp</a>
-      <a class="btn" href="mailto:r3dprint.ci@gmail.com">Mail</a>
-      <a class="btn" href="https://instagram.com/r3dprint.ci" target="_blank">Instagram</a>
+      <a class="btn" href="services.html">Services (page)</a>
+      <a class="btn" href="realisations.html">Galerie (page)</a>
+      <a class="btn" href="devis.html">Devis (page)</a>
     </div>
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1 class="h1 reveal" data-i18n="hero_title">Impression 3D & Gravure Laser — <span style="font-weight:300">sobre, précise, haut de gamme</span></h1>
-      <p class="lead reveal" data-i18n="hero_sub">Prototypage, trophées, signalétique, goodies et pièces fonctionnelles. Un accompagnement sérieux à Abidjan, du croquis au rendu final.</p>
-      <div class="cta-row reveal">
-        <a class="btn gold" href="devis.html" data-i18n="cta_quote">Demander un devis</a>
+  <section class="hero section" id="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="tag reveal">Abidjan • Atelier de fabrication</span>
+        <h1 class="h1 reveal" style="margin-top:10px">L’art de donner vie à vos idées</h1>
+        <p class="lead reveal">Impression 3D, gravure laser et prototypage sur mesure. Des pièces précises, des finitions soignées, des délais courts.</p>
+        <div class="cta-row reveal">
+          <a class="btn gold" href="#devis">Demander un devis</a>
+          <a class="btn ghost" href="#realisations">Découvrir nos réalisations</a>
+        </div>
+        <p class="hint reveal" style="margin-top:8px">WhatsApp direct, e-mail ou formulaire — nous répondons rapidement.</p>
       </div>
-      <div class="meta reveal">
-        <span class="chip">FDM • PLA / PETG / ASA</span>
-        <span class="chip">Laser 450/1064 nm</span>
-        <span class="chip">Délais courts</span>
-        <span class="chip">Devis clair</span>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="mock">
+          <!-- Tu pourras remplacer par une photo/vidéo plus tard -->
+          <svg viewBox="0 0 300 200" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="0" width="300" height="200" fill="#f4f4f4"/>
+            <g opacity=".9">
+              <rect x="36" y="50" width="228" height="100" rx="12" fill="#ffffff" stroke="#e1e1e1"/>
+              <rect x="52" y="66" width="78" height="68" rx="10" fill="#f0f0f0" stroke="#e1e1e1"/>
+              <rect x="142" y="66" width="40" height="8" rx="4" fill="#bca66a"/>
+              <rect x="142" y="82" width="104" height="6" rx="3" fill="#e8e1cf"/>
+              <rect x="142" y="96" width="94" height="6" rx="3" fill="#ececec"/>
+              <rect x="142" y="110" width="84" height="6" rx="3" fill="#ececec"/>
+              <rect x="142" y="132" width="94" height="8" rx="4" fill="#c8b47e"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES (aperçu) -->
-  <section id="services" class="section">
+  <!-- EXPERTISE -->
+  <section id="expertise" class="section">
     <div class="container">
-      <h2 class="h2 reveal" data-i18n="services_title">Nos services</h2>
+      <h2 class="h2 reveal">Nos domaines d’expertise</h2>
+      <p class="lead reveal">Nous accompagnons entreprises, événements et particuliers, du croquis à la pièce finie.</p>
       <div class="cards">
         <article class="card reveal">
           <div class="icon">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2z" fill="#efe7d8" stroke="#bfa06a"/><path d="M12 2v20M4 6.5l8 4.5 8-4.5" stroke="#bfa06a" fill="none"/></svg>
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2z" fill="#efe3c5" stroke="#bca66a"/><path d="M12 2v20M4 6.5l8 4.5 8-4.5" stroke="#bca66a" fill="none"/></svg>
           </div>
-          <h3 style="margin:6px 0 6px" data-i18n="svc_print">Impression 3D</h3>
-          <p class="note" data-i18n="svc_print_desc">Prototypes, pièces fonctionnelles, objets décoratifs. Vitesse & précision, finitions propres.</p>
+          <h3 style="margin:6px 0 6px">Impression 3D</h3>
+          <p class="lead" style="font-size:14px">Prototypes, pièces fonctionnelles, objets déco. FDM (PLA, PETG, ASA) — précision et régularité.</p>
         </article>
         <article class="card reveal">
           <div class="icon">
-            <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="6" cy="6" r="3.5" fill="#efe7d8" stroke="#bfa06a"/><path d="M9 6h12M12 9l9 9M12 3l9-1" stroke="#bfa06a"/></svg>
+            <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="6" cy="6" r="3.5" fill="#efe3c5" stroke="#bca66a"/><path d="M9 6h12M12 9l9 9M12 3l9-1" stroke="#bca66a"/></svg>
           </div>
-          <h3 style="margin:6px 0 6px" data-i18n="svc_laser">Gravure Laser</h3>
-          <p class="note" data-i18n="svc_laser_desc">Bois, acrylique, inox/anodisé, cuir. Signalétique, plaques, trophées, QR dynamiques.</p>
+          <h3 style="margin:6px 0 6px">Gravure laser</h3>
+          <p class="lead" style="font-size:14px">Bois, acrylique, métal (anodisé/inox), cuir. Signalétique, plaques, trophées, cadeaux pro.</p>
         </article>
         <article class="card reveal">
           <div class="icon">
-            <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2" fill="#efe7d8" stroke="#bfa06a"/><path d="M7 9h10M7 12h7M7 15h4" stroke="#bfa06a"/></svg>
+            <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2" fill="#efe3c5" stroke="#bca66a"/><path d="M7 9h10M7 12h7M7 15h4" stroke="#bca66a"/></svg>
           </div>
-          <h3 style="margin:6px 0 6px" data-i18n="svc_design">Design & Prototypage</h3>
-          <p class="note" data-i18n="svc_design_desc">Modélisation 3D, DfAM, ajustements. Du brief au fichier prêt à produire.</p>
+          <h3 style="margin:6px 0 6px">Prototypage & design</h3>
+          <p class="lead" style="font-size:14px">Modélisation 3D, DfAM, ajustements. Livrables propres (STL/STEP), rendu si besoin.</p>
         </article>
       </div>
-      <div style="margin-top:14px" class="reveal">
-        <a class="btn" href="services.html" data-i18n="see_more">En savoir plus</a>
+      <div class="reveal" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="services.html">Voir la page Services</a>
+        <a class="btn ghost" href="realisations.html">Voir la galerie complète</a>
       </div>
     </div>
   </section>
 
-  <!-- RÉALISATIONS (aperçu) -->
+  <!-- REALISATIONS (aperçu) -->
   <section id="realisations" class="section">
     <div class="container">
-      <h2 class="h2 reveal" data-i18n="work_title">Quelques réalisations</h2>
+      <h2 class="h2 reveal">Nos réalisations en images</h2>
+      <p class="lead reveal">Un aperçu de projets : trophées, plaques gravées, prototypes, objets personnalisés.</p>
       <div class="gallery">
         <figure class="shot reveal"><img src="assets/shot1.jpg" loading="lazy" alt="Réalisation 1"></figure>
         <figure class="shot reveal"><img src="assets/shot2.jpg" loading="lazy" alt="Réalisation 2"></figure>
         <figure class="shot reveal"><img src="assets/shot3.jpg" loading="lazy" alt="Réalisation 3"></figure>
         <figure class="shot reveal"><img src="assets/shot4.jpg" loading="lazy" alt="Réalisation 4"></figure>
       </div>
-      <div style="margin-top:14px" class="reveal">
-        <a class="btn" href="realisations.html" data-i18n="see_gallery">Voir la galerie</a>
+      <div class="reveal" style="margin-top:14px">
+        <a class="btn" href="realisations.html">Ouvrir la galerie</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- PROCESS -->
+  <section id="process" class="section" style="background:linear-gradient(180deg,#fff,#f7f7f7);border-block:1px solid var(--line)">
+    <div class="container">
+      <h2 class="h2 reveal">Notre savoir-faire en 4 étapes</h2>
+      <div class="steps">
+        <div class="step reveal"><strong>1 • Idée</strong><p>On clarifie votre besoin, l’usage, les contraintes.</p></div>
+        <div class="step reveal"><strong>2 • Modélisation</strong><p>Fichier 3D, ajustements, validation visuelle.</p></div>
+        <div class="step reveal"><strong>3 • Fabrication</strong><p>Impression 3D / Gravure laser, contrôle qualité.</p></div>
+        <div class="step reveal"><strong>4 • Finition & livraison</strong><p>Assemblage, vernis si besoin, remise en main propre ou envoi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI NOUS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2 reveal">Pourquoi nous choisir</h2>
+      <div class="why">
+        <div class="mini reveal"><strong>⚙️ Précision & qualité</strong><p>Paramètres stables, finitions propres, rendu premium.</p></div>
+        <div class="mini reveal"><strong>🚀 Délais courts</strong><p>Organisation efficace, priorisation des urgences.</p></div>
+        <div class="mini reveal"><strong>📍 Local • Abidjan</strong><p>Disponibilité, suivi, échanges en direct.</p></div>
+        <div class="mini reveal"><strong>🤝 Conseil</strong><p>On vous aide à choisir matière, couleurs et finitions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVIS RAPIDE (replié par défaut) -->
+  <section id="devis" class="section">
+    <div class="container">
+      <h2 class="h2 reveal">Devis rapide</h2>
+      <p class="lead reveal">Décrivez l’essentiel — l’envoi s’ouvre dans WhatsApp. Vous pouvez aussi nous écrire par e-mail.</p>
+
+      <div class="quote reveal">
+        <button id="toggleQuote" class="btn ghost quote-toggle">Afficher le formulaire</button>
+
+        <form id="quoteForm" hidden>
+          <div class="row">
+            <div>
+              <label for="qNature">Nature de l’objet</label>
+              <input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…" required>
+            </div>
+            <div>
+              <label>Dimensions</label>
+              <div class="row" style="grid-template-columns:repeat(4,1fr)">
+                <input id="dimL" type="number" inputmode="decimal" min="0" step="0.1" placeholder="L" required>
+                <input id="dimW" type="number" inputmode="decimal" min="0" step="0.1" placeholder="l">
+                <input id="dimH" type="number" inputmode="decimal" min="0" step="0.1" placeholder="h">
+                <select id="dimUnit"><option value="mm">mm</option><option value="cm">cm</option></select>
+              </div>
+              <div class="hint">Conversion automatique en millimètres.</div>
+            </div>
+            <div>
+              <label for="qStorage">Environnement</label>
+              <select id="qStorage"><option value="">Sélectionner…</option><option>Intérieur</option><option>Extérieur</option><option>Mixte</option></select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div><label for="qMaterial">Matière / Technologie</label>
+              <select id="qMaterial">
+                <option value="">À conseiller</option>
+                <option>FDM — PLA</option><option>FDM — PETG</option><option>FDM — ASA</option>
+                <option>Laser — Bois</option><option>Laser — Acrylique</option><option>Laser — Métal (anodisé/inox)</option>
+              </select>
+            </div>
+            <div><label for="qColors">Couleurs</label><input id="qColors" type="text" placeholder="Ex : Noir / Or / Argent"></div>
+            <div><label for="qQty">Quantité</label><input id="qQty" type="number" inputmode="numeric" min="1" step="1" placeholder="1"></div>
+          </div>
+
+          <div class="row">
+            <div><label for="qDeadline">Délai souhaité</label><input id="qDeadline" type="text" placeholder="Ex : 3 jours / date précise"></div>
+            <div><label for="qBudget">Budget indicatif (CFA)</label><input id="qBudget" type="number" inputmode="numeric" min="0" step="1000" placeholder="Ex : 30000"></div>
+            <div><label for="qLink">Lien fichier (Drive/WeTransfer)</label><input id="qLink" type="url" placeholder="URL de votre fichier ou croquis"></div>
+          </div>
+
+          <div><label for="qNotes">Notes / précisions</label><textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea></div>
+
+          <div class="row">
+            <div><label for="qName">Nom / Société</label><input id="qName" type="text" placeholder="Ex : Monsieur K., Société X"></div>
+            <div><label for="qPhone">Téléphone / WhatsApp</label><input id="qPhone" type="tel" inputmode="tel" placeholder="+225 07 00 00 00 00"></div>
+            <div><label for="qEmail">E-mail</label><input id="qEmail" type="email" placeholder="exemple@domaine.com"></div>
+          </div>
+
+          <div class="quote-actions">
+            <button type="button" class="btn gold" id="send">Envoyer sur WhatsApp</button>
+            <a class="btn" href="mailto:r3dprint.ci@gmail.com">Ou envoyer par e-mail</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="foot">
       <div class="minibrand">
         <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
-        <span>© <span id="year"></span> R3D PRINT CI — Abidjan</span>
+        <span>© <span id="year"></span> R3D PRINT CI — Abidjan • <em style="color:#8a8a8a">r3dprint.pro</em></span>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a class="btn" id="fWa" href="#"><svg viewBox="0 0 24 24" fill="none"><path d="M20 3.5A10 10 0 1 0 4.7 20.2L3 21l.9-1.6A10 10 0 1 0 20 3.5Z" stroke="#000" stroke-opacity=".18"/><path d="M17.2 14.9c-.2-.2-1.3-.7-1.6-.8-.3-.1-.5-.1-.7.2l-.5.6c-.1.1-.2.2-.4.2-.7-.1-2.2-.8-3.1-1.8-.7-.8-1.2-1.8-1.3-2.6 0-.1 0-.3.2-.4l.6-.6c.1-.1.1-.3.1-.5s-.4-1.2-.6-1.7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.7.7-1.1 1.6-1 2.6.1 1 .7 2.1 1.6 3.1 1 .9 2.6 2 4.2 2.4.4.1.8.1 1.2 0 .4-.1 1.3-.5 1.5-.9.2-.4.2-.6.1-.6Z" fill="#1f2937"/></svg> WhatsApp</a>
-        <a class="btn" href="mailto:r3dprint.ci@gmail.com"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#c1b59a"/><path d="M4 7l8 6 8-6" stroke="#c1b59a"/></svg> Mail</a>
-        <a class="btn" href="https://instagram.com/r3dprint.ci" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#c1b59a"/><circle cx="12" cy="12" r="4.2" stroke="#c1b59a"/><circle cx="17.2" cy="6.8" r="1.1" fill="#c1b59a"/></svg> Instagram</a>
+        <a class="btn" id="fWa" href="#">WhatsApp</a>
+        <a class="btn" href="services.html">Services</a>
+        <a class="btn" href="realisations.html">Réalisations</a>
+        <a class="btn" href="devis.html">Devis</a>
         <button class="btn" id="toTop" title="Haut de page">↑</button>
       </div>
     </div>
   </footer>
 
   <script>
-    // i18n (FR/EN)
-    const I18N={fr:{
-      nav_services:"Services",nav_work:"Réalisations",nav_quote:"Devis",
-      hero_title:"Impression 3D & Gravure Laser — sobre, précise, haut de gamme",
-      hero_sub:"Prototypage, trophées, signalétique, goodies et pièces fonctionnelles. Un accompagnement sérieux à Abidjan, du croquis au rendu final.",
-      cta_quote:"Demander un devis",services_title:"Nos services",
-      svc_print:"Impression 3D",svc_print_desc:"Prototypes, pièces fonctionnelles, objets décoratifs. Vitesse & précision, finitions propres.",
-      svc_laser:"Gravure Laser",svc_laser_desc:"Bois, acrylique, inox/anodisé, cuir. Signalétique, plaques, trophées, QR dynamiques.",
-      svc_design:"Design & Prototypage",svc_design_desc:"3D modeling, DfAM, ajustements. Du brief au fichier prêt à produire.",
-      see_more:"En savoir plus",work_title:"Quelques réalisations",see_gallery:"Voir la galerie"
-    },en:{
-      nav_services:"Services",nav_work:"Works",nav_quote:"Quote",
-      hero_title:"3D Printing & Laser Engraving — refined, precise, premium",
-      hero_sub:"Prototyping, trophies, signage, goodies and functional parts. Serious support in Abidjan, from sketch to final result.",
-      cta_quote:"Request a quote",services_title:"Our services",
-      svc_print:"3D Printing",svc_print_desc:"Prototypes, functional parts, decorative items. Fast & precise, clean finishes.",
-      svc_laser:"Laser Engraving",svc_laser_desc:"Wood, acrylic, anodized/SS metal, leather. Signage, plates, trophies, dynamic QR.",
-      svc_design:"Design & Prototyping",svc_design_desc:"3D modeling, DfAM, adjustments. From brief to production-ready file.",
-      see_more:"Learn more",work_title:"Selected works",see_gallery:"Open gallery"
-    }};
+    // Utils
     const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
-    function applyI18n(lang){ $$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n; if(I18N[lang][k]) el.textContent=I18N[lang][k];}); }
-    const langBtn=$("#langBtn"), langMenu=$("#langMenu"), langBox=$("#langBox");
-    function openLang(o){ langMenu?.classList.toggle("open",o); }
-    langBtn?.addEventListener("click",()=>openLang(!langMenu.classList.contains("open")));
-    document.addEventListener("click",(e)=>{ if(langBox && !langBox.contains(e.target)) openLang(false); });
-    $$("#langMenu button").forEach(b=>b.addEventListener("click",()=>{ const l=b.dataset.lang||"fr"; localStorage.setItem("r3d_lang",l); applyI18n(l); openLang(false); document.documentElement.lang=l; }));
-    const savedLang = localStorage.getItem("r3d_lang") || "fr"; applyI18n(savedLang); document.documentElement.lang=savedLang;
 
-    // WhatsApp liens unifiés
+    // WhatsApp unifié
     const phone="002250757841323".replace(/^00/,"");
-    const defaultMsg=encodeURIComponent(savedLang==="en"?"Hello R3D PRINT CI, I'd like a quote.":"Bonjour R3D PRINT CI, j'aimerais un devis.");
+    const defaultMsg=encodeURIComponent("Bonjour R3D PRINT CI, j’aimerais un devis.");
     const wa="https://wa.me/"+phone+"?text="+defaultMsg;
     ["ctaWa","fWa","mWa"].forEach(id=>{ const a=$("#"+id); if(a) a.href=wa; });
 
@@ -286,7 +385,7 @@
     lb?.addEventListener("click",()=> lb.classList.remove("open"));
     document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") lb.classList.remove("open"); });
 
-    // Scroll-to-top
+    // Scroll top
     const toTop=$("#toTop"); window.addEventListener("scroll",()=>{ toTop.style.display= window.scrollY>600?"inline-flex":"none"; });
     toTop?.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
 
@@ -294,9 +393,65 @@
     const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} });},{threshold:.12});
     $$(".reveal").forEach(el=> io.observe(el));
 
-    // Année
+    // Devis toggle
+    const toggle=$("#toggleQuote"), form=$("#quoteForm");
+    toggle.addEventListener("click",()=>{
+      const open = form.hasAttribute("hidden");
+      if(open){ form.removeAttribute("hidden"); toggle.textContent="Masquer le formulaire"; }
+      else { form.setAttribute("hidden",""); toggle.textContent="Afficher le formulaire"; }
+    });
+
+    // Build WhatsApp message
+    function sanitize(s){ return (s||"").toString().trim(); }
+    function dimsToMM(){
+      const L=parseFloat($("#dimL").value)||0;
+      const W=parseFloat($("#dimW").value)||0;
+      const H=parseFloat($("#dimH").value)||0;
+      const unit=$("#dimUnit").value;
+      const k=(unit==="cm")?10:1; return {L:L*k,W:W*k,H:H*k,unit:"mm"};
+    }
+    function buildQuoteMessage(){
+      const name=sanitize($("#qName").value);
+      const phone=sanitize($("#qPhone").value);
+      const email=sanitize($("#qEmail").value);
+      const nature=sanitize($("#qNature").value);
+      const env=sanitize($("#qStorage").value);
+      const colors=sanitize($("#qColors").value);
+      const material=sanitize($("#qMaterial").value);
+      const qty=sanitize($("#qQty").value);
+      const deadline=sanitize($("#qDeadline").value);
+      const budget=sanitize($("#qBudget").value);
+      const link=sanitize($("#qLink").value);
+      const notes=sanitize($("#qNotes").value);
+      const d=dimsToMM(); const dims=(d.L||d.W||d.H)?`${Math.round(d.L)} × ${Math.round(d.W)} × ${Math.round(d.H)} ${d.unit}`:"";
+      const lines=[
+        "Bonjour R3D PRINT CI, je souhaite un devis :","",
+        name? "• Nom / Société : "+name :"",
+        phone? "• Téléphone : "+phone :"",
+        email? "• E-mail : "+email :"",
+        nature? "• Nature de l'objet : "+nature :"",
+        dims? "• Dimensions : "+dims :"",
+        env? "• Environnement : "+env :"",
+        colors? "• Couleurs : "+colors :"",
+        material? "• Matière / Techno : "+material :"",
+        qty? "• Quantité : "+qty :"",
+        deadline? "• Délai souhaité : "+deadline :"",
+        budget? "• Budget indicatif : "+budget+" CFA" :"",
+        link? "• Lien fichier : "+link :"",
+        notes? "• Notes : "+notes :""
+      ].filter(Boolean).join("\n");
+      return encodeURIComponent(lines);
+    }
+    $("#send")?.addEventListener("click", ()=>{
+      // validation minimale
+      if(!$("#qNature").value.trim()){ alert("Indique au minimum la nature de l’objet."); return; }
+      const waNumber="002250757841323".replace(/^00/,"");
+      const url="https://wa.me/"+waNumber+"?text="+buildQuoteMessage();
+      window.open(url,"_blank");
+    });
+
+    // Année footer
     $("#year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
