@@ -4,13 +4,11 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Demande de Devis — R3D PRINT CI</title>
-<meta name="description" content="Demandez un devis rapide et sur mesure pour vos projets d'impression 3D, gravure laser ou prototypage chez R3D PRINT CI.">
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* --- Mise en page générale --- */
-.section { text-align: center; padding: 80px 20px; }
+.section { text-align:center; padding:80px 20px; }
 form {
   background: var(--panel);
   padding: 40px 30px;
@@ -19,127 +17,72 @@ form {
   max-width: 700px;
   margin: 40px auto;
   text-align: left;
-  overflow: hidden;
-  position: relative;
 }
-
-/* --- Étapes --- */
-.step {
-  display: none;
-  animation: fade .4s ease;
-}
-.step.active { display: block; }
+.step { display:none; animation: fade .4s ease; }
+.step.active { display:block; }
 
 @keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(10px);}
+  to { opacity:1; transform:translateY(0);}
 }
-
-/* --- Champs --- */
-label {
-  font-weight: 600;
-  color: var(--text);
-  margin-top: 10px;
-  display: block;
-}
+label { font-weight:600; color:var(--text); margin-top:10px; display:block;}
 input, select, textarea {
-  width: 100%;
-  padding: 12px 14px;
-  margin: 8px 0 20px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font-size: 15px;
-  background: #fff;
-  transition: all .3s ease;
+  width:100%; padding:12px 14px; margin:8px 0 20px;
+  border:1px solid var(--line); border-radius:8px;
+  font-size:15px; background:#fff; transition:all .3s ease;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--gold-dark);
-  box-shadow: 0 0 0 3px rgba(191,161,95,0.25);
-  outline: none;
+  border-color:var(--gold-dark);
+  box-shadow:0 0 0 3px rgba(191,161,95,0.25); outline:none;
 }
-textarea { resize: vertical; min-height: 80px; }
+textarea{ resize:vertical; min-height:80px; }
 
-/* --- Navigation des étapes --- */
-.form-nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-button {
-  border: none;
-  border-radius: 999px;
-  padding: 12px 24px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-button.next {
-  background: linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color: #fff;
-}
-button.back {
-  background: #e5e5e5;
-  color: #333;
-}
-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-
-/* --- Palette couleur --- */
-.colors { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.colors { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px; }
 .colors input[type="color"] {
-  width: 45px; height: 45px; border: none; cursor: pointer; border-radius: 8px;
-  box-shadow: 0 0 0 1px var(--line); transition: transform .2s ease;
+  width:45px; height:45px; border:none; border-radius:8px;
+  box-shadow:0 0 0 1px var(--line); cursor:pointer;
 }
-.colors input:hover { transform: scale(1.08); }
+.add-color {
+  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
+  color:#fff; border:none; border-radius:20px;
+  padding:8px 14px; cursor:pointer;
+  font-weight:600; font-size:14px; transition:all .3s ease;
+}
+.add-color:hover { transform:scale(1.05); }
 
-/* --- Matériaux --- */
-.materials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 22px;
-}
+.materials{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
 .materials label {
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 8px 16px;
-  background: #fff;
-  cursor: pointer;
-  transition: all .3s ease;
+  border:1px solid var(--line); border-radius:20px;
+  padding:8px 16px; background:#fff; cursor:pointer;
+  transition:all .3s ease;
 }
-.materials input[type="radio"] { display: none; }
+.materials input[type="radio"]{display:none;}
 .materials input:checked + label {
-  background: linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color: #fff;
-  border-color: var(--gold-dark);
+  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
+  color:#fff; border-color:var(--gold-dark);
 }
-
-/* --- Résumé --- */
-#summary {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  line-height: 1.6;
-  font-size: 15px;
-  border: 1px solid var(--line);
+.form-nav{display:flex;justify-content:space-between;margin-top:20px;}
+button{
+  border:none;border-radius:999px;padding:12px 24px;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;gap:8px;
+  transition:transform .3s ease,box-shadow .3s ease;
 }
-#summary strong { color: var(--gold-dark); }
-
-@media(max-width:600px){
-  form { padding: 24px; }
+button.next{background:linear-gradient(120deg,var(--gold),var(--gold-dark));color:#fff;}
+button.back{background:#e5e5e5;color:#333;}
+button:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+#summary{
+  background:#fff;padding:20px;border-radius:10px;line-height:1.6;
+  font-size:15px;border:1px solid var(--line);
 }
+#summary strong{color:var(--gold-dark);}
+@media(max-width:600px){form{padding:24px;}}
 </style>
 </head>
 
 <body>
-
 <header id="header">
   <div class="bar">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="R3D PRINT CI">
-    </a>
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
       <a class="btn" href="index.html">Accueil</a>
@@ -156,6 +99,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.
   Vous pourrez prévisualiser avant l’envoi sur WhatsApp.</p>
 
   <form id="devisForm">
+
     <!-- Étape 1 -->
     <div class="step active" id="step1">
       <h3>1️⃣ Vos informations</h3>
@@ -166,14 +110,14 @@ button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.
       <label>Email</label>
       <input type="email" id="email" placeholder="exemple@mail.com">
       <div class="form-nav">
-        <span></span>
-        <button type="button" class="next" onclick="nextStep(2)">Suivant →</button>
+        <span></span><button type="button" class="next" onclick="nextStep(2)">Suivant →</button>
       </div>
     </div>
 
     <!-- Étape 2 -->
     <div class="step" id="step2">
       <h3>2️⃣ Détails du projet</h3>
+
       <label>Type de projet</label>
       <select id="type">
         <option value="Impression 3D">Impression 3D</option>
@@ -185,19 +129,13 @@ button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.
       <input type="text" id="dimensions" placeholder="Ex. 15x10x5">
 
       <label>Lieu d’utilisation</label>
-      <select id="lieu">
-        <option>Intérieur</option>
-        <option>Extérieur</option>
-      </select>
+      <select id="lieu"><option>Intérieur</option><option>Extérieur</option></select>
 
       <label>Choix des couleurs</label>
-      <div class="colors">
-        <input type="color" id="color1" value="#c9b47d">
-        <input type="color" id="color2" value="#1a1a1a">
-        <input type="color" id="color3" value="#ffffff">
-        <input type="color" id="color4" value="#b5651d">
-        <input type="color" id="color5" value="#808080">
+      <div id="colorContainer" class="colors">
+        <input type="color" value="#c9b47d" class="color-input">
       </div>
+      <button type="button" class="add-color" onclick="addColor()">+ Ajouter une autre couleur</button>
 
       <label>Matière / Effet souhaité</label>
       <div class="materials">
@@ -247,16 +185,27 @@ function nextStep(step){
   if(step===3) fillSummary();
 }
 
+function addColor(){
+  const container = document.getElementById("colorContainer");
+  const colors = container.querySelectorAll(".color-input");
+  if(colors.length >= 5) return alert("Vous pouvez choisir jusqu'à 5 couleurs maximum.");
+  const input = document.createElement("input");
+  input.type = "color";
+  input.className = "color-input";
+  input.value = "#ffffff";
+  container.appendChild(input);
+}
+
 function fillSummary(){
-  const nom = document.getElementById("nom").value;
-  const tel = document.getElementById("tel").value;
-  const email = document.getElementById("email").value;
-  const type = document.getElementById("type").value;
-  const dim = document.getElementById("dimensions").value;
-  const lieu = document.getElementById("lieu").value;
+  const nom = nomInput.value;
+  const tel = telInput.value;
+  const email = emailInput.value;
+  const type = typeInput.value;
+  const dim = dimensionsInput.value;
+  const lieu = lieuInput.value;
   const mat = document.querySelector('input[name="mat"]:checked')?.value || "Non précisé";
-  const details = document.getElementById("details").value;
-  const colors = [color1.value, color2.value, color3.value, color4.value, color5.value].join(", ");
+  const details = detailsInput.value;
+  const colors = Array.from(document.querySelectorAll(".color-input")).map(c=>c.value).join(", ");
   document.getElementById("summary").innerHTML = `
     <strong>Nom / Entreprise :</strong> ${nom}<br>
     <strong>Téléphone :</strong> ${tel}<br>
