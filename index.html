@@ -33,31 +33,24 @@ p.lead{text-align:center;color:var(--muted);max-width:800px;margin:auto 0 20px}
   background:linear-gradient(180deg,#ffffff,#f3f3f3);
   text-align:center;padding:120px 20px 100px;
 }
-.hero h1{font-size:clamp(36px,6vw,64px);margin-bottom:16px}
-.hero p{font-size:18px;color:var(--muted);max-width:800px;margin:auto}
-.hero-buttons{margin-top:32px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.hero h1{font-size:clamp(36px,6vw,64px);margin-bottom:16px;opacity:0;transform:translateY(30px);transition:1s}
+.hero p{font-size:18px;color:var(--muted);max-width:800px;margin:auto;opacity:0;transform:translateY(30px);transition:1s}
+.hero-buttons{margin-top:32px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;opacity:0;transform:translateY(30px);transition:1s}
 .hero-buttons .btn{font-size:16px;padding:14px 24px}
-.about{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:40px;
-}
+.about{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:40px;opacity:0;transform:translateY(40px);transition:1s}
 .about img{width:460px;flex-shrink:0;box-shadow:0 6px 18px rgba(0,0,0,.08)}
 .about-text{flex:1;min-width:300px}
-.expertise{
-  display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:40px;
-}
-.card{
-  background:var(--panel);border:1px solid var(--line);padding:26px;border-radius:var(--radius);
-  text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.05);transition:.3s;
-}
+.expertise{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:40px;opacity:0;transform:translateY(40px);transition:1s}
+.card{background:var(--panel);border:1px solid var(--line);padding:26px;border-radius:var(--radius);text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.05);transition:.3s}
 .card:hover{transform:translateY(-4px)}
 .card-icon{width:52px;height:52px;margin-bottom:12px;stroke:var(--gold);stroke-width:1.8;fill:none}
-.gallery{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:40px}
+.gallery{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:40px;opacity:0;transform:translateY(40px);transition:1s}
 .gallery img{transition:transform .3s}
 .gallery img:hover{transform:scale(1.05)}
-.reasons{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:40px;text-align:center}
+.reasons{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:40px;text-align:center;opacity:0;transform:translateY(40px);transition:1s}
 .reason{background:#fff;border:1px solid var(--line);padding:26px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.05)}
 .reason svg{width:40px;height:40px;margin-bottom:10px;stroke:var(--gold);stroke-width:1.8;fill:none}
-.contact{text-align:center;padding:60px 20px}
+.contact{text-align:center;padding:60px 20px;opacity:0;transform:translateY(40px);transition:1s}
 .contact h2{font-size:clamp(28px,4vw,44px)}
 .contact p{color:var(--muted);margin-bottom:20px}
 footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);text-align:center}
@@ -70,6 +63,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
   z-index:9999;transition:transform .2s ease, box-shadow .2s ease;
 }
 #homeButton:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.show{opacity:1!important;transform:translateY(0)!important}
 @media(max-width:900px){.about{flex-direction:column;text-align:center}.about img{width:100%}}
 </style>
 </head>
@@ -91,7 +85,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero fade">
   <h1>L’art de donner vie à vos idées</h1>
   <p>R3D PRINT CI transforme vos concepts en créations réelles — impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
   <div class="hero-buttons">
@@ -101,7 +95,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </section>
 
 <!-- À PROPOS -->
-<section class="section about">
+<section class="section about fade">
   <div class="about-text">
     <h2>Notre savoir-faire</h2>
     <p>Chez <strong>R3D PRINT CI</strong>, nous allions créativité et technologie pour matérialiser vos idées les plus ambitieuses. De la conception à la finition, nous assurons un travail de précision, avec une qualité digne des standards professionnels internationaux.</p>
@@ -111,7 +105,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </section>
 
 <!-- EXPERTISE -->
-<section class="section">
+<section class="section fade">
   <h2>Nos domaines d’expertise</h2>
   <div class="container expertise">
     <div class="card">
@@ -133,7 +127,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </section>
 
 <!-- RÉALISATIONS -->
-<section class="section">
+<section class="section fade">
   <h2>Quelques réalisations</h2>
   <div class="container gallery">
     <img src="assets/shot1.jpg" alt="Prototype">
@@ -146,7 +140,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </section>
 
 <!-- POURQUOI NOUS CHOISIR -->
-<section class="section">
+<section class="section fade">
   <h2>Pourquoi nous choisir ?</h2>
   <div class="container reasons">
     <div class="reason">
@@ -168,7 +162,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 </section>
 
 <!-- CONTACT -->
-<section class="contact">
+<section class="contact fade">
   <h2>Un projet ? Parlons-en dès aujourd’hui.</h2>
   <p>Contactez-nous sur WhatsApp ou par e-mail pour échanger sur vos idées et obtenir un devis rapide.</p>
   <a href="https://wa.me/2250757841323" class="btn gold">💬 Discuter sur WhatsApp</a>
@@ -182,7 +176,15 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-</script>
 
+// Animation d'apparition au scroll
+const fades=document.querySelectorAll(".fade, .about, .expertise, .gallery, .reasons, .contact");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("show");observer.unobserve(e.target);}
+  });
+},{threshold:0.2});
+fades.forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
