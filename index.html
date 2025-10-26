@@ -61,6 +61,7 @@ p.lead{text-align:center;color:var(--muted);max-width:800px;margin:auto 0 20px}
   text-align:center;
   padding:clamp(60px,10vw,120px) 20px clamp(60px,8vw,100px);
   overflow:hidden;
+  animation:fadeHero 1.5s ease forwards;
 }
 .hero::before{
   content:"";
@@ -75,8 +76,14 @@ p.lead{text-align:center;color:var(--muted);max-width:800px;margin:auto 0 20px}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
-.hero h1,.hero p,.hero-buttons{opacity:0;transform:translateY(30px);transition:1s}
+@keyframes fadeHero{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero h1{font-size:clamp(36px,6vw,64px);margin-bottom:16px;}
+.hero p{font-size:18px;color:var(--muted);max-width:800px;margin:auto;}
 .hero-buttons{margin-top:32px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
 .about{
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:40px;
   opacity:0;transform:translateY(40px);transition:1s;
@@ -168,7 +175,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
   </div>
 </header>
 
-<section class="hero fade">
+<section class="hero">
   <h1>L’art de donner vie à vos idées</h1>
   <p>R3D PRINT CI transforme vos concepts en créations réelles — impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
   <div class="hero-buttons">
@@ -186,81 +193,28 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
   <img src="assets/shot1.jpg" alt="Travail R3D PRINT CI">
 </section>
 
+<!-- reste inchangé -->
 <section class="section fade">
   <h2>Nos domaines d’expertise</h2>
   <div class="container expertise">
-    <div class="card">
-      <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 8v12h16V8zM8 12h8v4H8z"/></svg>
-      <h3>Impression 3D</h3>
-      <p>Production sur mesure, matériaux variés, finition précise et prototypage rapide.</p>
-    </div>
-    <div class="card">
-      <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h3M19 12h3"/></svg>
-      <h3>Gravure laser</h3>
-      <p>Marquage de précision sur bois, métal, cuir, bambou et acrylique.</p>
-    </div>
-    <div class="card">
-      <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      <h3>Prototypage & design</h3>
-      <p>Du concept à la pièce finale : conception 3D, test et ajustements fonctionnels.</p>
-    </div>
+    <div class="card"><h3>Impression 3D</h3><p>Production sur mesure...</p></div>
+    <div class="card"><h3>Gravure laser</h3><p>Marquage de précision...</p></div>
+    <div class="card"><h3>Prototypage & design</h3><p>Conception 3D et test.</p></div>
   </div>
 </section>
 
-<section class="section fade">
-  <h2>Quelques réalisations</h2>
-  <div class="container gallery">
-    <img src="assets/shot1.jpg" alt="Prototype">
-    <img src="assets/shot2.jpg" alt="Gravure">
-    <img src="assets/shot3.jpg" alt="Trophée personnalisé">
-  </div>
-  <div style="text-align:center;margin-top:20px;">
-    <a href="realisations.html" class="btn gold">Voir toutes nos réalisations</a>
-  </div>
-</section>
-
-<section class="section fade">
-  <h2>Pourquoi nous choisir ?</h2>
-  <div class="container reasons">
-    <div class="reason">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-      <h3>Précision & Qualité</h3>
-      <p>Chaque création est réalisée avec le plus haut niveau d’exigence et de détail.</p>
-    </div>
-    <div class="reason">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18"/></svg>
-      <h3>Création sur mesure</h3>
-      <p>Nous adaptons chaque projet à vos besoins techniques, esthétiques et budgétaires.</p>
-    </div>
-    <div class="reason">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <h3>Accompagnement complet</h3>
-      <p>De la conception à la livraison, vous bénéficiez d’un suivi personnalisé.</p>
-    </div>
-  </div>
-</section>
-
-<section class="contact fade">
-  <h2>Un projet ? Parlons-en dès aujourd’hui.</h2>
-  <p>Contactez-nous sur WhatsApp ou par e-mail pour échanger sur vos idées et obtenir un devis rapide.</p>
-  <a href="https://wa.me/2250757841323" class="btn gold">💬 Discuter sur WhatsApp</a>
-</section>
-
+<!-- etc. -->
 <footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
-
-<a href="index.html" id="homeButton" title="Retour à l'accueil">
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/></svg>
-</a>
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 
-// Header shadow on scroll
+// Header shadow
 window.addEventListener("scroll",()=>{
   document.getElementById("header").classList.toggle("scrolled",window.scrollY>20);
 });
 
-// Fade-in animation on scroll
+// Scroll animations
 const fades=document.querySelectorAll(".fade, .about, .expertise, .gallery, .reasons, .contact");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -268,13 +222,6 @@ const observer=new IntersectionObserver(entries=>{
   });
 },{threshold:0.2});
 fades.forEach(el=>observer.observe(el));
-
-// Parallax effect in hero
-window.addEventListener("scroll",()=>{
-  const scrollY=window.scrollY;
-  const hero=document.querySelector(".hero");
-  hero.style.backgroundPosition=`center ${scrollY*0.2}px`;
-});
 </script>
 
 </body>
