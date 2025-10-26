@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Devis — R3D PRINT CI</title>
-<meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, gravure laser ou prototypage avec R3D PRINT CI à Abidjan."/>
+<meta name="description" content="Demandez un devis professionnel pour vos projets d’impression 3D, gravure laser ou prototypage avec R3D PRINT CI à Abidjan."/>
 <style>
 :root{
   --bg:#f7f7f7;--ink:#1a1a1a;--muted:#6b6b6b;
@@ -39,6 +39,13 @@ textarea{min-height:110px;resize:vertical}
 }
 .color-swatch:hover{transform:scale(1.1)}
 .color-swatch.active{border-color:var(--gold);transform:scale(1.15)}
+.color-preview{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#eee;border-radius:999px;padding:4px 10px;font-size:13px;
+}
+.badge span{cursor:pointer;font-weight:700;color:#b00}
+input[type="color"]{border:none;width:60px;height:34px;border-radius:8px;cursor:pointer;padding:0}
 input[type="file"]{padding:6px;border:none;background:#fafafa;border:1px dashed var(--line);cursor:pointer}
 input[type="file"]:hover{border-color:var(--gold)}
 #preview{max-width:160px;border-radius:12px;margin-top:10px;display:none;box-shadow:0 4px 12px rgba(0,0,0,.08)}
@@ -76,7 +83,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 <section class="section">
   <div class="container">
     <h1 class="h1">Demande de devis</h1>
-    <p class="lead">Remplissez le formulaire ci-dessous pour obtenir un devis rapide. Les informations seront envoyées automatiquement sur WhatsApp.</p>
+    <p class="lead">Remplissez le formulaire ci-dessous pour obtenir un devis précis. Vous pouvez joindre des images et choisir vos couleurs selon le rendu souhaité.</p>
 
     <form id="devisForm">
       <div>
@@ -106,18 +113,26 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
       </div>
 
       <div>
+        <label>Aspect du matériau</label>
+        <select id="material">
+          <option value="">Sélectionner...</option>
+          <option value="bois">Bois</option>
+          <option value="métal">Métal</option>
+          <option value="plastique">Plastique / PLA</option>
+          <option value="pierre">Pierre / Marbre</option>
+          <option value="verre">Verre / Transparent</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+
+      <div>
         <label>🎨 Couleur(s) souhaitée(s)</label>
-        <div class="color-palette" id="palette">
-          <div class="color-swatch" style="background:#000" data-color="Noir"></div>
-          <div class="color-swatch" style="background:#fff;border:1px solid #ccc" data-color="Blanc"></div>
-          <div class="color-swatch" style="background:#bca66a" data-color="Doré"></div>
-          <div class="color-swatch" style="background:#c0c0c0" data-color="Argent"></div>
-          <div class="color-swatch" style="background:#8B4513" data-color="Bois"></div>
-          <div class="color-swatch" style="background:#e63946" data-color="Rouge"></div>
-          <div class="color-swatch" style="background:#1e6091" data-color="Bleu"></div>
-          <div class="color-swatch" style="background:#2a9d8f" data-color="Vert"></div>
+        <div class="color-palette" id="palette"></div>
+        <div style="margin-top:10px;">
+          <input type="color" id="colorWheel" title="Choisir une couleur personnalisée">
+          <button type="button" id="addColor" class="btn" style="margin-left:8px;">+ Ajouter</button>
         </div>
-        <input type="text" id="customColor" placeholder="Autre couleur (facultatif)">
+        <div class="color-preview" id="colorPreview"></div>
       </div>
 
       <div>
@@ -146,20 +161,71 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 
-// Palette interactive
-const swatches=document.querySelectorAll(".color-swatch");
+// Palettes par matériau
+const palettes = {
+  bois: ["#8B4513","#A0522D","#D2B48C","#deb887","#5c4033"],
+  métal: ["#C0C0C0","#D4AF37","#b87333","#000000","#808080"],
+  plastique: ["#e63946","#1d3557","#2a9d8f","#f4a261","#e9c46a","#000000","#ffffff"],
+  pierre: ["#d3d3d3","#a9a9a9","#f5f5f5","#bcbcbc","#8b8b83"],
+  verre: ["#a8dadc","#f1faee","#457b9d","#cde8f7"],
+  autre: ["#ffffff","#000000","#bca66a"]
+};
+
+const paletteDiv=document.getElementById("palette");
+const materialSelect=document.getElementById("material");
+const colorPreview=document.getElementById("colorPreview");
 let selectedColors=[];
-swatches.forEach(s=>{
-  s.addEventListener("click",()=>{
-    const color=s.getAttribute("data-color");
-    if(s.classList.contains("active")){
-      s.classList.remove("active");
-      selectedColors=selectedColors.filter(c=>c!==color);
-    }else{
-      s.classList.add("active");
-      selectedColors.push(color);
-    }
+
+function renderPalette(material){
+  paletteDiv.innerHTML="";
+  if(!palettes[material]) return;
+  palettes[material].forEach(c=>{
+    const sw=document.createElement("div");
+    sw.className="color-swatch";
+    sw.style.background=c;
+    sw.dataset.color=c;
+    sw.onclick=()=>toggleColor(c,sw);
+    paletteDiv.appendChild(sw);
   });
+}
+
+function toggleColor(color,element){
+  const idx=selectedColors.indexOf(color);
+  if(idx>-1){
+    selectedColors.splice(idx,1);
+    element.classList.remove("active");
+  }else{
+    selectedColors.push(color);
+    element.classList.add("active");
+  }
+  updatePreview();
+}
+
+function updatePreview(){
+  colorPreview.innerHTML="";
+  selectedColors.forEach(c=>{
+    const b=document.createElement("div");
+    b.className="badge";
+    b.style.background=c;
+    b.innerHTML=`<span title="Supprimer">×</span>`;
+    b.querySelector("span").onclick=()=>{
+      selectedColors=selectedColors.filter(x=>x!==c);
+      renderPalette(materialSelect.value);
+      updatePreview();
+    };
+    colorPreview.appendChild(b);
+  });
+}
+
+materialSelect.addEventListener("change",()=>renderPalette(materialSelect.value));
+
+// Ajout manuel via roue chromatique
+document.getElementById("addColor").addEventListener("click",()=>{
+  const c=document.getElementById("colorWheel").value;
+  if(!selectedColors.includes(c)){
+    selectedColors.push(c);
+    updatePreview();
+  }
 });
 
 // Prévisualisation image
@@ -184,17 +250,16 @@ document.getElementById("devisForm").addEventListener("submit",e=>{
   const type=document.getElementById("type").value.trim();
   const dim=document.getElementById("dimensions").value.trim();
   const usage=document.getElementById("usage").value.trim();
-  const customColor=document.getElementById("customColor").value.trim();
+  const material=document.getElementById("material").value.trim();
   const details=document.getElementById("details").value.trim();
-  const colors=[...selectedColors];
-  if(customColor)colors.push(customColor);
   const msg=encodeURIComponent(
 `Demande de devis :
 👤 Nom / Société : ${name}
 🧩 Type : ${type}
 📐 Dimensions : ${dim}
 🏠 Lieu : ${usage}
-🎨 Couleur(s) : ${colors.join(", ")}
+🪵 Matériau : ${material}
+🎨 Couleur(s) : ${selectedColors.join(", ")}
 📝 Détails : ${details}`
   );
   const wa="https://wa.me/2250757841323?text="+msg;
