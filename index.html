@@ -1,94 +1,104 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>R3D PRINT CI — L’art de donner vie à vos idées</title>
-  <meta name="description" content="Impression 3D, gravure laser et prototypage à Abidjan. R3D PRINT CI : l’art de donner vie à vos idées. Devis rapide, délais courts, finition soignée." />
-  <meta property="og:title" content="R3D PRINT CI — L’art de donner vie à vos idées" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/logo.png" />
-  <meta property="og:url" content="https://r3dprint.pro/" />
-  <meta name="theme-color" content="#111111" />
-  <style>
-    :root{
-      --bg:#f6f6f6; --ink:#1b1b1b; --muted:#616161;
-      --panel:#ffffff; --line:#e7e7e7;
-      --gold:#bca66a; --radius:16px; --container:1160px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto;max-width:100%;overflow-x:hidden}
-    img{display:block;max-width:100%;height:auto}
-    a{text-decoration:none;color:inherit}
-    .container{max-width:var(--container);margin:auto;padding:28px}
-    .section{padding-block:48px}
-    .h1{font-size:clamp(32px,5.8vw,56px);line-height:1.1;margin:0}
-    .h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 14px}
-    .lead{color:var(--muted);max-width:820px}
-    header{position:sticky;top:0;background:rgba(246,246,246,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
-    .bar{max-width:var(--container);margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand img{width:68px;height:68px;object-fit:contain}
-    .nav{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:10px;
-      align-items:center;
-      margin-top:10px;
-    }
-    .btn{
-      display:inline-flex;align-items:center;gap:6px;
-      background:#fff;border:1px solid var(--line);border-radius:999px;
-      padding:10px 16px;font-weight:700;cursor:pointer;transition:.2s;
-    }
-    .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
-    .btn.gold{background:var(--gold);color:#fff}
-    .click-icon{position:absolute;top:12px;right:12px;opacity:.9;transition:transform .25s ease}
-    .card:hover .click-icon{transform:translate(2px,-2px)}
-    .hero{background:linear-gradient(180deg,#fff,#f5f5f5);padding-block:64px;text-align:left}
-    .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{
-      position:relative;background:#fff;border:1px solid var(--line);
-      border-radius:var(--radius);padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.06);
-      cursor:pointer;
-    }
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .shot{aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-    .shot img{width:100%;height:100%;object-fit:cover}
-    footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);text-align:center}
-    @media(max-width:800px){.brand img{width:56px;height:56px}.cards{grid-template-columns:1fr}}
-    /* bouton accueil flottant */
-    #homeButton{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:linear-gradient(180deg,#c7b37e,#a88e58);
-      border-radius:50%;
-      width:56px;height:56px;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 12px rgba(0,0,0,.25);
-      z-index:9999;
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    #homeButton:hover{
-      transform:translateY(-2px);
-      box-shadow:0 6px 18px rgba(0,0,0,.3);
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>R3D PRINT CI — L’art de donner vie à vos idées</title>
+<meta name="description" content="Impression 3D, gravure laser et prototypage à Abidjan. R3D PRINT CI : l’art de donner vie à vos idées. Devis rapide, délais courts, finition soignée." />
+<meta property="og:title" content="R3D PRINT CI — L’art de donner vie à vos idées" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+<meta property="og:url" content="https://r3dprint.pro/" />
+<meta name="theme-color" content="#111111" />
+<style>
+:root{
+  --bg:#f7f7f7; --ink:#1a1a1a; --muted:#6b6b6b;
+  --panel:#ffffff; --line:#e4e4e4;
+  --gold:#bca66a; --radius:16px; --container:1180px;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  max-width:100%;overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+.container{max-width:var(--container);margin:auto;padding:28px}
+.section{padding-block:64px}
+.h1{font-size:clamp(32px,5.8vw,56px);line-height:1.1;margin:0}
+.h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 14px}
+.lead{color:var(--muted);max-width:820px}
+header{
+  position:sticky;top:0;background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  z-index:100
+}
+.bar{
+  max-width:var(--container);margin:auto;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{
+  width:92px;height:92px;object-fit:contain;transition:.2s ease;
+}
+.brand:hover img{transform:scale(1.04)}
+.nav{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;margin-top:10px
+}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:10px 18px;font-weight:700;cursor:pointer;transition:.25s ease;
+}
+.btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn.gold{background:var(--gold);color:#fff}
+.hero{
+  background:linear-gradient(180deg,#fff,#f5f5f5);
+  text-align:left;padding-block:80px;
+}
+.cards{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{
+  position:relative;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05);
+  transition:transform .25s ease;
+}
+.card:hover{transform:translateY(-4px)}
+.card-icon{width:52px;height:52px;margin-bottom:14px;stroke:var(--gold);stroke-width:1.8;fill:none}
+.click-icon{position:absolute;top:14px;right:14px;opacity:.85;transition:transform .25s ease}
+.card:hover .click-icon{transform:translate(2px,-2px)}
+.gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.shot{aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.shot:hover img{transform:scale(1.05)}
+footer{border-top:1px solid var(--line);padding:24px 18px;color:var(--muted);text-align:center}
+#homeButton{
+  position:fixed;bottom:20px;right:20px;
+  background:linear-gradient(180deg,#c7b37e,#a88e58);
+  border-radius:50%;width:56px;height:56px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
+  z-index:9999;transition:transform .2s ease, box-shadow .2s ease;
+}
+#homeButton:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+@media(max-width:800px){
+  .brand img{width:76px;height:76px}
+  .cards{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <div class="brand">
+    <a href="index.html" class="brand">
       <img src="assets/logo.png" onerror="this.src='assets/logo.jpg'" alt="R3D PRINT CI">
       <span><strong>R3D PRINT CI</strong></span>
-    </div>
+    </a>
     <nav class="nav">
-      <a class="btn" href="index.html">Accueil</a>
+      <a class="btn gold" href="index.html">Accueil</a>
       <a class="btn" href="services.html">Services</a>
       <a class="btn" href="realisations.html">Réalisations</a>
-      <a class="btn gold" href="devis.html">Devis</a>
+      <a class="btn" href="devis.html">Devis</a>
     </nav>
   </div>
 </header>
@@ -104,17 +114,29 @@
   <div class="container">
     <h2 class="h2">Nos domaines d’expertise</h2>
     <div class="cards">
-      <div class="card" onclick="openModal('m3d')">
+      <!-- Impression 3D -->
+      <div class="card" onclick="window.location='services.html#m3d'">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 8v12h16V8zM8 12h8v4H8z"/></svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Impression 3D</h3>
-        <p>Prototypes, pièces techniques, objets décoratifs. FDM (PLA, PETG, ASA) – précision et régularité.</p>
+        <p>Prototypes, pièces techniques, objets décoratifs. FDM (PLA, PETG, ASA) — précision et régularité.</p>
       </div>
-      <div class="card" onclick="openModal('mLaser')">
+
+      <!-- Gravure laser -->
+      <div class="card" onclick="window.location='services.html#mLaser'">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h3M19 12h3M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Gravure laser</h3>
-        <p>Bois, métal, acrylique, cuir – marquages nets et durables pour plaques, trophées, et signalétiques.</p>
+        <p>Bois, métal, acrylique, cuir – marquages nets et durables pour plaques, trophées et signalétiques.</p>
       </div>
-      <div class="card" onclick="openModal('mProto')">
+
+      <!-- Prototypage -->
+      <div class="card" onclick="window.location='services.html#mProto'">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Prototypage & design</h3>
         <p>De la conception à la pièce finale : modélisation 3D, tests fonctionnels, ajustements précis.</p>
@@ -139,7 +161,6 @@
   <p>© <span id="year"></span> R3D PRINT CI — Abidjan • <a href="https://r3dprint.pro">r3dprint.pro</a></p>
 </footer>
 
-<!-- Bouton Accueil flottant -->
 <a href="index.html" id="homeButton" title="Retour à l'accueil">
   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/>
@@ -147,8 +168,7 @@
 </a>
 
 <script>
-  document.getElementById("year").textContent=new Date().getFullYear();
-  function openModal(id){window.location.href="services.html#"+id;}
+document.getElementById("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
