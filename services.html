@@ -51,19 +51,100 @@
     .hero{padding-block:46px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#f7f7f7)}
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card.clickable{cursor:pointer;position:relative}
+    .card.clickable:after{content:"";position:absolute;inset:0;border-radius:var(--radius);outline:0;transition:box-shadow .2s ease}
+    .card.clickable:hover:after{box-shadow:inset 0 0 0 2px rgba(188,166,106,.5)}
     .icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#efe6cd,#f7f2e2);border:1px solid #e1d6bb;margin-bottom:10px}
     .list{margin:10px 0 0;padding-left:18px;color:var(--muted)}
     .list li{margin:6px 0}
     .spec{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
     .spec .mini{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:12px}
+
     footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted)}
     .foot{max-width:var(--container);margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .minibrand{display:flex;gap:10px;align-items:center}
     .minibrand img{width:42px;height:42px;object-fit:contain}
     #toTop{position:fixed;right:16px;bottom:16px;display:none}
+
+    /* Modals */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);z-index:100;padding:16px}
+    .modal.open{display:flex}
+    .modal .dialog{max-width:760px;width:100%;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.25);padding:18px}
+    .modal .hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+    .modal .hd h3{margin:0;font-size:22px}
+    .modal .bd{color:#3a3a3a}
+    .modal .ft{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
   </style>
 </head>
 <body>
+  <!-- Modals -->
+  <div class="modal" id="m3d" role="dialog" aria-modal="true" aria-labelledby="m3dTitle">
+    <div class="dialog">
+      <div class="hd">
+        <h3 id="m3dTitle">Impression 3D — détails</h3>
+        <button class="btn" data-close-modal>Fermer ✕</button>
+      </div>
+      <div class="bd">
+        <p>Nous fabriquons des pièces précises en <strong>FDM</strong> (PLA, PETG, ASA) : prototypes fonctionnels, boîtiers, gabarits, objets décoratifs. Paramètres maîtrisés et contrôle dimensionnel sur demande.</p>
+        <ul>
+          <li><strong>Hauteur de couche</strong> : 0.12 à 0.28 mm</li>
+          <li><strong>Volume max</strong> : 300 × 300 × 300 mm</li>
+          <li><strong>Finitions</strong> : ébavurage, ponçage léger</li>
+          <li><strong>Conseil matière</strong> selon usage (intérieur, extérieur, température, UV)</li>
+          <li><strong>Confidentialité & traçabilité</strong> des fichiers</li>
+        </ul>
+      </div>
+      <div class="ft">
+        <a class="btn gold" href="devis.html">Demander un devis</a>
+        <a class="btn ghost" href="#impression3d">Voir la section détaillée</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="mLaser" role="dialog" aria-modal="true" aria-labelledby="mLaserTitle">
+    <div class="dialog">
+      <div class="hd">
+        <h3 id="mLaserTitle">Gravure laser — détails</h3>
+        <button class="btn" data-close-modal>Fermer ✕</button>
+      </div>
+      <div class="bd">
+        <p>Marquage net et durable sur <strong>bois</strong>, <strong>acrylique</strong>, <strong>métal anodisé/inox</strong>, <strong>cuir</strong>. Idéal signalétique, plaques, trophées, cadeaux personnalisés.</p>
+        <ul>
+          <li><strong>Zone utile</strong> : jusqu’à 400 × 400 mm</li>
+          <li><strong>Fichiers</strong> : SVG, PDF, AI (vectorisé), PNG (transparent), JPG HD</li>
+          <li><strong>Usages</strong> : logos, textes, QR, numérotation</li>
+          <li><strong>Finition</strong> : nettoyage, huilage bois léger</li>
+        </ul>
+      </div>
+      <div class="ft">
+        <a class="btn gold" href="devis.html">Obtenir une estimation</a>
+        <a class="btn ghost" href="#gravurelaser">Voir la section détaillée</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="mProto" role="dialog" aria-modal="true" aria-labelledby="mProtoTitle">
+    <div class="dialog">
+      <div class="hd">
+        <h3 id="mProtoTitle">Prototypage & design — détails</h3>
+        <button class="btn" data-close-modal>Fermer ✕</button>
+      </div>
+      <div class="bd">
+        <p>De l’idée au fichier prêt à produire : brief, modélisation 3D (<strong>STL/STEP</strong>), itérations rapides, conseils DfAM. Livraison du fichier final et notice d’assemblage concise si nécessaire.</p>
+        <ul>
+          <li><strong>DfAM</strong> : conception optimisée pour fabrication additive</li>
+          <li><strong>Contraintes</strong> : résistance, température, UV, tolérances</li>
+          <li><strong>Livrables</strong> : fichier final + rendu d’aperçu sur demande</li>
+        </ul>
+      </div>
+      <div class="ft">
+        <a class="btn gold" href="devis.html">Parler de votre projet</a>
+        <a class="btn ghost" href="#prototypage">Voir la section détaillée</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header>
     <div class="bar">
       <div class="brand">
@@ -83,6 +164,7 @@
     </div>
   </header>
 
+  <!-- Drawer -->
   <div class="drawer" id="drawer">
     <div class="panel">
       <button class="btn" id="closeMenu">Fermer ✕</button>
@@ -101,8 +183,42 @@
     </div>
   </section>
 
-  <!-- IMPRESSION 3D -->
+  <!-- CARTES CLiquables (aperçu) -->
   <section class="section">
+    <div class="container">
+      <div class="grid">
+        <article class="card clickable" tabindex="0" role="button" aria-haspopup="dialog" data-modal="m3d">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2z" fill="#efe3c5" stroke="#bca66a"/><path d="M12 2v20M4 6.5l8 4.5 8-4.5" stroke="#bca66a" fill="none"/></svg>
+          </div>
+          <h3>Impression 3D</h3>
+          <p class="lead" style="font-size:14px">Prototypes, pièces techniques, objets déco. Paramètres maîtrisés — FDM (PLA, PETG, ASA).</p>
+          <div style="margin-top:10px"><span class="btn ghost">En savoir plus</span></div>
+        </article>
+
+        <article class="card clickable" tabindex="0" role="button" aria-haspopup="dialog" data-modal="mLaser">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="6" cy="6" r="3.5" fill="#efe3c5" stroke="#bca66a"/><path d="M9 6h12M12 9l9 9M12 3l9-1" stroke="#bca66a"/></svg>
+          </div>
+          <h3>Gravure laser</h3>
+          <p class="lead" style="font-size:14px">Bois, acrylique, métal anodisé/inox, cuir. Signalétique, plaques, trophées, personnalisation.</p>
+          <div style="margin-top:10px"><span class="btn ghost">En savoir plus</span></div>
+        </article>
+
+        <article class="card clickable" tabindex="0" role="button" aria-haspopup="dialog" data-modal="mProto">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2" fill="#efe3c5" stroke="#bca66a"/><path d="M7 9h10M7 12h7M7 15h4" stroke="#bca66a"/></svg>
+          </div>
+          <h3>Prototypage & design</h3>
+          <p class="lead" style="font-size:14px">Brief, modélisation 3D (STL/STEP), itérations rapides. Fichier prêt à produire.</p>
+          <div style="margin-top:10px"><span class="btn ghost">En savoir plus</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTIONS DETAILLEES -->
+  <section id="impression3d" class="section">
     <div class="container">
       <h2 class="h2">Impression 3D</h2>
       <div class="grid">
@@ -139,8 +255,7 @@
     </div>
   </section>
 
-  <!-- GRAVURE LASER -->
-  <section class="section" style="background:linear-gradient(180deg,#fff,#f7f7f7);border-block:1px solid var(--line)">
+  <section id="gravurelaser" class="section" style="background:linear-gradient(180deg,#fff,#f7f7f7);border-block:1px solid var(--line)">
     <div class="container">
       <h2 class="h2">Gravure laser</h2>
       <div class="grid">
@@ -169,7 +284,7 @@
           <ul class="list">
             <li>Vectoriels : SVG, PDF, AI (converti)</li>
             <li>Images : PNG (fond transparent), JPG HD</li>
-            <li>Vectorisation possible de votre logo sur demande</li>
+            <li>Vectorisation possible de votre logo</li>
           </ul>
           <div style="margin-top:12px"><a class="btn gold" href="devis.html">Nous contacter</a></div>
         </article>
@@ -177,8 +292,7 @@
     </div>
   </section>
 
-  <!-- PROTOTYPAGE -->
-  <section class="section">
+  <section id="prototypage" class="section">
     <div class="container">
       <h2 class="h2">Prototypage & design</h2>
       <div class="grid">
@@ -237,15 +351,35 @@
     const defaultMsg=encodeURIComponent("Bonjour R3D PRINT CI, j’aimerais un devis.");
     const wa="https://wa.me/"+phone+"?text="+defaultMsg;
     ["ctaWa","fWa","mWa"].forEach(id=>{ const a=$("#"+id); if(a) a.href=wa; });
+
     // Drawer
     const drawer=$("#drawer"), openMenu=$("#openMenu"), closeMenu=$("#closeMenu");
     openMenu?.addEventListener("click",()=>drawer.style.display="block");
     closeMenu?.addEventListener("click",()=>drawer.style.display="none");
     drawer?.addEventListener("click",(e)=>{ if(e.target===drawer) drawer.style.display="none"; });
-    // Misc
+
+    // Scroll top
     const toTop=$("#toTop"); window.addEventListener("scroll",()=>{ toTop.style.display= window.scrollY>600?"inline-flex":"none"; });
     toTop?.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
     $("#year").textContent = new Date().getFullYear();
+
+    // Modals open/close
+    function openModal(id){
+      const m=$("#"+id);
+      if(!m) return;
+      m.classList.add("open");
+      (m.querySelector("[data-close-modal]")||m.querySelector("a,button"))?.focus();
+    }
+    function closeModals(){ $$(".modal.open").forEach(m=> m.classList.remove("open")); }
+    $$(".card.clickable").forEach(card=>{
+      const id=card.getAttribute("data-modal");
+      const run=()=>openModal(id);
+      card.addEventListener("click",run);
+      card.addEventListener("keydown",(e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); run(); }});
+    });
+    $$(".modal [data-close-modal]").forEach(b=> b.addEventListener("click",closeModals));
+    $$(".modal").forEach(m=> m.addEventListener("click",(e)=>{ if(e.target===m) closeModals(); }));
+    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModals(); });
   </script>
 </body>
 </html>
