@@ -1,171 +1,95 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>R3D PRINT CI — L’art de donner vie à vos idées</title>
-<meta name="description" content="R3D PRINT CI, spécialiste de l’impression 3D, gravure laser et prototypage à Abidjan. Transformez vos idées en créations concrètes.">
+<meta name="description" content="R3D PRINT CI : impression 3D, gravure laser et prototypage à Abidjan. L’art de donner vie à vos idées.">
 <link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="assets/style.css">
 <style>
-:root{
-  --gold:#c9b47d;--gold-dark:#a88e58;--bg:#f8f8f6;
-  --panel:#fff;--text:#1a1a1a;--muted:#6b6b6b;
-  --line:#e3e3e3;--radius:16px;--container:1180px;
+/* ---- HERO ---- */
+.hero {
+  height: 85vh;
+  background: linear-gradient(120deg, rgba(255,255,255,0.9), rgba(248,244,229,0.9)), url('assets/impression3d.webp') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Segoe UI",Roboto,sans-serif;color:var(--text);background:var(--bg);scroll-behavior:smooth;overflow-x:hidden;}
-a{text-decoration:none;color:inherit;}
-img{max-width:100%;border-radius:12px;display:block;}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, rgba(201,180,125,0.3), transparent 70%);
+  animation: shimmer 10s infinite linear;
+}
+@keyframes shimmer {0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.hero h1 {
+  font-size: clamp(36px,6vw,70px);
+  color: var(--gold-dark);
+  margin-bottom: 12px;
+}
+.hero p {
+  color: var(--text);
+  font-size: 20px;
+  max-width: 650px;
+  margin: auto;
+}
+.hero .cta {
+  margin-top: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(120deg,var(--gold),var(--gold-dark));
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.hero .cta:hover {transform: scale(1.05);}
 
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:linear-gradient(120deg,#fffbe8,#f8f4e5);
-  border-bottom:1px solid rgba(200,180,110,0.3);
-  backdrop-filter:blur(6px);
-  animation:goldShine 15s linear infinite;
-  background-size:200% 200%;
+/* ---- APERÇU SERVICES ---- */
+.preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  margin-top: 60px;
 }
-@keyframes goldShine{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-.bar{max-width:var(--container);margin:auto;padding:10px 20px;
-display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
-.brand{display:flex;align-items:center;gap:14px;}
-.brand img{width:120px;height:120px;object-fit:contain;transition:transform .3s ease, filter .5s ease;}
-.brand:hover img{transform:scale(1.05);filter:brightness(1.15);}
-.brand span{font-weight:700;font-size:20px;}
-.nav{display:flex;gap:10px;align-items:center;}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  background:#fff;border:1px solid var(--line);
-  border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;
-  transition:all .3s ease;position:relative;overflow:hidden;
+.card:hover {transform: translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+.card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 14px;
 }
-.btn.gold{
-  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff;border:none;
-}
-.btn.gold::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,rgba(255,255,255,0.4),transparent);
-  transform:translateX(-100%);
-  transition:transform 1.5s linear;
-}
-.btn.gold:hover::after{transform:translateX(100%);}
-.btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
-
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;}
-.hamburger span{width:24px;height:3px;background:var(--gold-dark);border-radius:4px;}
-@media(max-width:900px){
-  .hamburger{display:flex;}
-  .nav{display:none;width:100%;flex-direction:column;gap:10px;margin-top:10px;}
-  .nav.show{display:flex;}
-}
-
-/* HERO */
-.hero{
-  position:relative;text-align:center;padding:clamp(60px,10vw,120px) 20px;
-  background:linear-gradient(180deg,#fff,#f5f4ee);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 20%,rgba(201,180,125,0.1),transparent 70%);
-  animation:moveBg 40s linear infinite;z-index:-1;
-}
-@keyframes moveBg{
-  0%{background-position:0% 0%;}
-  50%{background-position:100% 100%;}
-  100%{background-position:0% 0%;}
-}
-.hero h1{font-size:clamp(34px,6vw,64px);margin-bottom:16px;}
-.hero p{font-size:18px;color:var(--muted);max-width:800px;margin:auto;}
-.hero-buttons{margin-top:30px;display:flex;justify-content:center;flex-wrap:wrap;gap:12px;}
-
-/* SECTIONS */
-.section{padding:70px 20px;max-width:var(--container);margin:auto;}
-.section.fade{opacity:0;transform:translateY(40px);transition:1s ease;}
-.show{opacity:1!important;transform:translateY(0)!important;}
-
-.about{display:flex;flex-wrap:wrap;align-items:center;gap:40px;}
-.about img{width:460px;flex-shrink:0;box-shadow:0 6px 18px rgba(0,0,0,.08);}
-.about-text{flex:1;min-width:300px;}
-
-.expertise,.gallery,.reasons{
-  display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  margin-top:40px;
-}
-.card,.reason{
-  background:var(--panel);border:1px solid var(--line);
-  padding:26px;border-radius:var(--radius);text-align:center;
-  box-shadow:0 4px 18px rgba(0,0,0,.05);transition:transform .3s ease;
-}
-.card:hover,.reason:hover{transform:translateY(-4px);}
-.reason::after{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(120deg,rgba(201,180,125,0.05),transparent);
-  animation:lightSweep 20s linear infinite;
-}
-@keyframes lightSweep{0%{background-position:-100% 0}100%{background-position:200% 0}}
-
-.gallery img{transition:transform .3s ease;cursor:pointer;}
-.gallery img:hover{transform:scale(1.05);}
-
-/* LIGHTBOX */
-#lightbox{
-  position:fixed;inset:0;background:rgba(0,0,0,0.8);
-  display:none;align-items:center;justify-content:center;z-index:9999;
-}
-#lightbox img{max-width:90%;max-height:90%;border-radius:12px;}
-#lightbox.show{display:flex;}
-
-/* CONTACT */
-.contact{text-align:center;padding:60px 20px;}
-.contact h2{font-size:clamp(28px,4vw,44px);}
-.contact p{color:var(--muted);margin-bottom:20px;}
-
-/* FLOATING BUTTON */
-#devisBtn{
-  position:fixed;bottom:22px;left:22px;z-index:10000;
-  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff;font-weight:700;border:none;
-  border-radius:999px;padding:14px 22px;
-  display:flex;align-items:center;gap:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.25);
-  transition:transform .3s ease,box-shadow .3s ease;
-}
-#devisBtn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
-#devisBtn svg{stroke:#fff;}
-
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .bar{flex-direction:column;align-items:center;}
-  .brand{flex-direction:column;align-items:center;}
-  .brand img{width:140px;height:140px;}
-  .brand span{display:none;}
-  .about{flex-direction:column;text-align:center;}
-  .about img{width:100%;}
-}
+.card h3 {color: var(--gold-dark);margin-bottom:8px;}
+.card p {color: var(--muted);font-size:15px;}
 </style>
 </head>
-<body>
 
-<header id="header">
+<body>
+<header>
   <div class="bar">
     <a href="index.html" class="brand">
-      <img src="assets/logo.png" onerror="this.src='assets/logo.jpg'" alt="R3D PRINT CI">
+      <img src="assets/logo.png" alt="R3D PRINT CI">
       <span><strong>R3D PRINT CI</strong></span>
     </a>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
       <a class="btn gold" href="index.html">Accueil</a>
       <a class="btn" href="services.html">Services</a>
@@ -177,87 +101,39 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var
 
 <section class="hero">
   <h1>L’art de donner vie à vos idées</h1>
-  <p>R3D PRINT CI transforme vos concepts en créations réelles — impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
-  <div class="hero-buttons">
-    <a href="services.html" class="btn gold">Découvrir nos services</a>
-    <a href="devis.html" class="btn">Demander un devis</a>
-  </div>
+  <p>Impression 3D, gravure laser et prototypage professionnel à Abidjan.  
+     Des créations sur mesure pour entreprises et particuliers.</p>
+  <a href="devis.html" class="cta">Demander un devis</a>
 </section>
 
-<section class="section about fade">
-  <div class="about-text">
-    <h2>Notre savoir-faire</h2>
-    <p>Chez <strong>R3D PRINT CI</strong>, nous allions créativité et technologie pour matérialiser vos idées les plus ambitieuses. De la conception à la finition, nous assurons un travail de précision, avec une qualité digne des standards professionnels internationaux.</p>
-  </div>
-  <img src="assets/shot1.jpg" alt="Travail R3D PRINT CI">
-</section>
+<section class="section">
+  <h1>Notre savoir-faire</h1>
+  <p class="lead">Alliant innovation, précision et design, R3D PRINT CI transforme vos concepts en réalisations concrètes.</p>
 
-<section class="section fade">
-  <h2>Nos domaines d’expertise</h2>
-  <div class="expertise">
-    <div class="card"><h3>Impression 3D</h3><p>Production sur mesure, matériaux variés, finition précise et prototypage rapide.</p></div>
-    <div class="card"><h3>Gravure laser</h3><p>Marquage de précision sur bois, métal, cuir, bambou et acrylique.</p></div>
-    <div class="card"><h3>Prototypage & design</h3><p>Du concept à la pièce finale : conception 3D, test et ajustements fonctionnels.</p></div>
+  <div class="preview">
+    <div class="card">
+      <img src="assets/impression3d.webp" alt="Impression 3D">
+      <h3>Impression 3D</h3>
+      <p>Fabrication de pièces sur mesure, en haute précision, avec une finition impeccable.</p>
+    </div>
+    <div class="card">
+      <img src="assets/gravurelaser.webp" alt="Gravure laser">
+      <h3>Gravure Laser</h3>
+      <p>Découpe et gravure de haute qualité sur bois, métal, acrylique et autres matériaux.</p>
+    </div>
+    <div class="card">
+      <img src="assets/prototypage.webp" alt="Prototypage">
+      <h3>Prototypage & Design</h3>
+      <p>De la modélisation 3D à la pièce finale, nous donnons forme à vos idées.</p>
+    </div>
   </div>
-</section>
-
-<section class="section fade">
-  <h2>Quelques réalisations</h2>
-  <div class="gallery">
-    <img src="assets/shot1.jpg" alt="Prototype">
-    <img src="assets/shot2.jpg" alt="Gravure">
-    <img src="assets/shot3.jpg" alt="Trophée personnalisé">
-  </div>
-</section>
-
-<section class="section fade">
-  <h2>Pourquoi nous choisir ?</h2>
-  <div class="reasons">
-    <div class="reason"><h3>Précision & Qualité</h3><p>Chaque création est réalisée avec le plus haut niveau d’exigence.</p></div>
-    <div class="reason"><h3>Création sur mesure</h3><p>Chaque projet est pensé pour répondre à vos besoins.</p></div>
-    <div class="reason"><h3>Accompagnement complet</h3><p>De la conception à la livraison, un suivi personnalisé.</p></div>
-  </div>
-</section>
-
-<section class="contact fade">
-  <h2>Un projet ? Parlons-en dès aujourd’hui.</h2>
-  <p>Contactez-nous sur WhatsApp ou par e-mail pour échanger sur vos idées et obtenir un devis rapide.</p>
-  <a href="https://wa.me/2250757841323" class="btn gold">💬 Discuter sur WhatsApp</a>
 </section>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
 
-<!-- Floating Devis Button -->
-<a href="devis.html" id="devisBtn" title="Demander un devis rapide">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h4"/></svg>
-  Devis rapide
-</a>
-
-<!-- Lightbox -->
-<div id="lightbox" onclick="this.classList.remove('show')">
-  <img src="" alt="Agrandissement">
-</div>
-
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-
-window.addEventListener("scroll",()=>{document.getElementById("header").classList.toggle("scrolled",window.scrollY>20);});
-const fades=document.querySelectorAll(".fade");
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");observer.unobserve(e.target);}});},{threshold:0.2});
-fades.forEach(el=>observer.observe(el));
-
 function toggleMenu(){document.getElementById("navMenu").classList.toggle("show");}
-
-/* LIGHTBOX */
-const gallery=document.querySelectorAll(".gallery img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=lightbox.querySelector("img");
-gallery.forEach(img=>{
-  img.addEventListener("click",()=>{
-    lightboxImg.src=img.src;
-    lightbox.classList.add("show");
-  });
-});
 </script>
 </body>
 </html>
