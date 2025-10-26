@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Devis — R3D PRINT CI</title>
-<meta name="description" content="Demandez un devis rapide pour vos projets d’impression 3D, gravure laser ou prototypage avec R3D PRINT CI à Abidjan."/>
+<meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, gravure laser ou prototypage avec R3D PRINT CI à Abidjan."/>
 <style>
 :root{
   --bg:#f7f7f7;--ink:#1a1a1a;--muted:#6b6b6b;
@@ -32,8 +32,18 @@ label{font-weight:600;margin-bottom:6px;display:block}
 input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(188,166,106,.2)}
 textarea{min-height:110px;resize:vertical}
+.color-palette{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.color-swatch{
+  width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer;
+  transition:transform .2s ease,border-color .2s ease;
+}
+.color-swatch:hover{transform:scale(1.1)}
+.color-swatch.active{border-color:var(--gold);transform:scale(1.15)}
 input[type="file"]{padding:6px;border:none;background:#fafafa;border:1px dashed var(--line);cursor:pointer}
 input[type="file"]:hover{border-color:var(--gold)}
+#preview{max-width:160px;border-radius:12px;margin-top:10px;display:none;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+button[type="submit"]{background:var(--gold);color:#fff;border:none;padding:14px;font-size:16px;border-radius:8px;font-weight:700;cursor:pointer;transition:background .3s ease}
+button[type="submit"]:hover{background:#a88e58}
 footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);text-align:center}
 #homeButton{
   position:fixed;bottom:20px;right:20px;
@@ -66,7 +76,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 <section class="section">
   <div class="container">
     <h1 class="h1">Demande de devis</h1>
-    <p class="lead">Renseignez les informations ci-dessous pour recevoir une estimation personnalisée sur WhatsApp.</p>
+    <p class="lead">Remplissez le formulaire ci-dessous pour obtenir un devis rapide. Les informations seront envoyées automatiquement sur WhatsApp.</p>
 
     <form id="devisForm">
       <div>
@@ -74,7 +84,7 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
         <input type="text" id="name" placeholder="Ex : Koffi Design" required>
       </div>
       <div>
-        <label>Nature du projet</label>
+        <label>Type de projet</label>
         <select id="type" required>
           <option value="">Sélectionner...</option>
           <option>Impression 3D</option>
@@ -94,47 +104,98 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
           <option>Extérieur</option>
         </select>
       </div>
+
       <div>
-        <label>Couleur(s) souhaitée(s)</label>
-        <input type="text" id="color" placeholder="Ex : Noir mat, doré">
+        <label>🎨 Couleur(s) souhaitée(s)</label>
+        <div class="color-palette" id="palette">
+          <div class="color-swatch" style="background:#000" data-color="Noir"></div>
+          <div class="color-swatch" style="background:#fff;border:1px solid #ccc" data-color="Blanc"></div>
+          <div class="color-swatch" style="background:#bca66a" data-color="Doré"></div>
+          <div class="color-swatch" style="background:#c0c0c0" data-color="Argent"></div>
+          <div class="color-swatch" style="background:#8B4513" data-color="Bois"></div>
+          <div class="color-swatch" style="background:#e63946" data-color="Rouge"></div>
+          <div class="color-swatch" style="background:#1e6091" data-color="Bleu"></div>
+          <div class="color-swatch" style="background:#2a9d8f" data-color="Vert"></div>
+        </div>
+        <input type="text" id="customColor" placeholder="Autre couleur (facultatif)">
       </div>
+
       <div>
-        <label>Détails supplémentaires</label>
-        <textarea id="details" placeholder="Indiquez vos précisions techniques ou artistiques..."></textarea>
+        <label>Détails techniques ou instructions</label>
+        <textarea id="details" placeholder="Décrivez vos besoins ou ajoutez des précisions..."></textarea>
       </div>
+
       <div>
-        <label>📸 Ajouter une photo ou croquis (facultatif)</label>
+        <label>📸 Ajouter une photo ou un croquis (facultatif)</label>
         <input type="file" id="photo" accept="image/*" capture="environment">
+        <img id="preview" alt="Aperçu"/>
       </div>
-      <button type="submit" class="btn gold">Envoyer sur WhatsApp</button>
+
+      <button type="submit">📩 Envoyer sur WhatsApp</button>
     </form>
   </div>
 </section>
 
-<footer>
-  © <span id="year"></span> R3D PRINT CI — Abidjan
-</footer>
+<footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
 
 <!-- Bouton Accueil flottant -->
 <a href="index.html" id="homeButton" title="Retour à l'accueil">
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/>
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5H9v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/></svg>
 </a>
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-const form=document.getElementById("devisForm");
-form.addEventListener("submit",e=>{
+
+// Palette interactive
+const swatches=document.querySelectorAll(".color-swatch");
+let selectedColors=[];
+swatches.forEach(s=>{
+  s.addEventListener("click",()=>{
+    const color=s.getAttribute("data-color");
+    if(s.classList.contains("active")){
+      s.classList.remove("active");
+      selectedColors=selectedColors.filter(c=>c!==color);
+    }else{
+      s.classList.add("active");
+      selectedColors.push(color);
+    }
+  });
+});
+
+// Prévisualisation image
+const photoInput=document.getElementById("photo");
+const preview=document.getElementById("preview");
+photoInput.addEventListener("change",()=>{
+  const file=photoInput.files[0];
+  if(file){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      preview.src=e.target.result;
+      preview.style.display="block";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Envoi WhatsApp
+document.getElementById("devisForm").addEventListener("submit",e=>{
   e.preventDefault();
   const name=document.getElementById("name").value.trim();
   const type=document.getElementById("type").value.trim();
   const dim=document.getElementById("dimensions").value.trim();
   const usage=document.getElementById("usage").value.trim();
-  const color=document.getElementById("color").value.trim();
+  const customColor=document.getElementById("customColor").value.trim();
   const details=document.getElementById("details").value.trim();
+  const colors=[...selectedColors];
+  if(customColor)colors.push(customColor);
   const msg=encodeURIComponent(
-    `Demande de devis :\n\n👤 Nom / Société : ${name}\n🧩 Type : ${type}\n📐 Dimensions : ${dim}\n🏠 Lieu : ${usage}\n🎨 Couleur(s) : ${color}\n📝 Détails : ${details}`
+`Demande de devis :
+👤 Nom / Société : ${name}
+🧩 Type : ${type}
+📐 Dimensions : ${dim}
+🏠 Lieu : ${usage}
+🎨 Couleur(s) : ${colors.join(", ")}
+📝 Détails : ${details}`
   );
   const wa="https://wa.me/2250757841323?text="+msg;
   window.open(wa,"_blank");
