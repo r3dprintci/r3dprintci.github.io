@@ -4,41 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Devis — R3D PRINT CI</title>
-  <meta name="description" content="Demande de devis rapide — R3D PRINT CI" />
+  <meta name="description" content="Demande de devis rapide — 3 étapes — envoi WhatsApp." />
   <style>
     :root{--bg:#f7f6f3;--ink:#0f1115;--panel:#fff;--muted:#5a5e66;--stroke:#e7e3da;--gold:#bfa06a;--radius:16px;--container:1120px;--shadow:0 10px 30px rgba(15,17,21,.06)}
     *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
     a{text-decoration:none;color:inherit} img{max-width:100%}
-    .container{max-width:var(--container);margin:auto;padding:28px}
     header{border-bottom:1px solid var(--stroke);background:#f7f6f3cc}
-    .bar{max-width:var(--container);margin:auto;padding:12px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:60px;height:60px;object-fit:contain}
+    .bar{max-width:var(--container);margin:auto;padding:12px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}.brand img{width:60px;height:60px;object-fit:contain}
     .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid #cfc7b6;background:#fff;color:#111;font-weight:700;cursor:pointer}
     .btn.gold{background:linear-gradient(180deg,#c7ab78,#b08e57);color:#fff;border-color:#a07f48}
-    .lang{position:relative}.lang button{border:1px solid var(--stroke);background:#fff;border-radius:999px;padding:8px 10px;cursor:pointer}
-    .lang .menu{position:absolute;right:0;top:44px;background:#fff;border:1px solid var(--stroke);border-radius:12px;box-shadow:var(--shadow);display:none}
-    .lang .menu.open{display:block}.lang .menu button{display:block;width:100%;padding:8px 12px;border:0;background:transparent;text-align:left;cursor:pointer}
+    .container{max-width:var(--container);margin:auto;padding:28px}
     .h1{font-size:clamp(26px,5.4vw,40px);margin:0 0 6px}
     .lead{color:var(--muted);max-width:860px}
-
-    .quote-wrap{margin-top:16px}
-    .clip{
-      max-height:300px; overflow:hidden; position:relative; transition:max-height .35s ease;
-      border-radius:14px; border:1px solid var(--stroke); background:var(--panel); box-shadow:var(--shadow); padding:16px;
-    }
-    .clip.is-open{max-height:1600px}
-    .clip::after{content:""; position:absolute; left:0; right:0; bottom:0; height:72px; background:linear-gradient(180deg, transparent, #fff)}
-    .clip.is-open::after{display:none}
-    .reveal-btn{margin-top:10px; display:inline-flex; gap:8px; align-items:center; cursor:pointer; font-weight:700; border:none; background:transparent; padding:8px 0}
-
-    form.quote{display:grid;gap:12px}
+    .wizard{margin-top:16px;background:var(--panel);border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow);padding:16px}
+    .steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .step{padding:6px 10px;border:1px solid var(--stroke);border-radius:999px;background:#fff}
+    .step.active{border-color:#bfa06a;box-shadow:0 0 0 2px #eadfc8 inset}
+    form{display:grid;gap:12px}
     .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     label{font-weight:700;font-size:14px}
     input, select, textarea{width:100%;border-radius:12px;border:1px solid var(--stroke);background:#fff;color:#111;padding:10px 12px}
+    input[type=number]{appearance:textfield}
+    input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{appearance:none;margin:0}
     textarea{min-height:110px;resize:vertical}
-    .hint{font-size:12px;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
     .back{margin-top:18px;display:flex;gap:10px}
+    .hint{font-size:12px;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -48,82 +40,84 @@
         <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.jpg';" alt="R3D PRINT CI">
         <strong>R3D PRINT CI</strong>
       </div>
-      <nav style="display:flex;gap:10px;align-items:center">
+      <nav style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <a class="btn" href="index.html">Accueil</a>
         <a class="btn" href="services.html">Services</a>
         <a class="btn" href="realisations.html">Réalisations</a>
-        <div class="lang" id="langBox">
-          <button id="langBtn">🌐</button>
-          <div class="menu" id="langMenu">
-            <button data-lang="fr">🇫🇷 Français</button>
-            <button data-lang="en">🇬🇧 English</button>
-          </div>
-        </div>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <h1 class="h1" data-i18n="title">Demande de devis rapide</h1>
-    <p class="lead" data-i18n="lead">Renseignez l’essentiel, on vous répond rapidement avec une estimation claire (WhatsApp).</p>
+    <h1 class="h1">Demande de devis (3 étapes)</h1>
+    <p class="lead">Remplis l’essentiel, vérifie, puis envoie : le message s’ouvre automatiquement dans WhatsApp.</p>
 
-    <section class="quote-wrap">
-      <div class="clip" id="clipBox">
-        <form class="quote" id="quoteForm">
-          <div class="row">
-            <div><label for="qName" data-i18n="f_name">Nom / Société</label><input id="qName" type="text" placeholder="Ex : Monsieur K., Société X" autocomplete="name"></div>
-            <div><label for="qPhone" data-i18n="f_phone">Téléphone / WhatsApp</label><input id="qPhone" type="tel" inputmode="tel" placeholder="+225 07 00 00 00 00" autocomplete="tel"></div>
-            <div><label for="qEmail">E-mail</label><input id="qEmail" type="email" placeholder="exemple@domaine.com" autocomplete="email"></div>
-          </div>
+    <section class="wizard">
+      <div class="steps">
+        <span class="step active" id="s1">1 • Projet</span>
+        <span class="step" id="s2">2 • Détails</span>
+        <span class="step" id="s3">3 • Contacts</span>
+      </div>
 
+      <form id="quoteForm">
+        <!-- ÉTAPE 1 -->
+        <div class="stage" data-stage="1">
           <div class="row">
-            <div><label for="qNature" data-i18n="f_nature">Nature de l’objet</label><input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…" autocomplete="off"></div>
+            <div><label for="qNature">Nature de l’objet</label><input id="qNature" type="text" placeholder="Trophée, plaque, pièce fonctionnelle…" required></div>
             <div>
-              <label data-i18n="f_dims">Dimensions</label>
+              <label>Dimensions</label>
               <div class="row" style="grid-template-columns:repeat(4,1fr)">
-                <input id="dimL" type="number" inputmode="decimal" min="0" step="0.1" placeholder="L">
+                <input id="dimL" type="number" inputmode="decimal" min="0" step="0.1" placeholder="L" required>
                 <input id="dimW" type="number" inputmode="decimal" min="0" step="0.1" placeholder="l">
                 <input id="dimH" type="number" inputmode="decimal" min="0" step="0.1" placeholder="h">
                 <select id="dimUnit"><option value="mm">mm</option><option value="cm">cm</option></select>
               </div>
-              <div class="hint" data-i18n="f_dims_hint">Conversion automatique en millimètres.</div>
+              <div class="hint">Conversion automatique en millimètres.</div>
             </div>
-            <div><label for="qStorage" data-i18n="f_env">Environnement</label>
-              <select id="qStorage"><option value="" data-i18n="sel_choose">Sélectionner…</option><option data-i18n="env_in">Intérieur</option><option data-i18n="env_out">Extérieur</option><option data-i18n="env_mix">Mixte</option></select>
+            <div><label for="qStorage">Environnement</label>
+              <select id="qStorage"><option value="">Sélectionner…</option><option>Intérieur</option><option>Extérieur</option><option>Mixte</option></select>
             </div>
           </div>
+        </div>
 
+        <!-- ÉTAPE 2 -->
+        <div class="stage" data-stage="2" hidden>
           <div class="row">
-            <div><label for="qColors" data-i18n="f_colors">Couleurs souhaitées</label><input id="qColors" type="text" placeholder="Ex : Noir / Or / Argent"></div>
-            <div><label for="qMaterial" data-i18n="f_material">Matière / Technologie</label>
+            <div><label for="qMaterial">Matière / Technologie</label>
               <select id="qMaterial">
-                <option value="" data-i18n="mat_advise">À conseiller</option>
+                <option value="">À conseiller</option>
                 <option>FDM — PLA</option><option>FDM — PETG</option><option>FDM — ASA</option>
                 <option>Laser — Bois</option><option>Laser — Acrylique</option><option>Laser — Métal (anodisé/inox)</option>
               </select>
             </div>
-            <div><label for="qQty" data-i18n="f_qty">Quantité</label><input id="qQty" type="number" inputmode="numeric" min="1" step="1" placeholder="1"></div>
+            <div><label for="qColors">Couleurs</label><input id="qColors" type="text" placeholder="Ex : Noir / Or / Argent"></div>
+            <div><label for="qQty">Quantité</label><input id="qQty" type="number" inputmode="numeric" min="1" step="1" placeholder="1"></div>
           </div>
-
           <div class="row">
-            <div><label for="qDeadline" data-i18n="f_deadline">Délai souhaité</label><input id="qDeadline" type="text" placeholder="Ex : 3 jours / cette semaine / date précise"></div>
-            <div><label for="qBudget" data-i18n="f_budget">Budget indicatif (CFA)</label><input id="qBudget" type="number" inputmode="numeric" min="0" step="1000" placeholder="Ex : 30000"></div>
-            <div><label for="qLink" data-i18n="f_link">Lien fichier (Drive/WeTransfer)</label><input id="qLink" type="url" placeholder="URL de votre fichier ou croquis"></div>
+            <div><label for="qDeadline">Délai souhaité</label><input id="qDeadline" type="text" placeholder="Ex : 3 jours / date précise"></div>
+            <div><label for="qBudget">Budget indicatif (CFA)</label><input id="qBudget" type="number" inputmode="numeric" min="0" step="1000" placeholder="Ex : 30000"></div>
+            <div><label for="qLink">Lien fichier (Drive/WeTransfer)</label><input id="qLink" type="url" placeholder="URL de votre fichier ou croquis"></div>
           </div>
+          <div><label for="qNotes">Notes / précisions</label><textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea></div>
+        </div>
 
-          <div>
-            <label for="qNotes" data-i18n="f_notes">Notes / précisions</label>
-            <textarea id="qNotes" placeholder="Contexte d’usage, finitions, contraintes, inspiration…"></textarea>
-          </div>
-
+        <!-- ÉTAPE 3 -->
+        <div class="stage" data-stage="3" hidden>
           <div class="row">
-            <button type="button" class="btn gold" id="sendWhatsApp" data-i18n="btn_send_wa">Envoyer sur WhatsApp</button>
-            <button type="reset" class="btn" data-i18n="btn_clear">Effacer</button>
+            <div><label for="qName">Nom / Société</label><input id="qName" type="text" placeholder="Ex : Monsieur K., Société X"></div>
+            <div><label for="qPhone">Téléphone / WhatsApp</label><input id="qPhone" type="tel" inputmode="tel" placeholder="+225 07 00 00 00 00"></div>
+            <div><label for="qEmail">E-mail</label><input id="qEmail" type="email" placeholder="exemple@domaine.com"></div>
           </div>
-          <div class="hint" data-i18n="f_hint">Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies.</div>
-        </form>
-      </div>
-      <button class="reveal-btn" id="toggleClip" aria-expanded="false">▼ Afficher plus</button>
+          <p class="hint">Nous utilisons ces infos uniquement pour vous répondre à propos de ce devis.</p>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn" id="prev" disabled>← Précédent</button>
+          <button type="button" class="btn" id="next">Suivant →</button>
+          <button type="button" class="btn gold" id="send" hidden>Envoyer sur WhatsApp</button>
+          <button type="reset" class="btn">Effacer</button>
+        </div>
+      </form>
     </section>
 
     <div class="back">
@@ -133,76 +127,77 @@
   </main>
 
   <script>
-    // i18n
-    const I18N={fr:{title:"Demande de devis rapide",lead:"Renseignez l’essentiel, on vous répond rapidement avec une estimation claire (WhatsApp).",
-      f_name:"Nom / Société",f_phone:"Téléphone / WhatsApp",f_nature:"Nature de l’objet",f_dims:"Dimensions",f_dims_hint:"Conversion automatique en millimètres.",
-      f_env:"Environnement",sel_choose:"Sélectionner…",env_in:"Intérieur",env_out:"Extérieur",env_mix:"Mixte",f_colors:"Couleurs souhaitées",f_material:"Matière / Technologie",
-      mat_advise:"À conseiller",f_qty:"Quantité",f_deadline:"Délai souhaité",f_budget:"Budget indicatif (CFA)",f_link:"Lien fichier (Drive/WeTransfer)",f_notes:"Notes / précisions",
-      btn_send_wa:"Envoyer sur WhatsApp",btn_clear:"Effacer",f_hint:"Le bouton prépare un message complet et ouvre WhatsApp avec toutes les infos pré-remplies."
-    },en:{title:"Quick quote request",lead:"Fill in the essentials and we’ll reply quickly with a clear estimate (WhatsApp).",
-      f_name:"Name / Company",f_phone:"Phone / WhatsApp",f_nature:"Object nature",f_dims:"Dimensions",f_dims_hint:"Automatic conversion to millimeters.",
-      f_env:"Environment",sel_choose:"Choose…",env_in:"Indoor",env_out:"Outdoor",env_mix:"Mixed",f_colors:"Desired colors",f_material:"Material / Technology",
-      mat_advise:"Recommend for me",f_qty:"Quantity",f_deadline:"Desired deadline",f_budget:"Indicative budget (CFA)",f_link:"File link (Drive/WeTransfer)",f_notes:"Notes / details",
-      btn_send_wa:"Send on WhatsApp",btn_clear:"Clear",f_hint:"The button builds the message and opens WhatsApp with all the details prefilled."
-    }};
-    const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
-    function applyI18n(lang){ $$("[data-i18n]").forEach(el=>{ const k=el.dataset.i18n; if(I18N[lang][k]) el.textContent=I18N[lang][k];}); }
-    const langBtn=$("#langBtn"), langMenu=$("#langMenu"), langBox=$("#langBox");
-    function openLang(o){ langMenu.classList.toggle("open",o); }
-    langBtn?.addEventListener("click",()=>openLang(!langMenu.classList.contains("open")));
-    document.addEventListener("click",(e)=>{ if(!langBox?.contains(e.target)) openLang(false); });
-    $$("#langMenu button").forEach(b=>b.addEventListener("click",()=>{ const l=b.dataset.lang||"fr"; localStorage.setItem("r3d_lang",l); applyI18n(l); openLang(false); document.documentElement.lang=l; }));
-    const saved=localStorage.getItem("r3d_lang")||"fr"; applyI18n(saved); document.documentElement.lang=saved;
-
-    // Devis replié / déplié
-    const clipBox=$("#clipBox"), toggleBtn=$("#toggleClip");
-    toggleBtn.addEventListener("click", ()=>{
-      const open = clipBox.classList.toggle("is-open");
-      toggleBtn.setAttribute("aria-expanded", open? "true":"false");
-      toggleBtn.textContent = open ? "▲ Réduire" : "▼ Afficher plus";
+    // Wizard simple
+    const stages=[...document.querySelectorAll(".stage")];
+    const steps=[document.getElementById("s1"),document.getElementById("s2"),document.getElementById("s3")];
+    const prev=document.getElementById("prev"), next=document.getElementById("next"), send=document.getElementById("send");
+    let cur=0;
+    function render(){
+      stages.forEach((st,i)=> st.hidden = i!==cur);
+      steps.forEach((sp,i)=> sp.classList.toggle("active", i===cur));
+      prev.disabled = cur===0; next.hidden = cur===stages.length-1; send.hidden = !(cur===stages.length-1);
+    }
+    prev.addEventListener("click",()=>{ if(cur>0){cur--; render();} });
+    next.addEventListener("click",()=>{
+      if(cur===0){ // validation minimale étape 1
+        const nature=document.getElementById("qNature").value.trim();
+        const L=document.getElementById("dimL").value.trim();
+        const W=document.getElementById("dimW").value.trim();
+        const H=document.getElementById("dimH").value.trim();
+        if(!nature || !(L||W||H)){ alert("Indique au minimum la nature et une dimension."); return; }
+      }
+      if(cur<stages.length-1){cur++; render();}
     });
+    render();
 
-    // WhatsApp
-    const rawPhone="002250757841323"; const waNumber=rawPhone.replace(/^00/,"");
+    // Build WhatsApp message
     function sanitize(s){ return (s||"").toString().trim(); }
     function dimsToMM(){
-      const L=parseFloat($("#dimL").value)||0, W=parseFloat($("#dimW").value)||0, H=parseFloat($("#dimH").value)||0;
-      const unit=$("#dimUnit").value; const k=(unit==="cm")?10:1; return {L:L*k,W:W*k,H:H*k,unit:"mm"};
+      const L=parseFloat(document.getElementById("dimL").value)||0;
+      const W=parseFloat(document.getElementById("dimW").value)||0;
+      const H=parseFloat(document.getElementById("dimH").value)||0;
+      const unit=document.getElementById("dimUnit").value;
+      const k=(unit==="cm")?10:1; return {L:L*k,W:W*k,H:H*k,unit:"mm"};
     }
     function buildQuoteMessage(){
-      const lang = document.documentElement.lang || "fr";
-      const t = (fr,en)=> lang==="en"?en:fr;
-      const name=sanitize($("#qName").value), phone=sanitize($("#qPhone").value), email=sanitize($("#qEmail").value);
-      const nature=sanitize($("#qNature").value), env=sanitize($("#qStorage").value);
-      const colors=sanitize($("#qColors").value), material=sanitize($("#qMaterial").value);
-      const qty=sanitize($("#qQty").value), deadline=sanitize($("#qDeadline").value), budget=sanitize($("#qBudget").value);
-      const link=sanitize($("#qLink").value), notes=sanitize($("#qNotes").value);
+      const name=sanitize(document.getElementById("qName").value);
+      const phone=sanitize(document.getElementById("qPhone").value);
+      const email=sanitize(document.getElementById("qEmail").value);
+      const nature=sanitize(document.getElementById("qNature").value);
+      const env=sanitize(document.getElementById("qStorage").value);
+      const colors=sanitize(document.getElementById("qColors").value);
+      const material=sanitize(document.getElementById("qMaterial").value);
+      const qty=sanitize(document.getElementById("qQty").value);
+      const deadline=sanitize(document.getElementById("qDeadline").value);
+      const budget=sanitize(document.getElementById("qBudget").value);
+      const link=sanitize(document.getElementById("qLink").value);
+      const notes=sanitize(document.getElementById("qNotes").value);
       const d=dimsToMM(); const dims=(d.L||d.W||d.H)?`${Math.round(d.L)} × ${Math.round(d.W)} × ${Math.round(d.H)} ${d.unit}`:"";
       const lines=[
-        t("Bonjour R3D PRINT CI, je souhaite un devis :","Hello R3D PRINT CI, I'd like a quote:"),"",
-        name? t("• Nom / Société : ","• Name / Company: ")+name :"",
-        phone? t("• Téléphone : ","• Phone: ")+phone :"",
+        "Bonjour R3D PRINT CI, je souhaite un devis :","",
+        name? "• Nom / Société : "+name :"",
+        phone? "• Téléphone : "+phone :"",
         email? "• E-mail : "+email :"",
-        nature? t("• Nature de l'objet : ","• Object nature: ")+nature :"",
-        dims? t("• Dimensions : ","• Dimensions: ")+dims :"",
-        env? t("• Environnement : ","• Environment: ")+env :"",
-        colors? t("• Couleurs : ","• Colors: ")+colors :"",
-        material? t("• Matière / Techno : ","• Material / Tech: ")+material :"",
-        qty? t("• Quantité : ","• Quantity: ")+qty :"",
-        deadline? t("• Délai souhaité : ","• Desired deadline: ")+deadline :"",
-        budget? t("• Budget indicatif : ","• Indicative budget: ")+budget+" CFA" :"",
-        link? t("• Lien fichier : ","• File link: ")+link :"",
-        notes? t("• Notes : ","• Notes: ")+notes :""
+        nature? "• Nature de l'objet : "+nature :"",
+        dims? "• Dimensions : "+dims :"",
+        env? "• Environnement : "+env :"",
+        colors? "• Couleurs : "+colors :"",
+        material? "• Matière / Techno : "+material :"",
+        qty? "• Quantité : "+qty :"",
+        deadline? "• Délai souhaité : "+deadline :"",
+        budget? "• Budget indicatif : "+budget+" CFA" :"",
+        link? "• Lien fichier : "+link :"",
+        notes? "• Notes : "+notes :""
       ].filter(Boolean).join("\n");
       return encodeURIComponent(lines);
     }
-    function validateMinimal(){
-      const nature=$("#qNature").value.trim();
-      const L=$("#dimL").value.trim(), W=$("#dimW").value.trim(), H=$("#dimH").value.trim();
-      return !!nature && (L||W||H);
-    }
-    $("#sendWhatsApp").addEventListener("click", ()=>{
-      if(!validateMinimal()){ alert(document.documentElement.lang==="en"?"Please provide object nature and at least one dimension.":"Indique au minimum la nature et une dimension."); return; }
+    const sendBtn=document.getElementById("send");
+    sendBtn.addEventListener("click", ()=>{
+      // mini validation contact : au moins un moyen
+      const phoneVal=document.getElementById("qPhone").value.trim();
+      const emailVal=document.getElementById("qEmail").value.trim();
+      if(!phoneVal && !emailVal){ alert("Ajoute un téléphone ou un e-mail pour te joindre."); return; }
+      const waNumber="002250757841323".replace(/^00/,"");
       const url="https://wa.me/"+waNumber+"?text="+buildQuoteMessage();
       window.open(url,"_blank");
     });
