@@ -133,7 +133,8 @@ button svg { stroke: #fff; }
 
 <section class="section fade">
   <h1>Demande de Devis</h1>
-  <p class="lead">Remplissez le formulaire ci-dessous pour obtenir un devis rapide et personnalisé. Vous pouvez également joindre une image de référence si nécessaire.</p>
+  <p class="lead">Remplissez le formulaire ci-dessous pour obtenir un devis rapide et personnalisé.  
+  Vous pouvez également joindre une image de référence si nécessaire.</p>
 
   <form id="devisForm">
     <label>Nom / Entreprise</label>
@@ -180,7 +181,8 @@ button svg { stroke: #fff; }
     </div>
 
     <label>Ajouter une image de référence (optionnel)</label>
-    <input type="file" id="image" accept="image/*">
+    <!-- ✅ Correction : ouverture de la galerie sur mobile -->
+    <input type="file" id="image" accept="image/*" capture="false">
 
     <label>Détails supplémentaires</label>
     <textarea id="details" placeholder="Ex. finition brillante, texte à graver, couleur spécifique..."></textarea>
