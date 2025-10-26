@@ -6,64 +6,9 @@
 <title>Demande de devis — R3D PRINT CI</title>
 <meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, de gravure laser ou de prototypage. Réponse rapide par WhatsApp.">
 <link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="assets/style.css">
 
 <style>
-:root{
-  --gold:#c9b47d;--gold-dark:#a88e58;
-  --bg:#f8f8f6;--panel:#fff;--text:#1a1a1a;
-  --muted:#6b6b6b;--line:#e3e3e3;--radius:16px;--container:1180px;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Segoe UI",Roboto,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;}
-
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:linear-gradient(120deg,#fffbe8,#f8f4e5);
-  border-bottom:1px solid rgba(200,180,110,0.3);
-  backdrop-filter:blur(6px);
-  animation:goldShine 15s linear infinite;
-  background-size:200% 200%;
-}
-@keyframes goldShine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.bar{max-width:var(--container);margin:auto;padding:10px 20px;
-display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
-.brand{display:flex;align-items:center;gap:14px;}
-.brand img{width:120px;height:120px;object-fit:contain;transition:transform .3s ease,filter .5s ease;}
-.brand:hover img{transform:scale(1.05);filter:brightness(1.15);}
-.brand span{font-weight:700;font-size:20px;}
-.nav{display:flex;gap:10px;align-items:center;}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  background:#fff;border:1px solid var(--line);
-  border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;
-  transition:all .3s ease;position:relative;overflow:hidden;
-}
-.btn.gold{
-  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff;border:none;
-}
-.btn.gold::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,rgba(255,255,255,0.4),transparent);
-  transform:translateX(-100%);
-  transition:transform 1.5s linear;
-}
-.btn.gold:hover::after{transform:translateX(100%);}
-.btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
-.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;}
-.hamburger span{width:24px;height:3px;background:var(--gold-dark);border-radius:4px;}
-@media(max-width:900px){
-  .hamburger{display:flex;}
-  .nav{display:none;width:100%;flex-direction:column;gap:10px;margin-top:10px;}
-  .nav.show{display:flex;}
-}
-
-/* FORMULAIRE */
-.section{padding:70px 20px;max-width:var(--container);margin:auto;text-align:center;}
-h1{font-size:clamp(36px,5vw,60px);margin-bottom:16px;}
-p.lead{color:var(--muted);max-width:800px;margin:auto;margin-bottom:40px;}
-
 form{
   background:var(--panel);
   padding:40px;
@@ -110,9 +55,6 @@ button{
 }
 button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.25);}
 button svg{stroke:#fff;}
-
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);}
 </style>
 </head>
 
@@ -190,7 +132,9 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var
     <textarea id="details" placeholder="Ex. finition brillante, texte à graver, couleur spécifique..."></textarea>
 
     <button type="button" onclick="sendWhatsApp()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
       Envoyer par WhatsApp
     </button>
   </form>
@@ -211,7 +155,6 @@ function sendWhatsApp(){
   const lieu = document.getElementById("lieu").value;
   const mat = document.querySelector('input[name="mat"]:checked')?.value || "Non précisé";
   const details = document.getElementById("details").value;
-
   const colors = [color1.value, color2.value, color3.value, color4.value, color5.value].join(", ");
 
   const msg = `*Nouvelle demande de devis R3D PRINT CI*%0A%0A👤 Nom: ${nom}%0A📞 Téléphone: ${phone}%0A📂 Type: ${type}%0A📏 Dimensions: ${dim}%0A🏠 Lieu: ${lieu}%0A🎨 Couleurs: ${colors}%0A🪵 Effet/Matière: ${mat}%0A📝 Détails: ${details}`;
