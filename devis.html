@@ -75,6 +75,10 @@ button:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
   font-size:15px;border:1px solid var(--line);
 }
 #summary strong{color:var(--gold-dark);}
+.color-preview{
+  display:inline-block;width:20px;height:20px;border-radius:50%;
+  margin-right:6px;border:1px solid #ccc;
+}
 @media(max-width:600px){form{padding:24px;}}
 </style>
 </head>
@@ -197,15 +201,17 @@ function addColor(){
 }
 
 function fillSummary(){
-  const nom = nomInput.value;
-  const tel = telInput.value;
-  const email = emailInput.value;
-  const type = typeInput.value;
-  const dim = dimensionsInput.value;
-  const lieu = lieuInput.value;
+  const nom = document.getElementById("nom").value;
+  const tel = document.getElementById("tel").value;
+  const email = document.getElementById("email").value;
+  const type = document.getElementById("type").value;
+  const dim = document.getElementById("dimensions").value;
+  const lieu = document.getElementById("lieu").value;
   const mat = document.querySelector('input[name="mat"]:checked')?.value || "Non précisé";
-  const details = detailsInput.value;
-  const colors = Array.from(document.querySelectorAll(".color-input")).map(c=>c.value).join(", ");
+  const details = document.getElementById("details").value;
+  const colorInputs = Array.from(document.querySelectorAll(".color-input"));
+  const colorsHTML = colorInputs.map(c=>`<span class="color-preview" style="background:${c.value}"></span>${c.value}`).join("<br>");
+
   document.getElementById("summary").innerHTML = `
     <strong>Nom / Entreprise :</strong> ${nom}<br>
     <strong>Téléphone :</strong> ${tel}<br>
@@ -213,7 +219,7 @@ function fillSummary(){
     <strong>Type de projet :</strong> ${type}<br>
     <strong>Dimensions :</strong> ${dim}<br>
     <strong>Lieu d’utilisation :</strong> ${lieu}<br>
-    <strong>Couleurs :</strong> ${colors}<br>
+    <strong>Couleurs :</strong><br>${colorsHTML}<br>
     <strong>Matière :</strong> ${mat}<br>
     <strong>Détails :</strong> ${details}
   `;
@@ -221,8 +227,8 @@ function fillSummary(){
 
 function sendWhatsApp(){
   const tel = "002250757841323";
-  const msg = document.getElementById("summary").innerText.replace(/\n/g, "%0A");
-  window.open(`https://wa.me/${tel}?text=*Nouvelle demande de devis R3D PRINT CI*%0A%0A${msg}`,"_blank");
+  const text = document.getElementById("summary").innerText.replace(/\n/g, "%0A");
+  window.open(`https://wa.me/${tel}?text=*Nouvelle demande de devis R3D PRINT CI*%0A%0A${text}`,"_blank");
 }
 </script>
 
