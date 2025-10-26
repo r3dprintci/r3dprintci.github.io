@@ -23,8 +23,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(246,246,246,.85);backdro
 .btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer;transition:.2s}
 .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 .btn.gold{background:var(--gold);color:#fff}
-.cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.06);cursor:pointer}
+.cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 4px 18px rgba(0,0,0,.06);cursor:pointer;transition:.3s}
+.card:hover{transform:translateY(-3px)}
+.card-icon{width:48px;height:48px;margin-bottom:14px;stroke:var(--gold);stroke-width:1.8;fill:none}
 .click-icon{position:absolute;top:12px;right:12px;opacity:.9;transition:transform .25s ease}
 .card:hover .click-icon{transform:translate(2px,-2px)}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:100}
@@ -71,36 +73,52 @@ footer{border-top:1px solid var(--line);padding:22px 18px;color:var(--muted);tex
 <section class="section">
   <div class="container">
     <h1 class="h1">Nos services</h1>
-    <p class="lead">Précision, fiabilité et design : nos domaines d’expertise au service de vos idées.</p>
+    <p class="lead">Découvrez nos savoir-faire dans les domaines de l’impression 3D, la gravure laser et le prototypage sur mesure.</p>
+
     <div class="cards">
+      <!-- Impression 3D -->
       <div class="card" onclick="openModal('m3d')">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M4 4h16v4H4zM4 8v12h16V8zM8 12h8v4H8z"/>
+        </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Impression 3D</h3>
-        <p>Prototypes, pièces techniques et objets décoratifs produits en FDM : PLA, PETG, ASA.</p>
+        <p>Prototypes, pièces techniques et objets décoratifs produits en FDM : PLA, PETG, ASA, finition soignée et sur mesure.</p>
       </div>
+
+      <!-- Gravure laser -->
       <div class="card" onclick="openModal('mLaser')">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2v3M12 19v3M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h3M19 12h3M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Gravure laser</h3>
-        <p>Personnalisation sur bois, métal, acrylique, cuir… précision et rendu haut de gamme.</p>
+        <p>Gravure de précision sur bois, métal, cuir, acrylique et bien plus. Finition professionnelle et marquage durable.</p>
       </div>
+
+      <!-- Prototypage -->
       <div class="card" onclick="openModal('mProto')">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
         <svg class="click-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M8 16L16 8M8 8h8v8" stroke="#bca66a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Prototypage & design</h3>
-        <p>Conception 3D, tests fonctionnels, itérations rapides : la création sur mesure.</p>
+        <p>Modélisation 3D, ajustements fonctionnels et conception produit complète — de l’idée au modèle validé.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MODALES -->
+<!-- Modales -->
 <div id="m3d" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m3d')">&times;</span>
-<h2>Impression 3D</h2><p>Production de pièces sur mesure en FDM : PLA, PETG et ASA, jusqu’à 300×300×300 mm. Chaque impression est contrôlée, ébavurée et poncée pour une finition propre.</p></div></div>
+<h2>Impression 3D</h2><p>Production de pièces personnalisées en FDM : PLA, PETG, ASA. Qualité, rapidité et précision pour vos prototypes et objets finis.</p></div></div>
 
 <div id="mLaser" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('mLaser')">&times;</span>
-<h2>Gravure laser</h2><p>Gravure CO₂ et fibre laser : signalétique, trophées, cadeaux corporate ou pièces techniques. Matériaux compatibles : bois, MDF, bambou, cuir, métaux anodisés, acrylique.</p></div></div>
+<h2>Gravure laser</h2><p>Gravure fine sur bois, métal, bambou, cuir et acrylique. Plaques, trophées, objets publicitaires et signalétique sur mesure.</p></div></div>
 
 <div id="mProto" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('mProto')">&times;</span>
-<h2>Prototypage & design</h2><p>Modélisation 3D (STL / STEP), ajustements techniques et itérations fonctionnelles pour affiner vos concepts avant production série.</p></div></div>
+<h2>Prototypage & design</h2><p>De la modélisation à la validation fonctionnelle : notre service vous accompagne dans chaque étape de développement.</p></div></div>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
 
