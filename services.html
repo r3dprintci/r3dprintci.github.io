@@ -4,78 +4,109 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Nos Services — R3D PRINT CI</title>
-<meta name="description" content="Découvrez les services professionnels de R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
+<meta name="description" content="Découvrez les services de R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
 .services-grid {
   display: grid;
-  gap: 28px;
+  gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  margin-top: 40px;
-  position: relative;
+  margin-top: 50px;
 }
+
 .service-card {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
   padding: 20px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
   position: relative;
   cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(120deg, rgba(201,180,125,0.1), transparent 70%);
-  z-index: 0;
-  opacity: 0;
-  transition: opacity .4s ease;
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
-.service-card:hover::before {opacity: 1;}
 .service-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 18px;
-  filter: brightness(0.95);
-  transition: transform .4s ease, filter .4s ease;
 }
-.service-card:hover img {transform: scale(1.05);filter: brightness(1.1);}
-.service-card h3 {font-size: 22px;margin-bottom: 8px;color: var(--gold-dark);}
-.service-card p {color: var(--muted);font-size: 15px;}
+.service-card h3 {
+  color: var(--gold-dark);
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.service-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
 .service-card svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--gold-dark);
   position: absolute;
   top: 20px;
   right: 20px;
+  width: 22px;
+  height: 22px;
+  stroke: var(--gold-dark);
   opacity: 0.8;
-  transition: opacity .3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.service-card:hover svg {opacity: 1;}
-.popup{
-  position:fixed;inset:0;background:rgba(0,0,0,0.7);
-  display:none;align-items:center;justify-content:center;z-index:9999;
+.service-card:hover svg {
+  opacity: 1;
+  transform: translateX(4px);
 }
-.popup.show{display:flex;}
-.popup-content{
-  background:#fff;padding:30px;border-radius:16px;max-width:600px;width:90%;
-  box-shadow:0 6px 20px rgba(0,0,0,0.3);animation:fadeIn .4s ease;
+
+/* POPUP */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.popup-content img{max-height:260px;object-fit:cover;margin-bottom:20px;border-radius:10px;}
-.popup-content h3{color:var(--gold-dark);margin-bottom:10px;}
-.popup-content p{color:var(--muted);margin-bottom:20px;text-align:justify;}
-.close-btn{
-  display:inline-block;background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff;padding:10px 18px;border:none;border-radius:999px;font-weight:600;cursor:pointer;
+.popup.show { display: flex; }
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 0.4s ease;
+  text-align: left;
+}
+.popup-content img {
+  max-height: 250px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.popup-content h3 {
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+}
+.popup-content p {
+  color: var(--muted);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.close-btn {
+  background: linear-gradient(120deg,var(--gold),var(--gold-dark));
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -86,7 +117,6 @@
   <div class="bar">
     <a href="index.html" class="brand">
       <img src="assets/logo.png" alt="R3D PRINT CI">
-      <span><strong>R3D PRINT CI</strong></span>
     </a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
@@ -100,32 +130,31 @@
 
 <section class="section fade">
   <h1>Nos Services</h1>
-  <p class="lead">Découvrez notre savoir-faire alliant innovation, précision et créativité.  
-  Chaque service est pensé pour répondre aux besoins des particuliers et professionnels.</p>
+  <p class="lead">Chez <strong>R3D PRINT CI</strong>, nous combinons technologie, précision et créativité pour transformer vos idées en réalisations concrètes.</p>
 
   <div class="services-grid">
     <!-- IMPRESSION 3D -->
     <div class="service-card" onclick="openPopup(1)">
-      <img src="assets/impression3d.webp" alt="Impression 3D en action">
+      <img src="assets/impression3d.webp" alt="Impression 3D professionnelle">
       <h3>Impression 3D</h3>
-      <p>Production sur mesure avec différents matériaux, finitions professionnelles et précision exceptionnelle.</p>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/></svg>
+      <p>Fabrication de pièces sur mesure, prototypes fonctionnels et objets décoratifs avec finitions haut de gamme.</p>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
     </div>
 
     <!-- GRAVURE LASER -->
     <div class="service-card" onclick="openPopup(2)">
       <img src="assets/gravurelaser.webp" alt="Gravure laser de précision">
       <h3>Gravure laser</h3>
-      <p>Découpe et marquage précis sur bois, métal, acrylique, cuir ou bambou, pour un rendu durable et raffiné.</p>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M5 9h14M5 15h14"/></svg>
+      <p>Découpe et gravure sur bois, métal, cuir, bambou ou acrylique pour un rendu précis et professionnel.</p>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
     </div>
 
     <!-- PROTOTYPAGE -->
     <div class="service-card" onclick="openPopup(3)">
-      <img src="assets/prototypage.webp" alt="Prototypage et design 3D">
+      <img src="assets/prototypage.webp" alt="Prototypage 3D">
       <h3>Prototypage & Design</h3>
-      <p>De l'idée à la pièce finale : modélisation 3D, tests, ajustements et rendu esthétique.</p>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5-9 5 9-5 9z"/></svg>
+      <p>De l’idée au produit final : conception, test, ajustements et rendu visuel professionnel.</p>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
     </div>
   </div>
 </section>
@@ -135,7 +164,7 @@
   <div class="popup-content">
     <img src="assets/impression3d.webp" alt="Impression 3D">
     <h3>Impression 3D</h3>
-    <p>Notre service d’impression 3D permet la réalisation de pièces personnalisées en PLA, PETG, TPU ou résine. Grâce à nos imprimantes haute précision, nous assurons un rendu impeccable, idéal pour les prototypes, objets décoratifs ou pièces fonctionnelles.</p>
+    <p>Notre service d’impression 3D permet la production rapide de prototypes, de pièces fonctionnelles et d’objets décoratifs. Nous utilisons différents matériaux comme le PLA, le PETG, le TPU ou la résine, pour un résultat à la fois solide et esthétique.</p>
     <button class="close-btn" onclick="closePopup(1)">Fermer</button>
   </div>
 </div>
@@ -143,17 +172,17 @@
 <div class="popup" id="popup2">
   <div class="popup-content">
     <img src="assets/gravurelaser.webp" alt="Gravure laser">
-    <h3>Gravure Laser</h3>
-    <p>Nous proposons la gravure et découpe sur divers matériaux : bois, bambou, cuir, métal et acrylique. Avec notre technologie laser double module, la finesse de gravure est inégalée, adaptée aux projets décoratifs, signalétiques et professionnels.</p>
+    <h3>Gravure laser</h3>
+    <p>Nous maîtrisons la gravure et la découpe laser sur de nombreux matériaux : bois, cuir, acrylique, métal et bambou. Cette technique garantit un rendu net, précis et durable, parfait pour les trophées, plaques, signalétiques et objets personnalisés.</p>
     <button class="close-btn" onclick="closePopup(2)">Fermer</button>
   </div>
 </div>
 
 <div class="popup" id="popup3">
   <div class="popup-content">
-    <img src="assets/prototypage.webp" alt="Prototypage">
+    <img src="assets/prototypage.webp" alt="Prototypage 3D">
     <h3>Prototypage & Design</h3>
-    <p>Nous accompagnons la conception de vos produits de A à Z. Grâce à la modélisation 3D, au test de faisabilité et aux ajustements techniques, nous créons des prototypes précis et fonctionnels qui traduisent parfaitement vos idées.</p>
+    <p>Notre équipe conçoit vos modèles 3D et prototypes sur mesure avant production. Grâce à des outils de modélisation avancés, nous validons ensemble les formes, les textures et les ajustements pour un rendu réaliste et fonctionnel.</p>
     <button class="close-btn" onclick="closePopup(3)">Fermer</button>
   </div>
 </div>
@@ -166,5 +195,6 @@ function toggleMenu(){document.getElementById("navMenu").classList.toggle("show"
 function openPopup(n){document.getElementById("popup"+n).classList.add("show");}
 function closePopup(n){document.getElementById("popup"+n).classList.remove("show");}
 </script>
+
 </body>
 </html>
