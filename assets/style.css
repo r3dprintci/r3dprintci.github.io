@@ -8,12 +8,16 @@
   --text-dark: #1a1a1a;
   --panel: #ffffff;
   --radius: 16px;
+
+  /* 🎨 Palette complémentaire (mode sombre / premium) */
+  --dark-bg: #121212;
+  --dark-panel: #1e1e1e;
+  --dark-text: #e5e5e5;
+  --dark-muted: #999;
 }
 
 /* ===== BASE ===== */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -21,18 +25,13 @@ body {
   color: #222;
   overflow-x: hidden;
 }
-h1, h2, h3 {
-  margin: 0;
-}
+h1, h2, h3 { margin: 0; }
 h2 {
   background: linear-gradient(90deg, var(--gold), var(--gold-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-p {
-  line-height: 1.7;
-  color: #444;
-}
+p { line-height: 1.7; color: #444; }
 
 /* ===== HEADER ===== */
 header {
@@ -50,17 +49,9 @@ header {
   margin: auto;
   padding: 12px 20px;
 }
-.brand img {
-  height: 70px;
-  transition: transform .3s ease;
-}
-.brand img:hover {
-  transform: scale(1.05);
-}
-.nav {
-  display: flex;
-  gap: 18px;
-}
+.brand img { height: 70px; transition: transform .3s ease; }
+.brand img:hover { transform: scale(1.05); }
+.nav { display: flex; gap: 18px; }
 .nav .btn {
   text-decoration: none;
   font-weight: 600;
@@ -70,10 +61,7 @@ header {
   background: #f8f8f8;
   transition: all .3s ease;
 }
-.nav .btn:hover {
-  background: var(--gold);
-  color: #fff;
-}
+.nav .btn:hover { background: var(--gold); color: #fff; }
 .nav .gold {
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
   color: #fff;
@@ -96,28 +84,19 @@ header {
 
 /* ===== MENU MOBILE ===== */
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
+  .hamburger { display: flex; }
   .nav {
     display: none;
     flex-direction: column;
     background: #fff;
     position: absolute;
-    top: 80px;
-    right: 20px;
+    top: 80px; right: 20px;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
-  .nav.show {
-    display: flex;
-  }
-  .nav .btn {
-    margin-bottom: 8px;
-    width: 100%;
-    text-align: center;
-  }
+  .nav.show { display: flex; }
+  .nav .btn { margin-bottom: 8px; width: 100%; text-align: center; }
 }
 
 /* ===== HERO ===== */
@@ -132,10 +111,8 @@ header {
 .hero::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
   background: radial-gradient(circle at 30% 30%, rgba(201,180,125,0.15), transparent 70%);
   animation: float 10s ease-in-out infinite alternate;
   z-index: 0;
@@ -144,21 +121,14 @@ header {
   0% { transform: translate(-2%, -2%) scale(1); }
   100% { transform: translate(2%, 2%) scale(1.05); }
 }
-.hero h1, .hero p {
-  position: relative;
-  z-index: 1;
-}
+.hero h1, .hero p { position: relative; z-index: 1; }
 .hero h1 {
   font-size: 44px;
   background: linear-gradient(90deg, var(--gold), var(--gold-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.hero p {
-  color: #555;
-  font-size: 18px;
-  margin-top: 10px;
-}
+.hero p { color: #555; font-size: 18px; margin-top: 10px; }
 
 /* ===== BOUTONS ===== */
 .btn {
@@ -208,28 +178,20 @@ header {
   opacity: 0;
   transform: translateY(30px);
 }
-.service-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.service-card.visible { opacity: 1; transform: translateY(0); }
 .service-card img {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 20px;
   transition: transform .5s ease;
 }
-.service-card:hover img {
-  transform: scale(1.05);
-}
+.service-card:hover img { transform: scale(1.05); }
 .service-card h3 {
   color: var(--gold-dark);
   font-size: 22px;
   margin-bottom: 12px;
 }
-.service-card p {
-  font-size: 15px;
-  color: #444;
-}
+.service-card p { font-size: 15px; color: #444; }
 
 /* ===== GALERIE ===== */
 .gallery {
@@ -244,13 +206,9 @@ header {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: transform .4s ease, opacity .4s ease;
-  opacity: 0;
-  transform: scale(0.95);
+  opacity: 0; transform: scale(0.95);
 }
-.gallery img.visible {
-  opacity: 1;
-  transform: scale(1);
-}
+.gallery img.visible { opacity: 1; transform: scale(1); }
 .gallery img:hover {
   transform: scale(1.05);
   cursor: pointer;
@@ -326,10 +284,7 @@ form input:focus, form select:focus, form textarea:focus {
   outline: none;
   border-color: var(--gold-dark);
 }
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
+textarea { resize: vertical; min-height: 100px; }
 button {
   margin-top: 25px;
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
@@ -341,9 +296,7 @@ button {
   cursor: pointer;
   transition: transform .3s ease;
 }
-button:hover {
-  transform: translateY(-2px);
-}
+button:hover { transform: translateY(-2px); }
 
 /* ===== POINTS ===== */
 .points {
@@ -352,9 +305,7 @@ button:hover {
   color: #444;
   line-height: 1.8;
 }
-.points p {
-  margin: 8px 0;
-}
+.points p { margin: 8px 0; }
 .points p::before {
   content: "✔️ ";
   color: var(--gold-dark);
@@ -367,14 +318,8 @@ button:hover {
   padding: 60px 20px;
   text-align: center;
 }
-.cta h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-.cta p {
-  margin-bottom: 25px;
-  font-size: 17px;
-}
+.cta h2 { font-size: 26px; margin-bottom: 20px; }
+.cta p { margin-bottom: 25px; font-size: 17px; }
 .cta .btn {
   background: #fff;
   color: var(--gold-dark);
@@ -442,4 +387,33 @@ footer {
   display: none;
   margin: 8px 0 0;
   color: #555;
+}
+
+/* ===============================
+   🖤 MODE SOMBRE OPTIONNEL
+   =============================== */
+.dark-section {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  padding: 80px 20px;
+}
+.dark-section h2 {
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dark-section p {
+  color: var(--dark-muted);
+}
+.dark-card {
+  background: var(--dark-panel);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 30px;
+  color: var(--dark-text);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.dark-card:hover {
+  transform: translateY(-3px);
+  transition: 0.3s;
 }
