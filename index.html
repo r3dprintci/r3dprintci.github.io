@@ -5,178 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>R3D PRINT CI — L’art de donner vie à vos idées</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
-
-<style>
-:root {
-  --gold: #c9b47d;
-  --gold-dark: #9b864a;
-  --text-dark: #1a1a1a;
-  --panel: #ffffff;
-  --radius: 16px;
-}
-
-/* BASE */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: #fafafa;
-  color: #222;
-  overflow-x: hidden;
-}
-
-/* HEADER */
-header {
-  position: fixed; top: 0; left: 0; right: 0;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  z-index: 1000;
-}
-.bar {
-  display: flex; justify-content: space-between; align-items: center;
-  max-width: 1150px; margin: auto; padding: 12px 20px;
-}
-.brand img { height: 70px; transition: transform .3s ease; }
-.brand img:hover { transform: scale(1.05); }
-.nav { display: flex; gap: 18px; }
-.nav .btn {
-  text-decoration: none; font-weight: 600;
-  color: #333; padding: 10px 20px;
-  border-radius: 999px; background: #f8f8f8;
-  transition: all .3s ease;
-}
-.nav .btn:hover { background: var(--gold); color: #fff; }
-.nav .gold {
-  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
-  color: #fff;
-}
-
-/* HAMBURGER */
-.hamburger {
-  display: none; flex-direction: column;
-  cursor: pointer; gap: 4px; z-index: 1001;
-}
-.hamburger span {
-  width: 25px; height: 3px; background: #333; border-radius: 2px;
-}
-
-/* MENU MOBILE */
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .nav {
-    display: none; flex-direction: column;
-    background: #fff; position: absolute;
-    top: 80px; right: 20px; padding: 15px;
-    border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  .nav.show { display: flex; }
-  .nav .btn { margin-bottom: 8px; width: 100%; text-align: center; }
-}
-
-/* HERO */
-.hero {
-  position: relative; text-align: center;
-  margin-top: 120px; padding: 150px 20px 120px;
-  background: radial-gradient(circle at 50% 30%, #fff, #f4f4f4);
-  overflow: hidden;
-}
-.hero::before {
-  content: "";
-  position: absolute; top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,215,120,0.15), transparent 70%);
-  animation: wave 12s ease-in-out infinite alternate;
-  z-index: 0;
-}
-@keyframes wave { 0% {transform:translate(-5%,-5%)scale(1);} 100% {transform:translate(5%,5%)scale(1.1);} }
-.hero h1 { position: relative; font-size: 44px; color: var(--text-dark); z-index: 1; }
-.hero p { position: relative; color: #555; font-size: 18px; margin-bottom: 40px; z-index: 1; }
-.btn {
-  display: inline-block; text-decoration: none; font-weight: 600;
-  padding: 12px 26px; border-radius: 999px; transition: all .3s ease;
-}
-.btn.gold {
-  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
-  color: #fff; border: 1px solid var(--gold-dark);
-  box-shadow: 0 3px 10px rgba(201,180,125,0.3);
-}
-.btn.gold:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,180,125,0.4); }
-
-/* SECTIONS */
-.section { max-width: 1150px; margin: auto; padding: 80px 20px; text-align: center; }
-.section h2 { font-size: 30px; color: var(--text-dark); margin-bottom: 40px; }
-
-/* Présentation */
-.presentation p { max-width: 800px; margin: auto; line-height: 1.7; color: #444; }
-
-/* Savoir-faire */
-.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.service-card {
-  background: var(--panel); border-radius: var(--radius);
-  padding: 40px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-  transition: all .3s ease;
-}
-.service-card:hover { transform: scale(1.03); }
-.service-card img { height: 100px; margin-bottom: 20px; }
-.service-card h3 { color: var(--gold-dark); margin-bottom: 10px; }
-
-/* Galerie */
-.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 40px; }
-.gallery img {
-  width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform .3s ease; cursor: pointer;
-}
-.gallery img:hover { transform: scale(1.03); }
-
-/* Lightbox */
-.lightbox {
-  display: none; position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%; background: rgba(0,0,0,0.85);
-  justify-content: center; align-items: center; z-index: 2000;
-}
-.lightbox img {
-  max-width: 90%; max-height: 80%; border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
-}
-.lightbox button {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  background: rgba(255,255,255,0.2); border: none; color: white;
-  font-size: 30px; padding: 10px; cursor: pointer;
-}
-.lightbox .prev { left: 20px; }
-.lightbox .next { right: 20px; }
-.lightbox .close { top: 20px; right: 30px; font-size: 36px; transform: none; }
-
-/* FAQ */
-.faq {
-  max-width: 800px; margin: auto; text-align: left;
-}
-.faq-item {
-  margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;
-}
-.faq-item h4 {
-  margin: 0; color: var(--gold-dark); cursor: pointer; font-size: 18px;
-}
-.faq-item p {
-  display: none; margin: 8px 0 0; color: #555;
-}
-
-/* Avis */
-.testimonials {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
-}
-.testimonial {
-  background: var(--panel); border-radius: 16px;
-  padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  text-align: left;
-}
-.testimonial p { font-style: italic; color: #444; line-height: 1.6; }
-
-/* Footer */
-footer {
-  background: #111; color: #ccc; text-align: center;
-  padding: 30px 0; margin-top: 40px; font-size: 14px;
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
+<meta name="description" content="R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan. Donnez vie à vos idées avec précision et créativité.">
 </head>
 
 <body>
@@ -186,30 +16,28 @@ footer {
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
-      <a href="index.html" class="btn">Accueil</a>
+      <a href="index.html" class="btn gold">Accueil</a>
       <a href="services.html" class="btn">Services</a>
       <a href="realisations.html" class="btn">Réalisations</a>
-      <a href="devis.html" class="btn gold">Demander un devis rapide</a>
+      <a href="devis.html" class="btn">Demander un devis rapide</a>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero" style="position: relative; z-index: 1;">
+<section class="hero">
   <h1>L’art de donner vie à vos idées</h1>
   <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
-  <a href="devis.html" class="btn gold" style="position: relative; z-index: 10; pointer-events: auto; cursor: pointer;">💬 Demander un devis rapide</a>
+  <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
 </section>
 
-
-
-<!-- Présentation -->
+<!-- PRÉSENTATION -->
 <section class="section presentation">
   <h2>Qui sommes-nous ?</h2>
   <p>Basée à Abidjan, <strong>R3D PRINT CI</strong> transforme vos concepts en réalité grâce à l’impression 3D, la gravure laser et le prototypage sur mesure.</p>
 </section>
 
-<!-- Savoir-faire -->
+<!-- SAVOIR-FAIRE -->
 <section class="section">
   <h2>Notre savoir-faire</h2>
   <div class="services">
@@ -219,24 +47,16 @@ footer {
   </div>
 </section>
 
-<!-- Réalisations -->
+<!-- RÉALISATIONS -->
 <section class="section">
   <h2>Nos réalisations</h2>
   <div class="gallery" id="gallery">
-    <img src="assets/shot1.jpg" alt="Réalisation 1">
-    <img src="assets/shot2.jpg" alt="Réalisation 2">
-    <img src="assets/shot3.jpg" alt="Réalisation 3">
-    <img src="assets/shot4.jpg" alt="Réalisation 4">
+    <img src="assets/shot1.jpg" alt="Trophée imprimé en 3D">
+    <img src="assets/shot2.jpg" alt="Gravure laser sur métal">
+    <img src="assets/shot3.jpg" alt="Prototype technique">
+    <img src="assets/shot4.jpg" alt="Objet décoratif 3D">
   </div>
 </section>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="close" onclick="closeLightbox()">&times;</button>
-  <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-  <img id="lightboxImg" src="">
-  <button class="next" onclick="changeImage(1)">&#10095;</button>
-</div>
 
 <!-- FAQ -->
 <section class="section">
@@ -249,16 +69,6 @@ footer {
   </div>
 </section>
 
-<!-- Avis -->
-<section class="section">
-  <h2>Ils nous font confiance</h2>
-  <div class="testimonials">
-    <div class="testimonial"><p>“Un travail d’une précision incroyable ! Les finitions sont parfaites.”</p></div>
-    <div class="testimonial"><p>“Service rapide, communication claire et rendu impeccable.”</p></div>
-    <div class="testimonial"><p>“R3D a su transformer nos idées en maquettes fonctionnelles et esthétiques.”</p></div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="section">
   <h2>Prêt à concrétiser votre projet ?</h2>
@@ -267,46 +77,6 @@ footer {
 
 <footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
 
-<script>
-function toggleMenu(){document.getElementById('navMenu').classList.toggle('show');}
-document.getElementById("year").textContent=new Date().getFullYear();
-
-/* FAQ */
-document.querySelectorAll(".faq-item h4").forEach(q=>{
-  q.addEventListener("click",()=>{let p=q.nextElementSibling;p.style.display=p.style.display==="block"?"none":"block";});
-});
-
-/* Lightbox */
-const gallery=document.querySelectorAll("#gallery img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightboxImg");
-let current=0;
-gallery.forEach((img,i)=>{
-  img.onclick=()=>{lightbox.style.display="flex";lightboxImg.src=img.src;current=i;}
-});
-function closeLightbox(){lightbox.style.display="none";}
-function changeImage(dir){
-  current=(current+dir+gallery.length)%gallery.length;
-  lightboxImg.src=gallery[current].src;
-}
-document.addEventListener("keydown",e=>{
-  if(lightbox.style.display==="flex"){
-    if(e.key==="ArrowLeft")changeImage(-1);
-    if(e.key==="ArrowRight")changeImage(1);
-    if(e.key==="Escape")closeLightbox();
-  }
-});
-/* Swipe mobile */
-let startX=0;
-lightbox.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
-lightbox.addEventListener("touchend",e=>{
-  let endX=e.changedTouches[0].clientX;
-  if(endX-startX>50)changeImage(-1);
-  else if(startX-endX>50)changeImage(1);
-});
-</script>
-
+<script src="assets/main.js"></script>
 </body>
 </html>
-
-
