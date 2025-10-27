@@ -6,7 +6,6 @@
 <title>R3D PRINT CI — L’art de donner vie à vos idées</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
-<meta name="description" content="R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan. Donnez vie à vos idées avec précision et créativité.">
 </head>
 
 <body>
@@ -25,54 +24,87 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero reveal">
   <h1>L’art de donner vie à vos idées</h1>
   <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
   <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
 </section>
 
 <!-- PRÉSENTATION -->
-<section class="section presentation">
+<section class="section presentation reveal">
   <h2>Qui sommes-nous ?</h2>
   <p>Basée à Abidjan, <strong>R3D PRINT CI</strong> transforme vos concepts en réalité grâce à l’impression 3D, la gravure laser et le prototypage sur mesure.</p>
 </section>
 
 <!-- SAVOIR-FAIRE -->
-<section class="section">
+<section class="section reveal">
   <h2>Notre savoir-faire</h2>
   <div class="services">
-    <div class="service-card"><img src="assets/impression3d.webp" alt="Impression 3D"><h3>Impression 3D</h3><p>Prototypes, trophées, pièces techniques ou objets décoratifs.</p></div>
-    <div class="service-card"><img src="assets/gravurelaser.webp" alt="Gravure laser"><h3>Gravure Laser</h3><p>Personnalisation de matériaux nobles : métal, bois, cuir, verre, etc.</p></div>
-    <div class="service-card"><img src="assets/prototypage.webp" alt="Prototypage"><h3>Prototypage & Design</h3><p>De l’idée au modèle : conception 3D, simulation et test avant production.</p></div>
+    <div class="service-card reveal">
+      <img src="assets/impression3d.webp" alt="Impression 3D">
+      <h3>Impression 3D</h3>
+      <p>Prototypes, trophées, pièces techniques ou objets décoratifs.</p>
+    </div>
+    <div class="service-card reveal">
+      <img src="assets/gravurelaser.webp" alt="Gravure Laser">
+      <h3>Gravure Laser</h3>
+      <p>Personnalisation de matériaux nobles : métal, bois, cuir, verre, etc.</p>
+    </div>
+    <div class="service-card reveal">
+      <img src="assets/prototypage.webp" alt="Prototypage">
+      <h3>Prototypage & Design</h3>
+      <p>De l’idée au modèle : conception 3D, simulation et test avant production.</p>
+    </div>
   </div>
 </section>
 
-<!-- RÉALISATIONS -->
-<section class="section">
+<!-- GALERIE -->
+<section class="section reveal">
   <h2>Nos réalisations</h2>
   <div class="gallery" id="gallery">
-    <img src="assets/shot1.jpg" alt="Trophée imprimé en 3D">
-    <img src="assets/shot2.jpg" alt="Gravure laser sur métal">
-    <img src="assets/shot3.jpg" alt="Prototype technique">
-    <img src="assets/shot4.jpg" alt="Objet décoratif 3D">
+    <img src="assets/shot1.jpg" alt="Réalisation 1">
+    <img src="assets/shot2.jpg" alt="Réalisation 2">
+    <img src="assets/shot3.jpg" alt="Réalisation 3">
+    <img src="assets/shot4.jpg" alt="Réalisation 4">
   </div>
 </section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="close" onclick="closeLightbox()">&times;</button>
+  <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+  <img id="lightboxImg" src="">
+  <button class="next" onclick="changeImage(1)">&#10095;</button>
+</div>
+
 <!-- FAQ -->
-<section class="section">
+<section class="section reveal">
   <h2>FAQ — Foire aux questions</h2>
   <div class="faq" id="faq">
-    <div class="faq-item"><h4>Quels matériaux utilisez-vous ?</h4><p>Nous travaillons avec du PLA, PETG, résine, acrylique, bois, métal, et plus encore selon le besoin.</p></div>
-    <div class="faq-item"><h4>Proposez-vous la livraison ?</h4><p>Oui, nous livrons dans tout Abidjan et dans plusieurs villes de Côte d’Ivoire.</p></div>
-    <div class="faq-item"><h4>Peut-on envoyer ses propres fichiers 3D ?</h4><p>Oui, vous pouvez nous transmettre vos fichiers STL, OBJ ou STEP directement via WhatsApp ou email.</p></div>
-    <div class="faq-item"><h4>Quel est le délai de fabrication moyen ?</h4><p>En général, entre 24h et 5 jours selon la complexité et la quantité.</p></div>
+    <div class="faq-item">
+      <h4>Quels matériaux utilisez-vous ?</h4>
+      <p>PLA, PETG, résine, acrylique, bois, métal, et plus selon le besoin.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Proposez-vous la livraison ?</h4>
+      <p>Oui, nous livrons dans tout Abidjan et dans plusieurs villes de Côte d’Ivoire.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Peut-on envoyer ses propres fichiers 3D ?</h4>
+      <p>Oui, via WhatsApp ou e-mail : STL, OBJ ou STEP.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Quel est le délai moyen ?</h4>
+      <p>Entre 24h et 5 jours selon la complexité et la quantité.</p>
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="section">
+<section class="cta reveal">
   <h2>Prêt à concrétiser votre projet ?</h2>
-  <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+  <p>Contactez-nous dès maintenant pour un devis rapide et personnalisé.</p>
+  <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
 </section>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
