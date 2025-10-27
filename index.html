@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* --- VARIABLES --- */
+/* === VARIABLES === */
 :root {
   --gold: #c9b47d;
   --gold-dark: #9b864a;
@@ -18,16 +18,16 @@
   --radius: 16px;
 }
 
-/* --- BASE --- */
+/* === BASE === */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: #f8f8f8;
+  background: #f9f9f9;
   color: #222;
   overflow-x: hidden;
 }
 
-/* --- EN-TÊTE --- */
+/* === EN-TÊTE === */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -39,12 +39,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
   padding: 12px 20px;
 }
 .brand img {
-  height: 60px;
+  height: 70px;
   transition: transform .3s ease;
 }
 .brand img:hover {
@@ -52,14 +52,16 @@ header {
 }
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 .nav .btn {
   text-decoration: none;
   font-weight: 600;
   color: #333;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
+  border: 1px solid transparent;
+  background: #f8f8f8;
   transition: all .3s ease;
 }
 .nav .btn:hover {
@@ -69,29 +71,20 @@ header {
 .nav .gold {
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
   color: #fff;
+  border: none;
 }
 
-/* --- BOUTON PULSE --- */
-.pulse {
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(201,180,125,0.4); }
-  70% { box-shadow: 0 0 0 12px rgba(201,180,125,0); }
-  100% { box-shadow: 0 0 0 0 rgba(201,180,125,0); }
-}
-
-/* --- SECTION HÉRO --- */
+/* === HERO === */
 .hero {
   position: relative;
-  margin-top: 120px;
   text-align: center;
-  padding: 130px 20px 100px;
-  background: radial-gradient(circle at 50% 20%, #fff, #f5f5f5 70%);
+  margin-top: 120px;
+  padding: 140px 20px 100px;
   overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, #fff, #f2f2f2);
 }
 
-/* Effet de lumière dorée animée */
+/* Effet lumière fluide */
 .hero::before {
   content: "";
   position: absolute;
@@ -99,22 +92,21 @@ header {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,215,120,0.18) 0%, rgba(255,255,255,0) 70%);
-  animation: moveLight 8s linear infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(255,215,120,0.18), transparent 70%);
+  animation: wave 12s ease-in-out infinite alternate;
   z-index: 0;
 }
-@keyframes moveLight {
-  0% { transform: translate(0,0) rotate(0deg); }
-  50% { transform: translate(10%,10%) rotate(180deg); }
-  100% { transform: translate(0,0) rotate(360deg); }
+@keyframes wave {
+  0% { transform: translate(-5%, -5%) scale(1); }
+  100% { transform: translate(5%, 5%) scale(1.1); }
 }
 
 .hero h1 {
   position: relative;
   font-size: 44px;
-  margin-bottom: 12px;
-  font-weight: 700;
   color: var(--text-dark);
+  margin-bottom: 10px;
+  font-weight: 700;
   z-index: 1;
 }
 .hero p {
@@ -124,16 +116,38 @@ header {
   margin-bottom: 40px;
   z-index: 1;
 }
-.hero .btn {
-  position: relative;
-  font-size: 18px;
-  padding: 14px 28px;
-  z-index: 1;
+
+/* === BOUTONS === */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 26px;
+  border-radius: 999px;
+  transition: all .3s ease;
+}
+.btn.gold {
+  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
+  color: #fff;
+  border: 1px solid var(--gold-dark);
+  box-shadow: 0 3px 10px rgba(201,180,125,0.3);
+}
+.btn.gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(201,180,125,0.4);
+}
+.pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201,180,125,0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(201,180,125,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,180,125,0); }
 }
 
-/* --- SECTION SAVOIR-FAIRE --- */
+/* === SAVOIR-FAIRE === */
 .section {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
   padding: 80px 20px;
   text-align: center;
@@ -157,18 +171,35 @@ header {
 }
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 .service-card img {
   height: 100px;
   margin-bottom: 20px;
 }
 .service-card h3 {
-  margin-bottom: 10px;
   color: var(--gold-dark);
+  margin-bottom: 10px;
 }
 
-/* --- PIED DE PAGE --- */
+/* === GALERIE === */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 40px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform .3s ease;
+}
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* === FOOTER === */
 footer {
   background: #111;
   color: #ccc;
@@ -178,13 +209,13 @@ footer {
   font-size: 14px;
 }
 
-/* --- RESPONSIVE --- */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .hero h1 { font-size: 32px; }
   .bar { flex-direction: column; }
   .nav { flex-wrap: wrap; justify-content: center; }
   .nav .btn { margin-bottom: 6px; }
-  .brand img { height: 70px; }
+  .brand img { height: 80px; }
 }
 </style>
 </head>
@@ -202,12 +233,14 @@ footer {
   </div>
 </header>
 
+<!-- === HERO === -->
 <section class="hero">
   <h1>L’art de donner vie à vos idées</h1>
   <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
   <a href="devis.html" class="btn gold pulse">💬 Demander un devis rapide</a>
 </section>
 
+<!-- === SAVOIR FAIRE === -->
 <section class="section">
   <h2>Notre savoir-faire</h2>
   <div class="services">
@@ -226,6 +259,17 @@ footer {
       <h3>Prototypage & Design</h3>
       <p>Conception et modélisation 3D de vos projets avec visualisation réaliste et ajustements rapides.</p>
     </div>
+  </div>
+</section>
+
+<!-- === GALERIE / RÉALISATIONS === -->
+<section class="section">
+  <h2>Nos réalisations</h2>
+  <div class="gallery">
+    <img src="assets/shot1.jpg" alt="Réalisation 1">
+    <img src="assets/shot2.jpg" alt="Réalisation 2">
+    <img src="assets/shot3.jpg" alt="Réalisation 3">
+    <img src="assets/shot4.jpg" alt="Réalisation 4">
   </div>
 </section>
 
