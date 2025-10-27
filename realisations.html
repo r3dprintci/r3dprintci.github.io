@@ -25,28 +25,26 @@
 </header>
 
 <!-- HERO -->
-<section class="hero reveal">
+<section class="hero">
   <h1>Nos réalisations</h1>
-  <p>Découvrez les créations signées R3D PRINT CI : innovation, précision et savoir-faire.</p>
+  <p>Découvrez les créations signées <strong>R3D PRINT CI</strong> : innovation, précision et savoir-faire.</p>
 </section>
 
 <!-- FILTRE -->
-<div class="filter reveal">
-  <button class="active" onclick="filterGallery('all')">Tout</button>
-  <button onclick="filterGallery('impression')">Impression 3D</button>
-  <button onclick="filterGallery('gravure')">Gravure Laser</button>
-  <button onclick="filterGallery('prototypage')">Prototypage</button>
+<div class="filter">
+  <button class="active" onclick="filterGallery('all', event)">Tout</button>
+  <button onclick="filterGallery('impression', event)">Impression 3D</button>
+  <button onclick="filterGallery('gravure', event)">Gravure Laser</button>
+  <button onclick="filterGallery('prototypage', event)">Prototypage</button>
 </div>
 
 <!-- GALERIE -->
-<section class="section reveal">
-  <div class="gallery" id="gallery">
-    <img src="assets/shot1.jpg" alt="Impression 3D — Trophée sur mesure" class="impression">
-    <img src="assets/shot2.jpg" alt="Gravure laser — Plaque métal" class="gravure">
-    <img src="assets/shot3.jpg" alt="Prototypage — Maquette technique" class="prototypage">
-    <img src="assets/shot4.jpg" alt="Impression 3D — Décoration" class="impression">
-  </div>
-</section>
+<div class="gallery" id="gallery">
+  <img src="assets/shot1.jpg" alt="Impression 3D" class="impression">
+  <img src="assets/shot2.jpg" alt="Gravure laser" class="gravure">
+  <img src="assets/shot3.jpg" alt="Prototypage" class="prototypage">
+  <img src="assets/shot4.jpg" alt="Impression 3D" class="impression">
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -56,25 +54,26 @@
   <button class="next" onclick="changeImage(1)">&#10095;</button>
 </div>
 
-<!-- SECTION SOMBRE -->
-<section class="dark-section reveal">
-  <h2>Un savoir-faire reconnu</h2>
-  <div class="dark-card">
-    <p>✔️ Plus de 500 projets réalisés pour entreprises, particuliers et événements.</p>
-    <p>✔️ Finitions haut de gamme, durabilité et précision technique.</p>
-    <p>✔️ Collaboration avec clubs sportifs, restaurants et startups locales.</p>
-  </div>
-</section>
-
 <!-- CTA -->
-<section class="cta reveal">
+<section class="cta">
   <h2>Envie de concrétiser votre idée ?</h2>
-  <p>Nous transformons vos croquis, concepts ou modèles en réalisations réelles.</p>
   <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
 </section>
 
 <footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
 
 <script src="assets/main.js?v=1.1"></script>
+<script>
+// FILTRE GALERIE
+function filterGallery(category, event){
+  const imgs=document.querySelectorAll('.gallery img');
+  document.querySelectorAll('.filter button').forEach(btn=>btn.classList.remove('active'));
+  event.target.classList.add('active');
+  imgs.forEach(img=>{
+    if(category==='all'||img.classList.contains(category)){img.style.display='block';}
+    else{img.style.display='none';}
+  });
+}
+</script>
 </body>
 </html>
