@@ -6,13 +6,14 @@
 <title>Nos Réalisations — R3D PRINT CI</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
 
+<meta name="description" content="Découvrez les réalisations de R3D PRINT CI : impression 3D, gravure laser, prototypage et design sur mesure à Abidjan.">
+
 <style>
 :root {
   --gold: #c9b47d;
   --gold-dark: #9b864a;
   --text-dark: #1a1a1a;
   --panel: #ffffff;
-  --radius: 16px;
 }
 
 /* BASE */
@@ -51,40 +52,48 @@ header {
 }
 
 /* HAMBURGER */
-.hamburger {
-  display: none; flex-direction: column;
-  cursor: pointer; gap: 4px; z-index: 1001;
-}
-.hamburger span {
-  width: 25px; height: 3px; background: #333; border-radius: 2px;
-}
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; z-index: 1001; }
+.hamburger span { width: 25px; height: 3px; background: #333; border-radius: 2px; }
 
-/* MENU MOBILE */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
-  .nav {
-    display: none; flex-direction: column;
-    background: #fff; position: absolute;
-    top: 80px; right: 20px; padding: 15px;
-    border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
+  .nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 80px; right: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
   .nav.show { display: flex; }
   .nav .btn { margin-bottom: 8px; width: 100%; text-align: center; }
 }
 
 /* HERO */
 .hero {
-  text-align: center; margin-top: 120px;
-  padding: 100px 20px 60px;
-  background: linear-gradient(180deg, #fff, #f7f7f7);
+  text-align: center;
+  margin-top: 120px;
+  padding: 100px 20px 80px;
+  background: radial-gradient(circle at 50% 20%, #fff, #f4f4f4);
+  position: relative;
+  overflow: hidden;
 }
-.hero h1 { font-size: 42px; color: var(--text-dark); margin-bottom: 10px; }
+.hero::before {
+  content: "";
+  position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(201,180,125,0.15), transparent 70%);
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes float { 0% {transform:translate(-2%,-2%)scale(1);} 100% {transform:translate(2%,2%)scale(1.05);} }
+.hero h1, .hero p { position: relative; z-index: 1; }
+.hero h1 {
+  font-size: 42px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
 .hero p { color: #555; font-size: 18px; }
 
 /* FILTRE */
 .filter {
   display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
-  margin: 40px auto 20px;
+  margin: 40px auto 30px;
 }
 .filter button {
   background: #fff; border: 1px solid var(--gold);
@@ -99,33 +108,46 @@ header {
 /* GALERIE */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
   max-width: 1100px;
   margin: auto;
+  padding: 20px;
 }
 .gallery img {
-  width: 100%;
-  border-radius: 12px;
+  width: 100%; border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform .3s ease;
+  transition: transform .4s ease, opacity .4s ease;
   cursor: pointer;
+  opacity: 0; transform: scale(0.95);
 }
-.gallery img:hover { transform: scale(1.03); }
+.gallery img.visible {
+  opacity: 1; transform: scale(1);
+}
+.gallery img:hover { transform: scale(1.05); }
 
 /* LIGHTBOX */
 .lightbox {
   display: none; position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%; background: rgba(0,0,0,0.85);
-  justify-content: center; align-items: center; z-index: 2000;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center; align-items: center;
+  flex-direction: column;
+  z-index: 2000;
 }
 .lightbox img {
-  max-width: 90%; max-height: 80%; border-radius: 10px;
+  max-width: 90%; max-height: 75%;
+  border-radius: 12px;
   box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+.lightbox p {
+  color: #fff; margin-top: 15px; font-size: 18px;
+  font-style: italic;
 }
 .lightbox button {
   position: absolute; top: 50%; transform: translateY(-50%);
-  background: rgba(255,255,255,0.2); border: none; color: white;
+  background: rgba(255,255,255,0.2);
+  border: none; color: white;
   font-size: 30px; padding: 10px; cursor: pointer;
 }
 .lightbox .prev { left: 20px; }
@@ -138,13 +160,17 @@ header {
   color: #fff; text-align: center; padding: 60px 20px; margin-top: 80px;
 }
 .cta h2 { font-size: 26px; margin-bottom: 20px; }
+.cta p { margin-bottom: 25px; font-size: 17px; }
 .cta .btn {
   background: #fff; color: var(--gold-dark);
   font-weight: 600; padding: 14px 28px;
   border-radius: 999px; text-decoration: none;
   transition: all .3s ease;
 }
-.cta .btn:hover { background: #f0f0f0; }
+.cta .btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
 
 /* FOOTER */
 footer {
@@ -172,7 +198,7 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <h1>Nos réalisations</h1>
-  <p>Découvrez les créations signées R3D PRINT CI : innovation, précision et savoir-faire.</p>
+  <p>Découvrez les créations signées R3D PRINT CI — innovation, précision et savoir-faire local.</p>
 </section>
 
 <!-- FILTRE -->
@@ -185,10 +211,10 @@ footer {
 
 <!-- GALERIE -->
 <div class="gallery" id="gallery">
-  <img src="assets/shot1.jpg" alt="Impression 3D" class="impression">
-  <img src="assets/shot2.jpg" alt="Gravure laser" class="gravure">
-  <img src="assets/shot3.jpg" alt="Prototypage" class="prototypage">
-  <img src="assets/shot4.jpg" alt="Impression 3D" class="impression">
+  <img src="assets/shot1.jpg" alt="Impression 3D - Trophée sur mesure" class="impression">
+  <img src="assets/shot2.jpg" alt="Gravure laser - Plaque personnalisée" class="gravure">
+  <img src="assets/shot3.jpg" alt="Prototypage - Maquette de produit" class="prototypage">
+  <img src="assets/shot4.jpg" alt="Impression 3D - Pièce technique" class="impression">
 </div>
 
 <!-- LIGHTBOX -->
@@ -196,12 +222,14 @@ footer {
   <button class="close" onclick="closeLightbox()">&times;</button>
   <button class="prev" onclick="changeImage(-1)">&#10094;</button>
   <img id="lightboxImg" src="">
+  <p id="caption"></p>
   <button class="next" onclick="changeImage(1)">&#10095;</button>
 </div>
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Envie de concrétiser votre idée ?</h2>
+  <h2>Vous aimez nos réalisations ?</h2>
+  <p>Contactez-nous dès aujourd’hui pour transformer vos idées en projets concrets.</p>
   <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
 </section>
 
@@ -213,14 +241,34 @@ footer {
 function toggleMenu(){document.getElementById('navMenu').classList.toggle('show');}
 document.getElementById("year").textContent = new Date().getFullYear();
 
+/* APPARITION DES IMAGES AU SCROLL */
+document.addEventListener("scroll",()=>{
+  document.querySelectorAll(".gallery img").forEach(img=>{
+    const rect=img.getBoundingClientRect();
+    if(rect.top<window.innerHeight-100) img.classList.add("visible");
+  });
+});
+
 /* LIGHTBOX */
 const gallery=document.querySelectorAll("#gallery img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightboxImg");
+const caption=document.getElementById("caption");
 let current=0;
-gallery.forEach((img,i)=>{img.onclick=()=>{lightbox.style.display="flex";lightboxImg.src=img.src;current=i;}});
+gallery.forEach((img,i)=>{
+  img.onclick=()=>{
+    lightbox.style.display="flex";
+    lightboxImg.src=img.src;
+    caption.textContent=img.alt;
+    current=i;
+  };
+});
 function closeLightbox(){lightbox.style.display="none";}
-function changeImage(dir){current=(current+dir+gallery.length)%gallery.length;lightboxImg.src=gallery[current].src;}
+function changeImage(dir){
+  current=(current+dir+gallery.length)%gallery.length;
+  lightboxImg.src=gallery[current].src;
+  caption.textContent=gallery[current].alt;
+}
 document.addEventListener("keydown",e=>{
   if(lightbox.style.display==="flex"){
     if(e.key==="ArrowLeft")changeImage(-1);
