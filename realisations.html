@@ -6,10 +6,10 @@
 <title>Nos Réalisations — R3D PRINT CI</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
-<meta name="description" content="Découvrez les réalisations de R3D PRINT CI : impression 3D, gravure laser, prototypage et design sur mesure à Abidjan.">
 </head>
 
 <body>
+
 <header>
   <div class="bar">
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
@@ -23,40 +23,58 @@
   </div>
 </header>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero reveal">
   <h1>Nos réalisations</h1>
-  <p>Découvrez les créations signées R3D PRINT CI — innovation, précision et savoir-faire local.</p>
+  <p>Découvrez les créations signées R3D PRINT CI : innovation, précision et savoir-faire local.</p>
 </section>
 
-<div class="filter">
+<!-- FILTRE -->
+<div class="filter reveal">
   <button class="active" onclick="filterGallery('all')">Tout</button>
   <button onclick="filterGallery('impression')">Impression 3D</button>
   <button onclick="filterGallery('gravure')">Gravure Laser</button>
   <button onclick="filterGallery('prototypage')">Prototypage</button>
 </div>
 
-<div class="gallery" id="gallery">
-  <img src="assets/shot1.jpg" alt="Trophée imprimé en 3D" class="impression">
-  <img src="assets/shot2.jpg" alt="Plaque gravée au laser" class="gravure">
-  <img src="assets/shot3.jpg" alt="Prototype de produit" class="prototypage">
-  <img src="assets/shot4.jpg" alt="Pièce technique imprimée" class="impression">
-</div>
+<!-- GALERIE -->
+<section class="section reveal">
+  <div class="gallery" id="gallery">
+    <img src="assets/shot1.jpg" alt="Trophée sur mesure - Impression 3D" class="impression">
+    <img src="assets/shot2.jpg" alt="Plaque gravée sur métal - Gravure laser" class="gravure">
+    <img src="assets/shot3.jpg" alt="Prototype technique - Prototypage" class="prototypage">
+    <img src="assets/shot4.jpg" alt="Décoration 3D personnalisée" class="impression">
+  </div>
+</section>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="close" onclick="closeLightbox()">&times;</button>
   <button class="prev" onclick="changeImage(-1)">&#10094;</button>
   <img id="lightboxImg" src="">
-  <p id="caption"></p>
   <button class="next" onclick="changeImage(1)">&#10095;</button>
 </div>
 
-<section class="cta">
-  <h2>Vous aimez nos réalisations ?</h2>
-  <p>Contactez-nous dès aujourd’hui pour transformer vos idées en projets concrets.</p>
+<!-- SECTION SOMBRE (mise en avant) -->
+<section class="dark-section reveal">
+  <h2>Un savoir-faire reconnu</h2>
+  <div class="dark-card">
+    <p>✔️ Plus de 500 projets réalisés pour entreprises, particuliers et événements.</p>
+    <p>✔️ Finitions haut de gamme, durabilité et précision technique.</p>
+    <p>✔️ Collaboration étroite avec les clubs sportifs, restaurants et startups locales.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta reveal">
+  <h2>Envie de concrétiser votre idée ?</h2>
+  <p>Nous transformons vos croquis, concepts ou modèles en réalisations réelles.</p>
   <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
 </section>
 
-<footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
+<footer>
+  © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+</footer>
 
 <script src="assets/main.js"></script>
 </body>
