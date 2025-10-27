@@ -1,1 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Contact — R3D PRINT CI</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="assets/style.css?v=1.1">
+</head>
+
+<body>
+
+<header>
+  <div class="bar">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav class="nav" id="navMenu">
+      <a href="index.html" class="btn">Accueil</a>
+      <a href="services.html" class="btn">Services</a>
+      <a href="realisations.html" class="btn">Réalisations</a>
+      <a href="devis.html" class="btn">Devis</a>
+      <a href="contact.html" class="btn gold">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero reveal">
+  <h1>Contact</h1>
+  <p>Besoin d’un renseignement, d’un devis ou d’un accompagnement ?<br>Contactez R3D PRINT CI dès maintenant.</p>
+</section>
+
+<!-- SECTION CONTACT -->
+<section class="section reveal">
+  <h2>Nos coordonnées</h2>
+  <p>📍 <strong>Abidjan, Côte d’Ivoire</strong></p>
+  <p>📞 <a href="tel:+2250757841323" style="color:#c9b47d;">+225 07 57 84 13 23</a></p>
+  <p>💬 <a href="https://wa.me/2250757841323" target="_blank" style="color:#c9b47d;">WhatsApp Direct</a></p>
+  <p>✉️ <a href="mailto:r3dprint.ci@gmail.com" style="color:#c9b47d;">r3dprint.ci@gmail.com</a></p>
+</section>
+
+<!-- FORMULAIRE DE CONTACT -->
+<section class="section reveal">
+  <h2>Envoyez-nous un message</h2>
+  <form id="contactForm">
+    <label>Nom complet</label>
+    <input type="text" id="nom" required>
+
+    <label>Email</label>
+    <input type="email" id="email" required>
+
+    <label>Message</label>
+    <textarea id="message" placeholder="Votre message..." required></textarea>
+
+    <div style="margin-top:25px; display:flex; gap:15px; flex-wrap:wrap;">
+      <button type="button" onclick="envoyerWhatsApp()">📱 Envoyer via WhatsApp</button>
+      <button type="button" onclick="envoyerEmail()">✉️ Envoyer par E-mail</button>
+    </div>
+  </form>
+</section>
+
+<!-- MAP -->
+<section class="dark-section reveal">
+  <h2>Nous localiser</h2>
+  <div class="dark-card" style="overflow:hidden;">
+    <iframe
+      src="https://www.google.com/maps?q=Abidjan,+Côte+d’Ivoire&output=embed"
+      width="100%" height="300"
+      style="border:0; border-radius:12px;"
+      allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
+
+<script src="assets/main.js?v=1.1"></script>
+<script>
+// Envoi WhatsApp
+function envoyerWhatsApp(){
+  const nom=document.getElementById("nom").value;
+  const email=document.getElementById("email").value;
+  const message=document.getElementById("message").value;
+  if(!nom||!message){alert("Veuillez remplir tous les champs.");return;}
+  const text=`*Nouveau message R3D PRINT CI*\n\n👤 Nom : ${nom}\n📧 Email : ${email}\n💬 Message : ${message}`;
+  const url=`https://wa.me/2250757841323?text=${encodeURIComponent(text)}`;
+  window.open(url,'_blank');
+}
+
+// Envoi Email
+function envoyerEmail(){
+  const nom=document.getElementById("nom").value;
+  const email=document.getElementById("email").value;
+  const message=document.getElementById("message").value;
+  if(!nom||!email||!message){alert("Veuillez remplir tous les champs.");return;}
+  const subject=`Contact — ${nom}`;
+  const body=`Nom : ${nom}\nEmail : ${email}\nMessage : ${message}`;
+  const mailto=`mailto:r3dprint.ci@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href=mailto;
+}
+</script>
+</body>
+</html>
 
