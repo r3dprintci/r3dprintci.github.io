@@ -226,7 +226,7 @@ function fillSummary(){
 }
 
 function sendWhatsApp(){
-  const tel = "002250757841323";
+  const tel = "2250757841323"; // format correct sans le "00"
   const text = document.getElementById("summary").innerText.replace(/\n/g, "%0A");
   window.open(`https://wa.me/${tel}?text=*Nouvelle demande de devis R3D PRINT CI*%0A%0A${text}`,"_blank");
 }
