@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
 <header>
   <div class="bar">
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
@@ -22,12 +23,14 @@
   </div>
 </header>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero reveal">
   <h1>Demander un devis</h1>
   <p>Remplissez le formulaire ci-dessous pour recevoir une estimation personnalisée.</p>
 </section>
 
-<section class="form-section">
+<!-- FORMULAIRE -->
+<section class="form-section reveal">
   <form id="devisForm">
     <label>Nom complet</label>
     <input type="text" id="nom" required>
@@ -39,38 +42,120 @@
     <input type="tel" id="tel" required>
 
     <label>Nature de l’objet</label>
-    <input type="text" id="objet" placeholder="Ex : Trophée, pièce mécanique..." required>
+    <input type="text" id="objet" placeholder="Ex : Trophée, pièce mécanique, maquette..." required>
 
     <label>Dimensions (en cm)</label>
     <input type="text" id="dimensions" placeholder="Ex : 20 x 10 x 5" required>
 
     <label>Endroit d’utilisation</label>
     <select id="endroit">
-      <option>Intérieur</option>
-      <option>Extérieur</option>
+      <option value="Intérieur">Intérieur</option>
+      <option value="Extérieur">Extérieur</option>
     </select>
 
     <label>Matériau souhaité</label>
     <select id="materiau">
-      <option>PLA</option>
-      <option>PETG</option>
-      <option>Résine</option>
-      <option>Métal</option>
-      <option>Bois</option>
+      <option value="PLA">PLA</option>
+      <option value="PETG">PETG</option>
+      <option value="Résine">Résine</option>
+      <option value="Métal">Métal</option>
+      <option value="Bois">Bois</option>
     </select>
 
-    <label>Photo / Exemple</label>
-    <input type="file" id="photo" accept="image/*">
+    <label>Couleurs souhaitées</label>
+    <div class="color-container" id="colors"></div>
 
-    <label>Commentaires</label>
-    <textarea id="commentaires"></textarea>
+    <label>Photo / Exemple de référence</label>
+    <input type="file" id="photo" accept="image/*" onchange="previewImage(event)">
+    <div id="preview"><img id="previewImg"></div>
+
+    <label>Commentaires / précisions supplémentaires</label>
+    <textarea id="commentaires" placeholder="Ajoutez vos remarques ici..."></textarea>
 
     <button type="button" onclick="envoyerWhatsApp()">📱 Envoyer via WhatsApp</button>
     <button type="button" onclick="envoyerEmail()">✉️ Envoyer par E-mail</button>
   </form>
 </section>
 
-<footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
+<!-- SECTION SOMBRE -->
+<section class="dark-section reveal">
+  <h2>Un service client réactif</h2>
+  <div class="dark-card">
+    <p>✔️ Réponse en moins de 24h sur WhatsApp ou E-mail</p>
+    <p>✔️ Devis clairs et transparents</p>
+    <p>✔️ Conseils personnalisés selon votre besoin</p>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+</footer>
+
 <script src="assets/main.js"></script>
+
+<script>
+// --- Génération des couleurs ---
+const colors = ["#ffffff","#000000","#ff0000","#00ff00","#0000ff","#ffff00","#ff9900","#ff00ff","#999999","#8b4513","#c9b47d","#d4af37"];
+const container = document.getElementById("colors");
+colors.forEach(c => {
+  let box = document.createElement("div");
+  box.classList.add("color-box");
+  box.style.cssText = `width:30px;height:30px;border-radius:50%;border:2px solid #ddd;cursor:pointer;background:${c}`;
+  box.onclick = () => box.classList.toggle("selected");
+  container.appendChild(box);
+});
+
+// --- Prévisualisation de l'image ---
+function previewImage(e){
+  const file = e.target.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(){
+      const img = document.getElementById("previewImg");
+      img.src = reader.result;
+      document.getElementById("preview").style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// --- Envoi WhatsApp ---
+function envoyerWhatsApp(){
+  const nom = document.getElementById("nom").value;
+  const email = document.getElementById("email").value;
+  const tel = document.getElementById("tel").value;
+  const objet = document.getElementById("objet").value;
+  const dimensions = document.getElementById("dimensions").value;
+  const endroit = document.getElementById("endroit").value;
+  const materiau = document.getElementById("materiau").value;
+  const commentaires = document.getElementById("commentaires").value;
+  const couleurs = [...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
+
+  if(!nom||!tel||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
+  const message = `*Nouveau devis R3D PRINT CI*\n\n👤 Nom : ${nom}\n📧 Email : ${email}\n📱 Téléphone : ${tel}\n🧩 Objet : ${objet}\n📐 Dimensions : ${dimensions}\n🏠 Endroit : ${endroit}\n🧱 Matériau : ${materiau}\n🎨 Couleurs : ${couleurs}\n💬 Commentaires : ${commentaires}`;
+  const url = `https://wa.me/2250757841323?text=${encodeURIComponent(message)}`;
+  window.open(url,'_blank');
+}
+
+// --- Envoi Email ---
+function envoyerEmail(){
+  const nom = document.getElementById("nom").value;
+  const email = document.getElementById("email").value;
+  const tel = document.getElementById("tel").value;
+  const objet = document.getElementById("objet").value;
+  const dimensions = document.getElementById("dimensions").value;
+  const endroit = document.getElementById("endroit").value;
+  const materiau = document.getElementById("materiau").value;
+  const commentaires = document.getElementById("commentaires").value;
+  const couleurs = [...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
+
+  if(!nom||!email||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
+  const subject = `Demande de devis — ${nom}`;
+  const body = `Nom : ${nom}\nEmail : ${email}\nTéléphone : ${tel}\nObjet : ${objet}\nDimensions : ${dimensions}\nEndroit : ${endroit}\nMatériau : ${materiau}\nCouleurs : ${couleurs}\nCommentaires : ${commentaires}`;
+  const mailto = `mailto:r3dprint.ci@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+}
+</script>
+
 </body>
 </html>
