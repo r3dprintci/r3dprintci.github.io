@@ -27,7 +27,14 @@
 <!-- HERO -->
 <section class="hero reveal">
   <h1>Contact</h1>
-  <p>Besoin d’un renseignement, d’un devis ou d’un accompagnement ?<br>Contactez R3D PRINT CI dès maintenant.</p>
+  <p>Besoin d’un renseignement, d’un devis ou d’un accompagnement ?<br>Contactez <strong>R3D PRINT CI</strong> dès maintenant.</p>
+</section>
+
+<!-- MESSAGE DE DISPONIBILITÉ -->
+<section class="section reveal" style="text-align:center; background:#fff7e6; border:1px solid #f0dca6; border-radius:14px; max-width:800px; margin:40px auto; padding:25px;">
+  <p style="font-size:18px; color:#9b864a; font-weight:600; margin:0;">
+    💬 Nous répondons en moyenne en <strong>moins de 2 heures</strong> sur WhatsApp.
+  </p>
 </section>
 
 <!-- SECTION CONTACT -->
@@ -42,7 +49,7 @@
 <!-- FORMULAIRE DE CONTACT -->
 <section class="section reveal">
   <h2>Envoyez-nous un message</h2>
-  <form id="contactForm">
+  <form id="contactForm" style="max-width:700px; margin:auto;">
     <label>Nom complet</label>
     <input type="text" id="nom" required>
 
@@ -52,7 +59,7 @@
     <label>Message</label>
     <textarea id="message" placeholder="Votre message..." required></textarea>
 
-    <div style="margin-top:25px; display:flex; gap:15px; flex-wrap:wrap;">
+    <div style="margin-top:25px; display:flex; gap:15px; flex-wrap:wrap; justify-content:center;">
       <button type="button" onclick="envoyerWhatsApp()">📱 Envoyer via WhatsApp</button>
       <button type="button" onclick="envoyerEmail()">✉️ Envoyer par E-mail</button>
     </div>
@@ -101,4 +108,3 @@ function envoyerEmail(){
 </script>
 </body>
 </html>
-
