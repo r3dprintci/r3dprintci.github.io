@@ -1,62 +1,64 @@
-/* ===============================
-   R3D PRINT CI — Script global
-   =============================== */
-
-/* ======== MENU BURGER ======== */
+// Menu mobile
 function toggleMenu() {
   document.getElementById('navMenu').classList.toggle('show');
 }
 
-/* ======== ANNÉE AUTOMATIQUE ======== */
+// Année dynamique
 document.addEventListener("DOMContentLoaded", () => {
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-});
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-/* ======== ANIMATION SCROLL (révèle les éléments) ======== */
-const revealOnScroll = () => {
-  const reveals = document.querySelectorAll(".reveal");
-  reveals.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) el.classList.add("visible");
+  // FAQ
+  document.querySelectorAll(".faq-item h4").forEach(q => {
+    q.addEventListener("click", () => {
+      let p = q.nextElementSibling;
+      p.style.display = (p.style.display === "block") ? "none" : "block";
+    });
   });
-};
-document.addEventListener("scroll", revealOnScroll);
-document.addEventListener("DOMContentLoaded", revealOnScroll);
 
-/* ======== LIGHTBOX ======== */
-const initLightbox = () => {
+  // Galerie Lightbox
   const gallery = document.querySelectorAll("#gallery img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   let current = 0;
 
-  if (!gallery.length || !lightbox) return;
+  if (gallery.length > 0) {
+    gallery.forEach((img, i) => {
+      img.onclick = () => { lightbox.style.display = "flex"; lightboxImg.src = img.src; current = i; };
+    });
+  }
 
-  gallery.forEach((img, i) => {
-    img.onclick = () => {
-      lightbox.style.display = "flex";
-      lightboxImg.src = img.src;
-      current = i;
-    };
-  });
+  if (lightbox) {
+    document.addEventListener("keydown", e => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowLeft") changeImage(-1);
+        if (e.key === "ArrowRight") changeImage(1);
+        if (e.key === "Escape") closeLightbox();
+      }
+    });
+  }
 
-  window.closeLightbox = () => (lightbox.style.display = "none");
-  window.changeImage = dir => {
-    current = (current + dir + gallery.length) % gallery.length;
-    lightboxImg.src = gallery[current].src;
+  // Animation au scroll
+  const reveals = document.querySelectorAll(".reveal");
+  const showOnScroll = () => {
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 80) el.classList.add("active");
+    });
   };
+  window.addEventListener("scroll", showOnScroll);
+  showOnScroll();
+});
 
-  document.addEventListener("keydown", e => {
-    if (lightbox.style.display === "flex") {
-      if (e.key === "ArrowLeft") changeImage(-1);
-      if (e.key === "ArrowRight") changeImage(1);
-      if (e.key === "Escape") closeLightbox();
-    }
-  });
-};
+// Lightbox navigation
+function closeLightbox() { document.getElementById("lightbox").style.display = "none"; }
+function changeImage(dir) {
+  const imgs = document.querySelectorAll("#gallery img");
+  const lightboxImg = document.getElementById("lightboxImg");
+  current = (current + dir + imgs.length) % imgs.length;
+  lightboxImg.src = imgs[current].src;
+}
 
-/* ======== FILTRE GALERIE ======== */
+// Filtre galerie
 function filterGallery(category) {
   const imgs = document.querySelectorAll('.gallery img');
   document.querySelectorAll('.filter button').forEach(btn => btn.classList.remove('active'));
@@ -65,23 +67,3 @@ function filterGallery(category) {
     img.style.display = (category === 'all' || img.classList.contains(category)) ? 'block' : 'none';
   });
 }
-
-/* ======== TRANSITION ENTRE PAGES ======== */
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("fade-in");
-  document.querySelectorAll('a[href]').forEach(link => {
-    const url = link.getAttribute('href');
-    if (url && !url.startsWith('http') && !url.startsWith('#') && !url.match(/\.(png|jpg|jpeg|pdf)$/i)) {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.body.style.opacity = 0;
-        setTimeout(() => window.location.href = url, 300);
-      });
-    }
-  });
-});
-
-/* ======== INITIALISATION ======== */
-document.addEventListener("DOMContentLoaded", () => {
-  initLightbox();
-});
