@@ -3,232 +3,277 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Demande de Devis — R3D PRINT CI</title>
+<title>Demander un devis — R3D PRINT CI</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
-<link rel="stylesheet" href="assets/style.css">
 
 <style>
-.section { text-align:center; padding:80px 20px; }
-form {
+:root {
+  --gold: #c9b47d;
+  --gold-dark: #9b864a;
+  --text-dark: #1a1a1a;
+  --panel: #ffffff;
+  --radius: 16px;
+}
+
+/* BASE */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  z-index: 1000;
+}
+.bar {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1150px; margin: auto; padding: 12px 20px;
+}
+.brand img { height: 70px; transition: transform .3s ease; }
+.brand img:hover { transform: scale(1.05); }
+.nav { display: flex; gap: 18px; }
+.nav .btn {
+  text-decoration: none; font-weight: 600;
+  color: #333; padding: 10px 20px;
+  border-radius: 999px; background: #f8f8f8;
+  transition: all .3s ease;
+}
+.nav .btn:hover { background: var(--gold); color: #fff; }
+.nav .gold {
+  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
+  color: #fff;
+}
+
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; z-index: 1001; }
+.hamburger span { width: 25px; height: 3px; background: #333; border-radius: 2px; }
+
+/* MENU MOBILE */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 80px; right: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  .nav.show { display: flex; }
+  .nav .btn { margin-bottom: 8px; width: 100%; text-align: center; }
+}
+
+/* HERO */
+.hero {
+  text-align: center; margin-top: 120px;
+  padding: 100px 20px 60px;
+  background: linear-gradient(180deg, #fff, #f7f7f7);
+}
+.hero h1 { font-size: 42px; color: var(--text-dark); margin-bottom: 10px; }
+.hero p { color: #555; font-size: 18px; }
+
+/* FORMULAIRE */
+.form-section {
+  max-width: 800px;
+  margin: 60px auto;
   background: var(--panel);
-  padding: 40px 30px;
-  border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  max-width: 700px;
-  margin: 40px auto;
-  text-align: left;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
-.step { display:none; animation: fade .4s ease; }
-.step.active { display:block; }
+form label {
+  display: block;
+  margin: 15px 0 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+form input, form select, form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color .3s;
+}
+form input:focus, form select:focus, form textarea:focus {
+  outline: none;
+  border-color: var(--gold-dark);
+}
+textarea { resize: vertical; min-height: 100px; }
+.color-container {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;
+}
+.color-box {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 2px solid #ddd; cursor: pointer;
+}
+.color-box.selected { border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(201,180,125,0.3); }
+#preview {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+#preview img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+button {
+  margin-top: 25px;
+  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .3s ease;
+}
+button:hover { transform: translateY(-2px); }
 
-@keyframes fade {
-  from { opacity:0; transform:translateY(10px);}
-  to { opacity:1; transform:translateY(0);}
+/* FOOTER */
+footer {
+  background: #111; color: #ccc; text-align: center;
+  padding: 30px 0; margin-top: 80px; font-size: 14px;
 }
-label { font-weight:600; color:var(--text); margin-top:10px; display:block;}
-input, select, textarea {
-  width:100%; padding:12px 14px; margin:8px 0 20px;
-  border:1px solid var(--line); border-radius:8px;
-  font-size:15px; background:#fff; transition:all .3s ease;
-}
-input:focus, select:focus, textarea:focus {
-  border-color:var(--gold-dark);
-  box-shadow:0 0 0 3px rgba(191,161,95,0.25); outline:none;
-}
-textarea{ resize:vertical; min-height:80px; }
-
-.colors { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px; }
-.colors input[type="color"] {
-  width:45px; height:45px; border:none; border-radius:8px;
-  box-shadow:0 0 0 1px var(--line); cursor:pointer;
-}
-.add-color {
-  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff; border:none; border-radius:20px;
-  padding:8px 14px; cursor:pointer;
-  font-weight:600; font-size:14px; transition:all .3s ease;
-}
-.add-color:hover { transform:scale(1.05); }
-
-.materials{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
-.materials label {
-  border:1px solid var(--line); border-radius:20px;
-  padding:8px 16px; background:#fff; cursor:pointer;
-  transition:all .3s ease;
-}
-.materials input[type="radio"]{display:none;}
-.materials input:checked + label {
-  background:linear-gradient(120deg,var(--gold),var(--gold-dark));
-  color:#fff; border-color:var(--gold-dark);
-}
-.form-nav{display:flex;justify-content:space-between;margin-top:20px;}
-button{
-  border:none;border-radius:999px;padding:12px 24px;font-weight:600;
-  cursor:pointer;display:flex;align-items:center;gap:8px;
-  transition:transform .3s ease,box-shadow .3s ease;
-}
-button.next{background:linear-gradient(120deg,var(--gold),var(--gold-dark));color:#fff;}
-button.back{background:#e5e5e5;color:#333;}
-button:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
-#summary{
-  background:#fff;padding:20px;border-radius:10px;line-height:1.6;
-  font-size:15px;border:1px solid var(--line);
-}
-#summary strong{color:var(--gold-dark);}
-.color-preview{
-  display:inline-block;width:20px;height:20px;border-radius:50%;
-  margin-right:6px;border:1px solid #ccc;
-}
-@media(max-width:600px){form{padding:24px;}}
 </style>
 </head>
 
 <body>
-<header id="header">
+
+<header>
   <div class="bar">
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav class="nav" id="navMenu">
-      <a class="btn" href="index.html">Accueil</a>
-      <a class="btn" href="services.html">Services</a>
-      <a class="btn" href="realisations.html">Réalisations</a>
-      <a class="btn gold" href="devis.html">Devis</a>
+      <a href="index.html" class="btn">Accueil</a>
+      <a href="services.html" class="btn">Services</a>
+      <a href="realisations.html" class="btn">Réalisations</a>
+      <a href="devis.html" class="btn gold">Demander un devis</a>
     </nav>
   </div>
 </header>
 
-<section class="section fade">
-  <h1>Demande de Devis</h1>
-  <p class="lead">Remplissez les étapes ci-dessous pour obtenir un devis rapide et précis.  
-  Vous pourrez prévisualiser avant l’envoi sur WhatsApp.</p>
+<!-- HERO -->
+<section class="hero">
+  <h1>Demander un devis</h1>
+  <p>Remplissez le formulaire ci-dessous pour recevoir une estimation personnalisée.</p>
+</section>
 
+<!-- FORMULAIRE -->
+<section class="form-section">
   <form id="devisForm">
+    <label>Nom complet</label>
+    <input type="text" id="nom" required>
 
-    <!-- Étape 1 -->
-    <div class="step active" id="step1">
-      <h3>1️⃣ Vos informations</h3>
-      <label>Nom / Entreprise</label>
-      <input type="text" id="nom" required placeholder="Ex. John Doe ou Société ABC">
-      <label>Téléphone (WhatsApp)</label>
-      <input type="tel" id="tel" inputmode="numeric" placeholder="+225..." required>
-      <label>Email</label>
-      <input type="email" id="email" placeholder="exemple@mail.com">
-      <div class="form-nav">
-        <span></span><button type="button" class="next" onclick="nextStep(2)">Suivant →</button>
-      </div>
-    </div>
+    <label>Email</label>
+    <input type="email" id="email" required>
 
-    <!-- Étape 2 -->
-    <div class="step" id="step2">
-      <h3>2️⃣ Détails du projet</h3>
+    <label>Téléphone / WhatsApp</label>
+    <input type="tel" id="tel" required>
 
-      <label>Type de projet</label>
-      <select id="type">
-        <option value="Impression 3D">Impression 3D</option>
-        <option value="Gravure laser">Gravure laser</option>
-        <option value="Prototypage / Design">Prototypage / Design</option>
-      </select>
+    <label>Nature de l’objet</label>
+    <input type="text" id="objet" placeholder="Ex : Trophée, pièce mécanique, maquette..." required>
 
-      <label>Dimensions (cm)</label>
-      <input type="text" id="dimensions" placeholder="Ex. 15x10x5">
+    <label>Dimensions (en cm)</label>
+    <input type="text" id="dimensions" placeholder="Ex : 20 x 10 x 5" required>
 
-      <label>Lieu d’utilisation</label>
-      <select id="lieu"><option>Intérieur</option><option>Extérieur</option></select>
+    <label>Endroit d’utilisation</label>
+    <select id="endroit">
+      <option value="Intérieur">Intérieur</option>
+      <option value="Extérieur">Extérieur</option>
+    </select>
 
-      <label>Choix des couleurs</label>
-      <div id="colorContainer" class="colors">
-        <input type="color" value="#c9b47d" class="color-input">
-      </div>
-      <button type="button" class="add-color" onclick="addColor()">+ Ajouter une autre couleur</button>
+    <label>Matériau souhaité</label>
+    <select id="materiau">
+      <option value="PLA">PLA</option>
+      <option value="PETG">PETG</option>
+      <option value="Résine">Résine</option>
+      <option value="Métal">Métal</option>
+      <option value="Bois">Bois</option>
+    </select>
 
-      <label>Matière / Effet souhaité</label>
-      <div class="materials">
-        <input type="radio" id="mat1" name="mat" value="Bois"><label for="mat1">Bois</label>
-        <input type="radio" id="mat2" name="mat" value="Métal"><label for="mat2">Métal</label>
-        <input type="radio" id="mat3" name="mat" value="Plastique"><label for="mat3">Plastique</label>
-        <input type="radio" id="mat4" name="mat" value="Pierre / Marbre"><label for="mat4">Pierre / Marbre</label>
-        <input type="radio" id="mat5" name="mat" value="Autre"><label for="mat5">Autre</label>
-      </div>
+    <label>Couleurs souhaitées</label>
+    <div class="color-container" id="colors"></div>
 
-      <label>Image de référence (optionnel)</label>
-      <input type="file" id="image" accept="image/*" capture="false">
+    <label>Photo / Exemple de référence</label>
+    <input type="file" id="photo" accept="image/*" onchange="previewImage(event)">
+    <div id="preview"><img id="previewImg"></div>
 
-      <label>Détails supplémentaires</label>
-      <textarea id="details" placeholder="Ex. finition brillante, texte à graver..."></textarea>
+    <label>Commentaires / précisions supplémentaires</label>
+    <textarea id="commentaires" placeholder="Ajoutez vos remarques ici..."></textarea>
 
-      <div class="form-nav">
-        <button type="button" class="back" onclick="nextStep(1)">← Retour</button>
-        <button type="button" class="next" onclick="nextStep(3)">Suivant →</button>
-      </div>
-    </div>
-
-    <!-- Étape 3 -->
-    <div class="step" id="step3">
-      <h3>3️⃣ Vérification avant envoi</h3>
-      <div id="summary"></div>
-      <div class="form-nav">
-        <button type="button" class="back" onclick="nextStep(2)">← Retour</button>
-        <button type="button" class="next" onclick="sendWhatsApp()">Envoyer sur WhatsApp</button>
-      </div>
-    </div>
+    <button type="button" onclick="envoyerWhatsApp()">📱 Envoyer via WhatsApp</button>
+    <button type="button" onclick="envoyerEmail()">✉️ Envoyer par E-mail</button>
   </form>
 </section>
 
-<footer>© <span id="year"></span> R3D PRINT CI — Abidjan</footer>
+<footer>
+  © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+</footer>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
+function toggleMenu(){document.getElementById('navMenu').classList.toggle('show');}
 
-function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("show");
+/* Génération des couleurs */
+const colors = ["#ffffff","#000000","#ff0000","#00ff00","#0000ff","#ffff00","#ff9900","#ff00ff","#999999","#8b4513","#c9b47d","#d4af37"];
+const container=document.getElementById("colors");
+colors.forEach(c=>{
+  let box=document.createElement("div");
+  box.classList.add("color-box");
+  box.style.background=c;
+  box.onclick=()=>box.classList.toggle("selected");
+  container.appendChild(box);
+});
+
+/* Prévisualisation image */
+function previewImage(e){
+  const file=e.target.files[0];
+  if(file){
+    const reader=new FileReader();
+    reader.onload=function(){
+      const img=document.getElementById("previewImg");
+      img.src=reader.result;
+      document.getElementById("preview").style.display="block";
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
-function nextStep(step){
-  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
-  document.getElementById("step"+step).classList.add("active");
-  if(step===3) fillSummary();
+/* Envoi WhatsApp */
+function envoyerWhatsApp(){
+  const nom=document.getElementById("nom").value;
+  const email=document.getElementById("email").value;
+  const tel=document.getElementById("tel").value;
+  const objet=document.getElementById("objet").value;
+  const dimensions=document.getElementById("dimensions").value;
+  const endroit=document.getElementById("endroit").value;
+  const materiau=document.getElementById("materiau").value;
+  const commentaires=document.getElementById("commentaires").value;
+  const couleurs=[...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
+  if(!nom||!tel||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
+  const message=`*Nouveau devis R3D PRINT CI*\n\n👤 Nom : ${nom}\n📧 Email : ${email}\n📱 Téléphone : ${tel}\n🧩 Objet : ${objet}\n📐 Dimensions : ${dimensions}\n🏠 Endroit : ${endroit}\n🧱 Matériau : ${materiau}\n🎨 Couleurs : ${couleurs}\n💬 Commentaires : ${commentaires}`;
+  const url=`https://wa.me/2250757841323?text=${encodeURIComponent(message)}`;
+  window.open(url,'_blank');
 }
 
-function addColor(){
-  const container = document.getElementById("colorContainer");
-  const colors = container.querySelectorAll(".color-input");
-  if(colors.length >= 5) return alert("Vous pouvez choisir jusqu'à 5 couleurs maximum.");
-  const input = document.createElement("input");
-  input.type = "color";
-  input.className = "color-input";
-  input.value = "#ffffff";
-  container.appendChild(input);
-}
-
-function fillSummary(){
-  const nom = document.getElementById("nom").value;
-  const tel = document.getElementById("tel").value;
-  const email = document.getElementById("email").value;
-  const type = document.getElementById("type").value;
-  const dim = document.getElementById("dimensions").value;
-  const lieu = document.getElementById("lieu").value;
-  const mat = document.querySelector('input[name="mat"]:checked')?.value || "Non précisé";
-  const details = document.getElementById("details").value;
-  const colorInputs = Array.from(document.querySelectorAll(".color-input"));
-  const colorsHTML = colorInputs.map(c=>`<span class="color-preview" style="background:${c.value}"></span>${c.value}`).join("<br>");
-
-  document.getElementById("summary").innerHTML = `
-    <strong>Nom / Entreprise :</strong> ${nom}<br>
-    <strong>Téléphone :</strong> ${tel}<br>
-    <strong>Email :</strong> ${email}<br>
-    <strong>Type de projet :</strong> ${type}<br>
-    <strong>Dimensions :</strong> ${dim}<br>
-    <strong>Lieu d’utilisation :</strong> ${lieu}<br>
-    <strong>Couleurs :</strong><br>${colorsHTML}<br>
-    <strong>Matière :</strong> ${mat}<br>
-    <strong>Détails :</strong> ${details}
-  `;
-}
-
-function sendWhatsApp(){
-  const tel = "2250757841323"; // format correct sans le "00"
-  const text = document.getElementById("summary").innerText.replace(/\n/g, "%0A");
-  window.open(`https://wa.me/${tel}?text=*Nouvelle demande de devis R3D PRINT CI*%0A%0A${text}`,"_blank");
+/* Envoi Email */
+function envoyerEmail(){
+  const nom=document.getElementById("nom").value;
+  const email=document.getElementById("email").value;
+  const tel=document.getElementById("tel").value;
+  const objet=document.getElementById("objet").value;
+  const dimensions=document.getElementById("dimensions").value;
+  const endroit=document.getElementById("endroit").value;
+  const materiau=document.getElementById("materiau").value;
+  const commentaires=document.getElementById("commentaires").value;
+  const couleurs=[...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
+  if(!nom||!email||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
+  const subject=`Demande de devis — ${nom}`;
+  const body=`Nom : ${nom}\nEmail : ${email}\nTéléphone : ${tel}\nObjet : ${objet}\nDimensions : ${dimensions}\nEndroit : ${endroit}\nMatériau : ${materiau}\nCouleurs : ${couleurs}\nCommentaires : ${commentaires}`;
+  const mailto=`mailto:r3dprint.ci@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href=mailto;
 }
 </script>
 
