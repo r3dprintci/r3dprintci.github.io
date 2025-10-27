@@ -1,6 +1,6 @@
-/* ------------------------------
+/* ===============================
    R3D PRINT CI — Script global
-   ------------------------------ */
+   =============================== */
 
 /* ======== MENU BURGER ======== */
 function toggleMenu() {
@@ -13,26 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
-/* ======== ANIMATION AU SCROLL ======== */
-document.addEventListener("scroll", () => {
-  // Animation pour les services
-  document.querySelectorAll(".service-card").forEach(card => {
-    const rect = card.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) card.classList.add("visible");
+/* ======== ANIMATION SCROLL (révèle les éléments) ======== */
+const revealOnScroll = () => {
+  const reveals = document.querySelectorAll(".reveal");
+  reveals.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) el.classList.add("visible");
   });
-  // Animation pour les images de galerie
-  document.querySelectorAll(".gallery img").forEach(img => {
-    const rect = img.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) img.classList.add("visible");
-  });
-});
+};
+document.addEventListener("scroll", revealOnScroll);
+document.addEventListener("DOMContentLoaded", revealOnScroll);
 
-/* ======== LIGHTBOX GÉNÉRIQUE ======== */
+/* ======== LIGHTBOX ======== */
 const initLightbox = () => {
   const gallery = document.querySelectorAll("#gallery img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
-  const caption = document.getElementById("caption");
   let current = 0;
 
   if (!gallery.length || !lightbox) return;
@@ -41,18 +37,15 @@ const initLightbox = () => {
     img.onclick = () => {
       lightbox.style.display = "flex";
       lightboxImg.src = img.src;
-      if (caption) caption.textContent = img.alt || "";
       current = i;
     };
   });
 
+  window.closeLightbox = () => (lightbox.style.display = "none");
   window.changeImage = dir => {
     current = (current + dir + gallery.length) % gallery.length;
     lightboxImg.src = gallery[current].src;
-    if (caption) caption.textContent = gallery[current].alt || "";
   };
-
-  window.closeLightbox = () => (lightbox.style.display = "none");
 
   document.addEventListener("keydown", e => {
     if (lightbox.style.display === "flex") {
@@ -61,17 +54,9 @@ const initLightbox = () => {
       if (e.key === "Escape") closeLightbox();
     }
   });
-
-  let startX = 0;
-  lightbox.addEventListener("touchstart", e => (startX = e.touches[0].clientX));
-  lightbox.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    if (endX - startX > 50) changeImage(-1);
-    else if (startX - endX > 50) changeImage(1);
-  });
 };
 
-/* ======== FILTRE DE GALERIE ======== */
+/* ======== FILTRE GALERIE ======== */
 function filterGallery(category) {
   const imgs = document.querySelectorAll('.gallery img');
   document.querySelectorAll('.filter button').forEach(btn => btn.classList.remove('active'));
@@ -80,6 +65,21 @@ function filterGallery(category) {
     img.style.display = (category === 'all' || img.classList.contains(category)) ? 'block' : 'none';
   });
 }
+
+/* ======== TRANSITION ENTRE PAGES ======== */
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("fade-in");
+  document.querySelectorAll('a[href]').forEach(link => {
+    const url = link.getAttribute('href');
+    if (url && !url.startsWith('http') && !url.startsWith('#') && !url.match(/\.(png|jpg|jpeg|pdf)$/i)) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.body.style.opacity = 0;
+        setTimeout(() => window.location.href = url, 300);
+      });
+    }
+  });
+});
 
 /* ======== INITIALISATION ======== */
 document.addEventListener("DOMContentLoaded", () => {
