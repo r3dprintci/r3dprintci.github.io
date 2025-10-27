@@ -6,6 +6,8 @@
 <title>Nos Services — R3D PRINT CI</title>
 <link rel="icon" href="assets/logo.png" type="image/png">
 
+<meta name="description" content="Découvrez les services de R3D PRINT CI : impression 3D, gravure laser, prototypage et design à Abidjan. Création sur mesure, précision et innovation.">
+
 <style>
 :root {
   --gold: #c9b47d;
@@ -51,39 +53,56 @@ header {
 }
 
 /* HAMBURGER */
-.hamburger {
-  display: none; flex-direction: column;
-  cursor: pointer; gap: 4px; z-index: 1001;
-}
-.hamburger span {
-  width: 25px; height: 3px; background: #333; border-radius: 2px;
-}
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; z-index: 1001; }
+.hamburger span { width: 25px; height: 3px; background: #333; border-radius: 2px; }
 
-/* MENU MOBILE */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
-  .nav {
-    display: none; flex-direction: column;
-    background: #fff; position: absolute;
-    top: 80px; right: 20px; padding: 15px;
-    border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
+  .nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 80px; right: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
   .nav.show { display: flex; }
   .nav .btn { margin-bottom: 8px; width: 100%; text-align: center; }
 }
 
 /* HERO */
 .hero {
-  text-align: center; margin-top: 120px;
-  padding: 100px 20px 60px;
-  background: linear-gradient(180deg, #fff, #f7f7f7);
+  text-align: center;
+  margin-top: 120px;
+  padding: 100px 20px 80px;
+  background: radial-gradient(circle at 50% 20%, #fff, #f4f4f4);
+  position: relative;
+  overflow: hidden;
 }
-.hero h1 { font-size: 42px; color: var(--text-dark); margin-bottom: 10px; }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(201,180,125,0.15), transparent 70%);
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes float { 0% {transform:translate(-2%,-2%)scale(1);} 100% {transform:translate(2%,2%)scale(1.05);} }
+.hero h1, .hero p { position: relative; z-index: 1; }
+.hero h1 {
+  font-size: 42px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
 .hero p { color: #555; font-size: 18px; }
 
-/* SERVICES DETAIL */
+/* SECTION TITRES */
+.section h2 {
+  font-size: 30px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+}
+
+/* SERVICES */
 .section { max-width: 1150px; margin: auto; padding: 80px 20px; text-align: center; }
-.section h2 { font-size: 30px; margin-bottom: 40px; color: var(--text-dark); }
 
 .services {
   display: grid;
@@ -95,40 +114,71 @@ header {
   border-radius: var(--radius);
   padding: 40px 30px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-  transition: all .3s ease;
   text-align: left;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
 }
-.service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .service-card img {
   width: 100%; border-radius: 12px; margin-bottom: 20px;
   transition: transform .5s ease;
 }
 .service-card:hover img { transform: scale(1.08); }
-.service-card h3 { color: var(--gold-dark); font-size: 22px; margin-bottom: 12px; }
-.service-card p { color: #444; line-height: 1.6; font-size: 15px; }
+.service-card h3 {
+  color: var(--gold-dark);
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.service-card p {
+  color: #444;
+  line-height: 1.6;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
 
-/* CALL TO ACTION */
+/* POURQUOI NOUS CHOISIR */
+.points {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #444;
+  line-height: 1.8;
+}
+.points p { margin: 8px 0; }
+.points p::before {
+  content: "✔️ ";
+  color: var(--gold-dark);
+}
+
+/* CTA */
 .cta {
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
   color: #fff;
   padding: 60px 20px;
   text-align: center;
 }
-.cta h2 { font-size: 26px; margin-bottom: 20px; }
+.cta h2 { font-size: 26px; margin-bottom: 15px; }
+.cta p { margin-bottom: 25px; font-size: 17px; }
 .cta .btn {
   background: #fff; color: var(--gold-dark);
   font-weight: 600; padding: 14px 28px;
   border-radius: 999px; text-decoration: none;
   transition: all .3s ease;
 }
-.cta .btn:hover { background: #f0f0f0; }
+.cta .btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
 
 /* FOOTER */
 footer {
   background: #111; color: #ccc; text-align: center;
-  padding: 30px 0; margin-top: 0; font-size: 14px;
+  padding: 30px 0; font-size: 14px;
 }
 </style>
 </head>
@@ -160,38 +210,50 @@ footer {
   <div class="services">
 
     <div class="service-card">
-      <img src="assets/impression3d.webp" alt="Impression 3D">
-      <h3>Impression 3D</h3>
-      <p>Grâce à des imprimantes FDM et résine haute précision, nous donnons forme à vos idées. 
-      Prototypage rapide, trophées, pièces fonctionnelles, objets décoratifs… chaque création est adaptée à votre besoin.</p>
-      <p><strong>Matériaux :</strong> PLA, PETG, ASA, TPU, résine, etc.</p>
-      <p><strong>Applications :</strong> architecture, ingénierie, art, signalétique, design produit.</p>
+      <img src="assets/impression3d.webp" alt="Impression 3D sur mesure à Abidjan">
+      <h3>Impression 3D sur mesure</h3>
+      <p>Grâce à des imprimantes FDM et résine haute précision, nous donnons forme à vos idées : 
+      prototypage rapide, trophées, pièces fonctionnelles, objets décoratifs…</p>
+      <p>🧱 <strong>Matériaux :</strong> PLA, PETG, ASA, TPU, résine.</p>
+      <p>🎯 <strong>Applications :</strong> architecture, ingénierie, art, signalétique, design produit.</p>
     </div>
 
     <div class="service-card">
-      <img src="assets/gravurelaser.webp" alt="Gravure Laser">
-      <h3>Gravure Laser</h3>
+      <img src="assets/gravurelaser.webp" alt="Gravure laser et découpe à Abidjan">
+      <h3>Gravure & découpe Laser</h3>
       <p>Personnalisez vos objets grâce à une gravure nette et permanente. 
       Nous utilisons des lasers 450nm et 1064nm adaptés à tout type de matériau.</p>
-      <p><strong>Supports :</strong> bois, métal, cuir, plastique, acrylique, verre.</p>
-      <p><strong>Utilisations :</strong> plaques, trophées, cartes, signalétiques, objets cadeaux.</p>
+      <p>🔩 <strong>Supports :</strong> bois, métal, cuir, plastique, acrylique, verre.</p>
+      <p>🎁 <strong>Utilisations :</strong> plaques, trophées, cartes, signalétiques, objets cadeaux.</p>
     </div>
 
     <div class="service-card">
-      <img src="assets/prototypage.webp" alt="Prototypage et Design">
-      <h3>Prototypage & Design</h3>
+      <img src="assets/prototypage.webp" alt="Prototypage et design 3D">
+      <h3>Prototypage & Design 3D</h3>
       <p>Du concept à la pièce finale : nous concevons, modélisons et testons vos idées avant production. 
-      Vous bénéficiez d’un accompagnement complet pour un rendu réaliste et fonctionnel.</p>
-      <p><strong>Outils :</strong> Shapr3D, Blender, Fusion 360.</p>
-      <p><strong>Avantage :</strong> optimisation, ajustement rapide, visualisation 3D avant fabrication.</p>
+      Accompagnement complet pour un rendu réaliste et fonctionnel.</p>
+      <p>💻 <strong>Outils :</strong> Shapr3D, Blender, Fusion 360.</p>
+      <p>⚙️ <strong>Avantage :</strong> optimisation, ajustement rapide, visualisation 3D avant fabrication.</p>
     </div>
 
   </div>
 </section>
 
+<!-- POURQUOI NOUS CHOISIR -->
+<section class="section">
+  <h2>Pourquoi choisir R3D PRINT CI ?</h2>
+  <div class="points">
+    <p>Expertise locale et machines de pointe (FDM, résine, laser, CNC).</p>
+    <p>Accompagnement personnalisé du design jusqu’à la livraison.</p>
+    <p>Rapidité d’exécution et communication directe via WhatsApp.</p>
+    <p>Tarifs clairs, devis instantané et satisfaction garantie.</p>
+  </div>
+</section>
+
 <!-- CALL TO ACTION -->
 <section class="cta">
-  <h2>Vous avez un projet à réaliser ?</h2>
+  <h2>Vous avez un projet à concrétiser ?</h2>
+  <p>Expliquez-nous vos besoins et obtenez un devis gratuit en quelques minutes.</p>
   <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
 </section>
 
@@ -204,6 +266,14 @@ function toggleMenu(){
   document.getElementById('navMenu').classList.toggle('show');
 }
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Apparition des cartes au scroll */
+document.addEventListener("scroll", () => {
+  document.querySelectorAll(".service-card").forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100) card.classList.add("visible");
+  });
+});
 </script>
 
 </body>
