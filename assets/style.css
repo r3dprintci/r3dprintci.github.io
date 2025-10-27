@@ -24,7 +24,11 @@ body {
   background: #fafafa;
   color: #222;
   overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
 }
+body.fade-in { opacity: 1; }
+
 h1, h2, h3 { margin: 0; }
 h2 {
   background: linear-gradient(90deg, var(--gold), var(--gold-dark));
@@ -157,9 +161,17 @@ header {
   padding: 80px 20px;
   text-align: center;
 }
-.section h2 {
-  font-size: 30px;
-  margin-bottom: 40px;
+.section h2 { font-size: 30px; margin-bottom: 40px; }
+
+/* ===== ANIMATION APPARITION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ===== SERVICES ===== */
@@ -175,10 +187,7 @@ header {
   box-shadow: 0 8px 25px rgba(0,0,0,0.05);
   transition: all .6s ease;
   text-align: left;
-  opacity: 0;
-  transform: translateY(30px);
 }
-.service-card.visible { opacity: 1; transform: translateY(0); }
 .service-card img {
   width: 100%;
   border-radius: 12px;
@@ -186,11 +195,7 @@ header {
   transition: transform .5s ease;
 }
 .service-card:hover img { transform: scale(1.05); }
-.service-card h3 {
-  color: var(--gold-dark);
-  font-size: 22px;
-  margin-bottom: 12px;
-}
+.service-card h3 { color: var(--gold-dark); font-size: 22px; margin-bottom: 12px; }
 .service-card p { font-size: 15px; color: #444; }
 
 /* ===== GALERIE ===== */
@@ -205,14 +210,9 @@ header {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform .4s ease, opacity .4s ease;
-  opacity: 0; transform: scale(0.95);
+  transition: transform .4s ease;
 }
-.gallery img.visible { opacity: 1; transform: scale(1); }
-.gallery img:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
+.gallery img:hover { transform: scale(1.05); cursor: pointer; }
 
 /* ===== LIGHTBOX ===== */
 .lightbox {
@@ -229,12 +229,6 @@ header {
   max-width: 90%;
   max-height: 75%;
   border-radius: 12px;
-}
-.lightbox p {
-  color: #fff;
-  margin-top: 15px;
-  font-size: 18px;
-  font-style: italic;
 }
 .lightbox button {
   position: absolute;
@@ -256,61 +250,6 @@ header {
   transform: none;
 }
 
-/* ===== FORMULAIRE ===== */
-.form-section {
-  max-width: 800px;
-  margin: 60px auto;
-  background: var(--panel);
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-}
-form label {
-  display: block;
-  margin: 15px 0 8px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-form input, form select, form textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-family: inherit;
-  font-size: 15px;
-  transition: border-color .3s;
-}
-form input:focus, form select:focus, form textarea:focus {
-  outline: none;
-  border-color: var(--gold-dark);
-}
-textarea { resize: vertical; min-height: 100px; }
-button {
-  margin-top: 25px;
-  background: linear-gradient(120deg, var(--gold), var(--gold-dark));
-  border: none;
-  color: white;
-  font-weight: 600;
-  padding: 14px 24px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform .3s ease;
-}
-button:hover { transform: translateY(-2px); }
-
-/* ===== POINTS ===== */
-.points {
-  max-width: 700px;
-  margin: 0 auto;
-  color: #444;
-  line-height: 1.8;
-}
-.points p { margin: 8px 0; }
-.points p::before {
-  content: "✔️ ";
-  color: var(--gold-dark);
-}
-
 /* ===== CTA ===== */
 .cta {
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
@@ -329,10 +268,7 @@ button:hover { transform: translateY(-2px); }
   text-decoration: none;
   transition: all .3s ease;
 }
-.cta .btn:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-}
+.cta .btn:hover { background: #f0f0f0; transform: translateY(-2px); }
 
 /* ===== FOOTER ===== */
 footer {
@@ -344,67 +280,13 @@ footer {
   font-size: 14px;
 }
 
-/* ===== FILTRE ===== */
-.filter {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin: 40px auto 30px;
-}
-.filter button {
-  background: #fff;
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  padding: 8px 20px;
-  cursor: pointer;
-  color: var(--gold-dark);
-  transition: all .3s ease;
-}
-.filter button.active, .filter button:hover {
-  background: var(--gold-dark);
-  color: #fff;
-}
-
-/* ===== FAQ ===== */
-.faq {
-  max-width: 800px;
-  margin: auto;
-  text-align: left;
-}
-.faq-item {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-.faq-item h4 {
-  margin: 0;
-  color: var(--gold-dark);
-  cursor: pointer;
-  font-size: 18px;
-}
-.faq-item p {
-  display: none;
-  margin: 8px 0 0;
-  color: #555;
-}
-
-/* ===============================
-   🖤 MODE SOMBRE OPTIONNEL
-   =============================== */
+/* ===== MODE SOMBRE OPTIONNEL ===== */
 .dark-section {
   background: var(--dark-bg);
   color: var(--dark-text);
   padding: 80px 20px;
 }
-.dark-section h2 {
-  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.dark-section p {
-  color: var(--dark-muted);
-}
+.dark-section p { color: var(--dark-muted); }
 .dark-card {
   background: var(--dark-panel);
   border: 1px solid rgba(255,255,255,0.1);
@@ -413,7 +295,4 @@ footer {
   color: var(--dark-text);
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
-.dark-card:hover {
-  transform: translateY(-3px);
-  transition: 0.3s;
-}
+.dark-card:hover { transform: translateY(-3px); transition: 0.3s; }
