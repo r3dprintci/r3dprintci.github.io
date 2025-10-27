@@ -12,7 +12,6 @@
   --gold-dark: #9b864a;
   --text-dark: #1a1a1a;
   --panel: #ffffff;
-  --radius: 16px;
 }
 
 /* BASE */
@@ -54,7 +53,6 @@ header {
 .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; z-index: 1001; }
 .hamburger span { width: 25px; height: 3px; background: #333; border-radius: 2px; }
 
-/* MENU MOBILE */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 80px; right: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -65,39 +63,39 @@ header {
 /* HERO */
 .hero {
   text-align: center; margin-top: 120px;
-  padding: 100px 20px 60px;
-  background: linear-gradient(180deg, #fff, #f7f7f7);
+  padding: 100px 20px 80px;
+  background: radial-gradient(circle at 50% 20%, #fff, #f4f4f4);
+  position: relative;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(201,180,125,0.15), transparent 70%);
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes float { 0% {transform:translate(-2%,-2%)scale(1);} 100% {transform:translate(2%,2%)scale(1.05);} }
+.hero h1, .hero p { position: relative; z-index: 1; }
 .hero h1 { font-size: 42px; color: var(--text-dark); margin-bottom: 10px; }
 .hero p { color: #555; font-size: 18px; }
 
 /* FORMULAIRE */
 .form-section {
-  max-width: 800px;
-  margin: 60px auto;
-  background: var(--panel);
-  padding: 40px;
-  border-radius: 16px;
+  max-width: 800px; margin: 60px auto; background: var(--panel);
+  padding: 40px; border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  position: relative; z-index: 1;
 }
-form label {
-  display: block;
-  margin: 15px 0 8px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
+form label { display: block; margin: 15px 0 8px; font-weight: 600; color: var(--text-dark); }
 form input, form select, form textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-family: inherit;
-  font-size: 15px;
+  width: 100%; padding: 12px; border-radius: 10px;
+  border: 1px solid #ccc; font-family: inherit; font-size: 15px;
   transition: border-color .3s;
 }
 form input:focus, form select:focus, form textarea:focus {
-  outline: none;
-  border-color: var(--gold-dark);
+  outline: none; border-color: var(--gold-dark);
 }
 textarea { resize: vertical; min-height: 100px; }
 .color-container {
@@ -106,30 +104,50 @@ textarea { resize: vertical; min-height: 100px; }
 .color-box {
   width: 30px; height: 30px; border-radius: 50%;
   border: 2px solid #ddd; cursor: pointer;
+  transition: transform .2s;
 }
+.color-box:hover { transform: scale(1.1); }
 .color-box.selected { border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(201,180,125,0.3); }
-#preview {
-  display: none;
-  margin-top: 20px;
-  text-align: center;
-}
+
+#preview { display: none; margin-top: 20px; text-align: center; }
 #preview img {
-  max-width: 100%;
-  border-radius: 10px;
+  max-width: 100%; border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 button {
   margin-top: 25px;
   background: linear-gradient(120deg, var(--gold), var(--gold-dark));
-  border: none;
-  color: white;
-  font-weight: 600;
-  padding: 14px 24px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform .3s ease;
+  border: none; color: white;
+  font-weight: 600; padding: 14px 24px;
+  border-radius: 999px; cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-button:hover { transform: translateY(-2px); }
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(201,180,125,0.4);
+}
+
+/* MESSAGE FLOTANT */
+#msg {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--gold-dark);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  font-weight: 600;
+  z-index: 9999;
+  animation: fadeInOut 4s ease forwards;
+}
+@keyframes fadeInOut {
+  0% {opacity:0; transform:translateY(20px);}
+  10% {opacity:1; transform:translateY(0);}
+  90% {opacity:1;}
+  100% {opacity:0; transform:translateY(20px);}
+}
 
 /* FOOTER */
 footer {
@@ -156,7 +174,7 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Demander un devis</h1>
+  <h1>💬 Votre projet commence ici</h1>
   <p>Remplissez le formulaire ci-dessous pour recevoir une estimation personnalisée.</p>
 </section>
 
@@ -177,6 +195,9 @@ footer {
 
     <label>Dimensions (en cm)</label>
     <input type="text" id="dimensions" placeholder="Ex : 20 x 10 x 5" required>
+
+    <label>Quantité souhaitée</label>
+    <input type="number" id="quantite" min="1" value="1">
 
     <label>Endroit d’utilisation</label>
     <select id="endroit">
@@ -208,37 +229,44 @@ footer {
   </form>
 </section>
 
-<footer>
-  © <span id="year"></span> R3D PRINT CI — Tous droits réservés
-</footer>
+<div id="msg">✅ Votre demande a été envoyée !</div>
+
+<footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 function toggleMenu(){document.getElementById('navMenu').classList.toggle('show');}
 
-/* Génération des couleurs */
-const colors = ["#ffffff","#000000","#ff0000","#00ff00","#0000ff","#ffff00","#ff9900","#ff00ff","#999999","#8b4513","#c9b47d","#d4af37"];
+/* Couleurs */
+const colors=["#ffffff","#000000","#ff0000","#00ff00","#0000ff","#ffff00","#ff9900","#ff00ff","#999999","#8b4513","#c9b47d","#d4af37"];
 const container=document.getElementById("colors");
 colors.forEach(c=>{
-  let box=document.createElement("div");
+  const box=document.createElement("div");
   box.classList.add("color-box");
   box.style.background=c;
   box.onclick=()=>box.classList.toggle("selected");
   container.appendChild(box);
 });
 
-/* Prévisualisation image */
+/* Prévisualisation */
 function previewImage(e){
   const file=e.target.files[0];
   if(file){
     const reader=new FileReader();
-    reader.onload=function(){
-      const img=document.getElementById("previewImg");
-      img.src=reader.result;
+    reader.onload=()=>{
+      document.getElementById("previewImg").src=reader.result;
       document.getElementById("preview").style.display="block";
     };
     reader.readAsDataURL(file);
   }
+}
+
+/* Message de confirmation */
+function showMsg(txt){
+  const msg=document.getElementById("msg");
+  msg.textContent=txt;
+  msg.style.display="block";
+  setTimeout(()=>msg.style.display="none",4000);
 }
 
 /* Envoi WhatsApp */
@@ -248,14 +276,16 @@ function envoyerWhatsApp(){
   const tel=document.getElementById("tel").value;
   const objet=document.getElementById("objet").value;
   const dimensions=document.getElementById("dimensions").value;
+  const quantite=document.getElementById("quantite").value;
   const endroit=document.getElementById("endroit").value;
   const materiau=document.getElementById("materiau").value;
   const commentaires=document.getElementById("commentaires").value;
   const couleurs=[...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
-  if(!nom||!tel||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
-  const message=`*Nouveau devis R3D PRINT CI*\n\n👤 Nom : ${nom}\n📧 Email : ${email}\n📱 Téléphone : ${tel}\n🧩 Objet : ${objet}\n📐 Dimensions : ${dimensions}\n🏠 Endroit : ${endroit}\n🧱 Matériau : ${materiau}\n🎨 Couleurs : ${couleurs}\n💬 Commentaires : ${commentaires}`;
-  const url=`https://wa.me/2250757841323?text=${encodeURIComponent(message)}`;
+  if(!nom||!tel||!objet){showMsg("⚠️ Merci de remplir nom, téléphone et objet.");return;}
+  const msg=`*Nouveau devis R3D PRINT CI*\n\n👤 Nom : ${nom}\n📧 Email : ${email}\n📱 Téléphone : ${tel}\n🧩 Objet : ${objet}\n📐 Dimensions : ${dimensions}\n📦 Quantité : ${quantite}\n🏠 Endroit : ${endroit}\n🧱 Matériau : ${materiau}\n🎨 Couleurs : ${couleurs}\n💬 Commentaires : ${commentaires}`;
+  const url=`https://wa.me/2250757841323?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
+  showMsg("✅ Message WhatsApp prêt à l’envoi !");
 }
 
 /* Envoi Email */
@@ -265,15 +295,17 @@ function envoyerEmail(){
   const tel=document.getElementById("tel").value;
   const objet=document.getElementById("objet").value;
   const dimensions=document.getElementById("dimensions").value;
+  const quantite=document.getElementById("quantite").value;
   const endroit=document.getElementById("endroit").value;
   const materiau=document.getElementById("materiau").value;
   const commentaires=document.getElementById("commentaires").value;
   const couleurs=[...document.querySelectorAll(".color-box.selected")].map(c=>c.style.background).join(", ");
-  if(!nom||!email||!objet){alert("Veuillez remplir tous les champs obligatoires.");return;}
+  if(!nom||!email||!objet){showMsg("⚠️ Merci de remplir nom, email et objet.");return;}
   const subject=`Demande de devis — ${nom}`;
-  const body=`Nom : ${nom}\nEmail : ${email}\nTéléphone : ${tel}\nObjet : ${objet}\nDimensions : ${dimensions}\nEndroit : ${endroit}\nMatériau : ${materiau}\nCouleurs : ${couleurs}\nCommentaires : ${commentaires}`;
+  const body=`Nom : ${nom}\nEmail : ${email}\nTéléphone : ${tel}\nObjet : ${objet}\nDimensions : ${dimensions}\nQuantité : ${quantite}\nEndroit : ${endroit}\nMatériau : ${materiau}\nCouleurs : ${couleurs}\nCommentaires : ${commentaires}`;
   const mailto=`mailto:r3dprint.ci@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href=mailto;
+  showMsg("✉️ Votre e-mail a été préparé !");
 }
 </script>
 
