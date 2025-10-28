@@ -1,79 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Nos Réalisations — R3D PRINT CI</title>
-<link rel="icon" href="assets/logo.png" type="image/png">
-<link rel="stylesheet" href="assets/style.css?v=1.1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accueil | R3D PRINT CI</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="R3D PRINT CI">
+      </a>
 
-<header>
-  <div class="bar">
-    <a href="index.html" class="brand"><img src="assets/logo.png" alt="R3D PRINT CI"></a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="btn">Accueil</a>
-      <a href="services.html" class="btn">Services</a>
-      <a href="realisations.html" class="btn gold">Réalisations</a>
-      <a href="devis.html" class="btn">Devis</a>
-      <a href="contact.html" class="btn">Contact</a>
-    </nav>
-  </div>
-</header>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Nos réalisations</h1>
-  <p>Découvrez les créations signées <strong>R3D PRINT CI</strong> : innovation, précision et savoir-faire.</p>
-</section>
+      <nav class="nav" id="navMenu">
+        <a href="index.html" class="btn gold">Accueil</a>
+        <a href="services.html" class="btn">Services</a>
+        <a href="realisations.html" class="btn">Réalisations</a>
+        <a href="devis.html" class="btn">Devis</a>
+        <a href="contact.html" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- FILTRE -->
-<div class="filter">
-  <button class="active" onclick="filterGallery('all', event)">Tout</button>
-  <button onclick="filterGallery('impression', event)">Impression 3D</button>
-  <button onclick="filterGallery('gravure', event)">Gravure Laser</button>
-  <button onclick="filterGallery('prototypage', event)">Prototypage</button>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>L’art de donner vie à vos idées</h1>
+    <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
+    <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+  </section>
 
-<!-- GALERIE -->
-<div class="gallery" id="gallery">
-  <img src="assets/shot1.jpg" alt="Impression 3D" class="impression">
-  <img src="assets/shot2.jpg" alt="Gravure laser" class="gravure">
-  <img src="assets/shot3.jpg" alt="Prototypage" class="prototypage">
-  <img src="assets/shot4.jpg" alt="Impression 3D" class="impression">
-</div>
+  <!-- PRESENTATION -->
+  <section class="section">
+    <h2>Bienvenue chez R3D PRINT CI</h2>
+    <p>R3D PRINT CI est un atelier d’impression 3D, de gravure laser et de conception sur mesure basé à Abidjan. 
+    Nous transformons vos idées en objets réels avec précision, créativité et passion.</p>
+  </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="close" onclick="closeLightbox()">&times;</button>
-  <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-  <img id="lightboxImg" src="">
-  <button class="next" onclick="changeImage(1)">&#10095;</button>
-</div>
+  <!-- SERVICES -->
+  <section class="section">
+    <h2>Nos domaines d’expertise</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="assets/impression3d.webp" alt="Impression 3D">
+        <h3>Impression 3D</h3>
+        <p>Création de pièces uniques, prototypes, objets décoratifs et trophées grâce à des imprimantes FDM et résine de haute précision.</p>
+      </div>
 
-<!-- CTA -->
-<section class="cta">
-  <h2>Envie de concrétiser votre idée ?</h2>
-  <a href="devis.html" class="btn">💬 Demander un devis rapide</a>
-</section>
+      <div class="service-card">
+        <img src="assets/gravurelaser.webp" alt="Gravure Laser">
+        <h3>Gravure Laser</h3>
+        <p>Personnalisation et marquage professionnel sur bois, métal, cuir, plastique et acrylique grâce au LaserPecker 4.</p>
+      </div>
 
-<footer>© <span id="year"></span> R3D PRINT CI — Tous droits réservés</footer>
+      <div class="service-card">
+        <img src="assets/prototypage.webp" alt="Prototypage">
+        <h3>Prototypage & Design</h3>
+        <p>Accompagnement complet de la modélisation à la pièce finale avec Shapr3D, Blender et Fusion 360.</p>
+      </div>
+    </div>
+  </section>
 
-<script src="assets/main.js?v=1.1"></script>
-<script>
-// FILTRE GALERIE
-function filterGallery(category, event){
-  const imgs=document.querySelectorAll('.gallery img');
-  document.querySelectorAll('.filter button').forEach(btn=>btn.classList.remove('active'));
-  event.target.classList.add('active');
-  imgs.forEach(img=>{
-    if(category==='all'||img.classList.contains(category)){img.style.display='block';}
-    else{img.style.display='none';}
-  });
-}
-</script>
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Besoin d’un service personnalisé ?</h2>
+    <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+  </section>
+
+  <footer>
+    © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+  </footer>
+
+  <script src="assets/main.js?v=1.1"></script>
 </body>
 </html>
