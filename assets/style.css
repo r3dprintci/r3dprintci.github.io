@@ -43,6 +43,7 @@ header {
   width: auto;
 }
 
+/* ---- NAVIGATION ---- */
 .nav {
   display: flex;
   align-items: center;
@@ -83,6 +84,7 @@ header {
   border-radius: 2px;
 }
 
+/* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
   .nav {
     display: none;
@@ -141,7 +143,7 @@ header {
   margin-bottom: 40px;
 }
 
-/* ---- SERVICES ---- */
+/* ---- SERVICES / REALISATIONS ---- */
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -214,6 +216,70 @@ header {
 .btn.gold:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- FORMULAIRES ---- */
+.form-devis {
+  max-width: 700px;
+  margin: 40px auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #d4af37;
+}
+
+/* ---- CONTACT ---- */
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.contact-card h3 {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.contact-card a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 /* ---- FOOTER ---- */
