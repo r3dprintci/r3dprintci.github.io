@@ -1,190 +1,85 @@
-/* ========== STYLE GLOBAL R3D PRINT CI ========== */
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos services | R3D PRINT CI</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
 
-/* Polices & reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="R3D PRINT CI">
+      </a>
 
-body {
-  background: #fff;
-  color: #222;
-  line-height: 1.6;
-}
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
 
-/* ===== HEADER ===== */
-header {
-  background: #111;
-  padding: 15px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+      <nav class="nav" id="navMenu">
+        <a href="index.html" class="btn">Accueil</a>
+        <a href="services.html" class="btn gold">Services</a>
+        <a href="realisations.html" class="btn">Réalisations</a>
+        <a href="devis.html" class="btn">Devis</a>
+        <a href="contact.html" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-nav {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Nos services</h1>
+    <p>Explorez le savoir-faire R3D PRINT CI — précision, design et innovation.</p>
+  </section>
 
-.logo {
-  color: #d4af37;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
+  <!-- SERVICES DETAIL -->
+  <section class="section">
+    <h2>Ce que nous faisons</h2>
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
+    <div class="services">
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+      <div class="service-card">
+        <img src="assets/impression3d.webp" alt="Impression 3D">
+        <h3>Impression 3D</h3>
+        <p>Grâce à des imprimantes FDM et résine haute précision, nous donnons forme à vos idées. 
+        Prototypage rapide, trophées, pièces fonctionnelles, objets décoratifs… chaque création est adaptée à votre besoin.</p>
+        <p><strong>Matériaux :</strong> PLA, PETG, ASA, TPU, résine, etc.</p>
+        <p><strong>Applications :</strong> architecture, ingénierie, art, signalétique, design produit.</p>
+      </div>
 
-.nav-links li a:hover,
-.nav-links li a.active {
-  color: #d4af37;
-}
+      <div class="service-card">
+        <img src="assets/gravurelaser.webp" alt="Gravure Laser">
+        <h3>Gravure Laser</h3>
+        <p>Personnalisez vos objets grâce à une gravure nette et permanente. 
+        Nous utilisons des lasers 450nm et 1064nm adaptés à tout type de matériau.</p>
+        <p><strong>Supports :</strong> bois, métal, cuir, plastique, acrylique, verre.</p>
+        <p><strong>Utilisations :</strong> plaques, trophées, cartes, signalétiques, objets cadeaux.</p>
+      </div>
 
-/* ===== HERO SECTION ===== */
-.hero-services {
-  background: url('assets/img/bg-services.jpg') center/cover no-repeat;
-  color: white;
-  text-align: center;
-  padding: 120px 20px;
-  position: relative;
-}
+      <div class="service-card">
+        <img src="assets/prototypage.webp" alt="Prototypage et Design">
+        <h3>Prototypage & Design</h3>
+        <p>Du concept à la pièce finale : nous concevons, modélisons et testons vos idées avant production. 
+        Vous bénéficiez d’un accompagnement complet pour un rendu réaliste et fonctionnel.</p>
+        <p><strong>Outils :</strong> Shapr3D, Blender, Fusion 360.</p>
+        <p><strong>Avantage :</strong> optimisation, ajustement rapide, visualisation 3D avant fabrication.</p>
+      </div>
 
-.hero-services::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-}
+    </div>
+  </section>
 
-.hero-services .hero-text {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  margin: auto;
-}
+  <!-- CALL TO ACTION -->
+  <section class="cta">
+    <h2>Vous avez un projet à réaliser ?</h2>
+    <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+  </section>
 
-.hero-services h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px;
-}
+  <footer>
+    © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+  </footer>
 
-.hero-services p {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-  color: #eee;
-}
-
-/* ===== BOUTONS ===== */
-.btn.gold {
-  display: inline-block;
-  background: linear-gradient(135deg, #d4af37, #f5d76e);
-  color: white;
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  cursor: pointer;
-}
-
-.btn.gold:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-}
-
-/* ===== SECTION SERVICES ===== */
-.services-section {
-  width: 90%;
-  max-width: 1200px;
-  margin: 80px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
-}
-
-.service-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.service-card img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-}
-
-.service-info {
-  padding: 20px;
-}
-
-.service-info h2 {
-  color: #d4af37;
-  margin-bottom: 10px;
-  font-size: 1.4rem;
-}
-
-.service-info p {
-  color: #555;
-  font-size: 1rem;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: #111;
-  color: #ccc;
-  text-align: center;
-  padding: 30px 10px;
-  margin-top: 60px;
-  font-size: 0.95rem;
-}
-
-footer p {
-  margin: 0;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .hero-services h1 {
-    font-size: 2rem;
-  }
-
-  .hero-services p {
-    font-size: 1rem;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
+  <script src="assets/main.js?v=1.1"></script>
+</body>
+</html>
