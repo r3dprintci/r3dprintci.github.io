@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demander un devis | R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* --- Styles pour le sélecteur de couleurs visuel --- */
+    .color-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .color-option {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .color-option:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    .color-option.selected {
+      border: 3px solid #d4af37;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    .color-label {
+      margin-top: 10px;
+      color: #444;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -37,28 +71,23 @@
   <!-- FORMULAIRE DE DEVIS -->
   <section class="section">
     <h2>Votre projet</h2>
-
     <form action="#" method="post" class="form-devis">
 
-      <!-- Nom -->
       <div class="form-group">
         <label for="nom">Nom complet :</label>
         <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
       </div>
 
-      <!-- Email -->
       <div class="form-group">
         <label for="email">Adresse e-mail :</label>
         <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
       </div>
 
-      <!-- Téléphone -->
       <div class="form-group">
         <label for="telephone">Téléphone / WhatsApp :</label>
         <input type="tel" id="telephone" name="telephone" placeholder="+225 07 00 00 00 00" required>
       </div>
 
-      <!-- Type de service -->
       <div class="form-group">
         <label for="service">Type de service :</label>
         <select id="service" name="service" required>
@@ -70,34 +99,32 @@
         </select>
       </div>
 
-      <!-- Choix des couleurs (multi-selection) -->
+      <!-- Sélecteur de couleurs visuel -->
       <div class="form-group">
-        <label for="couleurs">Couleurs souhaitées :</label>
-        <select id="couleurs" name="couleurs[]" multiple size="8">
-          <option value="blanc">Blanc</option>
-          <option value="noir">Noir</option>
-          <option value="gris">Gris</option>
-          <option value="rouge">Rouge</option>
-          <option value="bleu">Bleu</option>
-          <option value="vert">Vert</option>
-          <option value="jaune">Jaune</option>
-          <option value="doré">Doré (PLA Silk Gold)</option>
-          <option value="argenté">Argenté (PLA Silk Silver)</option>
-          <option value="bronze">Bronze (PLA Silk Bronze)</option>
-          <option value="cuivre">Cuivre (PLA Silk Copper)</option>
-          <option value="transparent">Transparent (PLA Glass / PETG Clear)</option>
-          <option value="autre">Autre (à préciser dans les détails)</option>
-        </select>
-        <p class="hint">💡 Astuce : maintenez <strong>Ctrl</strong> (ou <strong>Cmd</strong> sur Mac) pour choisir plusieurs couleurs.</p>
+        <label>Couleurs souhaitées :</label>
+        <div class="color-selector" id="colorSelector">
+          <div class="color-option" data-color="Blanc" style="background:#ffffff;"></div>
+          <div class="color-option" data-color="Noir" style="background:#000000;"></div>
+          <div class="color-option" data-color="Gris" style="background:#808080;"></div>
+          <div class="color-option" data-color="Rouge" style="background:#e53935;"></div>
+          <div class="color-option" data-color="Bleu" style="background:#1e88e5;"></div>
+          <div class="color-option" data-color="Vert" style="background:#43a047;"></div>
+          <div class="color-option" data-color="Jaune" style="background:#fdd835;"></div>
+          <div class="color-option" data-color="Doré" style="background:linear-gradient(135deg,#d4af37,#f5d76e);"></div>
+          <div class="color-option" data-color="Argenté" style="background:linear-gradient(135deg,#bdbdbd,#e0e0e0);"></div>
+          <div class="color-option" data-color="Bronze" style="background:#cd7f32;"></div>
+          <div class="color-option" data-color="Cuivre" style="background:#b87333;"></div>
+          <div class="color-option" data-color="Transparent" style="background: repeating-linear-gradient(45deg,#ddd 0,#ddd 10px,#fff 10px,#fff 20px);"></div>
+        </div>
+        <input type="hidden" id="couleurs" name="couleurs" />
+        <p class="color-label">Cliquez sur les couleurs que vous souhaitez (plusieurs choix possibles).</p>
       </div>
 
-      <!-- Détails -->
       <div class="form-group">
         <label for="details">Détails du projet :</label>
         <textarea id="details" name="details" rows="5" placeholder="Décrivez votre idée, dimensions, matériaux, couleurs, délai souhaité..." required></textarea>
       </div>
 
-      <!-- Bouton d'envoi -->
       <div class="form-group">
         <button type="submit" class="btn gold">📩 Envoyer la demande</button>
       </div>
@@ -113,6 +140,23 @@
   <footer>
     © <span id="year"></span> R3D PRINT CI — Tous droits réservés
   </footer>
+
+  <script>
+    // --- Gestion de la sélection multiple de couleurs ---
+    const colorSelector = document.getElementById("colorSelector");
+    const hiddenInput = document.getElementById("couleurs");
+
+    colorSelector.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.classList.contains("color-option")) {
+        target.classList.toggle("selected");
+        const selectedColors = Array.from(
+          colorSelector.querySelectorAll(".selected")
+        ).map(el => el.getAttribute("data-color"));
+        hiddenInput.value = selectedColors.join(", ");
+      }
+    });
+  </script>
 
   <script src="assets/main.js?v=1.1"></script>
 </body>
