@@ -82,7 +82,7 @@ header {
   border-radius: 3px;
 }
 
-/* === SECTION HERO === */
+/* === HERO === */
 .hero {
   background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
   text-align: center;
@@ -103,7 +103,7 @@ header {
   margin: auto;
 }
 
-/* === SECTIONS GÉNÉRALES === */
+/* === SECTIONS === */
 .section {
   padding: 60px 20px;
   text-align: center;
@@ -196,7 +196,7 @@ header {
   margin-bottom: 20px;
 }
 
-/* === FORMULAIRES GÉNÉRAUX === */
+/* === FORMULAIRES === */
 .form-devis {
   max-width: 700px;
   margin: 40px auto;
@@ -248,57 +248,63 @@ header {
   font-weight: 700;
 }
 
-/* Grille d'infos */
+/* Grille de contact */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 35px;
   justify-items: center;
-  align-items: start;
-  margin-bottom: 40px;
+  align-items: stretch;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .contact-item {
   background: #fff;
-  border-radius: 16px;
-  padding: 25px 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  width: 100%;
-  max-width: 260px;
+  border-radius: 18px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .contact-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
 }
 
 .icon-contact {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 15px;
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));
 }
 
 .contact-item h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: #111;
   margin-bottom: 6px;
-  font-weight: 600;
 }
 
 .contact-item p {
-  color: #333;
-  font-size: 1rem;
+  color: #444;
+  font-size: 0.95rem;
   margin: 0;
+  line-height: 1.4;
 }
 
-/* Liens dorés */
+/* Lien doré */
 .gold-link {
   color: #d4af37;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
 }
 
 .gold-link:hover {
@@ -306,7 +312,7 @@ header {
   text-decoration: underline;
 }
 
-/* === PIED DE PAGE === */
+/* === FOOTER === */
 footer {
   background: #111;
   color: #fff;
@@ -349,15 +355,22 @@ footer {
     font-size: 1.6rem;
   }
 
-  .service-card {
-    padding: 20px;
-  }
-
   .cta {
     padding: 60px 15px;
   }
 
   footer {
     font-size: 0.85rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
