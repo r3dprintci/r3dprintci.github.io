@@ -3,260 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demander un devis | R3D PRINT CI</title>
+  <title>Demander un devis – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    /* === Sélecteur visuel complet === */
-    .color-selector {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .color-option {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 2px solid #ccc;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .color-option:hover {
-      transform: scale(1.12);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-    }
-
-    .color-option.selected {
-      border: 3px solid #d4af37;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
-      transform: scale(1.1);
-    }
-
-    .color-option.selected::after {
-      content: "✔";
-      position: absolute;
-      top: 6px;
-      left: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #d4af37;
-      text-shadow: 0 0 3px #fff;
-    }
-
-    .selected-colors {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
-      min-height: 24px;
-    }
-
-    .selected-color-label {
-      background: #fff8e1;
-      border: 1px solid #d4af37;
-      color: #856404;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .selected-color-label:hover {
-      background: #d4af37;
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .color-customizer {
-      margin-top: 25px;
-      text-align: center;
-    }
-
-    .color-picker-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .color-picker-wrapper input[type="color"] {
-      width: 60px;
-      height: 40px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .color-preview {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 3px solid #d4af37;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-      transition: all 0.3s ease;
-    }
-
-    .color-label {
-      margin-top: 10px;
-      color: #444;
-      font-size: 0.95rem;
-    }
-  </style>
 </head>
-
 <body>
-  <header>
-    <div class="header-container">
-      <a href="index.html" class="brand">
-        <img src="assets/logo.png" alt="R3D PRINT CI">
-      </a>
 
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-
-      <nav class="nav" id="navMenu">
-        <a href="index.html" class="btn">Accueil</a>
-        <a href="services.html" class="btn">Services</a>
-        <a href="realisations.html" class="btn">Réalisations</a>
-        <a href="devis.html" class="btn gold">Devis</a>
-        <a href="contact.html" class="btn">Contact</a>
-      </nav>
-    </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">R3D PRINT CI</div>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="devis.html" class="active">Devis</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Demander un devis</h1>
-    <p>Expliquez-nous votre projet et choisissez vos couleurs exactes visuellement.</p>
+  <!-- SECTION HERO -->
+  <section class="central-banner">
+    <div class="central-content">
+      <h1>Demander un devis rapide</h1>
+      <p>Remplissez le formulaire ci-dessous pour recevoir une estimation personnalisée.</p>
+      <a href="#formulaire-devis" class="btn gold">⬇️ Accéder au formulaire</a>
+    </div>
   </section>
 
-  <!-- FORMULAIRE DE DEVIS -->
-  <section class="section">
-    <h2>Votre projet</h2>
-    <form action="#" method="post" class="form-devis">
+  <!-- FORMULAIRE DEVIS -->
+  <section id="formulaire-devis" class="devis-section">
+    <h2>Formulaire de demande</h2>
+    <form class="devis-form" action="#" method="post">
 
       <div class="form-group">
-        <label for="nom">Nom complet :</label>
-        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+        <label for="nom">Nom complet *</label>
+        <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
       </div>
 
       <div class="form-group">
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+        <label for="email">Adresse e-mail *</label>
+        <input type="email" id="email" name="email" placeholder="exemple@mail.com" required>
       </div>
 
       <div class="form-group">
-        <label for="telephone">Téléphone / WhatsApp :</label>
-        <input type="tel" id="telephone" name="telephone" placeholder="+225 07 00 00 00 00" required>
+        <label for="telephone">Téléphone / WhatsApp *</label>
+        <input type="text" id="telephone" name="telephone" placeholder="+225 ..." required>
       </div>
 
       <div class="form-group">
-        <label for="service">Type de service :</label>
+        <label for="service">Type de service *</label>
         <select id="service" name="service" required>
-          <option value="">Sélectionnez un service</option>
+          <option value="">Choisissez...</option>
           <option value="impression3d">Impression 3D</option>
-          <option value="gravure">Gravure Laser</option>
-          <option value="prototypage">Prototypage & Design</option>
-          <option value="autre">Autre projet</option>
+          <option value="gravure">Gravure laser</option>
+          <option value="prototypage">Prototypage</option>
+          <option value="autre">Autre</option>
         </select>
       </div>
 
-      <!-- Sélecteur de couleurs -->
       <div class="form-group">
-        <label>Couleurs souhaitées :</label>
-        <div class="color-selector" id="colorSelector">
-          <div class="color-option" data-color="#ffffff" style="background:#ffffff;"></div>
-          <div class="color-option" data-color="#000000" style="background:#000000;"></div>
-          <div class="color-option" data-color="#808080" style="background:#808080;"></div>
-          <div class="color-option" data-color="#e53935" style="background:#e53935;"></div>
-          <div class="color-option" data-color="#1e88e5" style="background:#1e88e5;"></div>
-          <div class="color-option" data-color="#43a047" style="background:#43a047;"></div>
-          <div class="color-option" data-color="#fdd835" style="background:#fdd835;"></div>
-          <div class="color-option" data-color="#d4af37" style="background:linear-gradient(135deg,#d4af37,#f5d76e);"></div>
-          <div class="color-option" data-color="#bdbdbd" style="background:linear-gradient(135deg,#bdbdbd,#e0e0e0);"></div>
-          <div class="color-option" data-color="#cd7f32" style="background:#cd7f32;"></div>
-          <div class="color-option" data-color="#b87333" style="background:#b87333;"></div>
+        <label>Couleur(s) souhaitée(s) *</label>
+        <div class="color-picker">
+          <label><input type="checkbox" name="couleur[]" value="blanc"><span class="color-swatch" style="background:#ffffff;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="noir"><span class="color-swatch" style="background:#000000;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="rouge"><span class="color-swatch" style="background:#e60000;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="bleu"><span class="color-swatch" style="background:#0066ff;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="vert"><span class="color-swatch" style="background:#00b300;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="or"><span class="color-swatch" style="background:#ffd700;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="argent"><span class="color-swatch" style="background:#c0c0c0;"></span></label>
+          <label><input type="checkbox" name="couleur[]" value="autre"><span class="color-swatch" style="background:linear-gradient(45deg,#ff0000,#00ff00,#0000ff);"></span></label>
         </div>
-
-        <div class="selected-colors" id="selectedColors"></div>
-        <input type="hidden" id="couleurs" name="couleurs" />
-        <p class="color-label">Cliquez sur les couleurs que vous souhaitez (plusieurs choix possibles).</p>
-      </div>
-
-      <!-- Personnalisation de nuance -->
-      <div class="color-customizer">
-        <h3>Personnaliser une nuance exacte 🎨</h3>
-        <div class="color-picker-wrapper">
-          <input type="color" id="customColor" value="#d4af37">
-          <div class="color-preview" id="colorPreview" style="background:#d4af37;"></div>
-        </div>
-        <p style="font-size:0.9rem;margin-top:6px;">Ajustez la nuance exacte de votre couleur.</p>
       </div>
 
       <div class="form-group">
-        <label for="details">Détails du projet :</label>
-        <textarea id="details" name="details" rows="5" placeholder="Décrivez votre idée, dimensions, matériaux, couleurs, délai souhaité..." required></textarea>
+        <label for="dimensions">Dimensions souhaitées (cm)</label>
+        <input type="text" id="dimensions" name="dimensions" placeholder="ex : 10 x 15 x 5">
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn gold">📩 Envoyer la demande</button>
+        <label for="quantite">Quantité *</label>
+        <input type="number" id="quantite" name="quantite" min="1" value="1" required>
       </div>
+
+      <div class="form-group">
+        <label for="details">Détails du projet</label>
+        <textarea id="details" name="details" rows="5" placeholder="Décrivez votre besoin, matériau, finitions, etc."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="fichier">Joindre un fichier (optionnel)</label>
+        <input type="file" id="fichier" name="fichier" accept=".stl,.obj,.step,.jpg,.png,.pdf">
+      </div>
+
+      <button type="submit" class="btn gold">📩 Envoyer ma demande</button>
     </form>
   </section>
 
-  <section class="cta">
-    <h2>Besoin d’aide pour formuler votre demande ?</h2>
-    <a href="contact.html" class="btn gold">📞 Contactez-nous directement</a>
-  </section>
-
-  <footer>
-    © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 R3D PRINT CI – Tous droits réservés</p>
   </footer>
 
-  <script>
-    const colorSelector = document.getElementById("colorSelector");
-    const hiddenInput = document.getElementById("couleurs");
-    const selectedColorsContainer = document.getElementById("selectedColors");
-    const customPicker = document.getElementById("customColor");
-    const colorPreview = document.getElementById("colorPreview");
-
-    // Sélection multiple de couleurs prédéfinies
-    colorSelector.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target.classList.contains("color-option")) {
-        target.classList.toggle("selected");
-        const selectedColors = Array.from(colorSelector.querySelectorAll(".selected")).map(el => el.getAttribute("data-color"));
-        hiddenInput.value = selectedColors.join(", ");
-        selectedColorsContainer.innerHTML = "";
-        selectedColors.forEach(color => {
-          const tag = document.createElement("div");
-          tag.className = "selected-color-label";
-          tag.textContent = color;
-          selectedColorsContainer.appendChild(tag);
-        });
-      }
-    });
-
-    // Sélecteur de nuance personnalisé
-    customPicker.addEventListener("input", (e) => {
-      const color = e.target.value;
-      colorPreview.style.background = color;
-      let current = hiddenInput.value ? hiddenInput.value.split(", ") : [];
-      if (!current.includes(color)) current.push(color);
-      hiddenInput.value = current.join(", ");
-      const tag = document.createElement("div");
-      tag.className = "selected-color-label";
-      tag.textContent = color;
-      selectedColorsContainer.appendChild(tag);
-    });
-  </script>
-
-  <script src="assets/main.js?v=1.1"></script>
 </body>
 </html>
