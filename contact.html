@@ -5,62 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    .contact-info {
-      max-width: 700px;
-      margin: 40px auto;
-      text-align: center;
-    }
-
-    .contact-info h2 {
-      color: #111;
-      margin-bottom: 15px;
-    }
-
-    .contact-info p {
-      font-size: 1.05rem;
-      margin: 8px 0;
-      color: #333;
-    }
-
-    .contact-info a {
-      color: #d4af37;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-form {
-      max-width: 700px;
-      margin: 40px auto;
-      text-align: left;
-    }
-
-    .contact-form label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 1rem;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #d4af37;
-      outline: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -90,39 +34,74 @@
     <p>Une question, un projet ou une demande de collaboration ? Nous sommes à votre écoute.</p>
   </section>
 
-  <!-- INFORMATIONS -->
-  <section class="section contact-info">
-    <h2>R3D PRINT CI</h2>
-    <p><strong>📍 Adresse :</strong> Abidjan, Côte d’Ivoire</p>
-    <p><strong>📞 Téléphone / WhatsApp :</strong> 
-      <a href="https://wa.me/2250757841323" target="_blank">+225 07 57 84 13 23</a>
-    </p>
-    <p><strong>✉️ Email :</strong> 
-      <a href="mailto:r3dprintci@gmail.com">r3dprintci@gmail.com</a>
-    </p>
-    <p><strong>⏰ Horaires :</strong> Lundi - Samedi : 9h00 à 18h00</p>
+  <!-- SECTION CONTACT -->
+  <section class="section contact">
+    <h2>Nos coordonnées</h2>
+    <div class="contact-grid">
+
+      <div class="contact-item">
+        <img src="assets/icon-location.webp" alt="Adresse" class="icon-contact">
+        <h3>Adresse</h3>
+        <p>Abidjan, Côte d’Ivoire</p>
+      </div>
+
+      <div class="contact-item">
+        <img src="assets/icon-phone.webp" alt="Téléphone" class="icon-contact">
+        <h3>Téléphone / WhatsApp</h3>
+        <p>
+          <a href="https://wa.me/2250757841323" target="_blank" class="gold-link">
+            +225 07 57 84 13 23
+          </a>
+        </p>
+      </div>
+
+      <div class="contact-item">
+        <img src="assets/icon-mail.webp" alt="Email" class="icon-contact">
+        <h3>Email</h3>
+        <p>
+          <a href="mailto:r3dprintci@gmail.com" class="gold-link">
+            r3dprintci@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <div class="contact-item">
+        <img src="assets/icon-time.webp" alt="Horaires" class="icon-contact">
+        <h3>Horaires</h3>
+        <p>Lundi - Samedi : 9h00 à 18h00</p>
+      </div>
+
+    </div>
   </section>
 
   <!-- FORMULAIRE DE CONTACT -->
   <section class="section">
     <h2>Envoyez-nous un message</h2>
-    <form action="#" method="post" class="contact-form">
-      <label for="nom">Nom complet :</label>
-      <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+    <form action="#" method="post" class="form-devis">
+      <div class="form-group">
+        <label for="nom">Nom complet :</label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+      </div>
 
-      <label for="email">Adresse e-mail :</label>
-      <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+      <div class="form-group">
+        <label for="email">Adresse e-mail :</label>
+        <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+      </div>
 
-      <label for="message">Message :</label>
-      <textarea id="message" name="message" rows="5" placeholder="Décrivez votre demande..." required></textarea>
+      <div class="form-group">
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+      </div>
 
-      <button type="submit" class="btn gold">📨 Envoyer</button>
+      <div class="form-group">
+        <button type="submit" class="btn gold">📨 Envoyer le message</button>
+      </div>
     </form>
   </section>
 
   <!-- CTA -->
   <section class="cta">
-    <h2>Vous préférez discuter directement ?</h2>
+    <h2>Besoin d’une réponse rapide ?</h2>
     <a href="https://wa.me/2250757841323" target="_blank" class="btn gold">💬 Écrire sur WhatsApp</a>
   </section>
 
