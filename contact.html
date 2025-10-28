@@ -1,114 +1,107 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
+/* === SECTION CONTACT === */
+.contact {
+  background-color: #f8f8f8;
+  padding: 60px 20px;
+  text-align: center;
+}
 
-<body>
-  <header>
-    <div class="header-container">
-      <a href="index.html" class="brand">
-        <img src="assets/logo.png" alt="R3D PRINT CI">
-      </a>
+.contact h2 {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
 
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
+/* Grille d'infos */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+  margin-bottom: 40px;
+}
 
-      <nav class="nav" id="navMenu">
-        <a href="index.html" class="btn">Accueil</a>
-        <a href="services.html" class="btn">Services</a>
-        <a href="realisations.html" class="btn">Réalisations</a>
-        <a href="devis.html" class="btn">Devis</a>
-        <a href="contact.html" class="btn gold">Contact</a>
-      </nav>
-    </div>
-  </header>
+.contact-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 260px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Contactez-nous</h1>
-    <p>Une question, un projet ou une demande de collaboration ? Nous sommes à votre écoute.</p>
-  </section>
+.contact-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
 
-  <!-- SECTION CONTACT -->
-  <section class="section contact">
-    <h2>Nos coordonnées</h2>
-    <div class="contact-grid">
+.icon-contact {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));
+}
 
-      <div class="contact-item">
-        <img src="assets/icon-location.webp" alt="Adresse" class="icon-contact">
-        <h3>Adresse</h3>
-        <p>Abidjan, Côte d’Ivoire</p>
-      </div>
+.contact-item h3 {
+  font-size: 1.1rem;
+  color: #111;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
 
-      <div class="contact-item">
-        <img src="assets/icon-phone.webp" alt="Téléphone" class="icon-contact">
-        <h3>Téléphone / WhatsApp</h3>
-        <p>
-          <a href="https://wa.me/2250757841323" target="_blank" class="gold-link">
-            +225 07 57 84 13 23
-          </a>
-        </p>
-      </div>
+.contact-item p {
+  color: #333;
+  font-size: 1rem;
+  margin: 0;
+}
 
-      <div class="contact-item">
-        <img src="assets/icon-mail.webp" alt="Email" class="icon-contact">
-        <h3>Email</h3>
-        <p>
-          <a href="mailto:r3dprintci@gmail.com" class="gold-link">
-            r3dprintci@gmail.com
-          </a>
-        </p>
-      </div>
+/* Liens dorés */
+.gold-link {
+  color: #d4af37;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 
-      <div class="contact-item">
-        <img src="assets/icon-time.webp" alt="Horaires" class="icon-contact">
-        <h3>Horaires</h3>
-        <p>Lundi - Samedi : 9h00 à 18h00</p>
-      </div>
+.gold-link:hover {
+  color: #b9972f;
+  text-decoration: underline;
+}
 
-    </div>
-  </section>
+/* === FORMULAIRE DE CONTACT === */
+.form-devis {
+  max-width: 700px;
+  margin: 40px auto;
+  text-align: left;
+}
 
-  <!-- FORMULAIRE DE CONTACT -->
-  <section class="section">
-    <h2>Envoyez-nous un message</h2>
-    <form action="#" method="post" class="form-devis">
-      <div class="form-group">
-        <label for="nom">Nom complet :</label>
-        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
-      </div>
+.form-group {
+  margin-bottom: 20px;
+}
 
-      <div class="form-group">
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
-      </div>
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
 
-      <div class="form-group">
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
-      </div>
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background-color: #fff;
+}
 
-      <div class="form-group">
-        <button type="submit" class="btn gold">📨 Envoyer le message</button>
-      </div>
-    </form>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2>Besoin d’une réponse rapide ?</h2>
-    <a href="https://wa.me/2250757841323" target="_blank" class="btn gold">💬 Écrire sur WhatsApp</a>
-  </section>
-
-  <footer>
-    © <span id="year"></span> R3D PRINT CI — Tous droits réservés
-  </footer>
-
-  <script src="assets/main.js?v=1.1"></script>
-</body>
-</html>
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+}
