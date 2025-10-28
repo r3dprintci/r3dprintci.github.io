@@ -37,6 +37,7 @@
   <!-- FORMULAIRE DE DEVIS -->
   <section class="section">
     <h2>Votre projet</h2>
+
     <form action="#" method="post" class="form-devis">
 
       <!-- Nom -->
@@ -69,11 +70,10 @@
         </select>
       </div>
 
-      <!-- Choix des couleurs -->
+      <!-- Choix des couleurs (multi-selection) -->
       <div class="form-group">
-        <label for="couleur">Couleur souhaitée :</label>
-        <select id="couleur" name="couleur">
-          <option value="">Sélectionnez une couleur</option>
+        <label for="couleurs">Couleurs souhaitées :</label>
+        <select id="couleurs" name="couleurs[]" multiple size="8">
           <option value="blanc">Blanc</option>
           <option value="noir">Noir</option>
           <option value="gris">Gris</option>
@@ -88,9 +88,10 @@
           <option value="transparent">Transparent (PLA Glass / PETG Clear)</option>
           <option value="autre">Autre (à préciser dans les détails)</option>
         </select>
+        <p class="hint">💡 Astuce : maintenez <strong>Ctrl</strong> (ou <strong>Cmd</strong> sur Mac) pour choisir plusieurs couleurs.</p>
       </div>
 
-      <!-- Détails du projet -->
+      <!-- Détails -->
       <div class="form-group">
         <label for="details">Détails du projet :</label>
         <textarea id="details" name="details" rows="5" placeholder="Décrivez votre idée, dimensions, matériaux, couleurs, délai souhaité..." required></textarea>
