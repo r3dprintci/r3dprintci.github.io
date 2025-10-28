@@ -3,88 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos réalisations | R3D PRINT CI</title>
+  <title>Réalisations – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-
 <body>
+
   <!-- HEADER -->
-  <header>
-    <div class="header-container">
-      <a href="index.html" class="brand">
-        <img src="assets/logo.png" alt="R3D PRINT CI">
-      </a>
-
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-
-      <nav class="nav" id="navMenu">
-        <a href="index.html" class="btn">Accueil</a>
-        <a href="services.html" class="btn">Services</a>
-        <a href="realisations.html" class="btn gold">Réalisations</a>
-        <a href="devis.html" class="btn">Devis</a>
-        <a href="contact.html" class="btn">Contact</a>
-      </nav>
-    </div>
+  <header class="header">
+    <div class="logo">R3D PRINT CI</div>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="realisations.html" class="active">Réalisations</a>
+      <a href="devis.html">Devis</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Nos réalisations</h1>
-    <p>Découvrez les projets R3D PRINT CI : impression 3D, gravure laser et prototypage réalisés avec passion à Abidjan.</p>
+  <!-- SECTION HERO (BANDE DORÉE) -->
+  <section class="central-banner">
+    <div class="central-content">
+      <h1>Nos réalisations</h1>
+      <p>Découvrez quelques-uns de nos projets récents en impression 3D et gravure laser.</p>
+      <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+    </div>
   </section>
 
-  <!-- GALERIE DE RÉALISATIONS -->
-  <section class="section">
+  <!-- SECTION RÉALISATIONS -->
+  <section class="realisations">
     <h2>Quelques exemples de nos créations</h2>
-
-    <div class="services">
-      <!-- Réalisation 1 -->
-      <div class="service-card">
-        <img src="assets/realisation1.webp" alt="Trophée sur mesure R3D">
-        <h3>Trophées personnalisés</h3>
-        <p>Trophées imprimés en PLA Silk doré avec base granite, créés pour tournois et événements professionnels à Abidjan.</p>
+    <div class="gallery">
+      <div class="real-card">
+        <img src="assets/img/print1.jpg" alt="Trophée personnalisé" />
+        <h3>Trophée sur mesure</h3>
+        <p>Conception et impression 3D d’un trophée doré pour un tournoi local.</p>
       </div>
 
-      <!-- Réalisation 2 -->
-      <div class="service-card">
-        <img src="assets/realisation2.webp" alt="Gravure laser sur bois">
-        <h3>Gravure laser sur bois</h3>
-        <p>Gravures décoratives et signalétiques en bois massif, réalisées avec le LaserPecker 4 pour un rendu net et durable.</p>
+      <div class="real-card">
+        <img src="assets/img/print2.jpg" alt="Prototype technique" />
+        <h3>Prototype industriel</h3>
+        <p>Modélisation et impression rapide d’un prototype mécanique pour un client industriel.</p>
       </div>
 
-      <!-- Réalisation 3 -->
-      <div class="service-card">
-        <img src="assets/realisation3.webp" alt="Prototypage industriel 3D">
-        <h3>Prototypage industriel</h3>
-        <p>Pièces techniques imprimées en ASA et PETG, testées pour validation fonctionnelle et ajustement mécanique.</p>
+      <div class="real-card">
+        <img src="assets/img/print3.jpg" alt="Gravure laser bois" />
+        <h3>Gravure sur bois</h3>
+        <p>Gravure laser de précision sur bois pour une plaque commémorative.</p>
       </div>
 
-      <!-- Réalisation 4 -->
-      <div class="service-card">
-        <img src="assets/realisation4.webp" alt="Plaques professionnelles">
-        <h3>Plaques professionnelles</h3>
-        <p>Découpe et gravure sur acrylique, PVC et métal pour enseignes, plaques d’entreprise et signalétiques personnalisées.</p>
+      <div class="real-card">
+        <img src="assets/img/print4.jpg" alt="Plaque personnalisée" />
+        <h3>Plaque personnalisée</h3>
+        <p>Réalisation d’une plaque nominative gravée et découpée au laser.</p>
+      </div>
+
+      <div class="real-card">
+        <img src="assets/img/print5.jpg" alt="Objet décoratif" />
+        <h3>Objet décoratif</h3>
+        <p>Création d’un objet d’art imprimé en 3D à partir d’un modèle original.</p>
+      </div>
+
+      <div class="real-card">
+        <img src="assets/img/print6.jpg" alt="Prototype technique" />
+        <h3>Maquette architecturale</h3>
+        <p>Fabrication d’une maquette d’immeuble avec détails de façade imprimés en 3D.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- SECTION CTA -->
   <section class="cta">
-    <h2>Vous souhaitez concrétiser votre projet ?</h2>
+    <h2>Envie d’un projet unique ?</h2>
     <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    © <span id="year"></span> R3D PRINT CI — Tous droits réservés
+  <footer class="footer">
+    <p>© 2025 R3D PRINT CI – Tous droits réservés</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="assets/main.js?v=1.1"></script>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
