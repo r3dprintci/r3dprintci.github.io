@@ -40,8 +40,9 @@ body {
   padding: 12px 20px;
 }
 
+/* Logo x3 (demande utilisateur, impact sur toutes pages) */
 .logo {
-  height: 60px;
+  height: 180px; /* ~3x l'ancienne taille */
   width: auto;
   display: block;
 }
@@ -50,6 +51,7 @@ body {
   list-style: none;
   display: flex;
   gap: 25px;
+  flex-wrap: wrap;
 }
 
 .main-nav a {
@@ -127,11 +129,35 @@ p {
 
 /* =========================================================
    PAGE ACCUEIL — NOS SERVICES
+   (avec bloc visuel derrière le texte)
    ========================================================= */
 .services {
-  background: #fff;
+  background: #fffaf0;
   text-align: center;
   padding: 60px 20px;
+  position: relative;
+}
+
+.services h2,
+.services p {
+  position: relative;
+  z-index: 2;
+}
+
+.services::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 900px;
+  height: 140px;
+  background: rgba(255, 248, 231, 0.9);
+  border: 1px solid #e0c98d;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  z-index: 1;
 }
 
 .services h2 {
@@ -152,7 +178,7 @@ p {
 }
 
 .service {
-  background: #fffaf0;
+  background: #fff;
   border: 1px solid #e0c98d;
   border-radius: 12px;
   padding: 20px;
@@ -182,6 +208,7 @@ p {
 
 /* =========================================================
    PAGE ACCUEIL — QUELQUES RÉALISATIONS
+   (images centrées et proportionnelles)
    ========================================================= */
 .realisations-home {
   background: #fffaf0;
@@ -208,13 +235,20 @@ p {
   gap: 25px;
   max-width: 1000px;
   margin: 0 auto;
+  justify-items: center;
+  align-items: stretch;
 }
 
 .item-home {
   background: #fff;
   border: 1px solid #e0c98d;
   border-radius: 12px;
-  padding: 12px;
+  padding: 15px;
+  height: 240px;               /* hauteur fixe pour homogénéiser */
+  display: flex;
+  justify-content: center;      /* centre horizontalement l’image */
+  align-items: center;          /* centre verticalement l’image */
+  overflow: hidden;             /* masque le surplus si besoin */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
 }
@@ -224,21 +258,20 @@ p {
 }
 
 .item-home img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;          /* garde le ratio, sans rogner */
   border-radius: 10px;
-  display: block;
-  margin-bottom: 10px;
 }
 
 .item-home h3 {
   color: #333;
   font-size: 1.1em;
-  margin: 0;
+  margin-top: 10px;
 }
 
 /* =========================================================
-   PAGE SERVICES
+   PAGE SERVICES (ne change pas)
    ========================================================= */
 .services-page {
   background: #fff;
@@ -258,7 +291,7 @@ p {
 }
 
 /* =========================================================
-   PAGE RÉALISATIONS
+   PAGE RÉALISATIONS (ne change pas)
    ========================================================= */
 .realisations-page {
   background: #fff;
@@ -311,7 +344,7 @@ p {
 }
 
 /* =========================================================
-   PAGE DEVIS / FORMULAIRE
+   PAGE DEVIS / FORMULAIRE (déjà en place)
    ========================================================= */
 .form-section {
   background: #fff;
@@ -345,52 +378,37 @@ input:focus, select:focus, textarea:focus {
   outline: none;
 }
 
-/* =========================================================
-   DEVIS — ROUE CHROMATIQUE MULTI-COULEURS
-   ========================================================= */
-.color-wheel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: 15px 0;
-}
-
-.color-wheel {
-  width: 60px;
-  height: 60px;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  background: none;
-}
-
-.selected-colors {
+/* === Devis – pastilles de couleurs (si présent sur la page) === */
+.color-picker {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin: 15px 0 25px;
 }
 
-.color-dot {
-  width: 30px;
-  height: 30px;
+.color-option {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   border: 2px solid #e0c98d;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, border 0.2s ease;
 }
 
-.color-dot:hover {
+.color-option:hover {
   transform: scale(1.15);
   border-color: #bfa14a;
 }
 
+.color-option.selected {
+  box-shadow: 0 0 0 3px #bfa14a;
+  transform: scale(1.1);
+}
+
 .color-preview {
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   height: 40px;
   margin: 15px auto;
   border-radius: 6px;
@@ -406,7 +424,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* =========================================================
-   PAGE CONTACT
+   PAGE CONTACT (ne change pas)
    ========================================================= */
 .contact-infos {
   margin-top: 50px;
