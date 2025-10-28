@@ -40,34 +40,40 @@ body {
   padding: 12px 20px;
 }
 
-/* Logo x3 (demande utilisateur, impact sur toutes pages) */
+/* Logo ajusté (-30 % de la taille précédente) */
 .logo {
-  height: 180px; /* ~3x l'ancienne taille */
+  height: 125px;
   width: auto;
   display: block;
 }
 
+/* Menu agrandi et espacé */
 .main-nav ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 35px;
   flex-wrap: wrap;
 }
 
 .main-nav a {
   text-decoration: none;
   color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  font-size: 1.15em;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .main-nav a:hover,
 .main-nav a.active {
   color: #bfa14a;
+  transform: scale(1.08);
 }
 
 /* =========================================================
-   HERO (bannières)
+   HERO
    ========================================================= */
 .hero {
   text-align: center;
@@ -94,12 +100,13 @@ body {
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 25px;
   background: #bfa14a;
   color: white;
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
+  font-size: 1.05em;
   transition: background 0.3s ease;
 }
 
@@ -129,7 +136,6 @@ p {
 
 /* =========================================================
    PAGE ACCUEIL — NOS SERVICES
-   (avec bloc visuel derrière le texte)
    ========================================================= */
 .services {
   background: #fffaf0;
@@ -208,7 +214,6 @@ p {
 
 /* =========================================================
    PAGE ACCUEIL — QUELQUES RÉALISATIONS
-   (images centrées et proportionnelles)
    ========================================================= */
 .realisations-home {
   background: #fffaf0;
@@ -239,222 +244,47 @@ p {
   align-items: stretch;
 }
 
+/* Bloc de chaque réalisation */
 .item-home {
   background: #fff;
   border: 1px solid #e0c98d;
   border-radius: 12px;
   padding: 15px;
-  height: 240px;               /* hauteur fixe pour homogénéiser */
+  height: 260px;
   display: flex;
-  justify-content: center;      /* centre horizontalement l’image */
-  align-items: center;          /* centre verticalement l’image */
-  overflow: hidden;             /* masque le surplus si besoin */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .item-home:hover {
   transform: translateY(-4px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Image centrée */
 .item-home img {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;          /* garde le ratio, sans rogner */
+  max-height: 70%;
+  object-fit: contain;
   border-radius: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
+/* Titre lisible et espacé */
 .item-home h3 {
   color: #333;
-  font-size: 1.1em;
-  margin-top: 10px;
-}
-
-/* =========================================================
-   PAGE SERVICES (ne change pas)
-   ========================================================= */
-.services-page {
-  background: #fff;
+  font-size: 1.05em;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 4px 0;
   text-align: center;
-}
-
-.services-page h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.services-page p {
-  color: #555;
-  max-width: 700px;
-  margin: 0 auto 40px;
-}
-
-/* =========================================================
-   PAGE RÉALISATIONS (ne change pas)
-   ========================================================= */
-.realisations-page {
-  background: #fff;
-  text-align: center;
-}
-
-.realisations-page h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.realisations-page .intro {
-  color: #555;
-  max-width: 700px;
-  margin: 0 auto 40px;
-}
-
-.realisations-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.real-item {
-  background: #fffaf0;
-  border: 1px solid #e0c98d;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.real-item:hover {
-  transform: translateY(-5px);
-}
-
-.real-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.real-item h3 {
-  margin: 10px 0 5px;
-  color: #333;
-}
-
-/* =========================================================
-   PAGE DEVIS / FORMULAIRE (déjà en place)
-   ========================================================= */
-.form-section {
-  background: #fff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.form-section h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-
-form {
-  max-width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input, select, textarea {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1em;
-  width: 100%;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #bfa14a;
-  outline: none;
-}
-
-/* === Devis – pastilles de couleurs (si présent sur la page) === */
-.color-picker {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px 0 25px;
-}
-
-.color-option {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: 2px solid #e0c98d;
-  cursor: pointer;
-  transition: transform 0.2s ease, border 0.2s ease;
-}
-
-.color-option:hover {
-  transform: scale(1.15);
-  border-color: #bfa14a;
-}
-
-.color-option.selected {
-  box-shadow: 0 0 0 3px #bfa14a;
-  transform: scale(1.1);
-}
-
-.color-preview {
-  width: 100%;
-  max-width: 320px;
-  height: 40px;
-  margin: 15px auto;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background-color: #fff8e7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-size: 0.9em;
-  font-weight: 500;
-  text-align: center;
-}
-
-/* =========================================================
-   PAGE CONTACT (ne change pas)
-   ========================================================= */
-.contact-infos {
-  margin-top: 50px;
-  text-align: center;
-  color: #555;
-}
-
-.contact-infos h3 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.contact-infos ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contact-infos li {
-  margin: 8px 0;
-}
-
-.contact-infos a {
-  color: #bfa14a;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-infos a:hover {
-  color: #a88e3a;
+  line-height: 1.3em;
+  letter-spacing: 0.2px;
 }
 
 /* =========================================================
@@ -475,22 +305,29 @@ input:focus, select:focus, textarea:focus {
 @media (max-width: 900px) {
   .main-nav ul {
     gap: 15px;
-    flex-wrap: wrap;
+  }
+
+  .main-nav a {
+    font-size: 1em;
+  }
+
+  .logo {
+    height: 100px;
   }
 
   .hero h1 {
     font-size: 2em;
   }
 
-  .service-grid,
-  .realisations-gallery,
-  .gallery-home {
-    gap: 20px;
+  .item-home {
+    height: auto;
   }
 
-  .services h2,
-  .realisations-home h2,
-  .realisations-page h2 {
-    font-size: 1.8em;
+  .item-home img {
+    max-height: 60%;
+  }
+
+  .item-home h3 {
+    font-size: 1em;
   }
 }
