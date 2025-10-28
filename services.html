@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nos Services | R3D PRINT CI</title>
-
-  <!-- Lien correct vers la feuille de style -->
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    /* Bouton doré identique à la page d’accueil */
-    .btn.gold {
-      display: inline-block;
-      background: linear-gradient(135deg, #d4af37, #f5d76e);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      cursor: pointer;
-    }
-
-    .btn.gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-    }
-
-    /* Centrage du bouton */
-    .cta-container {
-      text-align: center;
-      margin-top: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
+
   <header>
     <nav>
       <a href="index.html" class="logo">R3D PRINT CI</a>
@@ -49,34 +20,43 @@
     </nav>
   </header>
 
-  <section class="services">
-    <h1>Nos Services</h1>
-    <p>Découvrez nos prestations principales en impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
+  <section class="hero-services">
+    <div class="hero-text">
+      <h1>Nos Services</h1>
+      <p>Nous donnons vie à vos idées grâce à nos solutions sur mesure en impression 3D, gravure laser et prototypage.</p>
+      <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+    </div>
+  </section>
 
-    <div class="services-container">
-      <div class="service">
+  <section class="services-section">
+    <div class="service-card">
+      <img src="assets/img/impression3d.jpg" alt="Impression 3D">
+      <div class="service-info">
         <h2>Impression 3D</h2>
-        <p>Réalisation de pièces uniques, objets décoratifs, prototypes et trophées avec un rendu professionnel.</p>
-      </div>
-
-      <div class="service">
-        <h2>Gravure Laser</h2>
-        <p>Gravure sur métal, bois, cuir, verre ou acrylique avec précision millimétrique grâce au LaserPecker 4.</p>
-      </div>
-
-      <div class="service">
-        <h2>Prototypage</h2>
-        <p>Accompagnement complet dans la création de vos prototypes et maquettes fonctionnelles.</p>
+        <p>Fabrication sur mesure de pièces uniques, prototypes, objets décoratifs et trophées avec une qualité professionnelle.</p>
       </div>
     </div>
 
-    <div class="cta-container">
-      <a href="devis.html" class="btn gold">💬 Demander un devis rapide</a>
+    <div class="service-card">
+      <img src="assets/img/gravurelaser.jpg" alt="Gravure laser">
+      <div class="service-info">
+        <h2>Gravure Laser</h2>
+        <p>Gravure de haute précision sur bois, métal, cuir, verre ou acrylique, avec un rendu net et durable.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="assets/img/prototypage.jpg" alt="Prototypage">
+      <div class="service-info">
+        <h2>Prototypage</h2>
+        <p>Conception et réalisation de prototypes fonctionnels, maquettes et produits tests adaptés à vos besoins.</p>
+      </div>
     </div>
   </section>
 
   <footer>
     <p>© 2025 R3D PRINT CI — Tous droits réservés</p>
   </footer>
+
 </body>
 </html>
