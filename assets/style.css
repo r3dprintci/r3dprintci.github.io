@@ -80,6 +80,7 @@ header {
   background: #111;
   margin-bottom: 4px;
   border-radius: 3px;
+  transition: 0.3s;
 }
 
 /* === HERO === */
@@ -89,11 +90,29 @@ header {
   padding: 80px 20px;
 }
 
+/* Bande dorée derrière les titres */
 .hero h1 {
   font-size: 2.5rem;
   color: #111;
   margin-bottom: 15px;
   font-weight: 700;
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  z-index: 1;
+}
+
+.hero h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(90deg, #d4af37, #f5d77a);
+  z-index: -1;
+  opacity: 0.3;
+  border-radius: 6px;
 }
 
 .hero p {
@@ -103,7 +122,7 @@ header {
   margin: auto;
 }
 
-/* === SECTIONS GÉNÉRALES === */
+/* === SECTIONS === */
 .section {
   padding: 60px 20px;
   text-align: center;
@@ -160,33 +179,6 @@ header {
   color: #444;
   font-size: 0.95rem;
   margin-bottom: 8px;
-}
-
-/* === BOUTONS === */
-.btn {
-  display: inline-block;
-  background: #111;
-  color: #fff;
-  padding: 10px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #d4af37;
-  color: #fff;
-}
-
-.btn.gold {
-  background: #d4af37;
-  color: #fff;
-}
-
-.btn.gold:hover {
-  background: #b9972f;
 }
 
 /* === CTA === */
@@ -345,6 +337,20 @@ footer {
 
   .hamburger {
     display: flex;
+    flex-direction: column;
+  }
+
+  /* Animation du hamburger */
+  .menu-open .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .menu-open .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-open .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
   }
 
   .hero {
