@@ -1,4 +1,4 @@
-/* === R3D PRINT CI - STYLE GLOBAL FINAL === */
+/* === R3D PRINT CI - STYLE GLOBAL FINAL (doré beige mat) === */
 
 /* RESET */
 * {
@@ -10,9 +10,10 @@
 /* BODY */
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #fff;
+  background-color: #fffefb;
   color: #222;
   overflow-x: hidden;
+  line-height: 1.6;
 }
 
 /* === HEADER === */
@@ -20,22 +21,23 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
-  background: #111;
-  color: #fff;
+  padding: 18px 60px;
+  background: #f8f5ec; /* blanc cassé légèrement doré */
+  color: #333;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
+.logo img {
+  height: 55px;
+  width: auto;
+  display: block;
 }
 
 .nav a {
-  color: #fff;
+  color: #333;
   text-decoration: none;
   margin-left: 25px;
   font-weight: 500;
@@ -44,10 +46,10 @@ body {
 
 .nav a:hover,
 .nav a.active {
-  color: #ffd700;
+  color: #bfa066; /* doré beige doux */
 }
 
-/* === BANNIÈRE DORÉE / HERO === */
+/* === BANNIÈRE DORÉE (HERO) === */
 .central-banner {
   position: relative;
   width: 100%;
@@ -58,9 +60,9 @@ body {
   text-align: center;
   overflow: hidden;
   padding: 4rem 1rem;
-  background: linear-gradient(90deg, #b8860b, #ffd700, #ffcc33, #b8860b);
-  background-size: 400% 400%;
-  animation: goldFlow 12s linear infinite;
+  background: linear-gradient(90deg, #cdb78f, #e7d9b6, #d2bc94);
+  background-size: 200% 200%;
+  animation: goldFlow 16s ease-in-out infinite;
 }
 
 @keyframes goldFlow {
@@ -70,12 +72,10 @@ body {
 }
 
 .central-content {
-  position: relative;
-  z-index: 2;
   color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
   padding: 2rem;
   max-width: 900px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
 }
 
 .central-content h1 {
@@ -99,12 +99,12 @@ body {
 }
 
 .btn.gold {
-  background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
+  background: linear-gradient(90deg, #bca26d, #d6c08f, #bca26d);
   color: #fff;
   border: none;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 10px rgba(188, 162, 109, 0.5);
   background-size: 300% 300%;
-  animation: goldButton 6s linear infinite;
+  animation: goldButton 10s ease-in-out infinite;
 }
 
 @keyframes goldButton {
@@ -115,10 +115,10 @@ body {
 
 .btn.gold:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 20px rgba(188, 162, 109, 0.7);
 }
 
-/* === À PROPOS / SECTIONS SIMPLES === */
+/* === SECTIONS === */
 section {
   padding: 70px 20px;
   text-align: center;
@@ -127,7 +127,7 @@ section {
 section h2 {
   font-size: 2rem;
   margin-bottom: 30px;
-  color: #b8860b;
+  color: #bca26d;
 }
 
 /* === SERVICES === */
@@ -154,7 +154,7 @@ section h2 {
 }
 
 .service-card h3 {
-  color: #b8860b;
+  color: #bca26d;
   margin-bottom: 10px;
 }
 
@@ -163,7 +163,7 @@ section h2 {
   font-size: 0.95rem;
 }
 
-/* === GALERIE / RÉALISATIONS === */
+/* === RÉALISATIONS === */
 .gallery {
   display: flex;
   justify-content: center;
@@ -187,7 +187,7 @@ section h2 {
 }
 
 .real-card h3 {
-  color: #b8860b;
+  color: #bca26d;
   margin-top: 10px;
   font-size: 1.1rem;
 }
@@ -212,13 +212,13 @@ section h2 {
 .faq-question {
   width: 100%;
   background: #fff;
-  border: 2px solid #b8860b;
+  border: 2px solid #bca26d;
   border-radius: 10px;
   padding: 15px 20px;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  color: #b8860b;
+  color: #bca26d;
   transition: all 0.3s ease;
 }
 
@@ -236,7 +236,7 @@ section h2 {
   line-height: 1.6;
 }
 
-/* === FORMULAIRES (DEMANDE DEVIS + CONTACT) === */
+/* === FORMULAIRES === */
 .devis-form, .contact-form {
   max-width: 700px;
   margin: auto;
@@ -269,10 +269,10 @@ section h2 {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #b8860b;
+  border-color: #bca26d;
 }
 
-/* Sélecteur de couleurs */
+/* === COLOR PICKER === */
 .color-picker {
   display: flex;
   flex-wrap: wrap;
@@ -294,7 +294,7 @@ section h2 {
 }
 
 .color-picker input[type="checkbox"]:checked + .color-swatch {
-  border: 3px solid #b8860b;
+  border: 3px solid #bca26d;
   transform: scale(1.1);
 }
 
@@ -315,12 +315,12 @@ section h2 {
 }
 
 .contact-item h3 {
-  color: #b8860b;
+  color: #bca26d;
   margin-bottom: 10px;
 }
 
 .contact-item a {
-  color: #b8860b;
+  color: #bca26d;
   text-decoration: none;
 }
 
@@ -336,11 +336,12 @@ section h2 {
 
 /* === FOOTER === */
 .footer {
-  background: #111;
-  color: #fff;
+  background: #f8f5ec;
+  color: #333;
   text-align: center;
   padding: 25px;
   font-size: 0.9rem;
+  border-top: 1px solid #e5dcc8;
 }
 
 /* === RESPONSIVE === */
