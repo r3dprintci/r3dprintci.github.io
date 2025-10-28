@@ -16,7 +16,7 @@ body {
   line-height: 1.6;
 }
 
-/* === EN-TÊTE === */
+/* === HEADER === */
 header {
   width: 100%;
   background: #fff;
@@ -40,7 +40,7 @@ header {
   height: auto;
 }
 
-/* --- NAVIGATION --- */
+/* === NAVIGATION === */
 .nav {
   display: flex;
   gap: 15px;
@@ -67,7 +67,7 @@ header {
   color: #fff;
 }
 
-/* --- HAMBURGER --- */
+/* === HAMBURGER MENU === */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -103,7 +103,7 @@ header {
   margin: auto;
 }
 
-/* === SECTIONS === */
+/* === SECTIONS GÉNÉRALES === */
 .section {
   padding: 60px 20px;
   text-align: center;
@@ -142,12 +142,18 @@ header {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.03);
 }
 
 .service-card h3 {
   color: #111;
   margin-bottom: 10px;
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .service-card p {
@@ -248,7 +254,6 @@ header {
   font-weight: 700;
 }
 
-/* Grille de contact */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -299,7 +304,6 @@ header {
   line-height: 1.4;
 }
 
-/* Lien doré */
 .gold-link {
   color: #d4af37;
   font-weight: 600;
