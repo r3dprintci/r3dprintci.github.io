@@ -6,7 +6,7 @@
   <title>Demander un devis | R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* === Sélecteur de couleurs visuel premium === */
+    /* === Sélecteur visuel complet === */
     .color-selector {
       display: flex;
       flex-wrap: wrap;
@@ -71,6 +71,36 @@
       transform: scale(1.05);
     }
 
+    .color-customizer {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .color-picker-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+      width: 60px;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .color-preview {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid #d4af37;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+      transition: all 0.3s ease;
+    }
+
     .color-label {
       margin-top: 10px;
       color: #444;
@@ -103,7 +133,7 @@
   <!-- HERO -->
   <section class="hero">
     <h1>Demander un devis</h1>
-    <p>Expliquez-nous votre projet et recevez une estimation personnalisée sous 24h.</p>
+    <p>Expliquez-nous votre projet et choisissez vos couleurs exactes visuellement.</p>
   </section>
 
   <!-- FORMULAIRE DE DEVIS -->
@@ -137,27 +167,36 @@
         </select>
       </div>
 
-      <!-- Sélecteur visuel des couleurs -->
+      <!-- Sélecteur de couleurs -->
       <div class="form-group">
         <label>Couleurs souhaitées :</label>
         <div class="color-selector" id="colorSelector">
-          <div class="color-option" data-color="Blanc" style="background:#ffffff;"></div>
-          <div class="color-option" data-color="Noir" style="background:#000000;"></div>
-          <div class="color-option" data-color="Gris" style="background:#808080;"></div>
-          <div class="color-option" data-color="Rouge" style="background:#e53935;"></div>
-          <div class="color-option" data-color="Bleu" style="background:#1e88e5;"></div>
-          <div class="color-option" data-color="Vert" style="background:#43a047;"></div>
-          <div class="color-option" data-color="Jaune" style="background:#fdd835;"></div>
-          <div class="color-option" data-color="Doré" style="background:linear-gradient(135deg,#d4af37,#f5d76e);"></div>
-          <div class="color-option" data-color="Argenté" style="background:linear-gradient(135deg,#bdbdbd,#e0e0e0);"></div>
-          <div class="color-option" data-color="Bronze" style="background:#cd7f32;"></div>
-          <div class="color-option" data-color="Cuivre" style="background:#b87333;"></div>
-          <div class="color-option" data-color="Transparent" style="background: repeating-linear-gradient(45deg,#ddd 0,#ddd 10px,#fff 10px,#fff 20px);"></div>
+          <div class="color-option" data-color="#ffffff" style="background:#ffffff;"></div>
+          <div class="color-option" data-color="#000000" style="background:#000000;"></div>
+          <div class="color-option" data-color="#808080" style="background:#808080;"></div>
+          <div class="color-option" data-color="#e53935" style="background:#e53935;"></div>
+          <div class="color-option" data-color="#1e88e5" style="background:#1e88e5;"></div>
+          <div class="color-option" data-color="#43a047" style="background:#43a047;"></div>
+          <div class="color-option" data-color="#fdd835" style="background:#fdd835;"></div>
+          <div class="color-option" data-color="#d4af37" style="background:linear-gradient(135deg,#d4af37,#f5d76e);"></div>
+          <div class="color-option" data-color="#bdbdbd" style="background:linear-gradient(135deg,#bdbdbd,#e0e0e0);"></div>
+          <div class="color-option" data-color="#cd7f32" style="background:#cd7f32;"></div>
+          <div class="color-option" data-color="#b87333" style="background:#b87333;"></div>
         </div>
 
-        <input type="hidden" id="couleurs" name="couleurs" />
         <div class="selected-colors" id="selectedColors"></div>
+        <input type="hidden" id="couleurs" name="couleurs" />
         <p class="color-label">Cliquez sur les couleurs que vous souhaitez (plusieurs choix possibles).</p>
+      </div>
+
+      <!-- Personnalisation de nuance -->
+      <div class="color-customizer">
+        <h3>Personnaliser une nuance exacte 🎨</h3>
+        <div class="color-picker-wrapper">
+          <input type="color" id="customColor" value="#d4af37">
+          <div class="color-preview" id="colorPreview" style="background:#d4af37;"></div>
+        </div>
+        <p style="font-size:0.9rem;margin-top:6px;">Ajustez la nuance exacte de votre couleur.</p>
       </div>
 
       <div class="form-group">
@@ -171,7 +210,6 @@
     </form>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
     <h2>Besoin d’aide pour formuler votre demande ?</h2>
     <a href="contact.html" class="btn gold">📞 Contactez-nous directement</a>
@@ -182,25 +220,19 @@
   </footer>
 
   <script>
-    // === Sélection multiple avec affichage dynamique ===
     const colorSelector = document.getElementById("colorSelector");
     const hiddenInput = document.getElementById("couleurs");
     const selectedColorsContainer = document.getElementById("selectedColors");
+    const customPicker = document.getElementById("customColor");
+    const colorPreview = document.getElementById("colorPreview");
 
+    // Sélection multiple de couleurs prédéfinies
     colorSelector.addEventListener("click", (e) => {
       const target = e.target;
       if (target.classList.contains("color-option")) {
         target.classList.toggle("selected");
-
-        // Liste des couleurs sélectionnées
-        const selectedColors = Array.from(
-          colorSelector.querySelectorAll(".selected")
-        ).map(el => el.getAttribute("data-color"));
-
-        // Met à jour le champ caché
+        const selectedColors = Array.from(colorSelector.querySelectorAll(".selected")).map(el => el.getAttribute("data-color"));
         hiddenInput.value = selectedColors.join(", ");
-
-        // Met à jour les étiquettes visibles
         selectedColorsContainer.innerHTML = "";
         selectedColors.forEach(color => {
           const tag = document.createElement("div");
@@ -209,6 +241,19 @@
           selectedColorsContainer.appendChild(tag);
         });
       }
+    });
+
+    // Sélecteur de nuance personnalisé
+    customPicker.addEventListener("input", (e) => {
+      const color = e.target.value;
+      colorPreview.style.background = color;
+      let current = hiddenInput.value ? hiddenInput.value.split(", ") : [];
+      if (!current.includes(color)) current.push(color);
+      hiddenInput.value = current.join(", ");
+      const tag = document.createElement("div");
+      tag.className = "selected-color-label";
+      tag.textContent = color;
+      selectedColorsContainer.appendChild(tag);
     });
   </script>
 
