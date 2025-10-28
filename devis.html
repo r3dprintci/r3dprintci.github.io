@@ -68,20 +68,19 @@
         <option value="acrylique">Acrylique / Plexiglas</option>
       </select>
 
+      <!-- CHOIX DES COULEURS -->
       <label>Choisissez vos couleurs :</label>
-      <!-- 🎨 Roue chromatique multi-sélection -->
-      <div class="color-wheel-container">
-        <input type="color" class="color-wheel" id="colorWheel">
-        <button type="button" id="addColor" class="btn gold">Ajouter cette couleur</button>
+      <div class="color-picker" id="colorPicker">
+        <div class="color-option" style="background-color: #bfa14a;" data-color="#bfa14a"></div>
+        <div class="color-option" style="background-color: #ff0000;" data-color="#ff0000"></div>
+        <div class="color-option" style="background-color: #00aaff;" data-color="#00aaff"></div>
+        <div class="color-option" style="background-color: #000000;" data-color="#000000"></div>
+        <div class="color-option" style="background-color: #ffffff; border: 1px solid #aaa;" data-color="#ffffff"></div>
+        <div class="color-option" style="background-color: #ff8c00;" data-color="#ff8c00"></div>
+        <div class="color-option" style="background-color: #00ff88;" data-color="#00ff88"></div>
       </div>
 
-      <div class="selected-colors">
-        <!-- Les couleurs choisies apparaîtront ici -->
-      </div>
-
-      <div class="color-preview" id="colorPreview">
-        Aucune couleur sélectionnée
-      </div>
+      <div class="color-preview" id="colorPreview">Aucune couleur sélectionnée</div>
 
       <label for="quantite">Quantité :</label>
       <input type="number" id="quantite" name="quantite" placeholder="Nombre d’unités" min="1" required />
@@ -106,31 +105,25 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPT INTERACTIF -->
+  <!-- SCRIPT INTERACTIF POUR LES COULEURS -->
   <script>
-    const colorWheel = document.getElementById('colorWheel');
-    const addColorBtn = document.getElementById('addColor');
-    const selectedColors = document.querySelector('.selected-colors');
+    const colorOptions = document.querySelectorAll('.color-option');
     const colorPreview = document.getElementById('colorPreview');
 
-    addColorBtn.addEventListener('click', () => {
-      const color = colorWheel.value;
-
-      // Crée une pastille colorée
-      const colorDot = document.createElement('div');
-      colorDot.className = 'color-dot';
-      colorDot.style.backgroundColor = color;
-
-      // Suppression au clic
-      colorDot.addEventListener('click', () => colorDot.remove());
-
-      selectedColors.appendChild(colorDot);
-
-      // Aperçu dégradé
-      const allColors = Array.from(selectedColors.children).map(dot => dot.style.backgroundColor);
-      colorPreview.textContent = allColors.length > 0 ? allColors.join(', ') : 'Aucune couleur sélectionnée';
-      colorPreview.style.background = allColors.length > 0 ? `linear-gradient(90deg, ${allColors.join(', ')})` : '#fff8e7';
+    colorOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        option.classList.toggle('selected');
+        updatePreview();
+      });
     });
+
+    function updatePreview() {
+      const selected = document.querySelectorAll('.color-option.selected');
+      const colors = Array.from(selected).map(o => o.dataset.color);
+      colorPreview.textContent = colors.length > 0 ? colors.join(', ') : 'Aucune couleur sélectionnée';
+      colorPreview.style.background = colors.length > 0 ? `linear-gradient(90deg, ${colors.join(', ')})` : '#fff8e7';
+    }
   </script>
+
 </body>
 </html>
