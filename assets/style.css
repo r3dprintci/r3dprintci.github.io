@@ -2,7 +2,7 @@
    STYLE GLOBAL R3D PRINT CI
    ========================================================= */
 
-/* --- Reset & Base --- */
+/* --- Reset & base --- */
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +37,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 12px 20px;
 }
 
 .logo {
@@ -65,8 +65,31 @@ body {
 }
 
 /* =========================================================
-   BOUTONS GÉNÉRAUX
+   HERO (bannières)
    ========================================================= */
+.hero {
+  text-align: center;
+  background: linear-gradient(to bottom, #fff8e7, #ffffff);
+  padding: 100px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.hero p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -103,44 +126,23 @@ p {
 }
 
 /* =========================================================
-   HERO (Page d’accueil)
-   ========================================================= */
-.hero {
-  text-align: center;
-  background: linear-gradient(to bottom, #fff8e7, #ffffff);
-  padding: 100px 20px;
-}
-
-.hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.hero p {
-  font-size: 1.2em;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-/* =========================================================
-   SERVICES
+   PAGE ACCUEIL — NOS SERVICES
    ========================================================= */
 .services {
   background: #fff;
   text-align: center;
+  padding: 60px 20px;
 }
 
 .services h2 {
   font-size: 2em;
   margin-bottom: 10px;
-  color: #333;
 }
 
 .services p {
+  color: #555;
   max-width: 700px;
   margin: 0 auto 40px;
-  color: #555;
 }
 
 .service-grid {
@@ -162,21 +164,164 @@ p {
   transform: translateY(-5px);
 }
 
+.service img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
 .service h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.service p {
+  color: #555;
+}
+
+/* =========================================================
+   PAGE ACCUEIL — QUELQUES RÉALISATIONS
+   ========================================================= */
+.realisations-home {
+  background: #fffaf0;
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid #e0c98d;
+}
+
+.realisations-home h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.realisations-home p {
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.gallery-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.item-home {
+  background: #fff;
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.item-home:hover {
+  transform: translateY(-4px);
+}
+
+.item-home img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.item-home h3 {
+  color: #333;
+  font-size: 1.1em;
+  margin: 0;
+}
+
+/* =========================================================
+   PAGE SERVICES
+   ========================================================= */
+.services-page {
+  background: #fff;
+  text-align: center;
+}
+
+.services-page h2 {
+  font-size: 2em;
   margin-bottom: 10px;
   color: #333;
 }
 
+.services-page p {
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
 /* =========================================================
-   FORMULAIRE DEVIS
+   PAGE RÉALISATIONS
+   ========================================================= */
+.realisations-page {
+  background: #fff;
+  text-align: center;
+}
+
+.realisations-page h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.realisations-page .intro {
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.realisations-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.real-item {
+  background: #fffaf0;
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.real-item:hover {
+  transform: translateY(-5px);
+}
+
+.real-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.real-item h3 {
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+/* =========================================================
+   PAGE DEVIS / CONTACT
    ========================================================= */
 .form-section {
   background: #fff;
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .form-section h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 15px;
 }
 
 form {
@@ -213,88 +358,27 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* =========================================================
-   PAGE RÉALISATIONS (ajout spécifique)
-   ========================================================= */
-.realisations-page {
-  background-color: #fff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.realisations-page h1 {
-  color: #333;
-  font-size: 2.2em;
-  margin-bottom: 10px;
-}
-
-.realisations-page .intro {
-  color: #555;
-  font-size: 1.1em;
-  max-width: 700px;
-  margin: 0 auto 50px;
-}
-
-.realisations-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.real-item {
-  background: #fffaf0;
-  border: 1px solid #e0c98d;
-  border-radius: 14px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-}
-
-.real-item:hover {
-  transform: translateY(-5px);
-}
-
-.real-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.real-item h3 {
-  margin: 12px 0 6px;
-  color: #333;
-  font-size: 1.2em;
-}
-
-.real-item p {
-  color: #666;
-  font-size: 0.95em;
-  margin: 0;
-}
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 900px) {
   .main-nav ul {
     gap: 15px;
+    flex-wrap: wrap;
   }
 
   .hero h1 {
     font-size: 2em;
   }
 
-  .service-grid {
+  .service-grid,
+  .realisations-gallery,
+  .gallery-home {
     gap: 20px;
   }
 
-  .realisations-page h1 {
+  .services h2,
+  .realisations-home h2,
+  .realisations-page h2 {
     font-size: 1.8em;
-  }
-
-  .realisations-gallery {
-    gap: 20px;
   }
 }
