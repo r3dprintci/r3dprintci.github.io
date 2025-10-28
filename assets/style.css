@@ -311,7 +311,7 @@ p {
 }
 
 /* =========================================================
-   PAGE DEVIS / CONTACT
+   PAGE DEVIS / FORMULAIRE
    ========================================================= */
 .form-section {
   background: #fff;
@@ -346,32 +346,46 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* =========================================================
-   FORMULAIRE DEVIS — CHOIX DES COULEURS
+   DEVIS — ROUE CHROMATIQUE MULTI-COULEURS
    ========================================================= */
-.color-picker {
+.color-wheel-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
   justify-content: center;
-  margin: 10px 0 20px;
+  gap: 15px;
+  margin: 15px 0;
 }
 
-.color-option {
-  width: 32px;
-  height: 32px;
+.color-wheel {
+  width: 60px;
+  height: 60px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+}
+
+.selected-colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.color-dot {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 2px solid #e0c98d;
   cursor: pointer;
-  transition: transform 0.2s ease, border 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
-.color-option:hover {
+.color-dot:hover {
   transform: scale(1.15);
   border-color: #bfa14a;
-}
-
-.color-option.selected {
-  border: 3px solid #bfa14a;
 }
 
 .color-preview {
@@ -388,6 +402,41 @@ input:focus, select:focus, textarea:focus {
   color: #555;
   font-size: 0.9em;
   font-weight: 500;
+  text-align: center;
+}
+
+/* =========================================================
+   PAGE CONTACT
+   ========================================================= */
+.contact-infos {
+  margin-top: 50px;
+  text-align: center;
+  color: #555;
+}
+
+.contact-infos h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.contact-infos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-infos li {
+  margin: 8px 0;
+}
+
+.contact-infos a {
+  color: #bfa14a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-infos a:hover {
+  color: #a88e3a;
 }
 
 /* =========================================================
