@@ -6,31 +6,69 @@
   <title>Demander un devis | R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* --- Styles pour le sélecteur de couleurs visuel --- */
+    /* === Sélecteur de couleurs visuel premium === */
     .color-selector {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
       margin-top: 10px;
     }
 
     .color-option {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       border: 2px solid #ccc;
+      position: relative;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .color-option:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      transform: scale(1.12);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
     }
 
     .color-option.selected {
       border: 3px solid #d4af37;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+      transform: scale(1.1);
+    }
+
+    .color-option.selected::after {
+      content: "✔";
+      position: absolute;
+      top: 6px;
+      left: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d4af37;
+      text-shadow: 0 0 3px #fff;
+    }
+
+    .selected-colors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+      min-height: 24px;
+    }
+
+    .selected-color-label {
+      background: #fff8e1;
+      border: 1px solid #d4af37;
+      color: #856404;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .selected-color-label:hover {
+      background: #d4af37;
+      color: white;
+      transform: scale(1.05);
     }
 
     .color-label {
@@ -99,7 +137,7 @@
         </select>
       </div>
 
-      <!-- Sélecteur de couleurs visuel -->
+      <!-- Sélecteur visuel des couleurs -->
       <div class="form-group">
         <label>Couleurs souhaitées :</label>
         <div class="color-selector" id="colorSelector">
@@ -116,7 +154,9 @@
           <div class="color-option" data-color="Cuivre" style="background:#b87333;"></div>
           <div class="color-option" data-color="Transparent" style="background: repeating-linear-gradient(45deg,#ddd 0,#ddd 10px,#fff 10px,#fff 20px);"></div>
         </div>
+
         <input type="hidden" id="couleurs" name="couleurs" />
+        <div class="selected-colors" id="selectedColors"></div>
         <p class="color-label">Cliquez sur les couleurs que vous souhaitez (plusieurs choix possibles).</p>
       </div>
 
@@ -142,18 +182,32 @@
   </footer>
 
   <script>
-    // --- Gestion de la sélection multiple de couleurs ---
+    // === Sélection multiple avec affichage dynamique ===
     const colorSelector = document.getElementById("colorSelector");
     const hiddenInput = document.getElementById("couleurs");
+    const selectedColorsContainer = document.getElementById("selectedColors");
 
     colorSelector.addEventListener("click", (e) => {
       const target = e.target;
       if (target.classList.contains("color-option")) {
         target.classList.toggle("selected");
+
+        // Liste des couleurs sélectionnées
         const selectedColors = Array.from(
           colorSelector.querySelectorAll(".selected")
         ).map(el => el.getAttribute("data-color"));
+
+        // Met à jour le champ caché
         hiddenInput.value = selectedColors.join(", ");
+
+        // Met à jour les étiquettes visibles
+        selectedColorsContainer.innerHTML = "";
+        selectedColors.forEach(color => {
+          const tag = document.createElement("div");
+          tag.className = "selected-color-label";
+          tag.textContent = color;
+          selectedColorsContainer.appendChild(tag);
+        });
       }
     });
   </script>
