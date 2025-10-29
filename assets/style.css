@@ -403,3 +403,78 @@ body.loaded {
   background: #d4b66f;
   transform: scale(1.1) rotate(90deg);
 }
+
+/* =========================================================
+   SECTION "QUELQUES RÉALISATIONS"
+   ========================================================= */
+.realisations-gallery,
+.realisation-grid,
+.realisations .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  align-items: stretch;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Cartes ou blocs d’image */
+.realisation-item,
+.realisations .card {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(201,175,107,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.realisation-item:hover,
+.realisations .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(201,175,107,0.25);
+}
+
+/* Images à l’intérieur des blocs */
+.realisation-item img,
+.realisations .card img,
+.realisations-gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.realisation-item:hover img,
+.realisations .card:hover img {
+  transform: scale(1.05);
+}
+
+/* Titres ou légendes sous les images */
+.realisation-item h4,
+.realisations .card h4,
+.realisations-gallery h4 {
+  font-size: 1rem;
+  color: var(--dark-text);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.realisation-item p,
+.realisations .card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .realisation-item img,
+  .realisations .card img {
+    height: 180px;
+  }
+}
