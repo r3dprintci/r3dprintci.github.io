@@ -3,9 +3,8 @@
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // --- Sélection des éléments principaux ---
-  const serviceCards = document.querySelectorAll(".service-card");
+  // Éléments principaux
+  const serviceCards = document.querySelectorAll(".service-card[data-service]");
   const panels = document.querySelectorAll(".panel");
   const serviceInput = document.getElementById("serviceType");
   const form = document.getElementById("devisForm");
@@ -18,25 +17,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirm = document.getElementById("btnConfirm");
   const confirmationTitle = document.getElementById("confirmationTitle");
 
-  // --- 1. Choix du service ---
+  // 1) Choix du service + transition
   serviceCards.forEach((card) => {
     card.addEventListener("click", () => {
       serviceCards.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
+
       const service = card.dataset.service;
       serviceInput.value = service;
 
-      panels.forEach(p => p.style.display = "none");
-      if (service === "impression3d") document.getElementById("panel3D").style.display = "block";
-      if (service === "gravure") document.getElementById("panelLaser").style.display = "block";
-      if (service === "prototypage") document.getElementById("panelProto").style.display = "block";
+      panels.forEach(p => { p.style.display = "none"; p.classList.remove("fade-card"); });
 
+      if (service === "impression3d") showPanel("panel3D");
+      if (service === "gravure")      showPanel("panelLaser");
+      if (service === "prototypage")  showPanel("panelProto");
+
+      // réinitialiser résumé / confirmation
       summarySection.classList.remove("active");
       confirmation.classList.remove("active");
+      confirmationTitle.textContent = "Merci, votre demande a été envoyée !";
     });
   });
 
-  // --- 2. Gestion dynamique des couleurs ---
+  function showPanel(id) {
+    const panel = document.getElementById(id);
+    panel.style.display = "block";
+    // relance l’animation
+    void panel.offsetWidth;
+    panel.classList.add("fade-card");
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // 2) Gestion dynamique des couleurs (3D / Proto)
+  initColorPicker("3D");
+  initColorPicker("Proto");
+
   function initColorPicker(prefix) {
     const grid = document.getElementById(`colorGrid${prefix}`);
     const picker = document.getElementById(`colorPicker${prefix}`);
@@ -45,54 +60,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputHidden = document.getElementById(`colors${prefix}`);
     let colors = [];
 
-    // Sélection d’une couleur vide
     grid.addEventListener("click", (e) => {
-      if (e.target.classList.contains("color-circle")) {
-        if (e.target.classList.contains("empty")) {
-          picker.click();
-          picker.oninput = (event) => {
-            const newColor = event.target.value;
-            colors.push(newColor);
-            inputHidden.value = colors.join(", ");
-            updateColorGrid();
-          };
-        }
+      if (e.target.classList.contains("color-circle") && e.target.classList.contains("empty")) {
+        picker.click();
       }
     });
 
-    // Bouton “+” pour ajouter une autre couleur
-    addBtn.addEventListener("click", () => {
-      picker.click();
-      picker.oninput = (event) => {
-        const newColor = event.target.value;
-        colors.push(newColor);
-        inputHidden.value = colors.join(", ");
-        updateColorGrid();
-      };
+    picker.addEventListener("input", (event) => {
+      const newColor = event.target.value;
+      if (!newColor) return;
+      colors.push(newColor);
+      inputHidden.value = colors.join(", ");
+      updateColorGrid();
     });
 
-    // Actualisation visuelle
+    addBtn.addEventListener("click", () => picker.click());
+
     function updateColorGrid() {
       grid.innerHTML = "";
       colors.forEach(c => {
         const div = document.createElement("div");
         div.className = "color-circle";
         div.style.background = c;
+        div.title = c;
         grid.appendChild(div);
       });
       const emptyCircle = document.createElement("div");
       emptyCircle.className = "color-circle empty";
       grid.appendChild(emptyCircle);
-      preview.textContent = colors.length
-        ? `Couleurs : ${colors.join(", ")}`
-        : "Aucune couleur sélectionnée";
+      preview.textContent = colors.length ? `Couleurs : ${colors.join(", ")}` : "Aucune couleur sélectionnée";
     }
   }
 
-  initColorPicker("3D");
-  initColorPicker("Proto");
+  // 3) Upload d’images avec aperçu
+  initDropzone("drop3D", "thumbs3D");
+  initDropzone("dropLaser", "thumbsLaser");
+  initDropzone("dropProto", "thumbsProto");
 
-  // --- 3. Upload d’images avec aperçu ---
   function initDropzone(dropId, thumbsId) {
     const drop = document.getElementById(dropId);
     const input = drop.querySelector("input");
@@ -115,22 +119,18 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("change", (e) => handleFiles(e.target.files));
   }
 
-  initDropzone("drop3D", "thumbs3D");
-  initDropzone("dropLaser", "thumbsLaser");
-  initDropzone("dropProto", "thumbsProto");
-
-  // --- 4. Génération du récapitulatif ---
+  // 4) Récapitulatif
   btnReview.addEventListener("click", () => {
     summaryList.innerHTML = "";
     summaryPhotos.innerHTML = "";
 
     const formData = new FormData(form);
     formData.forEach((val, key) => {
-      if (val && key !== "colors3d" && key !== "colors_proto") {
-        const li = document.createElement("li");
-        li.textContent = `${key.replaceAll("_", " ")} : ${val}`;
-        summaryList.appendChild(li);
-      }
+      if (!val) return;
+      if (key === "colors3d" || key === "colors_proto") return;
+      const li = document.createElement("li");
+      li.textContent = `${key.replaceAll("_", " ")} : ${val}`;
+      summaryList.appendChild(li);
     });
 
     document.querySelectorAll(".thumbs img").forEach(img => {
@@ -139,25 +139,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     summarySection.classList.add("active");
-    summarySection.scrollIntoView({ behavior: "smooth" });
+    summarySection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  // --- 5. Modifier le récapitulatif ---
+  // 5) Retour édition
   btnEdit.addEventListener("click", () => {
     summarySection.classList.remove("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // --- 6. Confirmation personnalisée ---
+  // 6) Confirmation
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     summarySection.classList.remove("active");
 
-    const nomComplet = document.getElementById("nomComplet").value || "";
-    confirmationTitle.innerHTML = `Merci ${nomComplet}, votre demande a bien été envoyée ✨`;
-    confirmation.classList.add("active");
-    confirmation.scrollIntoView({ behavior: "smooth" });
+    const nomComplet = (document.getElementById("nomComplet").value || "").trim();
+    confirmationTitle.innerHTML = nomComplet
+      ? `Merci ${nomComplet}, votre demande a bien été envoyée ✨`
+      : `Merci, votre demande a bien été envoyée ✨`;
 
+    confirmation.classList.add("active");
+    confirmation.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Réinitialisation partielle
     form.reset();
     panels.forEach(p => (p.style.display = "none"));
     serviceCards.forEach(c => c.classList.remove("active"));
