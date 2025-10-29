@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>R3D PRINT CI – Demander un devis</title>
-  <link rel="stylesheet" href="assets/style.css"/>
-  <link rel="icon" href="assets/logo.png" type="image/png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R3D PRINT CI — Demande de devis</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="assets/logo.png" type="image/png">
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
       <nav id="navMenu" class="nav">
         <ul>
@@ -27,145 +28,36 @@
     </div>
   </header>
 
-  <!-- INTRO -->
-  <section class="fade-in">
-    <div class="container">
-      <h1>Demander un devis</h1>
-      <p>Remplissez ce formulaire — nous revenons vers vous rapidement avec une estimation adaptée.</p>
-    </div>
+  <!-- SECTION HERO -->
+  <section class="hero fade-in" style="text-align:center;padding:100px 20px 70px;">
+    <h1>Demander un devis</h1>
+    <p>Obtenez une estimation rapide et personnalisée selon votre projet.</p>
   </section>
 
-  <!-- FORMULAIRE -->
-  <section class="fade-in">
+  <!-- CHOIX DU TYPE DE SERVICE -->
+  <section class="fade-in" style="text-align:center;">
     <div class="container">
-      <div class="card" style="max-width:980px;margin:0 auto;">
-        <form id="devisForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-          <!-- Identité -->
-          <div>
-            <label for="nom" style="font-weight:600;">Nom complet</label>
-            <input id="nom" name="nom" type="text" placeholder="Votre nom et prénom" required />
-          </div>
-
-          <div>
-            <label for="email" style="font-weight:600;">Email</label>
-            <input id="email" name="email" type="email" placeholder="Votre adresse email" required />
-          </div>
-
-          <div>
-            <label for="tel" style="font-weight:600;">Téléphone</label>
-            <input id="tel" name="tel" type="tel" placeholder="+225 …" />
-          </div>
-
-          <!-- Type de service -->
-          <div style="grid-column:1/-1;margin-top:8px;">
-            <label style="font-weight:700;display:block;margin-bottom:8px;">Type de service</label>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-              <button type="button" class="btn gold" data-service="imp3d">Impression 3D</button>
-              <button type="button" class="btn gold" data-service="laser">Gravure laser</button>
-              <button type="button" class="btn gold" data-service="proto">Prototypage</button>
-            </div>
-          </div>
-
-          <!-- Impression 3D -->
-          <div class="service-panel" data-panel="imp3d" style="grid-column:1/-1;display:none;">
-            <h3 style="color:#c9af6b;margin-bottom:10px;">Impression 3D</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-              <div>
-                <label>Nature de l’objet</label>
-                <input type="text" placeholder="Pièce technique, déco, etc." />
-              </div>
-              <div>
-                <label>Dimensions (cm)</label>
-                <input type="text" placeholder="L × l × h (ex: 10 × 6 × 4)" />
-              </div>
-              <div>
-                <label>Lieu d’utilisation</label>
-                <select>
-                  <option value="interieur">Intérieur</option>
-                  <option value="exterieur">Extérieur</option>
-                </select>
-              </div>
-
-              <!-- Couleurs -->
-              <div style="grid-column:1/-1;">
-                <label style="font-weight:600;">Couleurs</label>
-                <div id="colorChips" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-                  <!-- pastille initiale -->
-                  <input type="color" value="#c9af6b" style="width:42px;height:42px;border:none;border-radius:50%;padding:0;cursor:pointer;"/>
-                  <button id="addColor" type="button" class="btn gold" style="width:42px;height:42px;border-radius:50%;padding:0;">+</button>
-                </div>
-              </div>
-
-              <!-- Upload -->
-              <div style="grid-column:1/-1;">
-                <label>Références (photos/fichiers)</label>
-                <input type="file" multiple />
-              </div>
-            </div>
-          </div>
-
-          <!-- Gravure laser -->
-          <div class="service-panel" data-panel="laser" style="grid-column:1/-1;display:none;">
-            <h3 style="color:#c9af6b;margin-bottom:10px;">Gravure laser</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-              <div>
-                <label>Objet à graver</label>
-                <input type="text" placeholder="Métal, bois, cuir, acrylique…" />
-              </div>
-              <div>
-                <label>Quantité</label>
-                <input type="number" min="1" value="1" />
-              </div>
-              <div>
-                <label>Dimensions (cm)</label>
-                <input type="text" placeholder="Largeur × Hauteur" />
-              </div>
-              <div style="grid-column:1/-1;">
-                <label>Références (logo/visuel)</label>
-                <input type="file" multiple />
-              </div>
-            </div>
-          </div>
-
-          <!-- Prototypage -->
-          <div class="service-panel" data-panel="proto" style="grid-column:1/-1;display:none;">
-            <h3 style="color:#c9af6b;margin-bottom:10px;">Prototypage</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-              <div>
-                <label>Objet / Fonction</label>
-                <input type="text" placeholder="Usage, contexte, contraintes…" />
-              </div>
-              <div>
-                <label>Dimensions (cm)</label>
-                <input type="text" placeholder="L × l × h" />
-              </div>
-              <div style="grid-column:1/-1;">
-                <label>Fichiers/Images</label>
-                <input type="file" multiple />
-              </div>
-            </div>
-          </div>
-
-          <!-- Message -->
-          <div style="grid-column:1/-1;">
-            <label for="msg" style="font-weight:600;">Message</label>
-            <textarea id="msg" rows="5" placeholder="Précisions utiles…"></textarea>
-          </div>
-
-          <!-- Actions -->
-          <div style="grid-column:1/-1;display:flex;gap:12px;justify-content:center;margin-top:8px;">
-            <button type="button" id="previewBtn" class="btn gold">Aperçu du résumé</button>
-            <button type="submit" class="btn gold halo-anim">Valider la demande</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- RÉSUMÉ -->
-      <div id="resume" class="card fade-in" style="max-width:980px;margin:20px auto;display:none;">
-        <h3 style="color:#c9af6b;margin-bottom:10px;">Résumé de votre demande</h3>
-        <div id="resumeContent"></div>
+      <h2>Choisissez votre type de service</h2>
+      <p>Sélectionnez le domaine correspondant à votre demande :</p>
+      <div class="service-type-grid" style="display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-top:25px;">
+        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
+        <button class="btn gold service-choice" data-service="laser">🔥 Gravure Laser</button>
+        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
       </div>
     </div>
   </section>
 
-  <!--
+  <!-- FORMULAIRE DYNAMIQUE -->
+  <section id="formContainer" class="fade-in" style="padding-top:40px;"></section>
+
+  <!-- RÉSUMÉ / CONFIRMATION -->
+  <section id="resume" class="fade-in" style="max-width:950px;margin:auto;padding:30px 15px;"></section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
+  </footer>
+
+  <script defer src="assets/main.js"></script>
+</body>
+</html>
