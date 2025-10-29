@@ -47,9 +47,7 @@ body {
   height: 65px;
   transition: transform 0.4s ease;
 }
-.logo:hover {
-  transform: scale(1.08);
-}
+.logo:hover { transform: scale(1.08); }
 .nav ul {
   list-style: none;
   display: flex;
@@ -62,9 +60,7 @@ body {
   transition: color 0.3s ease;
 }
 .nav a:hover,
-.nav a.active {
-  color: var(--gold);
-}
+.nav a.active { color: var(--gold); }
 
 /* ----- Menu burger ----- */
 .hamburger {
@@ -159,7 +155,7 @@ p {
   margin-bottom: 25px;
 }
 
-/* Nos services */
+/* Bloc Nos services */
 .services {
   background: var(--light-bg);
   border-radius: 16px;
@@ -284,8 +280,6 @@ html {
   scroll-padding-top: 80px;
   -webkit-font-smoothing: antialiased;
 }
-
-/* Apparition fluide */
 .fade-in {
   opacity: 0;
   transform: translateY(25px);
@@ -295,8 +289,6 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Slide gauche/droite */
 .slide-in-left, .slide-in-right {
   opacity: 0;
   transition: all 0.8s ease-out;
@@ -307,8 +299,6 @@ html {
   opacity: 1;
   transform: translateX(0);
 }
-
-/* Logo animé */
 .logo {
   transition: transform 0.8s ease, filter 0.8s ease;
   filter: drop-shadow(0 0 6px rgba(201,175,107,0.2));
@@ -317,27 +307,14 @@ html {
   transform: scale(1.05) rotate(-1deg);
   filter: drop-shadow(0 0 15px rgba(201,175,107,0.5));
 }
-
-/* Boutons premium */
-.btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.35s ease;
-  transform: translateZ(0);
-}
 .btn.gold {
   background: linear-gradient(145deg, #d4b66f, #c9af6b);
-  color: #fff;
-  border: none;
   box-shadow: 0 4px 10px rgba(201,175,107,0.4);
 }
 .btn.gold:hover {
   background: linear-gradient(145deg, #e7c878, #d4b66f);
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(201,175,107,0.6);
-}
-.btn.gold:active {
-  transform: scale(0.97);
 }
 .halo-anim {
   box-shadow: 0 0 10px rgba(201,175,107,0.3);
@@ -347,8 +324,6 @@ html {
   0%, 100% { box-shadow: 0 0 8px rgba(201,175,107,0.3); }
   50% { box-shadow: 0 0 18px rgba(201,175,107,0.6); }
 }
-
-/* Titres */
 h1, h2, h3 {
   position: relative;
   color: #c9af6b;
@@ -365,51 +340,13 @@ h1::after, h2::after {
   opacity: 0.8;
 }
 
-/* Cartes et blocs */
-.service-panel, .card, .realisation-item {
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-.service-panel:hover, .card:hover, .realisation-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(201,175,107,0.25);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d4b66f, #c9af6b);
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #e7c878, #d4b66f);
-}
-
-/* Corps de page */
-body {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-body.loaded {
-  opacity: 1;
-}
-
-/* Pastilles de couleur */
-#colorChips input[type="color"]:hover {
-  transform: scale(1.1) rotate(4deg);
-  box-shadow: 0 0 10px rgba(201,175,107,0.4);
-  transition: all 0.3s ease;
-}
-#colorChips button#addColor:hover {
-  background: #d4b66f;
-  transform: scale(1.1) rotate(90deg);
-}
-
 /* =========================================================
-   SECTION "QUELQUES RÉALISATIONS"
+   GRILLE "QUELQUES RÉALISATIONS"
    ========================================================= */
 .realisations-gallery,
 .realisation-grid,
-.realisations .gallery {
+.realisations .gallery,
+.services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
@@ -418,10 +355,9 @@ body.loaded {
   margin-top: 40px;
   width: 100%;
 }
-
-/* Cartes ou blocs d’image */
 .realisation-item,
-.realisations .card {
+.realisations .card,
+.service-item {
   position: relative;
   background: #fff;
   border-radius: 14px;
@@ -429,17 +365,16 @@ body.loaded {
   box-shadow: 0 4px 15px rgba(201,175,107,0.15);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .realisation-item:hover,
-.realisations .card:hover {
+.realisations .card:hover,
+.service-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 22px rgba(201,175,107,0.25);
 }
-
-/* Images à l’intérieur des blocs */
 .realisation-item img,
 .realisations .card img,
-.realisations-gallery img {
+.realisations-gallery img,
+.service-item img {
   width: 100%;
   height: 220px;
   object-fit: cover;
@@ -447,34 +382,32 @@ body.loaded {
   display: block;
   transition: transform 0.5s ease;
 }
-
 .realisation-item:hover img,
-.realisations .card:hover img {
+.realisations .card:hover img,
+.service-item:hover img {
   transform: scale(1.05);
 }
-
-/* Titres ou légendes sous les images */
 .realisation-item h4,
 .realisations .card h4,
-.realisations-gallery h4 {
+.realisations-gallery h4,
+.service-item h4 {
   font-size: 1rem;
   color: var(--dark-text);
   margin-top: 10px;
   text-align: center;
 }
-
 .realisation-item p,
-.realisations .card p {
+.realisations .card p,
+.service-item p {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 10px;
   text-align: center;
 }
-
-/* Adaptation mobile */
 @media (max-width: 768px) {
   .realisation-item img,
-  .realisations .card img {
+  .realisations .card img,
+  .service-item img {
     height: 180px;
   }
 }
