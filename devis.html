@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demander un devis – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css"/>
 </head>
 
 <body>
@@ -12,7 +12,7 @@
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
       <nav class="main-nav">
         <ul>
@@ -32,74 +32,262 @@
     <p>Décrivez votre projet, choisissez vos options et recevez une estimation personnalisée dans les plus brefs délais.</p>
   </section>
 
-  <!-- INTRO -->
+  <!-- INTRO ENCADRÉE -->
   <section class="devis-intro">
     <h2>Votre projet mérite la meilleure précision</h2>
     <p>R3D PRINT CI met à votre disposition son expertise en impression 3D, gravure laser et prototypage pour concrétiser vos idées à Abidjan.</p>
   </section>
 
-  <!-- FORMULAIRE DEVIS -->
+  <!-- ÉTAPE 1 : CHOIX DU SERVICE -->
+  <section class="service-selector container-narrow" id="serviceSelector">
+    <h2>Choisissez votre type de service</h2>
+    <div class="service-cards">
+      <button type="button" class="service-card" data-service="impression3d" id="card3D" aria-pressed="false">
+        <span class="icon">🧱</span>
+        <span class="title">Impression 3D</span>
+        <span class="desc">Prototypes, objets décoratifs, pièces techniques…</span>
+      </button>
+
+      <button type="button" class="service-card" data-service="gravure" id="cardLaser" aria-pressed="false">
+        <span class="icon">🔥</span>
+        <span class="title">Gravure Laser</span>
+        <span class="desc">Bois, métal, cuir, acrylique, verre…</span>
+      </button>
+
+      <button type="button" class="service-card" data-service="prototypage" id="cardProto" aria-pressed="false">
+        <span class="icon">⚙️</span>
+        <span class="title">Prototypage Rapide</span>
+        <span class="desc">Concept → Maquette fonctionnelle</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE GLOBAL -->
   <section class="form-section" id="devis">
     <h2>Formulaire de demande</h2>
 
-    <form action="#" method="post">
-      <label for="nom">Nom complet :</label>
-      <input type="text" id="nom" name="nom" placeholder="Votre nom" required />
+    <form id="devisForm" novalidate>
+      <!-- Champ caché : type de service choisi -->
+      <input type="hidden" id="serviceType" name="service_type" value=""/>
 
-      <label for="email">Adresse e-mail :</label>
-      <input type="email" id="email" name="email" placeholder="exemple@email.com" required />
+      <!-- ===== ÉTAPE 2 : FORMULAIRES CONTEXTUELS ===== -->
 
-      <label for="telephone">Numéro de téléphone :</label>
-      <input type="tel" id="telephone" name="telephone" placeholder="+225 07 00 00 00" required />
+      <!-- Impression 3D -->
+      <fieldset class="panel panel-3d" id="panel3D" aria-hidden="true">
+        <legend>Impression 3D</legend>
 
-      <label for="service">Type de service :</label>
-      <select id="service" name="service" required>
-        <option value="">-- Sélectionnez --</option>
-        <option value="impression3d">Impression 3D</option>
-        <option value="gravure">Gravure laser</option>
-        <option value="prototypage">Prototypage rapide</option>
-        <option value="autre">Autre</option>
-      </select>
+        <label for="objet3d">Nature de l’objet</label>
+        <input type="text" id="objet3d" name="objet3d" placeholder="Ex : Trophée, boîtier, figurine…" />
 
-      <label for="materiau">Matériau souhaité :</label>
-      <select id="materiau" name="materiau">
-        <option value="">-- Choisissez --</option>
-        <option value="pla">PLA</option>
-        <option value="petg">PETG</option>
-        <option value="resine">Résine</option>
-        <option value="bois">Bois (gravure)</option>
-        <option value="metal">Métal (gravure)</option>
-        <option value="acrylique">Acrylique / Plexiglas</option>
-      </select>
+        <div class="grid-3">
+          <div>
+            <label for="longueur3d">Longueur (mm)</label>
+            <input type="number" id="longueur3d" name="longueur3d" min="1" placeholder="L"/>
+          </div>
+          <div>
+            <label for="largeur3d">Largeur (mm)</label>
+            <input type="number" id="largeur3d" name="largeur3d" min="1" placeholder="l"/>
+          </div>
+          <div>
+            <label for="hauteur3d">Hauteur (mm)</label>
+            <input type="number" id="hauteur3d" name="hauteur3d" min="1" placeholder="h"/>
+          </div>
+        </div>
 
-      <!-- COULEURS -->
-      <label>Choisissez vos couleurs :</label>
-      <div class="color-picker" id="colorPicker">
-        <div class="color-option" style="background-color: #bfa14a;" data-color="#bfa14a" title="Doré"></div>
-        <div class="color-option" style="background-color: #ff0000;" data-color="#ff0000" title="Rouge"></div>
-        <div class="color-option" style="background-color: #00aaff;" data-color="#00aaff" title="Bleu"></div>
-        <div class="color-option" style="background-color: #000000;" data-color="#000000" title="Noir"></div>
-        <div class="color-option" style="background-color: #ffffff; border: 1px solid #aaa;" data-color="#ffffff" title="Blanc"></div>
-        <div class="color-option" style="background-color: #ff8c00;" data-color="#ff8c00" title="Orange"></div>
-        <div class="color-option" style="background-color: #00ff88;" data-color="#00ff88" title="Vert clair"></div>
-      </div>
-      <div class="color-preview" id="colorPreview">Aucune couleur sélectionnée</div>
+        <label>Lieu d’utilisation</label>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="lieu3d" value="interieur"> Intérieur</label>
+          <label class="radio"><input type="radio" name="lieu3d" value="exterieur"> Extérieur</label>
+        </div>
 
-      <label for="quantite">Quantité :</label>
-      <input type="number" id="quantite" name="quantite" placeholder="Nombre d’unités" min="1" required />
+        <div class="color-block">
+          <label>Couleurs (ajoutez-les au fur et à mesure)</label>
+          <div class="color-grid" id="colorGrid3D">
+            <div class="color-circle empty" title="Choisir une couleur"></div>
+          </div>
+          <input type="color" id="colorPicker3D" class="visually-hidden" />
+          <div class="color-actions">
+            <button type="button" class="add-color-btn" id="addColor3D" title="Ajouter une couleur">+</button>
+          </div>
+          <div class="color-preview" id="colorPreview3D">Aucune couleur sélectionnée</div>
+          <!-- Valeurs envoyées -->
+          <input type="hidden" id="colors3D" name="colors3d" value=""/>
+        </div>
 
-      <label for="delai">Délai souhaité :</label>
-      <select id="delai" name="delai">
-        <option value="">-- Choisissez --</option>
-        <option value="urgent">Urgent (moins de 48h)</option>
-        <option value="normal">Standard (3 à 5 jours)</option>
-        <option value="personnalise">Personnalisé</option>
-      </select>
+        <!-- Upload images 3D -->
+        <div class="upload-block">
+          <label>Photos / Références (optionnel)</label>
+          <div class="dropzone" id="drop3D">
+            <input type="file" id="files3D" name="files3d" accept="image/*" multiple class="file-input"/>
+            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
+          </div>
+          <div class="thumbs" id="thumbs3D"></div>
+        </div>
+      </fieldset>
 
-      <label for="message">Description du projet :</label>
-      <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet, dimensions, finitions, etc." required></textarea>
+      <!-- Gravure Laser -->
+      <fieldset class="panel panel-laser" id="panelLaser" aria-hidden="true">
+        <legend>Gravure Laser</legend>
 
-      <button type="submit" class="btn gold">📤 Envoyer ma demande</button>
+        <label for="supportLaser">Nature du support</label>
+        <select id="supportLaser" name="support_laser">
+          <option value="">-- Sélectionnez --</option>
+          <option value="bois">Bois</option>
+          <option value="metal">Métal</option>
+          <option value="cuir">Cuir</option>
+          <option value="acrylique">Acrylique / Plexi</option>
+          <option value="verre">Verre</option>
+          <option value="autre">Autre</option>
+        </select>
+
+        <label>Type de gravure</label>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="type_gravure" value="texte"> Texte</label>
+          <label class="radio"><input type="radio" name="type_gravure" value="logo"> Logo</label>
+          <label class="radio"><input type="radio" name="type_gravure" value="image"> Image</label>
+          <label class="radio"><input type="radio" name="type_gravure" value="mixte"> Mixte</label>
+        </div>
+
+        <div class="grid-3">
+          <div>
+            <label for="quantiteLaser">Quantité</label>
+            <input type="number" id="quantiteLaser" name="quantite_laser" min="1" placeholder="Ex : 10"/>
+          </div>
+          <div>
+            <label for="largeurLaser">Largeur (mm)</label>
+            <input type="number" id="largeurLaser" name="largeur_laser" min="1" placeholder="l"/>
+          </div>
+          <div>
+            <label for="hauteurLaser">Hauteur (mm)</label>
+            <input type="number" id="hauteurLaser" name="hauteur_laser" min="1" placeholder="h"/>
+          </div>
+        </div>
+
+        <!-- Upload images Laser -->
+        <div class="upload-block">
+          <label>Photos / Références (optionnel)</label>
+          <div class="dropzone" id="dropLaser">
+            <input type="file" id="filesLaser" name="files_laser" accept="image/*" multiple class="file-input"/>
+            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
+          </div>
+          <div class="thumbs" id="thumbsLaser"></div>
+        </div>
+      </fieldset>
+
+      <!-- Prototypage Rapide -->
+      <fieldset class="panel panel-proto" id="panelProto" aria-hidden="true">
+        <legend>Prototypage Rapide</legend>
+
+        <label for="typeProto">Type d’objet / Concept</label>
+        <input type="text" id="typeProto" name="type_proto" placeholder="Ex : boîtier électronique, pièce d’assemblage…"/>
+
+        <label for="usageProto">Fonction / Usage prévu</label>
+        <input type="text" id="usageProto" name="usage_proto" placeholder="Ex : test mécanique, validation design…"/>
+
+        <div class="grid-3">
+          <div>
+            <label for="longueurProto">Longueur (mm)</label>
+            <input type="number" id="longueurProto" name="longueur_proto" min="1" placeholder="L"/>
+          </div>
+          <div>
+            <label for="largeurProto">Largeur (mm)</label>
+            <input type="number" id="largeurProto" name="largeur_proto" min="1" placeholder="l"/>
+          </div>
+          <div>
+            <label for="hauteurProto">Hauteur (mm)</label>
+            <input type="number" id="hauteurProto" name="hauteur_proto" min="1" placeholder="h"/>
+          </div>
+        </div>
+
+        <label for="materiauProto">Matériau souhaité</label>
+        <select id="materiauProto" name="materiau_proto">
+          <option value="">-- Sélectionnez --</option>
+          <option value="pla">PLA</option>
+          <option value="petg">PETG</option>
+          <option value="resine">Résine</option>
+          <option value="autre">Autre</option>
+        </select>
+
+        <div class="color-block">
+          <label>Couleurs (optionnel)</label>
+          <div class="color-grid" id="colorGridProto">
+            <div class="color-circle empty" title="Choisir une couleur"></div>
+          </div>
+          <input type="color" id="colorPickerProto" class="visually-hidden" />
+          <div class="color-actions">
+            <button type="button" class="add-color-btn" id="addColorProto" title="Ajouter une couleur">+</button>
+          </div>
+          <div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div>
+          <!-- Valeurs envoyées -->
+          <input type="hidden" id="colorsProto" name="colors_proto" value=""/>
+        </div>
+
+        <!-- Upload images Proto -->
+        <div class="upload-block">
+          <label>Photos / Références (optionnel)</label>
+          <div class="dropzone" id="dropProto">
+            <input type="file" id="filesProto" name="files_proto" accept="image/*" multiple class="file-input"/>
+            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
+          </div>
+          <div class="thumbs" id="thumbsProto"></div>
+        </div>
+      </fieldset>
+
+      <!-- ===== ÉTAPE CONTACT / FINAL ===== -->
+      <fieldset class="panel panel-contact" id="panelContact">
+        <legend>Vos coordonnées</legend>
+
+        <label for="nomComplet">Nom complet</label>
+        <input type="text" id="nomComplet" name="nom_complet" placeholder="Votre nom et prénom" required/>
+
+        <div class="grid-2">
+          <div>
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" placeholder="exemple@email.com" required/>
+          </div>
+          <div>
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+225 07 00 00 00" required/>
+          </div>
+        </div>
+
+        <label for="message">Notes / Détails complémentaires</label>
+        <textarea id="message" name="message" rows="5" placeholder="Ajoutez des précisions utiles (délais, finitions, contraintes, etc.)"></textarea>
+
+        <div class="actions">
+          <button type="button" class="btn gold" id="btnReview">Aperçu du récapitulatif</button>
+        </div>
+      </fieldset>
+
+      <!-- ===== ÉTAPE 3 : RÉCAPITULATIF ===== -->
+      <section id="summarySection" class="summary-section" aria-hidden="true">
+        <h3>Récapitulatif de votre demande</h3>
+
+        <div class="summary-grid">
+          <div class="summary-left">
+            <ul class="summary-list" id="summaryList">
+              <!-- rempli via JS -->
+            </ul>
+          </div>
+          <div class="summary-right">
+            <div class="summary-photos" id="summaryPhotos">
+              <!-- vignettes via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-actions">
+          <button type="button" class="btn outline" id="btnEdit">Modifier</button>
+          <button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button>
+        </div>
+      </section>
+
+      <!-- ===== CONFIRMATION ===== -->
+      <section id="confirmation" class="confirmation" aria-hidden="true">
+        <div class="confetti">✨</div>
+        <h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3>
+        <p id="confirmationText">Notre équipe R3D PRINT CI vous contactera très bientôt.</p>
+      </section>
     </form>
   </section>
 
@@ -108,26 +296,6 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPT COULEURS -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const colorOptions = document.querySelectorAll('.color-option');
-      const colorPreview = document.getElementById('colorPreview');
-
-      function updatePreview() {
-        const selected = document.querySelectorAll('.color-option.selected');
-        const colors = Array.from(selected).map(o => o.dataset.color);
-        colorPreview.textContent = colors.length > 0 ? colors.join(', ') : 'Aucune couleur sélectionnée';
-        colorPreview.style.background = colors.length > 0 ? `linear-gradient(90deg, ${colors.join(', ')})` : '#fff8e7';
-      }
-
-      colorOptions.forEach(option => {
-        option.addEventListener('click', () => {
-          option.classList.toggle('selected');
-          updatePreview();
-        });
-      });
-    });
-  </script>
+  <!-- Le JS sera ajouté dans un message séparé -->
 </body>
 </html>
