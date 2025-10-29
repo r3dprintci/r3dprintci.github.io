@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Demander un devis – R3D PRINT CI</title>
-  <meta name="description" content="Formulaire de devis dynamique : impression 3D, gravure laser, prototypage. Ajout de couleurs et images, récapitulatif animé."/>
+  <title>Devis – R3D PRINT CI | Demande en ligne</title>
+  <meta name="description" content="Demandez un devis sur mesure pour vos projets d’impression 3D, gravure laser ou prototypage rapide avec R3D PRINT CI à Abidjan.">
   <link rel="stylesheet" href="assets/style.css"/>
+  <link rel="icon" href="assets/logo.png" type="image/png"/>
 </head>
+
 <body>
-  <!-- HEADER -->
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link" aria-label="R3D PRINT CI">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
-      </a>
-      <nav id="navMenu" class="nav" aria-label="Navigation principale">
+      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/></a>
+      <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
@@ -23,154 +26,170 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
   <section class="hero">
-    <h1>Demander un devis sur mesure</h1>
-    <p>Décrivez votre projet et recevez une estimation personnalisée.</p>
+    <h1>Demander un devis</h1>
+    <p>Remplissez ce formulaire pour obtenir une estimation personnalisée de votre projet.</p>
   </section>
 
-  <!-- INTRO -->
-  <section class="devis-intro">
-    <h2>Votre projet mérite la meilleure précision</h2>
-    <p>R3D PRINT CI met à votre disposition son expertise en impression 3D, gravure laser et prototypage.</p>
-  </section>
+  <!-- =========================================================
+       FORMULAIRE DYNAMIQUE
+  ========================================================== -->
+  <section class="container" style="max-width:900px; margin-top:50px;">
+    <form id="devisForm" class="service-card fade-in">
+      <h3>Type de service</h3>
+      <div class="service-choice">
+        <button type="button" class="choice-btn" data-service="impression3d">🧱 Impression 3D</button>
+        <button type="button" class="choice-btn" data-service="gravure">🔥 Gravure Laser</button>
+        <button type="button" class="choice-btn" data-service="prototypage">⚙️ Prototypage</button>
+      </div>
 
-  <!-- CHOIX DU SERVICE -->
-  <section class="service-selector">
-    <h2>Choisissez votre type de service</h2>
-    <div class="service-cards">
-      <button type="button" class="service-card" data-service="impression3d">🧱 Impression 3D</button>
-      <button type="button" class="service-card" data-service="gravure">🔥 Gravure Laser</button>
-      <button type="button" class="service-card" data-service="prototypage">⚙️ Prototypage</button>
-    </div>
-  </section>
+      <div id="formContent"></div>
 
-  <!-- FORMULAIRE -->
-  <section class="form-section">
-    <form id="devisForm" novalidate>
-      <input type="hidden" id="serviceType" name="service_type"/>
-
-      <!-- Impression 3D -->
-      <fieldset class="panel fade-card" id="panel3D" style="display:none">
-        <legend>Impression 3D</legend>
-        <label>Nature de l’objet</label><input type="text" name="objet3d"/>
-        <div class="grid-3">
-          <div><label>L (mm)</label><input type="number" name="longueur3d"/></div>
-          <div><label>l (mm)</label><input type="number" name="largeur3d"/></div>
-          <div><label>h (mm)</label><input type="number" name="hauteur3d"/></div>
-        </div>
-        <label>Lieu</label>
-        <div class="radio-row">
-          <label><input type="radio" name="lieu3d" value="intérieur"/> Intérieur</label>
-          <label><input type="radio" name="lieu3d" value="extérieur"/> Extérieur</label>
-        </div>
-        <div class="color-block">
-          <label>Couleurs</label>
-          <div class="color-grid" id="colorGrid3D"><div class="color-circle empty"></div></div>
-          <input type="color" id="colorPicker3D" class="visually-hidden"/>
-          <div class="color-actions"><button type="button" class="add-color-btn" id="addColor3D">+</button></div>
-          <div class="color-preview" id="colorPreview3D">Aucune couleur sélectionnée</div>
-          <input type="hidden" id="colors3D" name="colors3d"/>
-        </div>
-        <div class="upload-block">
-          <label>Images</label>
-          <div class="dropzone" id="drop3D"><input type="file" multiple/><p>Glissez-déposez vos images ici</p></div>
-          <div class="thumbs" id="thumbs3D"></div>
-        </div>
-      </fieldset>
-
-      <!-- Gravure -->
-      <fieldset class="panel fade-card" id="panelLaser" style="display:none">
-        <legend>Gravure Laser</legend>
-        <label>Support</label>
-        <select name="support_laser">
-          <option>Bois</option><option>Métal</option><option>Verre</option><option>Cuir</option>
-        </select>
-        <label>Type de gravure</label>
-        <div class="radio-row">
-          <label><input type="radio" name="type_gravure" value="texte"/> Texte</label>
-          <label><input type="radio" name="type_gravure" value="logo"/> Logo</label>
-        </div>
-        <div class="grid-3">
-          <div><label>Quantité</label><input type="number" name="quantite_laser"/></div>
-          <div><label>Largeur (mm)</label><input type="number" name="largeur_laser"/></div>
-          <div><label>Hauteur (mm)</label><input type="number" name="hauteur_laser"/></div>
-        </div>
-        <div class="upload-block">
-          <label>Images</label>
-          <div class="dropzone" id="dropLaser"><input type="file" multiple/><p>Glissez vos images ici</p></div>
-          <div class="thumbs" id="thumbsLaser"></div>
-        </div>
-      </fieldset>
-
-      <!-- Prototypage -->
-      <fieldset class="panel fade-card" id="panelProto" style="display:none">
-        <legend>Prototypage</legend>
-        <label>Type d’objet</label><input type="text" name="type_proto"/>
-        <div class="grid-3">
-          <div><label>L (mm)</label><input type="number" name="longueur_proto"/></div>
-          <div><label>l (mm)</label><input type="number" name="largeur_proto"/></div>
-          <div><label>h (mm)</label><input type="number" name="hauteur_proto"/></div>
-        </div>
-        <label>Matériau</label>
-        <select name="materiau_proto"><option>PLA</option><option>PETG</option><option>Résine</option></select>
-        <div class="color-block">
-          <label>Couleurs</label>
-          <div class="color-grid" id="colorGridProto"><div class="color-circle empty"></div></div>
-          <input type="color" id="colorPickerProto" class="visually-hidden"/>
-          <div class="color-actions"><button type="button" class="add-color-btn" id="addColorProto">+</button></div>
-          <div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div>
-          <input type="hidden" id="colorsProto" name="colors_proto"/>
-        </div>
-        <div class="upload-block">
-          <label>Images</label>
-          <div class="dropzone" id="dropProto"><input type="file" multiple/><p>Glissez vos images ici</p></div>
-          <div class="thumbs" id="thumbsProto"></div>
-        </div>
-      </fieldset>
-
-      <!-- Coordonnées -->
-      <fieldset class="panel fade-card">
-        <legend>Vos coordonnées</legend>
-        <label>Nom complet</label><input type="text" id="nomComplet" name="nom_complet" required/>
-        <div class="grid-2">
-          <div><label>Email</label><input type="email" name="email" required/></div>
-          <div><label>Téléphone</label><input type="tel" name="telephone" required/></div>
-        </div>
-        <label>Notes</label><textarea name="message" rows="4" placeholder="Précisions utiles (délais, finition, couleur exacte, etc.)"></textarea>
-        <div class="actions"><button type="button" class="btn gold" id="btnReview">Aperçu du récapitulatif</button></div>
-      </fieldset>
-
-      <!-- Résumé -->
-      <section id="summarySection" class="summary-section">
-        <h3>Récapitulatif</h3>
-        <ul class="summary-list" id="summaryList"></ul>
-        <div class="summary-photos" id="summaryPhotos"></div>
-        <div class="summary-actions" style="margin-top:16px;">
-          <button type="button" class="btn outline" id="btnEdit">Modifier</button>
-          <button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button>
-        </div>
-      </section>
-
-      <!-- Confirmation -->
-      <section id="confirmation" class="confirmation">
-        <div class="confetti">✨</div>
-        <h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3>
-        <p>Notre équipe R3D PRINT CI vous contactera très bientôt.</p>
-      </section>
+      <button type="submit" class="btn gold" id="validateBtn" style="display:none;margin-top:25px;">✅ Valider ma demande</button>
     </form>
   </section>
 
-  <!-- FOOTER -->
+  <!-- =========================================================
+       RÉSUMÉ + CONFIRMATION
+  ========================================================== -->
+  <section id="confirmationSection" class="container fade-in" style="display:none; text-align:center; margin-top:60px;">
+    <h2>🎉 Merci <span id="clientName"></span> !</h2>
+    <p>Votre demande de devis a bien été enregistrée.<br/>
+    Nous vous répondrons sous 24 heures sur WhatsApp ou par e-mail.</p>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
+  <!-- =========================================================
+       SCRIPT
+  ========================================================== -->
   <script defer src="assets/main.js"></script>
-  <script defer src="assets/devis.js"></script>
+
+  <script>
+  // === Gestion des boutons de choix de service ===
+  const choiceBtns = document.querySelectorAll(".choice-btn");
+  const formContent = document.getElementById("formContent");
+  const validateBtn = document.getElementById("validateBtn");
+  const confirmation = document.getElementById("confirmationSection");
+  const clientName = document.getElementById("clientName");
+
+  choiceBtns.forEach(btn => {
+    btn.addEventListener("mouseover", () => btn.classList.add("hovered"));
+    btn.addEventListener("mouseout", () => btn.classList.remove("hovered"));
+    btn.addEventListener("click", () => {
+      choiceBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const service = btn.getAttribute("data-service");
+      generateForm(service);
+    });
+  });
+
+  // === Formulaires spécifiques ===
+  function generateForm(service) {
+    let html = "";
+    if (service === "impression3d") {
+      html = `
+        <h3>Impression 3D</h3>
+        <label>Nom complet</label>
+        <input type="text" id="nom" placeholder="Votre nom complet" required>
+
+        <label>Nature de l’objet</label>
+        <input type="text" placeholder="Ex : pièce technique, décor, prototype">
+
+        <label>Dimensions (cm)</label>
+        <input type="text" placeholder="Ex : 10 x 5 x 3 cm">
+
+        <label>Lieu d’utilisation</label>
+        <select>
+          <option value="interieur">Intérieur</option>
+          <option value="exterieur">Extérieur</option>
+        </select>
+
+        <label>Couleurs</label>
+        <div id="colorPicker" class="color-picker">
+          <button type="button" class="add-color">+</button>
+        </div>
+
+        <label>Images de référence</label>
+        <input type="file" accept="image/*" multiple>
+      `;
+    } else if (service === "gravure") {
+      html = `
+        <h3>Gravure Laser</h3>
+        <label>Nom complet</label>
+        <input type="text" id="nom" placeholder="Votre nom complet" required>
+
+        <label>Support à graver</label>
+        <input type="text" placeholder="Ex : bois, métal, verre">
+
+        <label>Quantité</label>
+        <input type="number" placeholder="Ex : 10 pièces">
+
+        <label>Dimensions</label>
+        <input type="text" placeholder="Ex : 20 × 10 cm">
+
+        <label>Images de référence</label>
+        <input type="file" accept="image/*" multiple>
+      `;
+    } else if (service === "prototypage") {
+      html = `
+        <h3>Prototypage</h3>
+        <label>Nom complet</label>
+        <input type="text" id="nom" placeholder="Votre nom complet" required>
+
+        <label>Nature du prototype</label>
+        <input type="text" placeholder="Ex : maquette, accessoire, support">
+
+        <label>Matériaux souhaités</label>
+        <input type="text" placeholder="Ex : PLA, PETG, résine, métal">
+
+        <label>Dimensions</label>
+        <input type="text" placeholder="Ex : 12 × 8 × 5 cm">
+
+        <label>Images de référence</label>
+        <input type="file" accept="image/*" multiple>
+      `;
+    }
+    formContent.innerHTML = html;
+    validateBtn.style.display = "block";
+    setupColorPicker();
+  }
+
+  // === Gestion du sélecteur de couleur dynamique ===
+  function setupColorPicker() {
+    const picker = document.getElementById("colorPicker");
+    if (!picker) return;
+    const addBtn = picker.querySelector(".add-color");
+    addBtn.addEventListener("click", () => {
+      const newColor = document.createElement("input");
+      newColor.type = "color";
+      newColor.className = "color-circle";
+      picker.insertBefore(newColor, addBtn);
+    });
+  }
+
+  // === Validation et confirmation ===
+  document.getElementById("devisForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nomValue = document.getElementById("nom") ? document.getElementById("nom").value : "";
+    document.getElementById("devisForm").style.display = "none";
+    clientName.textContent = nomValue || "";
+    confirmation.style.display = "block";
+    window.scrollTo({ top: confirmation.offsetTop, behavior: "smooth" });
+  });
+  </script>
+
 </body>
 </html>
