@@ -1,65 +1,121 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R3D PRINT CI — Demande de devis</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="assets/logo.png" type="image/png">
-</head>
+// =============================================================
+// R3D PRINT CI - SCRIPT DYNAMIQUE DEVIS (version finale stable)
+// =============================================================
 
-<body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
-      <nav id="navMenu" class="nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="realisations.html">Réalisations</a></li>
-          <li><a class="active" href="devis.html">Devis</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
-    </div>
-  </header>
+document.addEventListener("DOMContentLoaded", () => {
+  const formContainer = document.getElementById("formContainer");
+  const serviceButtons = document.querySelectorAll(".service-choice");
+  const resumeContainer = document.getElementById("resume");
 
-  <!-- SECTION HERO -->
-  <section class="hero fade-in" style="text-align:center;padding:100px 20px 70px;">
-    <h1>Demander un devis</h1>
-    <p>Obtenez une estimation rapide et personnalisée selon votre projet.</p>
-  </section>
+  if (!formContainer || !serviceButtons.length) return;
 
-  <!-- CHOIX DU TYPE DE SERVICE -->
-  <section class="fade-in" style="text-align:center;">
-    <div class="container">
-      <h2>Choisissez votre type de service</h2>
-      <p>Sélectionnez le domaine correspondant à votre demande :</p>
-      <div class="service-type-grid" style="display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-top:25px;">
-        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
-        <button class="btn gold service-choice" data-service="laser">🔥 Gravure Laser</button>
-        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
-      </div>
-    </div>
-  </section>
+  // Activation des boutons de service
+  serviceButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      serviceButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderForm(btn.dataset.service);
+      window.scrollTo({ top: formContainer.offsetTop - 100, behavior: "smooth" });
+    });
+  });
 
-  <!-- FORMULAIRE DYNAMIQUE -->
-  <section id="formContainer" class="fade-in" style="padding-top:40px;"></section>
+  // === Fonction de génération du formulaire selon le service ===
+  function renderForm(service) {
+    let html = "";
 
-  <!-- RÉSUMÉ / CONFIRMATION -->
-  <section id="resume" class="fade-in" style="max-width:950px;margin:auto;padding:30px 15px;"></section>
+    if (service === "3d") {
+      html = `
+        <div class="service-panel fade-in visible">
+          <h3>Impression 3D</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Nature de l’objet</label><input type="text" placeholder="Ex : prototype, trophée, pièce mécanique">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 15 x 10 x 5">
+          <label>Lieu d’utilisation</label>
+          <select><option value="">Choisissez...</option><option>Intérieur</option><option>Extérieur</option></select>
+          <label>Couleurs souhaitées</label>
+          <div id="colorChips">
+            <input type="color" value="#c9af6b">
+            <button id="addColor">+</button>
+          </div>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
+    }
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
+    else if (service === "laser") {
+      html = `
+        <div class="service-panel fade-in visible">
+          <h3>Gravure Laser</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Type d’objet</label><input type="text" placeholder="Ex : plaque, bouteille, trophée">
+          <label>Quantité</label><input type="number" placeholder="Ex : 5">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 10 x 5 x 2">
+          <label>Matériau</label>
+          <select><option>Bois</option><option>Métal</option><option>Verre</option><option>PVC</option><option>Autre</option></select>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
+    }
 
-  <script defer src="assets/main.js"></script>
-<script defer src="assets/devis.js"></script>
+    else if (service === "proto") {
+      html = `
+        <div class="service-panel fade-in visible">
+          <h3>Prototypage</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Nature du prototype</label><input type="text" placeholder="Ex : boîtier, pièce technique">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 20 x 10 x 8">
+          <label>Matériau souhaité</label>
+          <select><option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option></select>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
+    }
 
-</body>
-</html>
+    // Injection du HTML généré dans le conteneur
+    formContainer.innerHTML = `
+      <form id="devisForm" class="fade-in visible">
+        ${html}
+        <div style="grid-column: 1 / -1; text-align:center; margin-top:25px;">
+          <button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button>
+        </div>
+      </form>
+    `;
+
+    setupColorAdder();
+    setupSubmit(service);
+  }
+
+  // === Gestion de l’ajout de couleurs ===
+  function setupColorAdder() {
+    const addBtn = document.getElementById("addColor");
+    const container = document.getElementById("colorChips");
+    if (!addBtn || !container) return;
+    addBtn.addEventListener("click", e => {
+      e.preventDefault();
+      const newColor = document.createElement("input");
+      newColor.type = "color";
+      newColor.style.opacity = "0";
+      newColor.style.transition = "opacity 0.4s ease";
+      container.insertBefore(newColor, addBtn);
+      setTimeout(() => (newColor.style.opacity = "1"), 50);
+    });
+  }
+
+  // === Gestion du résumé final ===
+  function setupSubmit(service) {
+    const btn = document.getElementById("submitDevis");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const name = document.querySelector("#devisForm input[type='text']")?.value.trim() || "";
+      resumeContainer.innerHTML = `
+        <div class="fade-in visible" style="text-align:center;padding:35px;background:#fffaf0;border-radius:14px;margin-top:30px;">
+          <h3 style="color:#c9af6b;">Merci ${name || "cher client"} !</h3>
+          <p>Votre demande de <strong>${getServiceName(service)}</strong> a bien été enregistrée.<br>Vous recevrez une réponse sous 24h.</p>
+        </div>`;
+      window.scrollTo({ top: resumeContainer.offsetTop - 80, behavior: "smooth" });
+    });
+  }
+
+  function getServiceName(code) {
+    return code === "3d" ? "service d’impression 3D"
+      : code === "laser" ? "service de gravure laser"
+      : "service de prototypage";
+  }
+});
