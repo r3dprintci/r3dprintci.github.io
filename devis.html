@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demander un devis – R3D PRINT CI</title>
+  <meta name="description" content="Formulaire de devis dynamique : impression 3D, gravure laser, prototypage. Ajout de couleurs et images, récapitulatif animé."/>
   <link rel="stylesheet" href="assets/style.css"/>
 </head>
-
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
+      <a href="index.html" class="logo-link" aria-label="R3D PRINT CI">
         <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
-      <nav id="navMenu" class="nav">
+      <nav id="navMenu" class="nav" aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
@@ -23,20 +23,20 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <h1>Demander un devis sur mesure</h1>
-    <p>Décrivez votre projet et recevez une estimation personnalisée dans les plus brefs délais.</p>
+    <p>Décrivez votre projet et recevez une estimation personnalisée.</p>
   </section>
 
   <!-- INTRO -->
   <section class="devis-intro">
     <h2>Votre projet mérite la meilleure précision</h2>
-    <p>R3D PRINT CI met à votre disposition son expertise en impression 3D, gravure laser et prototypage pour concrétiser vos idées à Abidjan.</p>
+    <p>R3D PRINT CI met à votre disposition son expertise en impression 3D, gravure laser et prototypage.</p>
   </section>
 
   <!-- CHOIX DU SERVICE -->
@@ -55,7 +55,7 @@
       <input type="hidden" id="serviceType" name="service_type"/>
 
       <!-- Impression 3D -->
-      <fieldset class="panel" id="panel3D" style="display:none">
+      <fieldset class="panel fade-card" id="panel3D" style="display:none">
         <legend>Impression 3D</legend>
         <label>Nature de l’objet</label><input type="text" name="objet3d"/>
         <div class="grid-3">
@@ -84,43 +84,91 @@
       </fieldset>
 
       <!-- Gravure -->
-      <fieldset class="panel" id="panelLaser" style="display:none">
+      <fieldset class="panel fade-card" id="panelLaser" style="display:none">
         <legend>Gravure Laser</legend>
-        <label>Support</label><select name="support_laser"><option>Bois</option><option>Métal</option><option>Verre</option><option>Cuir</option></select>
+        <label>Support</label>
+        <select name="support_laser">
+          <option>Bois</option><option>Métal</option><option>Verre</option><option>Cuir</option>
+        </select>
         <label>Type de gravure</label>
-        <div class="radio-row"><label><input type="radio" name="type_gravure" value="texte"/> Texte</label><label><input type="radio" name="type_gravure" value="logo"/> Logo</label></div>
-        <div class="grid-3"><div><label>Quantité</label><input type="number" name="quantite_laser"/></div><div><label>Largeur</label><input type="number" name="largeur_laser"/></div><div><label>Hauteur</label><input type="number" name="hauteur_laser"/></div></div>
-        <div class="upload-block"><label>Images</label><div class="dropzone" id="dropLaser"><input type="file" multiple/><p>Glissez vos images ici</p></div><div class="thumbs" id="thumbsLaser"></div></div>
+        <div class="radio-row">
+          <label><input type="radio" name="type_gravure" value="texte"/> Texte</label>
+          <label><input type="radio" name="type_gravure" value="logo"/> Logo</label>
+        </div>
+        <div class="grid-3">
+          <div><label>Quantité</label><input type="number" name="quantite_laser"/></div>
+          <div><label>Largeur (mm)</label><input type="number" name="largeur_laser"/></div>
+          <div><label>Hauteur (mm)</label><input type="number" name="hauteur_laser"/></div>
+        </div>
+        <div class="upload-block">
+          <label>Images</label>
+          <div class="dropzone" id="dropLaser"><input type="file" multiple/><p>Glissez vos images ici</p></div>
+          <div class="thumbs" id="thumbsLaser"></div>
+        </div>
       </fieldset>
 
       <!-- Prototypage -->
-      <fieldset class="panel" id="panelProto" style="display:none">
+      <fieldset class="panel fade-card" id="panelProto" style="display:none">
         <legend>Prototypage</legend>
         <label>Type d’objet</label><input type="text" name="type_proto"/>
-        <div class="grid-3"><div><label>L (mm)</label><input type="number" name="longueur_proto"/></div><div><label>l (mm)</label><input type="number" name="largeur_proto"/></div><div><label>h (mm)</label><input type="number" name="hauteur_proto"/></div></div>
-        <label>Matériau</label><select name="materiau_proto"><option>PLA</option><option>PETG</option><option>Résine</option></select>
-        <div class="color-block"><label>Couleurs</label><div class="color-grid" id="colorGridProto"><div class="color-circle empty"></div></div><input type="color" id="colorPickerProto" class="visually-hidden"/><div class="color-actions"><button type="button" class="add-color-btn" id="addColorProto">+</button></div><div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div><input type="hidden" id="colorsProto" name="colors_proto"/></div>
-        <div class="upload-block"><label>Images</label><div class="dropzone" id="dropProto"><input type="file" multiple/><p>Glissez vos images ici</p></div><div class="thumbs" id="thumbsProto"></div></div>
+        <div class="grid-3">
+          <div><label>L (mm)</label><input type="number" name="longueur_proto"/></div>
+          <div><label>l (mm)</label><input type="number" name="largeur_proto"/></div>
+          <div><label>h (mm)</label><input type="number" name="hauteur_proto"/></div>
+        </div>
+        <label>Matériau</label>
+        <select name="materiau_proto"><option>PLA</option><option>PETG</option><option>Résine</option></select>
+        <div class="color-block">
+          <label>Couleurs</label>
+          <div class="color-grid" id="colorGridProto"><div class="color-circle empty"></div></div>
+          <input type="color" id="colorPickerProto" class="visually-hidden"/>
+          <div class="color-actions"><button type="button" class="add-color-btn" id="addColorProto">+</button></div>
+          <div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div>
+          <input type="hidden" id="colorsProto" name="colors_proto"/>
+        </div>
+        <div class="upload-block">
+          <label>Images</label>
+          <div class="dropzone" id="dropProto"><input type="file" multiple/><p>Glissez vos images ici</p></div>
+          <div class="thumbs" id="thumbsProto"></div>
+        </div>
       </fieldset>
 
       <!-- Coordonnées -->
-      <fieldset class="panel">
+      <fieldset class="panel fade-card">
         <legend>Vos coordonnées</legend>
         <label>Nom complet</label><input type="text" id="nomComplet" name="nom_complet" required/>
-        <div class="grid-2"><div><label>Email</label><input type="email" name="email" required/></div><div><label>Téléphone</label><input type="tel" name="telephone" required/></div></div>
-        <label>Notes</label><textarea name="message" rows="4"></textarea>
+        <div class="grid-2">
+          <div><label>Email</label><input type="email" name="email" required/></div>
+          <div><label>Téléphone</label><input type="tel" name="telephone" required/></div>
+        </div>
+        <label>Notes</label><textarea name="message" rows="4" placeholder="Précisions utiles (délais, finition, couleur exacte, etc.)"></textarea>
         <div class="actions"><button type="button" class="btn gold" id="btnReview">Aperçu du récapitulatif</button></div>
       </fieldset>
 
       <!-- Résumé -->
-      <section id="summarySection" class="summary-section"><h3>Récapitulatif</h3><ul class="summary-list" id="summaryList"></ul><div class="summary-photos" id="summaryPhotos"></div><div class="summary-actions"><button type="button" class="btn outline" id="btnEdit">Modifier</button><button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button></div></section>
+      <section id="summarySection" class="summary-section">
+        <h3>Récapitulatif</h3>
+        <ul class="summary-list" id="summaryList"></ul>
+        <div class="summary-photos" id="summaryPhotos"></div>
+        <div class="summary-actions" style="margin-top:16px;">
+          <button type="button" class="btn outline" id="btnEdit">Modifier</button>
+          <button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button>
+        </div>
+      </section>
 
       <!-- Confirmation -->
-      <section id="confirmation" class="confirmation"><div class="confetti">✨</div><h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3><p>Notre équipe R3D PRINT CI vous contactera très bientôt.</p></section>
+      <section id="confirmation" class="confirmation">
+        <div class="confetti">✨</div>
+        <h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3>
+        <p>Notre équipe R3D PRINT CI vous contactera très bientôt.</p>
+      </section>
     </form>
   </section>
 
-  <footer class="site-footer"><p>© 2025 R3D PRINT CI – Tous droits réservés.</p></footer>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
+  </footer>
 
   <script defer src="assets/main.js"></script>
   <script defer src="assets/devis.js"></script>
