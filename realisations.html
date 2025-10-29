@@ -1,154 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Réalisations – R3D PRINT CI | Nos projets et créations à Abidjan</title>
-  <meta name="description" content="Découvrez les réalisations de R3D PRINT CI : impression 3D, gravure laser, signalétique et prototypes réalisés à Abidjan.">
+  <title>R3D PRINT CI – Réalisations</title>
   <link rel="stylesheet" href="assets/style.css"/>
   <link rel="icon" href="assets/logo.png" type="image/png"/>
 </head>
-
 <body>
-
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="realisations.html" class="active">Réalisations</a></li>
+          <li><a class="active" href="realisations.html">Réalisations</a></li>
           <li><a href="devis.html">Devis</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- =========================================================
-       HERO
-  ========================================================== -->
-  <section class="hero">
-    <h1>Nos réalisations</h1>
-    <p>Découvrez des exemples de projets créés et produits par R3D PRINT CI&nbsp;: du prototype à la finition dorée.</p>
-  </section>
-
-  <!-- =========================================================
-       INTRODUCTION AVEC CADRE DORÉ
-  ========================================================== -->
-  <section class="container" style="margin-top:70px;">
-    <div class="fade-in" style="
-        max-width:900px;
-        margin:auto;
-        background:#fffaf0;
-        border:1px solid #e0c98d;
-        border-radius:14px;
-        box-shadow:0 3px 10px rgba(191,161,74,0.15);
-        padding:40px 30px;
-        text-align:center;
-    ">
-      <h2 style="margin-bottom:10px;">Exemples récents</h2>
-      <p>Chaque création reflète notre engagement envers la qualité, la précision et la satisfaction de nos clients.</p>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       GALERIE DE RÉALISATIONS
-  ========================================================== -->
-  <section class="realisations-section" style="margin-top:60px;">
+  <!-- INTRO -->
+  <section class="fade-in">
     <div class="container">
-      <div class="realisations-grid">
-        <article class="realisations-item fade-in">
-          <img src="assets/shot1.jpg" alt="Trophée padel – R3D PRINT CI"/>
-          <h3>Trophée sur mesure</h3>
-          <p>Trophées de tournois personnalisés, finition dorée brillante avec socle en marbre.</p>
+      <h1>Nos réalisations</h1>
+      <p>Découvrez des exemples de projets créés et produits par R3D PRINT CI : du prototype à la finition dorée.</p>
+    </div>
+  </section>
+
+  <!-- EXEMPLES RÉCENTS -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Exemples récents</h2>
+      <p>Chaque création reflète notre engagement envers la qualité, la précision et la satisfaction de nos clients.</p>
+
+      <div class="realisation-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
+        <article class="realisation-item slide-in-left">
+          <img src="assets/impression3d.webp" alt="Pièce 3D finition dorée"/>
+          <h3 style="margin-top:10px;">Pièce 3D – Finition dorée</h3>
+          <p>Impression, ponçage, métallisation, vernis de protection.</p>
         </article>
 
-        <article class="realisations-item fade-in">
-          <img src="assets/shot2.jpg" alt="Gravure bois – R3D PRINT CI"/>
-          <h3>Gravure sur bois</h3>
-          <p>Gravure fine au laser sur bois massif, idéale pour enseignes et décorations.</p>
+        <article class="realisation-item fade-in">
+          <img src="assets/gravurelaser.webp" alt="Gravure laser sur acrylique"/>
+          <h3 style="margin-top:10px;">Gravure – Acrylique</h3>
+          <p>Découpe et gravure haute précision pour signalétique.</p>
         </article>
 
-        <article class="realisations-item fade-in">
-          <img src="assets/shot3.jpg" alt="Prototype – R3D PRINT CI"/>
-          <h3>Prototype industriel</h3>
-          <p>Maquette fonctionnelle pour validation de design avant production.</p>
-        </article>
-
-        <article class="realisations-item fade-in">
-          <img src="assets/shot4.jpg" alt="Signalétique – R3D PRINT CI"/>
-          <h3>Signalétique professionnelle</h3>
-          <p>Découpes et gravures de plaques d’entreprise sur acrylique et aluminium.</p>
+        <article class="realisation-item slide-in-right">
+          <img src="assets/prototypage.webp" alt="Prototype ajustements"/>
+          <h3 style="margin-top:10px;">Prototype – Ajustements</h3>
+          <p>Itérations rapides et tests dimensionnels avant production.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================
-       SECTION SUPPLÉMENTAIRE (Méthode de travail)
-  ========================================================== -->
-  <section class="container" style="margin-top:90px;">
-    <div class="fade-in" style="
-        max-width:900px;
-        margin:auto;
-        background:#fffaf0;
-        border:1px solid #e0c98d;
-        border-radius:14px;
-        box-shadow:0 3px 10px rgba(191,161,74,0.15);
-        padding:40px 30px;
-        text-align:center;
-    ">
-      <h2 style="margin-bottom:10px;">Notre méthode de travail</h2>
-      <p>Chez R3D PRINT CI, chaque projet passe par des étapes précises pour garantir la qualité et la durabilité du résultat final.</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px;">
-      <div class="service-card fade-in">
-        <h3>🧠 Conception</h3>
-        <p>Analyse des besoins et modélisation 3D avec ajustement du design selon votre objectif.</p>
-      </div>
-      <div class="service-card fade-in">
-        <h3>⚙️ Production</h3>
-        <p>Impression ou gravure avec nos machines de précision (LaserPecker 4, Kobra 3, etc.).</p>
-      </div>
-      <div class="service-card fade-in">
-        <h3>🎨 Finition</h3>
-        <p>Nettoyage, peinture, vernis ou métallisation selon la texture et le rendu souhaité.</p>
-      </div>
-      <div class="service-card fade-in">
-        <h3>📦 Livraison</h3>
-        <p>Emballage sécurisé et livraison rapide sur tout Abidjan et la sous-région.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       SECTION APPEL À L’ACTION
-  ========================================================== -->
-  <section class="container" style="margin-top:80px;">
-    <div class="services-intro fade-in">
-      <h2>Confiez-nous votre projet</h2>
-      <p>Que ce soit pour un trophée, une signalétique ou un prototype, nous vous accompagnons de A à Z.</p>
-      <a href="devis.html" class="btn gold">💬 Demander un devis</a>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- =========================================================
-       SCRIPT
-  ========================================================== -->
   <script defer src="assets/main.js"></script>
 </body>
 </html>
