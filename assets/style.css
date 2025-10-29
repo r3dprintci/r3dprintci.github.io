@@ -2,7 +2,7 @@
    STYLE GLOBAL R3D PRINT CI
    ========================================================= */
 
-/* --- Reset & base --- */
+/* --- Reset --- */
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +29,6 @@ body {
 .site-header {
   background-color: #fff8e7;
   border-bottom: 1px solid #e0c98d;
-  position: relative;
   z-index: 100;
 }
 
@@ -40,14 +39,13 @@ body {
   padding: 12px 20px;
 }
 
-/* Logo ajusté (-30 % de la taille précédente) */
+/* Logo */
 .logo {
   height: 125px;
   width: auto;
-  display: block;
 }
 
-/* Menu agrandi et espacé */
+/* Navigation */
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -84,116 +82,74 @@ body {
 }
 
 .hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.hero p {
-  font-size: 1.2em;
-  color: #555;
-  margin-bottom: 30px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 25px;
-  background: #bfa14a;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 1.05em;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background: #a88e3a;
-}
-
-.btn.gold {
-  background: linear-gradient(135deg, #c8ae69, #bfa14a);
-}
-
-/* =========================================================
-   SECTIONS GÉNÉRALES
-   ========================================================= */
-section {
-  padding: 60px 20px;
-}
-
-h1, h2, h3 {
-  font-weight: 600;
-  color: #333;
-}
-
-p {
-  color: #555;
-}
-
-/* =========================================================
-   PAGE ACCUEIL — NOS SERVICES
-   ========================================================= */
-.services {
-  background: #fffaf0;
-  text-align: center;
-  padding: 60px 20px;
-  position: relative;
-}
-
-.services h2,
-.services p {
-  position: relative;
-  z-index: 2;
-}
-
-.services::before {
-  content: "";
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 85%;
-  max-width: 900px;
-  height: 140px;
-  background: rgba(255, 248, 231, 0.9);
-  border: 1px solid #e0c98d;
-  border-radius: 16px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  z-index: 1;
-}
-
-.services h2 {
-  font-size: 2em;
+  font-size: 2.4em;
   margin-bottom: 10px;
 }
 
-.services p {
-  color: #555;
+.hero p {
   max-width: 700px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
+  font-size: 1.1em;
+  color: #555;
+  background: rgba(255, 248, 231, 0.85);
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   CE QUE NOUS PROPOSONS
+   ========================================================= */
+.services-intro {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 15px;
+}
+
+.services-intro h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.services-intro p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #555;
+  font-size: 1.05em;
+}
+
+/* =========================================================
+   LISTE DES SERVICES
+   ========================================================= */
+.services-page {
+  background: #fffaf0;
+  padding: 60px 20px;
 }
 
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .service {
   background: #fff;
   border: 1px solid #e0c98d;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 20px;
+  text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
 }
 
 .service:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.03);
+  border-color: #bfa14a;
+  box-shadow: 0 6px 14px rgba(191, 161, 74, 0.25);
 }
 
 .service img {
@@ -204,87 +160,15 @@ p {
 }
 
 .service h3 {
+  font-size: 1.3em;
   color: #333;
   margin-bottom: 10px;
 }
 
 .service p {
   color: #555;
-}
-
-/* =========================================================
-   PAGE ACCUEIL — QUELQUES RÉALISATIONS
-   ========================================================= */
-.realisations-home {
-  background: #fffaf0;
-  text-align: center;
-  padding: 60px 20px;
-  border-top: 1px solid #e0c98d;
-}
-
-.realisations-home h2 {
-  font-size: 2em;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.realisations-home p {
-  color: #555;
-  max-width: 700px;
-  margin: 0 auto 40px;
-}
-
-.gallery-home {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: 0 auto;
-  justify-items: center;
-  align-items: stretch;
-}
-
-/* Bloc de chaque réalisation */
-.item-home {
-  background: #fff;
-  border: 1px solid #e0c98d;
-  border-radius: 12px;
-  padding: 15px;
-  height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.item-home:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Image centrée */
-.item-home img {
-  max-width: 100%;
-  max-height: 70%;
-  object-fit: contain;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Titre lisible et espacé */
-.item-home h3 {
-  color: #333;
-  font-size: 1.05em;
-  font-weight: 600;
-  margin-top: 12px;
-  padding: 4px 0;
-  text-align: center;
-  line-height: 1.3em;
-  letter-spacing: 0.2px;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 /* =========================================================
@@ -300,34 +184,37 @@ p {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE (mobile)
    ========================================================= */
 @media (max-width: 900px) {
-  .main-nav ul {
-    gap: 15px;
+  .hero {
+    padding: 70px 15px;
   }
 
-  .main-nav a {
+  .hero p {
     font-size: 1em;
+    padding: 12px;
   }
 
-  .logo {
-    height: 100px;
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 
-  .hero h1 {
-    font-size: 2em;
+  .service {
+    animation: fadeIn 0.6s ease both;
   }
 
-  .item-home {
-    height: auto;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .item-home img {
-    max-height: 60%;
+  .services-intro h2 {
+    font-size: 1.8em;
   }
 
-  .item-home h3 {
+  .services-intro p {
     font-size: 1em;
   }
 }
