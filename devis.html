@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Devis – R3D PRINT CI | Demande en ligne</title>
-  <meta name="description" content="Demandez un devis sur mesure pour vos projets d’impression 3D, gravure laser ou prototypage rapide avec R3D PRINT CI à Abidjan.">
-  <link rel="stylesheet" href="assets/style.css"/>
-  <link rel="icon" href="assets/logo.png" type="image/png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande de devis – R3D PRINT CI</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="assets/logo.png" type="image/png">
 </head>
 
 <body>
 
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/></a>
+      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo"></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -30,166 +27,81 @@
     </div>
   </header>
 
-  <!-- =========================================================
-       HERO
-  ========================================================== -->
+  <!-- HERO -->
   <section class="hero">
-    <h1>Demander un devis</h1>
-    <p>Remplissez ce formulaire pour obtenir une estimation personnalisée de votre projet.</p>
+    <h1>Demander un devis personnalisé</h1>
+    <p>Décrivez votre projet pour que nous puissions vous proposer la meilleure solution R3D PRINT CI.</p>
   </section>
 
-  <!-- =========================================================
-       FORMULAIRE DYNAMIQUE
-  ========================================================== -->
-  <section class="container" style="max-width:900px; margin-top:50px;">
-    <form id="devisForm" class="service-card fade-in">
-      <h3>Type de service</h3>
-      <div class="service-choice">
-        <button type="button" class="choice-btn" data-service="impression3d">🧱 Impression 3D</button>
-        <button type="button" class="choice-btn" data-service="gravure">🔥 Gravure Laser</button>
-        <button type="button" class="choice-btn" data-service="prototypage">⚙️ Prototypage</button>
+  <!-- FORMULAIRE -->
+  <section class="devis-section">
+    <div class="container form-container fade-in">
+      <div class="form-header">
+        <h2>Type de service</h2>
+        <p>Choisissez le domaine correspondant à votre besoin.</p>
       </div>
 
-      <div id="formContent"></div>
+      <div class="service-choice">
+        <button class="choice-btn" data-service="impression3d">🧱 Impression 3D</button>
+        <button class="choice-btn" data-service="gravure">🔦 Gravure Laser</button>
+        <button class="choice-btn" data-service="prototypage">⚙️ Prototypage</button>
+      </div>
 
-      <button type="submit" class="btn gold" id="validateBtn" style="display:none;margin-top:25px;">✅ Valider ma demande</button>
-    </form>
+      <form id="devisForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="objet">Nature de l’objet</label>
+            <input type="text" id="objet" name="objet" placeholder="Ex : trophée, enseigne, maquette..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="dimensions">Dimensions (cm)</label>
+            <input type="text" id="dimensions" name="dimensions" placeholder="Ex : 15 x 10 x 8 cm" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lieu">Lieu d’utilisation</label>
+            <select id="lieu" name="lieu" required>
+              <option value="">Sélectionnez</option>
+              <option value="intérieur">Intérieur</option>
+              <option value="extérieur">Extérieur</option>
+            </select>
+          </div>
+
+          <div class="form-group colors-block">
+            <label>Couleurs</label>
+            <div id="colorContainer" class="color-picker">
+              <input type="color" class="color-circle" value="#c9af6b">
+              <button type="button" class="add-color">+</button>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="fichiers">Ajouter des photos ou références</label>
+            <input type="file" id="fichiers" name="fichiers" multiple accept="image/*">
+          </div>
+
+          <div class="form-group full">
+            <label for="details">Détails supplémentaires</label>
+            <textarea id="details" name="details" rows="4" placeholder="Décrivez votre projet..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn gold" id="envoyerBtn">Envoyer ma demande</button>
+      </form>
+    </div>
   </section>
 
-  <!-- =========================================================
-       RÉSUMÉ + CONFIRMATION
-  ========================================================== -->
-  <section id="confirmationSection" class="container fade-in" style="display:none; text-align:center; margin-top:60px;">
-    <h2>🎉 Merci <span id="clientName"></span> !</h2>
-    <p>Votre demande de devis a bien été enregistrée.<br/>
-    Nous vous répondrons sous 24 heures sur WhatsApp ou par e-mail.</p>
-  </section>
-
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- =========================================================
-       SCRIPT
-  ========================================================== -->
   <script defer src="assets/main.js"></script>
-
-  <script>
-  // === Gestion des boutons de choix de service ===
-  const choiceBtns = document.querySelectorAll(".choice-btn");
-  const formContent = document.getElementById("formContent");
-  const validateBtn = document.getElementById("validateBtn");
-  const confirmation = document.getElementById("confirmationSection");
-  const clientName = document.getElementById("clientName");
-
-  choiceBtns.forEach(btn => {
-    btn.addEventListener("mouseover", () => btn.classList.add("hovered"));
-    btn.addEventListener("mouseout", () => btn.classList.remove("hovered"));
-    btn.addEventListener("click", () => {
-      choiceBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const service = btn.getAttribute("data-service");
-      generateForm(service);
-    });
-  });
-
-  // === Formulaires spécifiques ===
-  function generateForm(service) {
-    let html = "";
-    if (service === "impression3d") {
-      html = `
-        <h3>Impression 3D</h3>
-        <label>Nom complet</label>
-        <input type="text" id="nom" placeholder="Votre nom complet" required>
-
-        <label>Nature de l’objet</label>
-        <input type="text" placeholder="Ex : pièce technique, décor, prototype">
-
-        <label>Dimensions (cm)</label>
-        <input type="text" placeholder="Ex : 10 x 5 x 3 cm">
-
-        <label>Lieu d’utilisation</label>
-        <select>
-          <option value="interieur">Intérieur</option>
-          <option value="exterieur">Extérieur</option>
-        </select>
-
-        <label>Couleurs</label>
-        <div id="colorPicker" class="color-picker">
-          <button type="button" class="add-color">+</button>
-        </div>
-
-        <label>Images de référence</label>
-        <input type="file" accept="image/*" multiple>
-      `;
-    } else if (service === "gravure") {
-      html = `
-        <h3>Gravure Laser</h3>
-        <label>Nom complet</label>
-        <input type="text" id="nom" placeholder="Votre nom complet" required>
-
-        <label>Support à graver</label>
-        <input type="text" placeholder="Ex : bois, métal, verre">
-
-        <label>Quantité</label>
-        <input type="number" placeholder="Ex : 10 pièces">
-
-        <label>Dimensions</label>
-        <input type="text" placeholder="Ex : 20 × 10 cm">
-
-        <label>Images de référence</label>
-        <input type="file" accept="image/*" multiple>
-      `;
-    } else if (service === "prototypage") {
-      html = `
-        <h3>Prototypage</h3>
-        <label>Nom complet</label>
-        <input type="text" id="nom" placeholder="Votre nom complet" required>
-
-        <label>Nature du prototype</label>
-        <input type="text" placeholder="Ex : maquette, accessoire, support">
-
-        <label>Matériaux souhaités</label>
-        <input type="text" placeholder="Ex : PLA, PETG, résine, métal">
-
-        <label>Dimensions</label>
-        <input type="text" placeholder="Ex : 12 × 8 × 5 cm">
-
-        <label>Images de référence</label>
-        <input type="file" accept="image/*" multiple>
-      `;
-    }
-    formContent.innerHTML = html;
-    validateBtn.style.display = "block";
-    setupColorPicker();
-  }
-
-  // === Gestion du sélecteur de couleur dynamique ===
-  function setupColorPicker() {
-    const picker = document.getElementById("colorPicker");
-    if (!picker) return;
-    const addBtn = picker.querySelector(".add-color");
-    addBtn.addEventListener("click", () => {
-      const newColor = document.createElement("input");
-      newColor.type = "color";
-      newColor.className = "color-circle";
-      picker.insertBefore(newColor, addBtn);
-    });
-  }
-
-  // === Validation et confirmation ===
-  document.getElementById("devisForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const nomValue = document.getElementById("nom") ? document.getElementById("nom").value : "";
-    document.getElementById("devisForm").style.display = "none";
-    clientName.textContent = nomValue || "";
-    confirmation.style.display = "block";
-    window.scrollTo({ top: confirmation.offsetTop, behavior: "smooth" });
-  });
-  </script>
-
 </body>
 </html>
