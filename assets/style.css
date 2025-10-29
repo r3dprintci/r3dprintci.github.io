@@ -101,6 +101,27 @@ body {
 }
 
 /* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  background: linear-gradient(to right, #fffaf0, #fff);
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--light-text);
+  max-width: 700px;
+  margin: auto;
+}
+
+/* =========================================================
    PAGE CONTACT
    ========================================================= */
 .contact-section {
@@ -208,6 +229,19 @@ body {
 .contact-form button {
   align-self: center;
   margin-top: 10px;
+}
+
+/* === LIENS CLIQUABLES === */
+.contact-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--gold-hover);
+  text-decoration: underline;
 }
 
 /* === IMAGE DE CONCLUSION === */
