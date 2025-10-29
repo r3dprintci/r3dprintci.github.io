@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demander un devis – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css"/>
-  <script defer src="assets/main.js"></script>
-<script defer src="assets/devis.js"></script>
-
-
 </head>
 
 <body>
@@ -18,7 +14,7 @@
       <a href="index.html" class="logo-link">
         <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
-      <nav class="main-nav">
+      <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
@@ -27,13 +23,14 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <h1>Demander un devis sur mesure</h1>
-    <p>Décrivez votre projet, choisissez vos options et recevez une estimation personnalisée dans les plus brefs délais.</p>
+    <p>Décrivez votre projet et recevez une estimation personnalisée dans les plus brefs délais.</p>
   </section>
 
   <!-- INTRO -->
@@ -46,9 +43,9 @@
   <section class="service-selector">
     <h2>Choisissez votre type de service</h2>
     <div class="service-cards">
-      <button type="button" class="service-card" data-service="impression3d" id="card3D">🧱 Impression 3D</button>
-      <button type="button" class="service-card" data-service="gravure" id="cardLaser">🔥 Gravure Laser</button>
-      <button type="button" class="service-card" data-service="prototypage" id="cardProto">⚙️ Prototypage</button>
+      <button type="button" class="service-card" data-service="impression3d">🧱 Impression 3D</button>
+      <button type="button" class="service-card" data-service="gravure">🔥 Gravure Laser</button>
+      <button type="button" class="service-card" data-service="prototypage">⚙️ Prototypage</button>
     </div>
   </section>
 
@@ -79,7 +76,8 @@
           <div class="color-preview" id="colorPreview3D">Aucune couleur sélectionnée</div>
           <input type="hidden" id="colors3D" name="colors3d"/>
         </div>
-        <div class="upload-block"><label>Images</label>
+        <div class="upload-block">
+          <label>Images</label>
           <div class="dropzone" id="drop3D"><input type="file" multiple/><p>Glissez-déposez vos images ici</p></div>
           <div class="thumbs" id="thumbs3D"></div>
         </div>
@@ -106,14 +104,15 @@
       </fieldset>
 
       <!-- Coordonnées -->
-      <fieldset class="panel"><legend>Vos coordonnées</legend>
+      <fieldset class="panel">
+        <legend>Vos coordonnées</legend>
         <label>Nom complet</label><input type="text" id="nomComplet" name="nom_complet" required/>
         <div class="grid-2"><div><label>Email</label><input type="email" name="email" required/></div><div><label>Téléphone</label><input type="tel" name="telephone" required/></div></div>
         <label>Notes</label><textarea name="message" rows="4"></textarea>
         <div class="actions"><button type="button" class="btn gold" id="btnReview">Aperçu du récapitulatif</button></div>
       </fieldset>
 
-      <!-- Récapitulatif -->
+      <!-- Résumé -->
       <section id="summarySection" class="summary-section"><h3>Récapitulatif</h3><ul class="summary-list" id="summaryList"></ul><div class="summary-photos" id="summaryPhotos"></div><div class="summary-actions"><button type="button" class="btn outline" id="btnEdit">Modifier</button><button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button></div></section>
 
       <!-- Confirmation -->
@@ -122,5 +121,8 @@
   </section>
 
   <footer class="site-footer"><p>© 2025 R3D PRINT CI – Tous droits réservés.</p></footer>
+
+  <script defer src="assets/main.js"></script>
+  <script defer src="assets/devis.js"></script>
 </body>
 </html>
