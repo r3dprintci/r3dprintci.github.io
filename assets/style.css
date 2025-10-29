@@ -277,6 +277,27 @@ section {
 }
 
 /* =========================================================
+   SECTION "Pourquoi choisir R3D PRINT CI"
+   ========================================================= */
+.services-why {
+  text-align: center;
+  max-width: 800px;
+  margin: 60px auto 40px auto;
+}
+
+.services-why h2 {
+  font-size: 2rem;
+  color: var(--dark-text);
+  margin-bottom: 15px;
+}
+
+.services-why p {
+  color: var(--light-text);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* =========================================================
    FORMULAIRES (Contact + Devis)
    ========================================================= */
 form {
