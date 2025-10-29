@@ -2,68 +2,23 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>R3D PRINT CI – Réalisations</title>
-  <!-- (Optionnel) votre CSS global si vous voulez : -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos réalisations – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    /* ================== SCOPED PAGE STYLES ================== */
-    .page-real { font-family: "Poppins", Arial, sans-serif; color:#333; background:#fff; line-height:1.6; }
-    .page-real .container { max-width:1200px; margin:0 auto; padding:0 20px; }
-
-    /* Header */
-    .page-real .site-header{background:#fff8e7;border-bottom:1px solid #e0c98d;position:relative;z-index:100;}
-    .page-real .site-header .container{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;}
-    .page-real .logo{height:60px;width:auto;display:block;}
-    .page-real .main-nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;}
-    .page-real .main-nav a{color:#333;text-decoration:none;font-weight:500;}
-    .page-real .main-nav a:hover,.page-real .main-nav a.active{color:#bfa14a;}
-
-    /* Hero */
-    .page-real .hero{background:linear-gradient(to bottom right,#fff8e7,#ffffff); text-align:center; padding:90px 20px;}
-    .page-real .hero h1{font-size:2.4rem;margin:0 0 12px;}
-    .page-real .hero p{max-width:720px;margin:0 auto;color:#555;font-size:1.05rem;}
-
-    /* Section Réalisations */
-    .page-real .realisations-wrap{padding:60px 20px;}
-    .page-real h2.section-title{font-size:2rem;text-align:center;margin:0 0 8px;}
-    .page-real p.section-intro{max-width:720px;margin:0 auto 38px;color:#555;text-align:center;}
-
-    .page-real .realisations-gallery{
-      display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:26px; max-width:1200px; margin:0 auto;
-    }
-    .page-real .real-item{background:#fffaf0;border:1px solid #e0c98d;border-radius:14px;padding:14px;
-      box-shadow:0 2px 6px rgba(0,0,0,.08); transition:transform .25s ease;}
-    .page-real .real-item:hover{transform:translateY(-4px);}
-    .page-real .real-item img{width:100%;height:auto;border-radius:10px;display:block;}
-    .page-real .real-item h3{margin:10px 0 6px;font-size:1.1rem;color:#333;}
-    .page-real .real-item p{margin:0;color:#666;font-size:.96rem;}
-
-    /* Footer */
-    .page-real .site-footer{background:#fff8e7;border-top:1px solid #e0c98d;text-align:center;padding:20px;color:#555;}
-
-    /* Responsive petits écrans */
-    @media (max-width: 900px){
-      .page-real .hero{padding:70px 16px;}
-      .page-real .hero h1{font-size:2rem;}
-      .page-real .main-nav ul{gap:14px;flex-wrap:wrap;justify-content:flex-end;}
-    }
-  </style>
 </head>
-<body class="page-real">
+
+<body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link" aria-label="Accueil R3D PRINT CI">
-        <!-- IMPORTANT: Chemin exact du logo -->
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
-      <nav class="main-nav" aria-label="Navigation principale">
+      <nav class="main-nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a class="active" href="realisations.html">Réalisations</a></li>
+          <li><a href="realisations.html" class="active">Réalisations</a></li>
           <li><a href="devis.html">Devis</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -73,45 +28,50 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <h1>Nos réalisations</h1>
-      <p>Impression 3D, gravure laser et prototypage sur mesure — un aperçu des projets menés par R3D PRINT CI.</p>
-    </div>
+    <h1>Nos réalisations</h1>
+    <p>Découvrez nos créations 3D, gravures et prototypes sur mesure conçus à Abidjan avec passion et précision.</p>
   </section>
 
-  <!-- CONTENU -->
-  <main class="realisations-wrap">
-    <div class="container">
-      <h2 class="section-title">Exemples de créations</h2>
-      <p class="section-intro">Voici quelques projets récents. </p>
+  <!-- INTRODUCTION -->
+  <section class="realisations-intro">
+    <h2>Quelques exemples de nos projets</h2>
+    <p>Des trophées, gravures, prototypes et créations personnalisées qui illustrent le savoir-faire et la créativité de R3D PRINT CI.</p>
+  </section>
 
-      <div class="realisations-gallery">
-        <div class="real-item">
-          <img src="assets/shot1.jpg" alt="Création R3D 1">
-          <h3>Impression 3D</h3>
-          <p>Trophées et pièces sur mesure en PLA soie doré.</p>
-        </div>
+  <!-- GALERIE -->
+  <section class="realisations-page">
+    <div class="realisations-gallery">
+      <div class="real-item">
+        <img src="assets/shot1.jpg" alt="Trophée personnalisé R3D PRINT CI">
+        <h3>Trophée personnalisé</h3>
+      </div>
 
-        <div class="real-item">
-          <img src="assets/shot2.jpg" alt="Création R3D 2">
-          <h3>Gravure laser</h3>
-          <p>Bois, métal, acrylique — marquages précis et nets.</p>
-        </div>
+      <div class="real-item">
+        <img src="assets/shot2.jpg" alt="Gravure laser sur bois">
+        <h3>Gravure sur bois</h3>
+      </div>
 
-        <div class="real-item">
-          <img src="assets/shot3.jpg" alt="Création R3D 3">
-          <h3>Prototypage rapide</h3>
-          <p>Maquettes et pièces fonctionnelles pour tests.</p>
-        </div>
+      <div class="real-item">
+        <img src="assets/shot3.jpg" alt="Prototype fonctionnel 3D">
+        <h3>Prototype fonctionnel</h3>
+      </div>
 
-        <div class="real-item">
-          <img src="assets/shot4.jpg" alt="Création R3D 4">
-          <h3>Décoration & signalétique</h3>
-          <p>Objets décoratifs et enseignes personnalisées.</p>
-        </div>
+      <div class="real-item">
+        <img src="assets/shot4.jpg" alt="Décoration personnalisée">
+        <h3>Décoration personnalisée</h3>
+      </div>
+
+      <div class="real-item">
+        <img src="assets/shot5.jpg" alt="Pièce industrielle sur mesure">
+        <h3>Pièce industrielle</h3>
+      </div>
+
+      <div class="real-item">
+        <img src="assets/shot6.jpg" alt="Objet décoratif en PLA">
+        <h3>Objet décoratif</h3>
       </div>
     </div>
-  </main>
+  </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
