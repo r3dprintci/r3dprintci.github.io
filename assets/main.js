@@ -13,7 +13,6 @@ function toggleMenu() {
 // Fermer automatiquement le menu après un clic sur un lien
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav a");
-
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
       document.getElementById("navMenu").classList.remove("active");
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// === EFFETS DE DÉFILEMENT FLUIDE ===
+// === Défilement fluide interne ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
@@ -33,7 +32,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// === ANIMATION APPARITION DES BLOCS ===
+// === Apparition douce des éléments .fade-in ===
 window.addEventListener("scroll", () => {
   const elements = document.querySelectorAll(".fade-in");
   elements.forEach(el => {
