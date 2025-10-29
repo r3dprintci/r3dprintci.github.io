@@ -1,5 +1,5 @@
 /* =========================================================
-   STYLE GLOBAL
+   STYLE GLOBAL R3D PRINT CI
    ========================================================= */
 * {
   margin: 0;
@@ -63,16 +63,19 @@ body {
   text-decoration: none;
   color: var(--dark-text);
   font-weight: 600;
-  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .nav a:hover {
-  color: var(--gold-hover);
-  transform: translateY(-2px);
+  color: #fff;
+  background: var(--gold);
 }
 
 .nav a.active {
-  color: var(--gold);
+  color: #fff;
+  background: var(--gold);
 }
 
 .hamburger {
@@ -82,6 +85,43 @@ body {
   font-size: 1.8rem;
   color: var(--gold);
   cursor: pointer;
+}
+
+/* =========================================================
+   BOUTONS GÉNÉRAUX
+   ========================================================= */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(201, 175, 107, 0.3);
+}
+
+.btn.gold:hover {
+  background: var(--gold-hover);
+  box-shadow: 0 6px 15px rgba(201, 175, 107, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn.outline {
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+
+.btn.outline:hover {
+  background: var(--gold);
+  color: #fff;
 }
 
 /* =========================================================
@@ -106,7 +146,7 @@ body {
 }
 
 /* =========================================================
-   SECTIONS & STRUCTURE
+   SECTIONS ET STRUCTURE
    ========================================================= */
 .container {
   width: 90%;
@@ -161,7 +201,6 @@ section {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Images — corrigées */
 .service-card img,
 .realisations-item img {
   width: 100%;
@@ -240,6 +279,7 @@ form textarea:focus {
   margin: auto;
 }
 
+/* Boutons du type de service */
 .service-choice {
   display: flex;
   justify-content: center;
@@ -280,6 +320,7 @@ form textarea:focus {
   100% { box-shadow: 0 0 0 0 rgba(201, 175, 107, 0); }
 }
 
+/* Grille du formulaire */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -329,24 +370,6 @@ form textarea:focus {
   transform: rotate(90deg);
 }
 
-#envoyerBtn {
-  margin-top: 25px;
-  padding: 14px 28px;
-  border-radius: 40px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  background: var(--gold);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#envoyerBtn:hover {
-  background: var(--gold-hover);
-  transform: translateY(-2px);
-}
-
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -367,24 +390,16 @@ form textarea:focus {
   transform: translateY(20px);
   animation: fadeIn 0.8s ease forwards;
 }
+
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 768px) {
-  .logo {
-    height: 70px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
+  .logo { height: 70px; }
 
   .nav ul {
     flex-direction: column;
@@ -399,20 +414,15 @@ form textarea:focus {
     border-left: 1px solid #e0c98d;
   }
 
-  .nav.active ul {
-    display: block;
-  }
+  .nav.active ul { display: block; }
+  .hamburger { display: block; }
 
-  .hamburger {
-    display: block;
-  }
-
-  .choice-btn {
-    width: 100%;
-  }
+  .form-grid { grid-template-columns: 1fr; }
 
   .service-card img,
   .realisations-item img {
     height: 180px;
   }
+
+  .choice-btn { width: 100%; }
 }
