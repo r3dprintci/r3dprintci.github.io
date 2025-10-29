@@ -1,31 +1,277 @@
 /* =========================================================
-   STYLE DU FORMULAIRE DEVIS – R3D PRINT CI
+   STYLE GLOBAL DU SITE – R3D PRINT CI
    ========================================================= */
 
-/* --- Sections principales --- */
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+.site-header {
+  background: #fff8e7;
+  border-bottom: 1px solid #e0c98d;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* NAVIGATION */
+.nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.15em;
+  transition: all 0.3s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: #bfa14a;
+  transform: scale(1.08);
+}
+
+/* BOUTON HAMBURGER */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+    color: #bfa14a;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    background: #fff8e7;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    border-top: 1px solid #e0c98d;
+  }
+
+  .nav.active ul {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e0c98d;
+  }
+}
+
+/* ---------------------------------------------------------
+   HERO SECTIONS
+   --------------------------------------------------------- */
 .hero {
   text-align: center;
   background: linear-gradient(to bottom, #fff8e7, #ffffff);
-  padding: 100px 20px;
+  padding: 120px 20px;
 }
 
 .hero h1 {
-  font-size: 2.4em;
-  margin-bottom: 10px;
+  font-size: 2.8em;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .hero p {
+  font-size: 1.2em;
+  color: #555;
   max-width: 700px;
   margin: 0 auto;
-  font-size: 1.1em;
-  color: #555;
-  background: rgba(255, 248, 231, 0.85);
-  border: 1px solid #e0c98d;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ---------------------------------------------------------
+   BLOCS DE CONTENU GÉNÉRIQUES
+   --------------------------------------------------------- */
+section {
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* TITRES GÉNÉRAUX */
+h2 {
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  color: #bfa14a;
+  text-align: center;
+}
+
+p {
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* BOUTONS GLOBAUX */
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn.gold {
+  background: linear-gradient(135deg, #c8ae69, #bfa14a);
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 1.1em;
+}
+
+.btn.gold:hover {
+  background: linear-gradient(135deg, #bfa14a, #a88e3a);
+  transform: scale(1.05);
+}
+
+.btn.outline {
+  border: 2px solid #bfa14a;
+  color: #bfa14a;
+  background: none;
+  padding: 12px 25px;
+}
+
+.btn.outline:hover {
+  background: #fff8e7;
+}
+
+/* ---------------------------------------------------------
+   SECTION : NOS SERVICES
+   --------------------------------------------------------- */
+.services-section {
+  background: #fffaf0;
+  text-align: center;
+}
+
+.services-intro {
+  background: rgba(255, 248, 231, 0.85);
+  border: 1px solid #e0c98d;
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  max-width: 850px;
+  margin: 0 auto 60px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background: #fff;
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: #bfa14a;
+  box-shadow: 0 6px 14px rgba(191, 161, 74, 0.25);
+}
+
+/* ---------------------------------------------------------
+   SECTION : QUELQUES RÉALISATIONS
+   --------------------------------------------------------- */
+.realisations-section {
+  text-align: center;
+  background: #ffffff;
+}
+
+.realisations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.realisations-item {
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fffaf0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.realisations-item:hover {
+  transform: translateY(-6px);
+  border-color: #bfa14a;
+  box-shadow: 0 5px 12px rgba(191, 161, 74, 0.2);
+}
+
+.realisations-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------------
+   FORMULAIRE DEVIS
+   --------------------------------------------------------- */
 .devis-intro {
   text-align: center;
   margin: 60px auto;
@@ -37,7 +283,6 @@
   max-width: 900px;
 }
 
-/* --- Choix du service --- */
 .service-selector {
   text-align: center;
   margin: 60px auto;
@@ -45,9 +290,7 @@
 }
 
 .service-selector h2 {
-  font-size: 2em;
   margin-bottom: 25px;
-  color: #333;
 }
 
 .service-cards {
@@ -57,21 +300,21 @@
   gap: 25px;
 }
 
-.service-card {
+.service-card[data-service] {
+  cursor: pointer;
   background: #fff;
   border: 2px solid #e0c98d;
   border-radius: 14px;
   width: 280px;
   padding: 25px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
   font-weight: 600;
   font-size: 1.05em;
+  transition: all 0.3s ease;
 }
 
-.service-card:hover {
+.service-card[data-service]:hover {
   transform: translateY(-5px);
   border-color: #bfa14a;
   box-shadow: 0 6px 14px rgba(191, 161, 74, 0.25);
@@ -82,7 +325,6 @@
   border-color: #bfa14a;
 }
 
-/* --- Formulaire principal --- */
 .form-section {
   text-align: center;
   padding: 40px 20px 80px;
@@ -118,22 +360,25 @@ label {
   color: #333;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-top: 5px;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #bfa14a;
   box-shadow: 0 0 6px rgba(191, 161, 74, 0.4);
   outline: none;
 }
 
-/* --- Grilles --- */
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -146,7 +391,6 @@ input:focus, select:focus, textarea:focus {
   gap: 15px;
 }
 
-/* --- Radios --- */
 .radio-row {
   display: flex;
   flex-wrap: wrap;
@@ -154,14 +398,6 @@ input:focus, select:focus, textarea:focus {
   margin-top: 10px;
 }
 
-.radio {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 500;
-}
-
-/* --- Couleurs dynamiques --- */
 .color-grid {
   display: flex;
   flex-wrap: wrap;
@@ -175,7 +411,7 @@ input:focus, select:focus, textarea:focus {
   border-radius: 50%;
   border: 2px solid #e0c98d;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .color-circle.empty {
@@ -188,11 +424,6 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 10px rgba(191, 161, 74, 0.4);
 }
 
-.color-actions {
-  text-align: center;
-  margin: 10px 0;
-}
-
 .add-color-btn {
   background: linear-gradient(135deg, #c8ae69, #bfa14a);
   color: #fff;
@@ -202,7 +433,7 @@ input:focus, select:focus, textarea:focus {
   height: 45px;
   font-size: 1.8em;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .add-color-btn:hover {
@@ -217,7 +448,7 @@ input:focus, select:focus, textarea:focus {
   margin: 15px auto;
   border-radius: 6px;
   border: 1px solid #ddd;
-  background-color: #fff8e7;
+  background: #fff8e7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,7 +457,6 @@ input:focus, select:focus, textarea:focus {
   font-weight: 500;
 }
 
-/* --- Upload d’images --- */
 .dropzone {
   border: 2px dashed #e0c98d;
   background: #fff8e7;
@@ -234,7 +464,7 @@ input:focus, select:focus, textarea:focus {
   padding: 25px;
   text-align: center;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: 0.3s;
 }
 
 .dropzone:hover {
@@ -257,40 +487,6 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid #e0c98d;
 }
 
-/* --- Boutons --- */
-.btn {
-  cursor: pointer;
-  border: none;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.btn.gold {
-  background: linear-gradient(135deg, #c8ae69, #bfa14a);
-  color: #fff;
-  padding: 14px 28px;
-  font-size: 1.1em;
-}
-
-.btn.gold:hover {
-  background: linear-gradient(135deg, #bfa14a, #a88e3a);
-  transform: scale(1.05);
-}
-
-.btn.outline {
-  border: 2px solid #bfa14a;
-  color: #bfa14a;
-  background: none;
-  padding: 12px 25px;
-}
-
-.btn.outline:hover {
-  background: #fff8e7;
-}
-
-/* --- Récapitulatif --- */
 .summary-section {
   display: none;
   background: #fffaf0;
@@ -307,14 +503,11 @@ input:focus, select:focus, textarea:focus {
 
 .summary-list {
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 
 .summary-list li {
   margin-bottom: 10px;
-  font-size: 1em;
-  color: #333;
 }
 
 .summary-photos {
@@ -331,7 +524,6 @@ input:focus, select:focus, textarea:focus {
   object-fit: cover;
 }
 
-/* --- Confirmation --- */
 .confirmation {
   display: none;
   text-align: center;
@@ -357,7 +549,19 @@ input:focus, select:focus, textarea:focus {
   font-size: 1.5em;
 }
 
-/* --- Animations --- */
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
+.site-footer {
+  background: #fff8e7;
+  border-top: 1px solid #e0c98d;
+  text-align: center;
+  padding: 25px 10px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* ANIMATIONS */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
