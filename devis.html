@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demander un devis – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css"/>
+  <script defer src="assets/script.js"></script>
 </head>
 
 <body>
@@ -39,318 +40,84 @@
   </section>
 
   <!-- CHOIX DU SERVICE -->
-  <section class="service-selector container-narrow" id="serviceSelector">
+  <section class="service-selector">
     <h2>Choisissez votre type de service</h2>
     <div class="service-cards">
-      <button type="button" class="service-card" data-service="impression3d" id="card3D">
-        <span class="icon">🧱</span>
-        <span class="title">Impression 3D</span>
-        <span class="desc">Prototypes, objets décoratifs, pièces techniques…</span>
-      </button>
-
-      <button type="button" class="service-card" data-service="gravure" id="cardLaser">
-        <span class="icon">🔥</span>
-        <span class="title">Gravure Laser</span>
-        <span class="desc">Bois, métal, cuir, acrylique, verre…</span>
-      </button>
-
-      <button type="button" class="service-card" data-service="prototypage" id="cardProto">
-        <span class="icon">⚙️</span>
-        <span class="title">Prototypage Rapide</span>
-        <span class="desc">Concept → Maquette fonctionnelle</span>
-      </button>
+      <button type="button" class="service-card" data-service="impression3d" id="card3D">🧱 Impression 3D</button>
+      <button type="button" class="service-card" data-service="gravure" id="cardLaser">🔥 Gravure Laser</button>
+      <button type="button" class="service-card" data-service="prototypage" id="cardProto">⚙️ Prototypage</button>
     </div>
   </section>
 
   <!-- FORMULAIRE -->
-  <section class="form-section" id="devis">
+  <section class="form-section">
     <form id="devisForm" novalidate>
-      <input type="hidden" id="serviceType" name="service_type" value=""/>
+      <input type="hidden" id="serviceType" name="service_type"/>
 
       <!-- Impression 3D -->
-      <fieldset class="panel panel-3d" id="panel3D" aria-hidden="true">
+      <fieldset class="panel" id="panel3D" style="display:none">
         <legend>Impression 3D</legend>
-        <label>Nature de l’objet</label>
-        <input type="text" id="objet3d" name="objet3d" placeholder="Ex : Trophée, boîtier, figurine…" />
-
+        <label>Nature de l’objet</label><input type="text" name="objet3d"/>
         <div class="grid-3">
-          <div><label>Longueur (mm)</label><input type="number" name="longueur3d" min="1"/></div>
-          <div><label>Largeur (mm)</label><input type="number" name="largeur3d" min="1"/></div>
-          <div><label>Hauteur (mm)</label><input type="number" name="hauteur3d" min="1"/></div>
+          <div><label>L (mm)</label><input type="number" name="longueur3d"/></div>
+          <div><label>l (mm)</label><input type="number" name="largeur3d"/></div>
+          <div><label>h (mm)</label><input type="number" name="hauteur3d"/></div>
         </div>
-
-        <label>Lieu d’utilisation</label>
+        <label>Lieu</label>
         <div class="radio-row">
-          <label class="radio"><input type="radio" name="lieu3d" value="intérieur"> Intérieur</label>
-          <label class="radio"><input type="radio" name="lieu3d" value="extérieur"> Extérieur</label>
+          <label><input type="radio" name="lieu3d" value="intérieur"/>Intérieur</label>
+          <label><input type="radio" name="lieu3d" value="extérieur"/>Extérieur</label>
         </div>
-
         <div class="color-block">
           <label>Couleurs</label>
-          <div class="color-grid" id="colorGrid3D">
-            <div class="color-circle empty"></div>
-          </div>
+          <div class="color-grid" id="colorGrid3D"><div class="color-circle empty"></div></div>
           <input type="color" id="colorPicker3D" class="visually-hidden"/>
           <div class="color-actions"><button type="button" class="add-color-btn" id="addColor3D">+</button></div>
           <div class="color-preview" id="colorPreview3D">Aucune couleur sélectionnée</div>
           <input type="hidden" id="colors3D" name="colors3d"/>
         </div>
-
-        <div class="upload-block">
-          <label>Photos / Références</label>
-          <div class="dropzone" id="drop3D">
-            <input type="file" id="files3D" name="files3d" accept="image/*" multiple/>
-            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
-          </div>
+        <div class="upload-block"><label>Images</label>
+          <div class="dropzone" id="drop3D"><input type="file" multiple/><p>Glissez-déposez vos images ici</p></div>
           <div class="thumbs" id="thumbs3D"></div>
         </div>
       </fieldset>
 
-      <!-- Gravure Laser -->
-      <fieldset class="panel panel-laser" id="panelLaser" aria-hidden="true">
+      <!-- Gravure -->
+      <fieldset class="panel" id="panelLaser" style="display:none">
         <legend>Gravure Laser</legend>
-        <label>Nature du support</label>
-        <select name="support_laser">
-          <option value="">-- Sélectionnez --</option>
-          <option>Bois</option><option>Métal</option><option>Cuir</option><option>Acrylique</option><option>Verre</option>
-        </select>
-
+        <label>Support</label><select name="support_laser"><option>Bois</option><option>Métal</option><option>Verre</option><option>Cuir</option></select>
         <label>Type de gravure</label>
-        <div class="radio-row">
-          <label><input type="radio" name="type_gravure" value="texte">Texte</label>
-          <label><input type="radio" name="type_gravure" value="logo">Logo</label>
-          <label><input type="radio" name="type_gravure" value="image">Image</label>
-          <label><input type="radio" name="type_gravure" value="mixte">Mixte</label>
-        </div>
-
-        <div class="grid-3">
-          <div><label>Quantité</label><input type="number" name="quantite_laser" min="1"/></div>
-          <div><label>Largeur (mm)</label><input type="number" name="largeur_laser" min="1"/></div>
-          <div><label>Hauteur (mm)</label><input type="number" name="hauteur_laser" min="1"/></div>
-        </div>
-
-        <div class="upload-block">
-          <label>Photos / Références</label>
-          <div class="dropzone" id="dropLaser">
-            <input type="file" id="filesLaser" name="files_laser" accept="image/*" multiple/>
-            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
-          </div>
-          <div class="thumbs" id="thumbsLaser"></div>
-        </div>
+        <div class="radio-row"><label><input type="radio" name="type_gravure" value="texte"/>Texte</label><label><input type="radio" name="type_gravure" value="logo"/>Logo</label></div>
+        <div class="grid-3"><div><label>Quantité</label><input type="number" name="quantite_laser"/></div><div><label>Largeur</label><input type="number" name="largeur_laser"/></div><div><label>Hauteur</label><input type="number" name="hauteur_laser"/></div></div>
+        <div class="upload-block"><label>Images</label><div class="dropzone" id="dropLaser"><input type="file" multiple/><p>Glissez vos images ici</p></div><div class="thumbs" id="thumbsLaser"></div></div>
       </fieldset>
 
       <!-- Prototypage -->
-      <fieldset class="panel panel-proto" id="panelProto" aria-hidden="true">
-        <legend>Prototypage Rapide</legend>
-        <label>Type d’objet / Concept</label>
-        <input type="text" name="type_proto" placeholder="Ex : boîtier, support, gadget…"/>
-        <label>Usage prévu</label>
-        <input type="text" name="usage_proto" placeholder="Ex : test mécanique, design, validation…"/>
-
-        <div class="grid-3">
-          <div><label>Longueur (mm)</label><input type="number" name="longueur_proto" min="1"/></div>
-          <div><label>Largeur (mm)</label><input type="number" name="largeur_proto" min="1"/></div>
-          <div><label>Hauteur (mm)</label><input type="number" name="hauteur_proto" min="1"/></div>
-        </div>
-
-        <label>Matériau souhaité</label>
-        <select name="materiau_proto">
-          <option value="">-- Sélectionnez --</option>
-          <option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option>
-        </select>
-
-        <div class="color-block">
-          <label>Couleurs</label>
-          <div class="color-grid" id="colorGridProto">
-            <div class="color-circle empty"></div>
-          </div>
-          <input type="color" id="colorPickerProto" class="visually-hidden"/>
-          <div class="color-actions"><button type="button" class="add-color-btn" id="addColorProto">+</button></div>
-          <div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div>
-          <input type="hidden" id="colorsProto" name="colors_proto"/>
-        </div>
-
-        <div class="upload-block">
-          <label>Photos / Références</label>
-          <div class="dropzone" id="dropProto">
-            <input type="file" id="filesProto" name="files_proto" accept="image/*" multiple/>
-            <p>Glissez-déposez vos images ici ou cliquez pour téléverser</p>
-          </div>
-          <div class="thumbs" id="thumbsProto"></div>
-        </div>
+      <fieldset class="panel" id="panelProto" style="display:none">
+        <legend>Prototypage</legend>
+        <label>Type d’objet</label><input type="text" name="type_proto"/>
+        <div class="grid-3"><div><label>L (mm)</label><input type="number" name="longueur_proto"/></div><div><label>l (mm)</label><input type="number" name="largeur_proto"/></div><div><label>h (mm)</label><input type="number" name="hauteur_proto"/></div></div>
+        <label>Matériau</label><select name="materiau_proto"><option>PLA</option><option>PETG</option><option>Résine</option></select>
+        <div class="color-block"><label>Couleurs</label><div class="color-grid" id="colorGridProto"><div class="color-circle empty"></div></div><input type="color" id="colorPickerProto" class="visually-hidden"/><div class="color-actions"><button type="button" class="add-color-btn" id="addColorProto">+</button></div><div class="color-preview" id="colorPreviewProto">Aucune couleur sélectionnée</div><input type="hidden" id="colorsProto" name="colors_proto"/></div>
+        <div class="upload-block"><label>Images</label><div class="dropzone" id="dropProto"><input type="file" multiple/><p>Glissez vos images ici</p></div><div class="thumbs" id="thumbsProto"></div></div>
       </fieldset>
 
       <!-- Coordonnées -->
-      <fieldset class="panel panel-contact" id="panelContact">
-        <legend>Vos coordonnées</legend>
-        <label>Nom complet</label>
-        <input type="text" id="nomComplet" name="nom_complet" required/>
-        <div class="grid-2">
-          <div><label>Email</label><input type="email" name="email" required/></div>
-          <div><label>Téléphone</label><input type="tel" name="telephone" required/></div>
-        </div>
-        <label>Notes / Détails complémentaires</label>
-        <textarea name="message" rows="4"></textarea>
+      <fieldset class="panel"><legend>Vos coordonnées</legend>
+        <label>Nom complet</label><input type="text" id="nomComplet" name="nom_complet" required/>
+        <div class="grid-2"><div><label>Email</label><input type="email" name="email" required/></div><div><label>Téléphone</label><input type="tel" name="telephone" required/></div></div>
+        <label>Notes</label><textarea name="message" rows="4"></textarea>
         <div class="actions"><button type="button" class="btn gold" id="btnReview">Aperçu du récapitulatif</button></div>
       </fieldset>
 
       <!-- Récapitulatif -->
-      <section id="summarySection" class="summary-section" aria-hidden="true">
-        <h3>Récapitulatif de votre demande</h3>
-        <div class="summary-grid">
-          <div class="summary-left"><ul class="summary-list" id="summaryList"></ul></div>
-          <div class="summary-right"><div class="summary-photos" id="summaryPhotos"></div></div>
-        </div>
-        <div class="summary-actions">
-          <button type="button" class="btn outline" id="btnEdit">Modifier</button>
-          <button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button>
-        </div>
-      </section>
+      <section id="summarySection" class="summary-section"><h3>Récapitulatif</h3><ul class="summary-list" id="summaryList"></ul><div class="summary-photos" id="summaryPhotos"></div><div class="summary-actions"><button type="button" class="btn outline" id="btnEdit">Modifier</button><button type="submit" class="btn gold" id="btnConfirm">✅ Confirmer & envoyer</button></div></section>
 
       <!-- Confirmation -->
-      <section id="confirmation" class="confirmation" aria-hidden="true">
-        <div class="confetti">✨</div>
-        <h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3>
-        <p id="confirmationText">Notre équipe R3D PRINT CI vous contactera très bientôt.</p>
-      </section>
+      <section id="confirmation" class="confirmation"><div class="confetti">✨</div><h3 id="confirmationTitle">Merci, votre demande a été envoyée !</h3><p>Notre équipe R3D PRINT CI vous contactera très bientôt.</p></section>
     </form>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
-
-  <!-- SCRIPT DYNAMIQUE -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const serviceCards = document.querySelectorAll(".service-card");
-    const panels = document.querySelectorAll(".panel");
-    const form = document.getElementById("devisForm");
-    const serviceTypeInput = document.getElementById("serviceType");
-    const summarySection = document.getElementById("summarySection");
-    const confirmation = document.getElementById("confirmation");
-    const summaryList = document.getElementById("summaryList");
-    const summaryPhotos = document.getElementById("summaryPhotos");
-    const btnReview = document.getElementById("btnReview");
-    const btnEdit = document.getElementById("btnEdit");
-    const confirmationTitle = document.getElementById("confirmationTitle");
-
-    serviceCards.forEach(card => {
-      card.addEventListener("click", () => {
-        const selected = card.dataset.service;
-        serviceTypeInput.value = selected;
-        serviceCards.forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
-        panels.forEach(p => { p.style.display = "none"; });
-        document.getElementById(`panel${card.id.replace("card", "")}`).style.display = "block";
-      });
-    });
-
-    function setupColor(prefix) {
-      const grid = document.getElementById(`colorGrid${prefix}`);
-      const picker = document.getElementById(`colorPicker${prefix}`);
-      const addBtn = document.getElementById(`addColor${prefix}`);
-      const preview = document.getElementById(`colorPreview${prefix}`);
-      const hidden = document.getElementById(`colors${prefix}`);
-
-      function refresh() {
-        const colors = [...grid.querySelectorAll(".color-circle:not(.empty)")].map(c => c.style.backgroundColor);
-        preview.style.background = colors.length ? `linear-gradient(90deg, ${colors.join(",")})` : "#fff8e7";
-        preview.textContent = colors.length ? colors.join(", ") : "Aucune couleur sélectionnée";
-        hidden.value = colors.join(",");
-      }
-
-      function circle(color = "") {
-        const el = document.createElement("div");
-        el.className = "color-circle" + (color ? "" : " empty");
-        el.onclick = () => {
-          picker.click();
-          picker.onchange = () => {
-            el.style.backgroundColor = picker.value;
-            el.classList.remove("empty");
-            refresh();
-          };
-        };
-        return el;
-      }
-
-      addBtn.onclick = () => grid.appendChild(circle());
-      refresh();
-    }
-
-    setupColor("3D");
-    setupColor("Proto");
-
-    function setupUpload(dropId, thumbsId) {
-      const drop = document.getElementById(dropId);
-      const thumbs = document.getElementById(thumbsId);
-      const input = drop.querySelector("input");
-
-      function show(files) {
-        thumbs.innerHTML = "";
-        [...files].forEach(f => {
-          if (!f.type.startsWith("image/")) return;
-          const reader = new FileReader();
-          reader.onload = e => {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            thumbs.appendChild(img);
-          };
-          reader.readAsDataURL(f);
-        });
-      }
-
-      drop.onclick = () => input.click();
-      input.onchange = e => show(e.target.files);
-      drop.ondragover = e => { e.preventDefault(); drop.classList.add("hover"); };
-      drop.ondragleave = () => drop.classList.remove("hover");
-      drop.ondrop = e => {
-        e.preventDefault(); drop.classList.remove("hover");
-        input.files = e.dataTransfer.files;
-        show(input.files);
-      };
-    }
-
-    setupUpload("drop3D", "thumbs3D");
-    setupUpload("dropLaser", "thumbsLaser");
-    setupUpload("dropProto", "thumbsProto");
-
-    btnReview.onclick = () => {
-      summaryList.innerHTML = "";
-      summaryPhotos.innerHTML = "";
-      const data = new FormData(form);
-      data.forEach((v, k) => {
-        if (v && !k.startsWith("files")) {
-          const li = document.createElement("li");
-          li.innerHTML = `<strong>${k.replace(/_/g, " ")} :</strong> ${v}`;
-          summaryList.appendChild(li);
-        }
-      });
-      document.querySelectorAll(".thumbs img").forEach(img => {
-        const clone = img.cloneNode(true);
-        summaryPhotos.appendChild(clone);
-      });
-      summarySection.classList.add("active");
-      summarySection.scrollIntoView({ behavior: "smooth" });
-    };
-
-    btnEdit.onclick = () => {
-      summarySection.classList.remove("active");
-      window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
-    };
-
-    form.onsubmit = e => {
-      e.preventDefault();
-      summarySection.classList.remove("active");
-      const name = document.getElementById("nomComplet").value.trim();
-      confirmationTitle.textContent = name
-        ? `Merci ${name}, votre demande a bien été envoyée ✨`
-        : `Merci, votre demande a bien été envoyée ✨`;
-      confirmation.classList.add("active");
-      confirmation.scrollIntoView({ behavior: "smooth" });
-    };
-  });
-  </script>
+  <footer class="site-footer"><p>© 2025 R3D PRINT CI – Tous droits réservés.</p></footer>
 </body>
 </html>
