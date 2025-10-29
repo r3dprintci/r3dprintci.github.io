@@ -68,37 +68,69 @@ body {
   transition: all 0.3s ease;
 }
 
-.nav a:hover {
-  color: #fff;
-  background: var(--gold);
-}
-
+.nav a:hover,
 .nav a.active {
   color: #fff;
   background: var(--gold);
 }
 
+/* =========================================================
+   HAMBURGER ANIMÉ PREMIUM
+   ========================================================= */
 .hamburger {
-  display: none;
-  background: none;
+  width: 30px;
+  height: 22px;
+  position: relative;
   border: none;
-  font-size: 1.8rem;
-  color: var(--gold);
+  background: none;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  display: none;
+}
+
+.hamburger::before,
+.hamburger::after,
+.hamburger span {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger span { top: 9px; }
+.hamburger::before { top: 0; }
+.hamburger::after { bottom: 0; }
+
+.hamburger.open::before {
+  transform: rotate(45deg);
+  top: 9px;
+}
+.hamburger.open::after {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+.hamburger.open span {
+  opacity: 0;
 }
 
 /* =========================================================
-   BOUTONS GÉNÉRAUX
+   BOUTONS
    ========================================================= */
 .btn {
   display: inline-block;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 35px;
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn.gold {
@@ -109,7 +141,7 @@ body {
 
 .btn.gold:hover {
   background: var(--gold-hover);
-  box-shadow: 0 6px 15px rgba(201, 175, 107, 0.5);
+  box-shadow: 0 6px 18px rgba(201, 175, 107, 0.5);
   transform: translateY(-2px);
 }
 
@@ -122,6 +154,23 @@ body {
 .btn.outline:hover {
   background: var(--gold);
   color: #fff;
+}
+
+/* Effet lumineux sur tous les boutons */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75px;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::after {
+  left: 120%;
 }
 
 /* =========================================================
@@ -146,7 +195,7 @@ body {
 }
 
 /* =========================================================
-   SECTIONS ET STRUCTURE
+   SECTIONS GÉNÉRALES
    ========================================================= */
 .container {
   width: 90%;
@@ -158,25 +207,29 @@ section {
   margin-bottom: 80px;
 }
 
-.services-intro {
+/* =========================================================
+   SERVICES & RÉALISATIONS
+   ========================================================= */
+.services-intro,
+.realisations-intro {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.services-intro h2 {
+.services-intro h2,
+.realisations-intro h2 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.services-intro p {
+.services-intro p,
+.realisations-intro p {
   color: var(--light-text);
   max-width: 700px;
   margin: auto;
 }
 
-/* =========================================================
-   GRILLES DE SERVICES ET RÉALISATIONS
-   ========================================================= */
+/* Grilles */
 .services-grid,
 .realisations-grid {
   display: grid;
@@ -204,7 +257,7 @@ section {
 .service-card img,
 .realisations-item img {
   width: 100%;
-  height: 220px;
+  height: 240px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 15px;
@@ -215,6 +268,12 @@ section {
 .realisations-item img:hover {
   transform: scale(1.03);
   box-shadow: 0 0 12px rgba(201, 175, 107, 0.25);
+}
+
+.realisations-item h3 {
+  font-size: 1.1rem;
+  color: var(--dark-text);
+  margin-top: 10px;
 }
 
 /* =========================================================
@@ -250,7 +309,7 @@ form textarea:focus {
 }
 
 /* =========================================================
-   DEVIS - FORMULAIRE PREMIUM
+   DEVIS PREMIUM
    ========================================================= */
 .devis-section {
   background: var(--light-bg);
@@ -396,7 +455,7 @@ form textarea:focus {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
    ========================================================= */
 @media (max-width: 768px) {
   .logo { height: 70px; }
@@ -406,12 +465,13 @@ form textarea:focus {
     position: absolute;
     top: 80px;
     right: 0;
-    width: 220px;
+    width: 230px;
     background: var(--light-bg);
     display: none;
     text-align: right;
     padding: 15px;
     border-left: 1px solid #e0c98d;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   }
 
   .nav.active ul { display: block; }
