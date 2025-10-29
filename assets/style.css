@@ -1,68 +1,8 @@
 /* =========================================================
-   STYLE GLOBAL R3D PRINT CI
+   STYLE DU FORMULAIRE DEVIS – R3D PRINT CI
    ========================================================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  background-color: #fff;
-  color: #333;
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-.site-header {
-  background-color: #fff8e7;
-  border-bottom: 1px solid #e0c98d;
-}
-
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-}
-
-.logo {
-  height: 125px;
-  width: auto;
-}
-
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  font-size: 1.15em;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: #bfa14a;
-  transform: scale(1.08);
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
+/* --- Sections principales --- */
 .hero {
   text-align: center;
   background: linear-gradient(to bottom, #fff8e7, #ffffff);
@@ -86,9 +26,6 @@ body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* =========================================================
-   INTRODUCTION
-   ========================================================= */
 .devis-intro {
   text-align: center;
   margin: 60px auto;
@@ -100,9 +37,7 @@ body {
   max-width: 900px;
 }
 
-/* =========================================================
-   CHOIX DU SERVICE
-   ========================================================= */
+/* --- Choix du service --- */
 .service-selector {
   text-align: center;
   margin: 60px auto;
@@ -132,24 +67,8 @@ body {
   transition: all 0.3s ease;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
-}
-
-.service-card .icon {
-  font-size: 2em;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.service-card .title {
-  font-weight: 700;
-  color: #333;
-  font-size: 1.2em;
-}
-
-.service-card .desc {
-  color: #555;
-  font-size: 0.9em;
-  margin-top: 6px;
+  font-weight: 600;
+  font-size: 1.05em;
 }
 
 .service-card:hover {
@@ -163,9 +82,7 @@ body {
   border-color: #bfa14a;
 }
 
-/* =========================================================
-   FORMULAIRE
-   ========================================================= */
+/* --- Formulaire principal --- */
 .form-section {
   text-align: center;
   padding: 40px 20px 80px;
@@ -182,9 +99,9 @@ form {
 fieldset {
   border: 1px solid #e0c98d;
   border-radius: 12px;
-  padding: 25px 25px 35px;
-  text-align: left;
+  padding: 25px;
   background: #fff;
+  text-align: left;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -216,7 +133,7 @@ input:focus, select:focus, textarea:focus {
   outline: none;
 }
 
-/* === Grid Layouts === */
+/* --- Grilles --- */
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -229,7 +146,7 @@ input:focus, select:focus, textarea:focus {
   gap: 15px;
 }
 
-/* === Radios === */
+/* --- Radios --- */
 .radio-row {
   display: flex;
   flex-wrap: wrap;
@@ -244,9 +161,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 500;
 }
 
-/* =========================================================
-   SÉLECTEUR DE COULEURS
-   ========================================================= */
+/* --- Couleurs dynamiques --- */
 .color-grid {
   display: flex;
   flex-wrap: wrap;
@@ -311,9 +226,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 500;
 }
 
-/* =========================================================
-   UPLOAD IMAGES
-   ========================================================= */
+/* --- Upload d’images --- */
 .dropzone {
   border: 2px dashed #e0c98d;
   background: #fff8e7;
@@ -344,9 +257,7 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid #e0c98d;
 }
 
-/* =========================================================
-   BOUTONS
-   ========================================================= */
+/* --- Boutons --- */
 .btn {
   cursor: pointer;
   border: none;
@@ -379,9 +290,7 @@ input:focus, select:focus, textarea:focus {
   background: #fff8e7;
 }
 
-/* =========================================================
-   RÉCAPITULATIF
-   ========================================================= */
+/* --- Récapitulatif --- */
 .summary-section {
   display: none;
   background: #fffaf0;
@@ -422,9 +331,7 @@ input:focus, select:focus, textarea:focus {
   object-fit: cover;
 }
 
-/* =========================================================
-   CONFIRMATION
-   ========================================================= */
+/* --- Confirmation --- */
 .confirmation {
   display: none;
   text-align: center;
@@ -450,9 +357,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 1.5em;
 }
 
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
+/* --- Animations --- */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
