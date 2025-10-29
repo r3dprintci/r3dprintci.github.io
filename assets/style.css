@@ -1,108 +1,338 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="assets/logo.png" type="image/png">
+/* =========================================================
+   STYLE GLOBAL R3D PRINT CI
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-  <!-- Icônes dorées (Font Awesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+:root {
+  --gold: #c9af6b;
+  --gold-hover: #bfa14a;
+  --light-bg: #fffaf0;
+  --dark-text: #222;
+  --light-text: #555;
+}
 
-<body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo">
-      </a>
-      <nav id="navMenu" class="nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="devis.html">Devis</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" onclick="toggleMenu()">
-        <span></span>
-      </button>
-    </div>
-  </header>
+body {
+  background: #fffdf9;
+  color: var(--dark-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-  <!-- SECTION CONTACT -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-header fade-in">
-        <h1>Contactez-nous</h1>
-        <p>Une question, un projet, une idée à concrétiser ?<br>
-        Notre équipe vous répond sous 24h ouvrées.</p>
-      </div>
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header {
+  background: var(--light-bg);
+  border-bottom: 1px solid #e0c98d;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-      <div class="contact-grid">
-        <!-- Bloc coordonnées -->
-        <div class="contact-info slide-in-left">
-          <h2>Nos coordonnées</h2>
-          <p>
-            <i class="fa-solid fa-phone"></i>
-            <a href="tel:+2250757841323" class="contact-link">+225 07 57 84 13 23</a>
-          </p>
-          <p>
-            <i class="fa-brands fa-whatsapp"></i>
-            <a href="https://wa.me/2250757841323" target="_blank" class="contact-link">+225 07 57 84 13 23</a>
-          </p>
-          <p>
-            <i class="fa-solid fa-envelope"></i>
-            <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a>
-          </p>
-          <p>
-            <i class="fa-solid fa-location-dot"></i>
-            Abidjan, Côte d’Ivoire
-          </p>
-          <p style="margin-top:10px;">Disponible du lundi au samedi, de 9h à 19h.</p>
-        </div>
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
 
-        <!-- Bloc formulaire -->
-        <div class="contact-form slide-in-right">
-          <h2>Envoyer un message</h2>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="nom">Nom complet</label>
-              <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
-            </div>
+/* ✅ LOGO ÉQUILIBRÉ TOUTES PAGES */
+.logo {
+  height: 65px;
+  max-width: 160px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
-            </div>
+.logo:hover { transform: scale(1.05); }
 
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
-            </div>
+/* MENU */
+.nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
 
-            <button type="submit" class="btn gold halo-anim">Envoyer</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+.nav a {
+  text-decoration: none;
+  color: var(--dark-text);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
 
-  <!-- IMAGE DE CONCLUSION -->
-  <section class="contact-image-section fade-in">
-    <div class="contact-image-container">
-      <img src="assets/impression3d.webp" alt="R3D Impression 3D Abidjan">
-    </div>
-  </section>
+.nav a:hover,
+.nav a.active {
+  color: #fff;
+  background: var(--gold);
+}
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
 
-  <script defer src="assets/main.js"></script>
-</body>
-</html>
+.btn.gold {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(201, 175, 107, 0.3);
+}
+
+.btn.gold:hover {
+  background: var(--gold-hover);
+  box-shadow: 0 6px 18px rgba(201, 175, 107, 0.5);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   IMAGES GLOBALES
+   ========================================================= */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Dans les galeries ou blocs */
+.gallery img,
+.realisation-item img,
+.service-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.gallery img:hover,
+.realisation-item img:hover,
+.service-item img:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   PAGE CONTACT
+   ========================================================= */
+.contact-section {
+  background: #fff;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-header h1 {
+  font-size: 2.4rem;
+  color: var(--dark-text);
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #bfa14a, #c9af6b, #d8c78f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.contact-header p {
+  font-size: 1.1rem;
+  color: var(--light-text);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* === BLOCS === */
+.contact-info,
+.contact-form {
+  background: #fff;
+  border: 1px solid #e8d9a2;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(201, 175, 107, 0.2);
+  padding: 35px 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-info:hover,
+.contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(201, 175, 107, 0.35);
+}
+
+.contact-info h2,
+.contact-form h2 {
+  color: var(--gold);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* === ICONES === */
+.contact-info p {
+  color: var(--light-text);
+  margin-bottom: 12px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info p i {
+  color: var(--gold);
+  font-size: 1.3rem;
+  width: 25px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-info p:hover i {
+  transform: scale(1.2);
+  color: var(--gold-hover);
+}
+
+/* === LIENS CLIQUABLES === */
+.contact-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--gold-hover);
+  text-decoration: underline;
+}
+
+/* === FORMULAIRE === */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0c98d;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fffdf7;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(201, 175, 107, 0.4);
+  outline: none;
+  background: #fffef9;
+}
+
+/* === BOUTON ENVOYER ANIMÉ === */
+.halo-anim {
+  animation: halo 2.8s infinite ease-in-out;
+}
+
+@keyframes halo {
+  0% { box-shadow: 0 0 0 rgba(201,175,107,0.3); }
+  50% { box-shadow: 0 0 18px rgba(201,175,107,0.5), 0 0 30px rgba(201,175,107,0.3); }
+  100% { box-shadow: 0 0 0 rgba(201,175,107,0.3); }
+}
+
+/* === IMAGE DE CONCLUSION === */
+.contact-image-section {
+  background: #fffaf0;
+  padding: 0;
+  text-align: center;
+  border-top: 2px solid #e0c98d;
+}
+
+.contact-image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 -4px 15px rgba(201, 175, 107, 0.2);
+  transition: transform 0.5s ease;
+}
+
+.contact-image-container img:hover { transform: scale(1.03); }
+
+/* =========================================================
+   ANIMATIONS GLOBALES
+   ========================================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 1s ease forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInRight 1s ease forwards;
+}
+
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  background: var(--light-bg);
+  text-align: center;
+  padding: 25px 10px;
+  border-top: 1px solid #e0c98d;
+  color: var(--light-text);
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  .logo { height: 55px; max-width: 130px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-header h1 { font-size: 2rem; }
+  .contact-image-container img { max-height: 250px; }
+}
