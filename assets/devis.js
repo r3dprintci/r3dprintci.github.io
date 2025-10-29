@@ -162,5 +162,4 @@ document.addEventListener("DOMContentLoaded", () => {
     panels.forEach(p => (p.style.display = "none"));
     serviceCards.forEach(c => c.classList.remove("active"));
   });
-
 });
