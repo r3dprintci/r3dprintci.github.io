@@ -1,65 +1,102 @@
 // =========================================================
-// R3D PRINT CI – SCRIPT PRINCIPAL
+// GESTION DU MENU HAMBURGER
 // =========================================================
-
-// === GESTION DU MENU HAMBURGER ===
 function toggleMenu() {
   const nav = document.getElementById("navMenu");
-  const body = document.body;
   nav.classList.toggle("active");
-  body.classList.toggle("menu-open");
 }
 
-// Fermer le menu automatiquement après un clic sur un lien
+// Fermer automatiquement le menu après un clic sur un lien
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav a");
-  const nav = document.getElementById("navMenu");
-
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
-      nav.classList.remove("active");
-      document.body.classList.remove("menu-open");
+      document.getElementById("navMenu").classList.remove("active");
     });
   });
 });
 
-// === EFFET D’APPARITION AU SCROLL (fade-in) ===
-window.addEventListener("scroll", () => {
-  const elements = document.querySelectorAll(".fade-in");
-  const triggerBottom = window.innerHeight * 0.85;
+// =========================================================
+// GESTION DU FORMULAIRE DEVIS
+// =========================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const serviceButtons = document.querySelectorAll(".choice-btn");
+  const form = document.getElementById("devisForm");
+  const colorContainer = document.getElementById("colorContainer");
 
-  elements.forEach(el => {
-    const boxTop = el.getBoundingClientRect().top;
-    if (boxTop < triggerBottom) {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-      el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-    }
-  });
-});
+  // Cacher initialement tout le formulaire tant qu’un service n’est pas choisi
+  if (form) form.style.display = "none";
 
-// === AJOUT D’UNE TRANSITION SUR LES BOUTONS ===
-const buttons = document.querySelectorAll(".btn, .choice-btn, .add-color");
-buttons.forEach(btn => {
-  btn.addEventListener("mouseover", () => {
-    btn.style.transition = "all 0.3s ease";
-    btn.style.transform = "translateY(-2px)";
-  });
-  btn.addEventListener("mouseout", () => {
-    btn.style.transform = "translateY(0)";
-  });
-});
+  serviceButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Réinitialiser les états actifs
+      serviceButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
 
-// === SMOOTH SCROLL POUR LES ANCRES INTERNES ===
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
+      // Afficher le formulaire une fois le type choisi
+      if (form) form.style.display = "block";
+
+      // Adapter le texte du placeholder selon le service
+      const selectedService = button.dataset.service;
+      const objetInput = document.getElementById("objet");
+      const detailsLabel = document.querySelector('label[for="details"]');
+
+      if (selectedService === "impression3d") {
+        objetInput.placeholder = "Décrivez l’objet à imprimer (ex : pièce décorative, prototype...)";
+        detailsLabel.textContent = "Détails techniques (matière, finitions, dimensions...)";
+      } else if (selectedService === "gravure") {
+        objetInput.placeholder = "Décrivez l’objet à graver (ex : plaque, trophée, planche bois...)";
+        detailsLabel.textContent = "Détails de gravure (matériau, surface, profondeur...)";
+      } else if (selectedService === "prototypage") {
+        objetInput.placeholder = "Expliquez le prototype souhaité (ex : maquette, pièce test...)";
+        detailsLabel.textContent = "Précisions sur le projet (fonction, assemblage, contraintes...)";
+      }
+
       window.scrollTo({
-        top: target.offsetTop - 80,
+        top: form.offsetTop - 80,
         behavior: "smooth"
       });
-    }
+    });
   });
+
+  // =========================================================
+  // AJOUT DYNAMIQUE DE COULEURS
+  // =========================================================
+  if (colorContainer) {
+    colorContainer.addEventListener("click", e => {
+      if (e.target.classList.contains("add-color")) {
+        const newColor = document.createElement("input");
+        newColor.type = "color";
+        newColor.className = "color-circle";
+        newColor.value = "#c9af6b";
+        colorContainer.insertBefore(newColor, e.target);
+      }
+    });
+  }
+
+  // =========================================================
+  // SOUMISSION DU FORMULAIRE
+  // =========================================================
+  if (form) {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const name = document.getElementById("nom").value.trim();
+      const container = document.querySelector(".form-container");
+
+      // Masquer le contenu du formulaire avec animation
+      container.innerHTML = `
+        <div class="fade-in" style="text-align:center; padding:60px;">
+          <h2 style="color:var(--gold); font-size:2rem; margin-bottom:10px;">
+            Merci ${name ? name.split(" ")[0] : "pour votre demande"} !
+          </h2>
+          <p>Votre demande de devis a bien été envoyée.<br>
+          Nous vous recontacterons très bientôt pour finaliser votre projet.</p>
+          <div style="margin-top:25px;">
+            <a href="index.html" class="btn gold">⬅ Retour à l’accueil</a>
+          </div>
+        </div>
+      `;
+    });
+  }
 });
