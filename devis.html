@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demande de devis – R3D PRINT CI</title>
+  <title>Demander un devis – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
-
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
@@ -30,7 +29,13 @@
   <!-- HERO -->
   <section class="hero">
     <h1>Demander un devis sur mesure</h1>
-    <p>Décrivez votre projet, choisissez vos couleurs et obtenez une estimation rapide et personnalisée.</p>
+    <p>Décrivez votre projet, choisissez vos options et recevez une estimation personnalisée dans les plus brefs délais.</p>
+  </section>
+
+  <!-- INTRO -->
+  <section class="devis-intro">
+    <h2>Votre projet mérite la meilleure précision</h2>
+    <p>R3D PRINT CI met à votre disposition son expertise en impression 3D, gravure laser et prototypage pour concrétiser vos idées à Abidjan.</p>
   </section>
 
   <!-- FORMULAIRE DEVIS -->
@@ -38,7 +43,6 @@
     <h2>Formulaire de demande</h2>
 
     <form action="#" method="post">
-
       <label for="nom">Nom complet :</label>
       <input type="text" id="nom" name="nom" placeholder="Votre nom" required />
 
@@ -68,9 +72,8 @@
         <option value="acrylique">Acrylique / Plexiglas</option>
       </select>
 
-      <!-- CHOIX DES COULEURS -->
+      <!-- COULEURS -->
       <label>Choisissez vos couleurs :</label>
-
       <div class="color-picker" id="colorPicker">
         <div class="color-option" style="background-color: #bfa14a;" data-color="#bfa14a" title="Doré"></div>
         <div class="color-option" style="background-color: #ff0000;" data-color="#ff0000" title="Rouge"></div>
@@ -80,7 +83,6 @@
         <div class="color-option" style="background-color: #ff8c00;" data-color="#ff8c00" title="Orange"></div>
         <div class="color-option" style="background-color: #00ff88;" data-color="#00ff88" title="Vert clair"></div>
       </div>
-
       <div class="color-preview" id="colorPreview">Aucune couleur sélectionnée</div>
 
       <label for="quantite">Quantité :</label>
@@ -106,7 +108,7 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPT INTERACTIF POUR LES COULEURS -->
+  <!-- SCRIPT COULEURS -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const colorOptions = document.querySelectorAll('.color-option');
@@ -116,9 +118,7 @@
         const selected = document.querySelectorAll('.color-option.selected');
         const colors = Array.from(selected).map(o => o.dataset.color);
         colorPreview.textContent = colors.length > 0 ? colors.join(', ') : 'Aucune couleur sélectionnée';
-        colorPreview.style.background = colors.length > 0
-          ? `linear-gradient(90deg, ${colors.join(', ')})`
-          : '#fff8e7';
+        colorPreview.style.background = colors.length > 0 ? `linear-gradient(90deg, ${colors.join(', ')})` : '#fff8e7';
       }
 
       colorOptions.forEach(option => {
@@ -129,53 +129,5 @@
       });
     });
   </script>
-
-  <!-- STYLES SPÉCIFIQUES AU CHOIX DE COULEURS -->
-  <style>
-    .color-picker {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 15px 0 25px;
-    }
-
-    .color-option {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      border: 2px solid #e0c98d;
-      cursor: pointer;
-      transition: transform 0.2s ease, border 0.2s ease;
-    }
-
-    .color-option:hover {
-      transform: scale(1.15);
-      border-color: #bfa14a;
-    }
-
-    .color-option.selected {
-      box-shadow: 0 0 0 3px #bfa14a;
-      transform: scale(1.1);
-    }
-
-    .color-preview {
-      width: 100%;
-      max-width: 320px;
-      height: 40px;
-      margin: 15px auto;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      background-color: #fff8e7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-size: 0.9em;
-      font-weight: 500;
-      text-align: center;
-    }
-  </style>
-
 </body>
 </html>
