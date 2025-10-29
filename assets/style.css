@@ -101,37 +101,42 @@ body {
 }
 
 /* =========================================================
-   HERO
-   ========================================================= */
-.hero {
-  background: linear-gradient(to right, #fffaf0, #fff);
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h1 {
-  font-size: 2.4rem;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: var(--light-text);
-  max-width: 700px;
-  margin: auto;
-}
-
-/* =========================================================
    PAGE CONTACT
    ========================================================= */
 .contact-section {
   background: #fff;
   padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201,175,107,0.2), transparent 70%);
+  z-index: 0;
+}
+
+.contact-section::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201,175,107,0.15), transparent 70%);
+  z-index: 0;
 }
 
 .contact-header {
   text-align: center;
   margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-header h1 {
@@ -152,6 +157,8 @@ body {
   gap: 40px;
   align-items: stretch;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-info,
@@ -163,6 +170,7 @@ body {
   padding: 35px 30px;
   transition: all 0.4s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .contact-info::before,
@@ -171,7 +179,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 14px;
-  background: linear-gradient(120deg, rgba(255,248,230,0.3), rgba(255,255,255,0.8));
+  background: linear-gradient(120deg, rgba(255,248,230,0.4), rgba(255,255,255,0.9));
   z-index: 0;
 }
 
@@ -181,26 +189,52 @@ body {
   box-shadow: 0 8px 25px rgba(201, 175, 107, 0.3);
 }
 
+/* === TITRES === */
 .contact-info h2,
 .contact-form h2 {
   color: var(--gold);
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
   text-align: center;
-  font-weight: 600;
-  z-index: 2;
+  font-weight: 700;
   position: relative;
+  z-index: 2;
 }
 
+/* === INFORMATIONS === */
 .contact-info p {
   color: var(--light-text);
   margin-bottom: 12px;
   font-size: 1rem;
-  text-align: center;
+  text-align: left;
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.contact-info p i {
+  color: var(--gold);
+  font-size: 1.3rem;
+  width: 25px;
+  text-align: center;
+}
+
+/* === LIENS CLIQUABLES === */
+.contact-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--gold-hover);
+  text-decoration: underline;
+}
+
+/* === FORMULAIRE === */
 .contact-form form {
   display: flex;
   flex-direction: column;
@@ -217,6 +251,7 @@ body {
   border-radius: 8px;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+  background: #fffdf7;
 }
 
 .contact-form input:focus,
@@ -224,24 +259,12 @@ body {
   border-color: var(--gold);
   box-shadow: 0 0 6px rgba(201, 175, 107, 0.3);
   outline: none;
+  background: #fffef9;
 }
 
 .contact-form button {
   align-self: center;
   margin-top: 10px;
-}
-
-/* === LIENS CLIQUABLES === */
-.contact-link {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.contact-link:hover {
-  color: var(--gold-hover);
-  text-decoration: underline;
 }
 
 /* === IMAGE DE CONCLUSION === */
