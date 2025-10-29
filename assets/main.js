@@ -1,6 +1,6 @@
-/* =========================================================
-   SCRIPT GLOBAL DU SITE – R3D PRINT CI
-   ========================================================= */
+// =========================================================
+// R3D PRINT CI – SCRIPT PRINCIPAL
+// =========================================================
 
 // === GESTION DU MENU HAMBURGER ===
 function toggleMenu() {
@@ -10,35 +10,56 @@ function toggleMenu() {
   body.classList.toggle("menu-open");
 }
 
-// Fermer automatiquement le menu après un clic sur un lien
+// Fermer le menu automatiquement après un clic sur un lien
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav a");
+  const nav = document.getElementById("navMenu");
+
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
-      document.getElementById("navMenu").classList.remove("active");
+      nav.classList.remove("active");
       document.body.classList.remove("menu-open");
     });
   });
 });
 
-// === Défilement fluide interne ===
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    const href = this.getAttribute("href");
-    if (href.length > 1 && document.querySelector(href)) {
-      e.preventDefault();
-      document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+// === EFFET D’APPARITION AU SCROLL (fade-in) ===
+window.addEventListener("scroll", () => {
+  const elements = document.querySelectorAll(".fade-in");
+  const triggerBottom = window.innerHeight * 0.85;
+
+  elements.forEach(el => {
+    const boxTop = el.getBoundingClientRect().top;
+    if (boxTop < triggerBottom) {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+      el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
     }
   });
 });
 
-// === Apparition douce des éléments .fade-in ===
-window.addEventListener("scroll", () => {
-  const elements = document.querySelectorAll(".fade-in");
-  elements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add("visible");
+// === AJOUT D’UNE TRANSITION SUR LES BOUTONS ===
+const buttons = document.querySelectorAll(".btn, .choice-btn, .add-color");
+buttons.forEach(btn => {
+  btn.addEventListener("mouseover", () => {
+    btn.style.transition = "all 0.3s ease";
+    btn.style.transform = "translateY(-2px)";
+  });
+  btn.addEventListener("mouseout", () => {
+    btn.style.transform = "translateY(0)";
+  });
+});
+
+// === SMOOTH SCROLL POUR LES ANCRES INTERNES ===
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: "smooth"
+      });
     }
   });
 });
