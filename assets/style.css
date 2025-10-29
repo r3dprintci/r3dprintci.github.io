@@ -1,5 +1,5 @@
 /* =========================================================
-   STYLE GLOBAL R3D PRINT CI — VERSION PREMIUM UNIFIÉE
+   STYLE GLOBAL R3D PRINT CI — VERSION PREMIUM UNIFIÉE (MAJ)
    ========================================================= */
 * {
   margin: 0;
@@ -50,7 +50,6 @@ body {
   object-fit: contain;
   transition: transform 0.3s ease;
 }
-
 .logo:hover { transform: scale(1.05); }
 
 .nav ul {
@@ -67,7 +66,6 @@ body {
   border-radius: 6px;
   transition: all 0.3s ease;
 }
-
 .nav a:hover,
 .nav a.active {
   color: #fff;
@@ -95,7 +93,6 @@ body {
   color: #fff;
   box-shadow: 0 3px 10px rgba(201, 175, 107, 0.3);
 }
-
 .btn.gold:hover {
   background: var(--gold-hover);
   box-shadow: 0 6px 18px rgba(201, 175, 107, 0.5);
@@ -113,7 +110,7 @@ body {
 }
 
 /* =========================================================
-   TITRES ET BLOCS
+   TITRES ET BLOCS GLOBAUX
    ========================================================= */
 section {
   padding: 80px 0;
@@ -138,7 +135,7 @@ section p {
 }
 
 /* =========================================================
-   BLOCS ET CARTES GLOBAUX
+   BLOCS / CARTES / SERVICES
    ========================================================= */
 .card, .service-item, .realisation-item, .faq-item {
   background: #fff;
@@ -147,6 +144,7 @@ section p {
   box-shadow: 0 4px 15px rgba(201,175,107,0.15);
   padding: 25px;
   transition: all 0.4s ease;
+  text-align: center; /* ✅ centrage global des titres et textes */
 }
 
 .card:hover, .service-item:hover, .realisation-item:hover {
@@ -154,8 +152,23 @@ section p {
   box-shadow: 0 8px 25px rgba(201,175,107,0.3);
 }
 
+.card h3, .service-item h3, .realisation-item h3 {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card p, .service-item p, .realisation-item p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--light-text);
+  line-height: 1.5;
+}
+
 /* =========================================================
-   IMAGES GLOBALES
+   IMAGES
    ========================================================= */
 img {
   max-width: 100%;
@@ -173,7 +186,6 @@ img {
   border-radius: 10px;
   transition: transform 0.4s ease;
 }
-
 .service-item img:hover,
 .realisation-item img:hover,
 .gallery img:hover {
@@ -181,15 +193,12 @@ img {
 }
 
 /* =========================================================
-   PAGE CONTACT (RÉFÉRENCE DESIGN)
+   CONTACT (référence design)
    ========================================================= */
 .contact-section {
   background: #fff;
   padding: 80px 0;
 }
-
-.contact-header { text-align: center; margin-bottom: 50px; }
-
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -206,29 +215,16 @@ img {
   padding: 35px 30px;
   transition: all 0.4s ease;
 }
-
 .contact-info:hover, .contact-form:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(201,175,107,0.35);
 }
 
-.contact-info p {
-  color: var(--light-text);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-info p i {
+.contact-info h2, .contact-form h2 {
+  text-align: center;
   color: var(--gold);
-  font-size: 1.3rem;
-  width: 25px;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-.contact-info p:hover i {
-  transform: scale(1.2);
-  color: var(--gold-hover);
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .contact-link {
@@ -242,25 +238,8 @@ img {
   text-decoration: underline;
 }
 
-/* IMAGE BAS CONTACT */
-.contact-image-section {
-  background: #fffaf0;
-  padding: 0;
-  border-top: 2px solid #e0c98d;
-  text-align: center;
-}
-.contact-image-container img {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: cover;
-  border-top: 3px solid var(--gold);
-  transition: transform 0.5s ease;
-}
-.contact-image-container img:hover { transform: scale(1.03); }
-
 /* =========================================================
-   ANIMATIONS GLOBALES
+   ANIMATIONS
    ========================================================= */
 .fade-in {
   opacity: 0;
@@ -277,7 +256,6 @@ img {
   transform: translateX(50px);
   animation: slideInRight 1s ease forwards;
 }
-
 @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
 @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
@@ -295,10 +273,11 @@ img {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ========================================================= */
 @media (max-width: 768px) {
   .logo { height: 55px; max-width: 130px; }
   .contact-grid, .service-grid, .realisation-grid { grid-template-columns: 1fr; }
   section { padding: 60px 15px; }
+  .card, .service-item, .realisation-item { padding: 20px; }
 }
