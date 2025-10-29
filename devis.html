@@ -33,7 +33,7 @@
     <p>Décrivez votre projet pour que nous puissions vous proposer la meilleure solution R3D PRINT CI.</p>
   </section>
 
-  <!-- FORMULAIRE -->
+  <!-- SECTION DEVIS -->
   <section class="devis-section">
     <div class="container form-container fade-in">
       <div class="form-header">
@@ -41,59 +41,135 @@
         <p>Choisissez le domaine correspondant à votre besoin.</p>
       </div>
 
+      <!-- Boutons de choix -->
       <div class="service-choice">
         <button class="choice-btn" data-service="impression3d">🧱 Impression 3D</button>
         <button class="choice-btn" data-service="gravure">🔦 Gravure Laser</button>
         <button class="choice-btn" data-service="prototypage">⚙️ Prototypage</button>
       </div>
 
-      <form id="devisForm">
+      <!-- FORMULAIRE IMPRESSION 3D -->
+      <form id="form-impression3d" class="devis-form hidden">
         <div class="form-grid">
           <div class="form-group">
-            <label for="nom">Nom complet</label>
-            <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
+            <label for="nom3d">Nom complet</label>
+            <input type="text" id="nom3d" required placeholder="Votre nom complet">
           </div>
 
           <div class="form-group">
-            <label for="objet">Nature de l’objet</label>
-            <input type="text" id="objet" name="objet" placeholder="Ex : trophée, enseigne, maquette..." required>
+            <label for="objet3d">Nature de l’objet</label>
+            <input type="text" id="objet3d" required placeholder="Ex : figurine, pièce technique...">
           </div>
 
           <div class="form-group">
-            <label for="dimensions">Dimensions (cm)</label>
-            <input type="text" id="dimensions" name="dimensions" placeholder="Ex : 15 x 10 x 8 cm" required>
+            <label for="dimensions3d">Dimensions (cm)</label>
+            <input type="text" id="dimensions3d" placeholder="Ex : 15 x 10 x 8">
           </div>
 
           <div class="form-group">
-            <label for="lieu">Lieu d’utilisation</label>
-            <select id="lieu" name="lieu" required>
+            <label for="lieu3d">Lieu d’utilisation</label>
+            <select id="lieu3d">
               <option value="">Sélectionnez</option>
               <option value="intérieur">Intérieur</option>
               <option value="extérieur">Extérieur</option>
             </select>
           </div>
 
-          <div class="form-group colors-block">
+          <div class="form-group full">
             <label>Couleurs</label>
-            <div id="colorContainer" class="color-picker">
+            <div id="colorContainer3d" class="color-picker">
               <input type="color" class="color-circle" value="#c9af6b">
               <button type="button" class="add-color">+</button>
             </div>
           </div>
 
           <div class="form-group full">
-            <label for="fichiers">Ajouter des photos ou références</label>
-            <input type="file" id="fichiers" name="fichiers" multiple accept="image/*">
+            <label for="fichiers3d">Ajouter des fichiers de référence</label>
+            <input type="file" id="fichiers3d" multiple accept="image/*, .stl, .obj">
           </div>
 
           <div class="form-group full">
-            <label for="details">Détails supplémentaires</label>
-            <textarea id="details" name="details" rows="4" placeholder="Décrivez votre projet..."></textarea>
+            <label for="details3d">Détails supplémentaires</label>
+            <textarea id="details3d" rows="4" placeholder="Matériaux, finitions, usage..."></textarea>
           </div>
         </div>
-
-        <button type="submit" class="btn gold" id="envoyerBtn">Envoyer ma demande</button>
+        <button type="submit" class="btn gold">Envoyer ma demande</button>
       </form>
+
+      <!-- FORMULAIRE GRAVURE LASER -->
+      <form id="form-gravure" class="devis-form hidden">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nomGravure">Nom complet</label>
+            <input type="text" id="nomGravure" required placeholder="Votre nom complet">
+          </div>
+
+          <div class="form-group">
+            <label for="materiauGravure">Matériau à graver</label>
+            <select id="materiauGravure">
+              <option value="">Sélectionnez</option>
+              <option value="bois">Bois</option>
+              <option value="métal">Métal</option>
+              <option value="verre">Verre</option>
+              <option value="acrylique">Acrylique</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantiteGravure">Quantité</label>
+            <input type="number" id="quantiteGravure" placeholder="Ex : 10 pièces">
+          </div>
+
+          <div class="form-group">
+            <label for="dimensionsGravure">Dimensions (cm)</label>
+            <input type="text" id="dimensionsGravure" placeholder="Ex : 20 x 10">
+          </div>
+
+          <div class="form-group full">
+            <label for="designGravure">Ajouter le design ou logo</label>
+            <input type="file" id="designGravure" accept="image/*, .svg, .pdf">
+          </div>
+
+          <div class="form-group full">
+            <label for="detailsGravure">Détails spécifiques</label>
+            <textarea id="detailsGravure" rows="4" placeholder="Profondeur, texture, position de gravure..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn gold">Envoyer ma demande</button>
+      </form>
+
+      <!-- FORMULAIRE PROTOTYPAGE -->
+      <form id="form-prototypage" class="devis-form hidden">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nomProto">Nom complet</label>
+            <input type="text" id="nomProto" required placeholder="Votre nom complet">
+          </div>
+
+          <div class="form-group">
+            <label for="typeProto">Type de prototype</label>
+            <input type="text" id="typeProto" placeholder="Ex : maquette, pièce mécanique...">
+          </div>
+
+          <div class="form-group">
+            <label for="fichiersProto">Fichiers techniques</label>
+            <input type="file" id="fichiersProto" multiple accept=".stl, .step, .obj">
+          </div>
+
+          <div class="form-group">
+            <label for="delaiProto">Délai souhaité</label>
+            <input type="text" id="delaiProto" placeholder="Ex : 3 jours, 1 semaine...">
+          </div>
+
+          <div class="form-group full">
+            <label for="detailsProto">Détails supplémentaires</label>
+            <textarea id="detailsProto" rows="4" placeholder="Usage, contraintes, assemblage..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn gold">Envoyer ma demande</button>
+      </form>
+
     </div>
   </section>
 
