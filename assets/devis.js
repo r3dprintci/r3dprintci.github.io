@@ -1,169 +1,119 @@
-/* =========================================================
-   SCRIPT DEVIS – R3D PRINT CI
-   ========================================================= */
+// =============================================================
+// R3D PRINT CI - SCRIPT DYNAMIQUE DEVIS (version stable complète)
+// =============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Éléments principaux
-  const serviceCards = document.querySelectorAll(".service-card[data-service]");
-  const panels = document.querySelectorAll(".panel");
-  const serviceInput = document.getElementById("serviceType");
-  const form = document.getElementById("devisForm");
-  const summarySection = document.getElementById("summarySection");
-  const confirmation = document.getElementById("confirmation");
-  const summaryList = document.getElementById("summaryList");
-  const summaryPhotos = document.getElementById("summaryPhotos");
-  const btnReview = document.getElementById("btnReview");
-  const btnEdit = document.getElementById("btnEdit");
-  const btnConfirm = document.getElementById("btnConfirm");
-  const confirmationTitle = document.getElementById("confirmationTitle");
+  const formContainer = document.getElementById("formContainer");
+  const serviceButtons = document.querySelectorAll(".service-choice");
+  const resumeContainer = document.getElementById("resume");
 
-  // 1) Choix du service + transition
-  serviceCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      serviceCards.forEach(c => c.classList.remove("active"));
-      card.classList.add("active");
+  if (!formContainer || !serviceButtons.length) return;
 
-      const service = card.dataset.service;
-      serviceInput.value = service;
-
-      panels.forEach(p => { p.style.display = "none"; p.classList.remove("fade-card"); });
-
-      if (service === "impression3d") showPanel("panel3D");
-      if (service === "gravure")      showPanel("panelLaser");
-      if (service === "prototypage")  showPanel("panelProto");
-
-      // réinitialiser résumé / confirmation
-      summarySection.classList.remove("active");
-      confirmation.classList.remove("active");
-      confirmationTitle.textContent = "Merci, votre demande a été envoyée !";
+  // Effet de clic sur les boutons de service
+  serviceButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      serviceButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderForm(btn.dataset.service);
     });
   });
 
-  function showPanel(id) {
-    const panel = document.getElementById(id);
-    panel.style.display = "block";
-    // relance l’animation
-    void panel.offsetWidth;
-    panel.classList.add("fade-card");
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  // Fonction d'affichage du formulaire selon le service
+  function renderForm(service) {
+    let html = "";
 
-  // 2) Gestion dynamique des couleurs (3D / Proto)
-  initColorPicker("3D");
-  initColorPicker("Proto");
-
-  function initColorPicker(prefix) {
-    const grid = document.getElementById(`colorGrid${prefix}`);
-    const picker = document.getElementById(`colorPicker${prefix}`);
-    const addBtn = document.getElementById(`addColor${prefix}`);
-    const preview = document.getElementById(`colorPreview${prefix}`);
-    const inputHidden = document.getElementById(`colors${prefix}`);
-    let colors = [];
-
-    grid.addEventListener("click", (e) => {
-      if (e.target.classList.contains("color-circle") && e.target.classList.contains("empty")) {
-        picker.click();
-      }
-    });
-
-    picker.addEventListener("input", (event) => {
-      const newColor = event.target.value;
-      if (!newColor) return;
-      colors.push(newColor);
-      inputHidden.value = colors.join(", ");
-      updateColorGrid();
-    });
-
-    addBtn.addEventListener("click", () => picker.click());
-
-    function updateColorGrid() {
-      grid.innerHTML = "";
-      colors.forEach(c => {
-        const div = document.createElement("div");
-        div.className = "color-circle";
-        div.style.background = c;
-        div.title = c;
-        grid.appendChild(div);
-      });
-      const emptyCircle = document.createElement("div");
-      emptyCircle.className = "color-circle empty";
-      grid.appendChild(emptyCircle);
-      preview.textContent = colors.length ? `Couleurs : ${colors.join(", ")}` : "Aucune couleur sélectionnée";
-    }
-  }
-
-  // 3) Upload d’images avec aperçu
-  initDropzone("drop3D", "thumbs3D");
-  initDropzone("dropLaser", "thumbsLaser");
-  initDropzone("dropProto", "thumbsProto");
-
-  function initDropzone(dropId, thumbsId) {
-    const drop = document.getElementById(dropId);
-    const input = drop.querySelector("input");
-    const thumbs = document.getElementById(thumbsId);
-
-    function handleFiles(files) {
-      thumbs.innerHTML = "";
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          thumbs.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
+    if (service === "3d") {
+      html = `
+        <div class="service-panel fade-in">
+          <h3>Impression 3D</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Nature de l’objet</label><input type="text" placeholder="Ex: prototype, trophée, pièce mécanique">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex: 15 x 10 x 5">
+          <label>Lieu d’utilisation</label>
+          <select><option value="">Choisissez...</option><option>Intérieur</option><option>Extérieur</option></select>
+          <label>Couleurs souhaitées</label>
+          <div id="colorChips">
+            <input type="color" value="#c9af6b">
+            <button id="addColor">+</button>
+          </div>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
     }
 
-    drop.addEventListener("click", () => input.click());
-    input.addEventListener("change", (e) => handleFiles(e.target.files));
+    else if (service === "laser") {
+      html = `
+        <div class="service-panel fade-in">
+          <h3>Gravure Laser</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Type d’objet</label><input type="text" placeholder="Ex: plaque, bouteille, trophée">
+          <label>Quantité</label><input type="number" placeholder="Ex: 5">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex: 10 x 5 x 2">
+          <label>Matériau</label>
+          <select><option>Bois</option><option>Métal</option><option>Verre</option><option>PVC</option><option>Autre</option></select>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
+    }
+
+    else if (service === "proto") {
+      html = `
+        <div class="service-panel fade-in">
+          <h3>Prototypage</h3>
+          <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
+          <label>Nature du prototype</label><input type="text" placeholder="Ex: boîtier, pièce technique">
+          <label>Dimensions (cm)</label><input type="text" placeholder="Ex: 20 x 10 x 8">
+          <label>Matériau souhaité</label>
+          <select><option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option></select>
+          <label>Photos de référence</label><input type="file" multiple accept="image/*">
+        </div>`;
+    }
+
+    formContainer.innerHTML = `
+      <form id="devisForm" class="fade-in">
+        ${html}
+        <div style="grid-column: 1 / -1; text-align:center; margin-top:25px;">
+          <button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button>
+        </div>
+      </form>
+    `;
+
+    setupColorAdder();
+    setupSubmit(service);
   }
 
-  // 4) Récapitulatif
-  btnReview.addEventListener("click", () => {
-    summaryList.innerHTML = "";
-    summaryPhotos.innerHTML = "";
-
-    const formData = new FormData(form);
-    formData.forEach((val, key) => {
-      if (!val) return;
-      if (key === "colors3d" || key === "colors_proto") return;
-      const li = document.createElement("li");
-      li.textContent = `${key.replaceAll("_", " ")} : ${val}`;
-      summaryList.appendChild(li);
+  // === Gestion des pastilles de couleur ===
+  function setupColorAdder() {
+    const addBtn = document.getElementById("addColor");
+    const container = document.getElementById("colorChips");
+    if (!addBtn || !container) return;
+    addBtn.addEventListener("click", e => {
+      e.preventDefault();
+      const newColor = document.createElement("input");
+      newColor.type = "color";
+      newColor.style.opacity = "0";
+      newColor.style.transition = "opacity 0.4s ease";
+      container.insertBefore(newColor, addBtn);
+      setTimeout(() => (newColor.style.opacity = "1"), 50);
     });
+  }
 
-    document.querySelectorAll(".thumbs img").forEach(img => {
-      const clone = img.cloneNode();
-      summaryPhotos.appendChild(clone);
+  // === Gestion du résumé ===
+  function setupSubmit(service) {
+    const btn = document.getElementById("submitDevis");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const name = document.querySelector("#devisForm input[type='text']")?.value.trim() || "";
+      resumeContainer.innerHTML = `
+        <div class="fade-in" style="text-align:center;padding:35px;background:#fffaf0;border-radius:14px;margin-top:30px;">
+          <h3 style="color:#c9af6b;">Merci ${name || "cher client"} !</h3>
+          <p>Votre demande de <strong>${getServiceName(service)}</strong> a bien été enregistrée.<br>Vous recevrez une réponse sous 24h.</p>
+        </div>`;
+      window.scrollTo({ top: resumeContainer.offsetTop - 80, behavior: "smooth" });
     });
+  }
 
-    summarySection.classList.add("active");
-    summarySection.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  // 5) Retour édition
-  btnEdit.addEventListener("click", () => {
-    summarySection.classList.remove("active");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // 6) Confirmation
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    summarySection.classList.remove("active");
-
-    const nomComplet = (document.getElementById("nomComplet").value || "").trim();
-    confirmationTitle.innerHTML = nomComplet
-      ? `Merci ${nomComplet}, votre demande a bien été envoyée ✨`
-      : `Merci, votre demande a bien été envoyée ✨`;
-
-    confirmation.classList.add("active");
-    confirmation.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // Réinitialisation partielle
-    form.reset();
-    panels.forEach(p => (p.style.display = "none"));
-    serviceCards.forEach(c => c.classList.remove("active"));
-  });
+  function getServiceName(code) {
+    return code === "3d" ? "service d’impression 3D"
+      : code === "laser" ? "service de gravure laser"
+      : "service de prototypage";
+  }
 });
