@@ -1,7 +1,6 @@
 /* =========================================================
    STYLE GLOBAL R3D PRINT CI
    ========================================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -101,112 +100,205 @@ body {
   max-width: 900px;
 }
 
-.devis-intro h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.devis-intro p {
-  max-width: 700px;
-  margin: 0 auto;
-  color: #555;
-  font-size: 1.05em;
-}
-
 /* =========================================================
-   FORMULAIRE DEVIS
+   CHOIX DU SERVICE
    ========================================================= */
-.form-section {
-  background: #fff;
-  padding: 60px 20px;
+.service-selector {
   text-align: center;
+  margin: 60px auto;
+  max-width: 950px;
 }
 
-.form-section h2 {
+.service-selector h2 {
   font-size: 2em;
   margin-bottom: 25px;
   color: #333;
 }
 
-/* --- Labels premium dorés --- */
-label {
-  text-align: left;
-  font-weight: 600;
-  font-size: 1.05em;
-  color: #bfa14a;
-  margin-top: 10px;
-  margin-bottom: 5px;
+.service-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.service-card {
+  background: #fff;
+  border: 2px solid #e0c98d;
+  border-radius: 14px;
+  width: 280px;
+  padding: 25px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+}
+
+.service-card .icon {
+  font-size: 2em;
   display: block;
-  letter-spacing: 0.3px;
-  transition: color 0.3s ease;
+  margin-bottom: 10px;
 }
 
-input:focus + label,
-select:focus + label,
-textarea:focus + label {
-  color: #a88e3a;
+.service-card .title {
+  font-weight: 700;
+  color: #333;
+  font-size: 1.2em;
 }
 
-/* --- Champs --- */
+.service-card .desc {
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 6px;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: #bfa14a;
+  box-shadow: 0 6px 14px rgba(191, 161, 74, 0.25);
+}
+
+.service-card.active {
+  background: #fff8e7;
+  border-color: #bfa14a;
+}
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+.form-section {
+  text-align: center;
+  padding: 40px 20px 80px;
+}
+
 form {
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 30px;
 }
 
-input,
-select,
-textarea {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1em;
+fieldset {
+  border: 1px solid #e0c98d;
+  border-radius: 12px;
+  padding: 25px 25px 35px;
+  text-align: left;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+  font-weight: 700;
+  color: #bfa14a;
+  padding: 0 10px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+input, select, textarea {
   width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 5px;
   transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input:focus, select:focus, textarea:focus {
   border-color: #bfa14a;
-  box-shadow: 0 0 5px rgba(191, 161, 74, 0.4);
+  box-shadow: 0 0 6px rgba(191, 161, 74, 0.4);
   outline: none;
 }
 
-/* --- Pastilles de couleurs --- */
-.color-picker {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px 0 25px;
+/* === Grid Layouts === */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
-.color-option {
-  width: 35px;
-  height: 35px;
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* === Radios === */
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   SÉLECTEUR DE COULEURS
+   ========================================================= */
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 2px solid #e0c98d;
   cursor: pointer;
-  transition: transform 0.2s ease, border 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.color-option:hover {
-  transform: scale(1.15);
-  border-color: #bfa14a;
+.color-circle.empty {
+  border: 2px dashed #e0c98d;
+  background: #fff;
 }
 
-.color-option.selected {
-  box-shadow: 0 0 0 3px #bfa14a;
+.color-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(191, 161, 74, 0.4);
+}
+
+.color-actions {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.add-color-btn {
+  background: linear-gradient(135deg, #c8ae69, #bfa14a);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.8em;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.add-color-btn:hover {
+  background: linear-gradient(135deg, #bfa14a, #a88e3a);
   transform: scale(1.1);
 }
 
 .color-preview {
   width: 100%;
-  max-width: 320px;
-  height: 40px;
+  max-width: 350px;
+  height: 45px;
   margin: 15px auto;
   border-radius: 6px;
   border: 1px solid #ddd;
@@ -217,19 +309,58 @@ textarea:focus {
   color: #555;
   font-size: 0.9em;
   font-weight: 500;
-  text-align: center;
 }
 
-/* --- Bouton doré --- */
+/* =========================================================
+   UPLOAD IMAGES
+   ========================================================= */
+.dropzone {
+  border: 2px dashed #e0c98d;
+  background: #fff8e7;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  background: #fff4d8;
+  border-color: #bfa14a;
+}
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0c98d;
+}
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+.btn {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
 .btn.gold {
   background: linear-gradient(135deg, #c8ae69, #bfa14a);
   color: #fff;
-  font-size: 1.1em;
   padding: 14px 28px;
-  border-radius: 8px;
-  transition: background 0.3s ease, transform 0.2s ease;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font-size: 1.1em;
 }
 
 .btn.gold:hover {
@@ -237,41 +368,97 @@ textarea:focus {
   transform: scale(1.05);
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
-.site-footer {
-  text-align: center;
+.btn.outline {
+  border: 2px solid #bfa14a;
+  color: #bfa14a;
+  background: none;
+  padding: 12px 25px;
+}
+
+.btn.outline:hover {
   background: #fff8e7;
-  border-top: 1px solid #e0c98d;
-  padding: 20px;
-  font-size: 0.95em;
-  color: #555;
 }
 
 /* =========================================================
-   RESPONSIVE
+   RÉCAPITULATIF
    ========================================================= */
-@media (max-width: 900px) {
-  .hero {
-    padding: 70px 15px;
-  }
+.summary-section {
+  display: none;
+  background: #fffaf0;
+  border: 1px solid #e0c98d;
+  border-radius: 14px;
+  padding: 30px 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
 
-  .hero p {
-    font-size: 1em;
-    padding: 12px;
-  }
+.summary-section.active {
+  display: block;
+  animation: fadeInUp 0.6s ease both;
+}
 
-  .devis-intro {
-    margin: 40px 10px;
-    padding: 30px 15px;
-  }
+.summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .form-section h2 {
-    font-size: 1.8em;
-  }
+.summary-list li {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #333;
+}
 
-  label {
-    font-size: 1em;
-  }
+.summary-photos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.summary-photos img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid #e0c98d;
+  object-fit: cover;
+}
+
+/* =========================================================
+   CONFIRMATION
+   ========================================================= */
+.confirmation {
+  display: none;
+  text-align: center;
+  background: #fff8e7;
+  border: 1px solid #e0c98d;
+  border-radius: 14px;
+  padding: 40px;
+  margin-top: 25px;
+  animation: fadeIn 0.6s ease both;
+}
+
+.confirmation.active {
+  display: block;
+}
+
+.confetti {
+  font-size: 2.5em;
+}
+
+#confirmationTitle {
+  color: #bfa14a;
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
