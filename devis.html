@@ -1,183 +1,171 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demande de devis – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="assets/logo.png" type="image/png">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>R3D PRINT CI – Demander un devis</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <link rel="icon" href="assets/logo.png" type="image/png"/>
 </head>
-
 <body>
-
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo"></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="devis.html" class="active">Devis</a></li>
+          <li><a class="active" href="devis.html">Devis</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Demander un devis personnalisé</h1>
-    <p>Décrivez votre projet pour que nous puissions vous proposer la meilleure solution R3D PRINT CI.</p>
-  </section>
-
-  <!-- SECTION DEVIS -->
-  <section class="devis-section">
-    <div class="container form-container fade-in">
-      <div class="form-header">
-        <h2>Type de service</h2>
-        <p>Choisissez le domaine correspondant à votre besoin.</p>
-      </div>
-
-      <!-- Boutons de choix -->
-      <div class="service-choice">
-        <button class="choice-btn" data-service="impression3d">🧱 Impression 3D</button>
-        <button class="choice-btn" data-service="gravure">🔦 Gravure Laser</button>
-        <button class="choice-btn" data-service="prototypage">⚙️ Prototypage</button>
-      </div>
-
-      <!-- FORMULAIRE IMPRESSION 3D -->
-      <form id="form-impression3d" class="devis-form hidden">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="nom3d">Nom complet</label>
-            <input type="text" id="nom3d" required placeholder="Votre nom complet">
-          </div>
-
-          <div class="form-group">
-            <label for="objet3d">Nature de l’objet</label>
-            <input type="text" id="objet3d" required placeholder="Ex : figurine, pièce technique...">
-          </div>
-
-          <div class="form-group">
-            <label for="dimensions3d">Dimensions (cm)</label>
-            <input type="text" id="dimensions3d" placeholder="Ex : 15 x 10 x 8">
-          </div>
-
-          <div class="form-group">
-            <label for="lieu3d">Lieu d’utilisation</label>
-            <select id="lieu3d">
-              <option value="">Sélectionnez</option>
-              <option value="intérieur">Intérieur</option>
-              <option value="extérieur">Extérieur</option>
-            </select>
-          </div>
-
-          <div class="form-group full">
-            <label>Couleurs</label>
-            <div id="colorContainer3d" class="color-picker">
-              <input type="color" class="color-circle" value="#c9af6b">
-              <button type="button" class="add-color">+</button>
-            </div>
-          </div>
-
-          <div class="form-group full">
-            <label for="fichiers3d">Ajouter des fichiers de référence</label>
-            <input type="file" id="fichiers3d" multiple accept="image/*, .stl, .obj">
-          </div>
-
-          <div class="form-group full">
-            <label for="details3d">Détails supplémentaires</label>
-            <textarea id="details3d" rows="4" placeholder="Matériaux, finitions, usage..."></textarea>
-          </div>
-        </div>
-        <button type="submit" class="btn gold">Envoyer ma demande</button>
-      </form>
-
-      <!-- FORMULAIRE GRAVURE LASER -->
-      <form id="form-gravure" class="devis-form hidden">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="nomGravure">Nom complet</label>
-            <input type="text" id="nomGravure" required placeholder="Votre nom complet">
-          </div>
-
-          <div class="form-group">
-            <label for="materiauGravure">Matériau à graver</label>
-            <select id="materiauGravure">
-              <option value="">Sélectionnez</option>
-              <option value="bois">Bois</option>
-              <option value="métal">Métal</option>
-              <option value="verre">Verre</option>
-              <option value="acrylique">Acrylique</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="quantiteGravure">Quantité</label>
-            <input type="number" id="quantiteGravure" placeholder="Ex : 10 pièces">
-          </div>
-
-          <div class="form-group">
-            <label for="dimensionsGravure">Dimensions (cm)</label>
-            <input type="text" id="dimensionsGravure" placeholder="Ex : 20 x 10">
-          </div>
-
-          <div class="form-group full">
-            <label for="designGravure">Ajouter le design ou logo</label>
-            <input type="file" id="designGravure" accept="image/*, .svg, .pdf">
-          </div>
-
-          <div class="form-group full">
-            <label for="detailsGravure">Détails spécifiques</label>
-            <textarea id="detailsGravure" rows="4" placeholder="Profondeur, texture, position de gravure..."></textarea>
-          </div>
-        </div>
-        <button type="submit" class="btn gold">Envoyer ma demande</button>
-      </form>
-
-      <!-- FORMULAIRE PROTOTYPAGE -->
-      <form id="form-prototypage" class="devis-form hidden">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="nomProto">Nom complet</label>
-            <input type="text" id="nomProto" required placeholder="Votre nom complet">
-          </div>
-
-          <div class="form-group">
-            <label for="typeProto">Type de prototype</label>
-            <input type="text" id="typeProto" placeholder="Ex : maquette, pièce mécanique...">
-          </div>
-
-          <div class="form-group">
-            <label for="fichiersProto">Fichiers techniques</label>
-            <input type="file" id="fichiersProto" multiple accept=".stl, .step, .obj">
-          </div>
-
-          <div class="form-group">
-            <label for="delaiProto">Délai souhaité</label>
-            <input type="text" id="delaiProto" placeholder="Ex : 3 jours, 1 semaine...">
-          </div>
-
-          <div class="form-group full">
-            <label for="detailsProto">Détails supplémentaires</label>
-            <textarea id="detailsProto" rows="4" placeholder="Usage, contraintes, assemblage..."></textarea>
-          </div>
-        </div>
-        <button type="submit" class="btn gold">Envoyer ma demande</button>
-      </form>
-
+  <!-- INTRO -->
+  <section class="fade-in">
+    <div class="container">
+      <h1>Demander un devis</h1>
+      <p>Remplissez ce formulaire — nous revenons vers vous rapidement avec une estimation adaptée.</p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
+  <!-- FORMULAIRE -->
+  <section class="fade-in">
+    <div class="container">
+      <div class="card" style="max-width:980px;margin:0 auto;">
+        <form id="devisForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+          <!-- Identité -->
+          <div>
+            <label for="nom" style="font-weight:600;">Nom complet</label>
+            <input id="nom" name="nom" type="text" placeholder="Votre nom et prénom" required />
+          </div>
 
-  <script defer src="assets/main.js"></script>
-</body>
-</html>
+          <div>
+            <label for="email" style="font-weight:600;">Email</label>
+            <input id="email" name="email" type="email" placeholder="Votre adresse email" required />
+          </div>
+
+          <div>
+            <label for="tel" style="font-weight:600;">Téléphone</label>
+            <input id="tel" name="tel" type="tel" placeholder="+225 …" />
+          </div>
+
+          <!-- Type de service -->
+          <div style="grid-column:1/-1;margin-top:8px;">
+            <label style="font-weight:700;display:block;margin-bottom:8px;">Type de service</label>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <button type="button" class="btn gold" data-service="imp3d">Impression 3D</button>
+              <button type="button" class="btn gold" data-service="laser">Gravure laser</button>
+              <button type="button" class="btn gold" data-service="proto">Prototypage</button>
+            </div>
+          </div>
+
+          <!-- Impression 3D -->
+          <div class="service-panel" data-panel="imp3d" style="grid-column:1/-1;display:none;">
+            <h3 style="color:#c9af6b;margin-bottom:10px;">Impression 3D</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+              <div>
+                <label>Nature de l’objet</label>
+                <input type="text" placeholder="Pièce technique, déco, etc." />
+              </div>
+              <div>
+                <label>Dimensions (cm)</label>
+                <input type="text" placeholder="L × l × h (ex: 10 × 6 × 4)" />
+              </div>
+              <div>
+                <label>Lieu d’utilisation</label>
+                <select>
+                  <option value="interieur">Intérieur</option>
+                  <option value="exterieur">Extérieur</option>
+                </select>
+              </div>
+
+              <!-- Couleurs -->
+              <div style="grid-column:1/-1;">
+                <label style="font-weight:600;">Couleurs</label>
+                <div id="colorChips" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+                  <!-- pastille initiale -->
+                  <input type="color" value="#c9af6b" style="width:42px;height:42px;border:none;border-radius:50%;padding:0;cursor:pointer;"/>
+                  <button id="addColor" type="button" class="btn gold" style="width:42px;height:42px;border-radius:50%;padding:0;">+</button>
+                </div>
+              </div>
+
+              <!-- Upload -->
+              <div style="grid-column:1/-1;">
+                <label>Références (photos/fichiers)</label>
+                <input type="file" multiple />
+              </div>
+            </div>
+          </div>
+
+          <!-- Gravure laser -->
+          <div class="service-panel" data-panel="laser" style="grid-column:1/-1;display:none;">
+            <h3 style="color:#c9af6b;margin-bottom:10px;">Gravure laser</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+              <div>
+                <label>Objet à graver</label>
+                <input type="text" placeholder="Métal, bois, cuir, acrylique…" />
+              </div>
+              <div>
+                <label>Quantité</label>
+                <input type="number" min="1" value="1" />
+              </div>
+              <div>
+                <label>Dimensions (cm)</label>
+                <input type="text" placeholder="Largeur × Hauteur" />
+              </div>
+              <div style="grid-column:1/-1;">
+                <label>Références (logo/visuel)</label>
+                <input type="file" multiple />
+              </div>
+            </div>
+          </div>
+
+          <!-- Prototypage -->
+          <div class="service-panel" data-panel="proto" style="grid-column:1/-1;display:none;">
+            <h3 style="color:#c9af6b;margin-bottom:10px;">Prototypage</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+              <div>
+                <label>Objet / Fonction</label>
+                <input type="text" placeholder="Usage, contexte, contraintes…" />
+              </div>
+              <div>
+                <label>Dimensions (cm)</label>
+                <input type="text" placeholder="L × l × h" />
+              </div>
+              <div style="grid-column:1/-1;">
+                <label>Fichiers/Images</label>
+                <input type="file" multiple />
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div style="grid-column:1/-1;">
+            <label for="msg" style="font-weight:600;">Message</label>
+            <textarea id="msg" rows="5" placeholder="Précisions utiles…"></textarea>
+          </div>
+
+          <!-- Actions -->
+          <div style="grid-column:1/-1;display:flex;gap:12px;justify-content:center;margin-top:8px;">
+            <button type="button" id="previewBtn" class="btn gold">Aperçu du résumé</button>
+            <button type="submit" class="btn gold halo-anim">Valider la demande</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RÉSUMÉ -->
+      <div id="resume" class="card fade-in" style="max-width:980px;margin:20px auto;display:none;">
+        <h3 style="color:#c9af6b;margin-bottom:10px;">Résumé de votre demande</h3>
+        <div id="resumeContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!--
