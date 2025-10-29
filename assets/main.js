@@ -1,65 +1,64 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>R3D PRINT CI — Demande de devis</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="assets/logo.png" type="image/png" />
-</head>
+// =============================================================
+// R3D PRINT CI - SCRIPT GLOBAL FLUIDE PREMIUM (version corrigée sécurité affichage)
+// =============================================================
 
-<body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
-      <nav id="navMenu" class="nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="realisations.html">Réalisations</a></li>
-          <li><a class="active" href="devis.html">Devis</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
-    </div>
-  </header>
+// === MENU HAMBURGER ===
+function toggleMenu() {
+  const nav = document.getElementById("navMenu");
+  const body = document.body;
+  nav.classList.toggle("active");
+  body.classList.toggle("menu-open");
+}
 
-  <!-- HERO -->
-  <section class="hero fade-in" style="text-align:center;padding:100px 20px 70px;">
-    <h1>Demander un devis</h1>
-    <p>Obtenez une estimation rapide et personnalisée selon votre projet.</p>
-  </section>
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".nav a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("navMenu").classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+});
 
-  <!-- CHOIX TYPE DE SERVICE -->
-  <section class="fade-in" style="text-align:center;">
-    <div class="container">
-      <h2>Choisissez votre type de service</h2>
-      <p>Sélectionnez le domaine correspondant à votre demande :</p>
-      <div class="service-type-grid" style="display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-top:25px;">
-        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
-        <button class="btn gold service-choice" data-service="laser">🔥 Gravure Laser</button>
-        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
-      </div>
-    </div>
-  </section>
+// === SCROLL FLUIDE ===
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", e => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      }
+    });
+  });
+});
 
-  <!-- FORMULAIRE DYNAMIQUE -->
-  <section id="formContainer" class="fade-in" style="padding-top:40px;"></section>
+// === APPARITION DES BLOCS ===
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
 
-  <!-- RÉSUMÉ / CONFIRMATION -->
-  <section id="resume" class="fade-in" style="max-width:950px;margin:auto;padding:30px 15px;"></section>
+document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right").forEach(el => observer.observe(el));
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
+// === TRANSITION ENTRE LES PAGES (corrigée) ===
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+  document.body.style.opacity = "1"; // sécurité anti-page blanche
+});
 
-  <!-- SCRIPTS -->
-  <script defer src="assets/main.js"></script>
-  <script defer src="assets/devis.js"></script>
-</body>
-</html>
+window.addEventListener("beforeunload", () => {
+  document.body.style.transition = "opacity 0.5s ease";
+  document.body.style.opacity = "0";
+});
+
+// === SÉCURITÉ SUPPLÉMENTAIRE : forcer affichage après 1,5s ===
+setTimeout(() => {
+  if (!document.body.classList.contains("loaded")) {
+    document.body.style.opacity = "1";
+  }
+}, 1500);
