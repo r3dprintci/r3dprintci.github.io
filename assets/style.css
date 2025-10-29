@@ -156,7 +156,7 @@ body {
   color: #fff;
 }
 
-/* Effet lumineux sur tous les boutons */
+/* Effet lumineux */
 .btn::after {
   content: "";
   position: absolute;
@@ -168,7 +168,6 @@ body {
   transform: skewX(-20deg);
   transition: left 0.5s ease;
 }
-
 .btn:hover::after {
   left: 120%;
 }
@@ -281,8 +280,24 @@ section {
    ========================================================= */
 .services-why {
   text-align: center;
-  max-width: 800px;
-  margin: 60px auto 40px auto;
+  max-width: 900px;
+  margin: 0 auto 80px auto;
+  padding: 60px 20px;
+  background: #fff;
+  border: 1px solid #f0e6c8;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(201, 175, 107, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.services-why::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(120deg, rgba(255,248,231,0.6), rgba(255,255,255,0.9));
+  z-index: -1;
 }
 
 .services-why h2 {
@@ -295,6 +310,8 @@ section {
   color: var(--light-text);
   line-height: 1.6;
   font-size: 1.05rem;
+  max-width: 700px;
+  margin: auto;
 }
 
 /* =========================================================
