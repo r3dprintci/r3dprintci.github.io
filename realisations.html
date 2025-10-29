@@ -2,19 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos réalisations – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réalisations – R3D PRINT CI</title>
+  <meta name="description" content="Quelques réalisations R3D PRINT CI : trophées personnalisés, gravures laser, prototypes techniques."/>
+  <link rel="stylesheet" href="assets/style.css"/>
 </head>
-
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      <a href="index.html" class="logo-link" aria-label="R3D PRINT CI">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
-      <nav class="main-nav">
+      <nav id="navMenu" class="nav" aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html">Services</a></li>
@@ -23,53 +23,50 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <h1>Nos réalisations</h1>
-    <p>Découvrez nos créations 3D, gravures et prototypes sur mesure conçus à Abidjan avec passion et précision.</p>
+    <h1>Réalisations</h1>
+    <p>Une sélection de projets réalisés pour nos clients : précision, finition, et satisfaction.</p>
   </section>
 
-  <!-- INTRODUCTION -->
-  <section class="realisations-intro">
-    <h2>Quelques exemples de nos projets</h2>
-    <p>Des trophées, gravures, prototypes et créations personnalisées qui illustrent le savoir-faire et la créativité de R3D PRINT CI.</p>
-  </section>
-
-  <!-- GALERIE -->
-  <section class="realisations-page">
-    <div class="realisations-gallery">
-      <div class="real-item">
-        <img src="assets/shot1.jpg" alt="Trophée personnalisé R3D PRINT CI">
-        <h3>Trophée personnalisé</h3>
-      </div>
-
-      <div class="real-item">
-        <img src="assets/shot2.jpg" alt="Gravure laser sur bois">
-        <h3>Gravure sur bois</h3>
-      </div>
-
-      <div class="real-item">
-        <img src="assets/shot3.jpg" alt="Prototype fonctionnel 3D">
-        <h3>Prototype fonctionnel</h3>
-      </div>
-
-      <div class="real-item">
-        <img src="assets/shot4.jpg" alt="Décoration personnalisée">
-        <h3>Décoration personnalisée</h3>
-      </div>
-
-      <div class="real-item">
-        <img src="assets/shot5.jpg" alt="Pièce industrielle sur mesure">
-        <h3>Pièce industrielle</h3>
-      </div>
-
-      <div class="real-item">
-        <img src="assets/shot6.jpg" alt="Objet décoratif en PLA">
-        <h3>Objet décoratif</h3>
-      </div>
+  <!-- GRID RÉALISATIONS -->
+  <section class="realisations-section container">
+    <h2 class="fade-in">Galerie</h2>
+    <div class="realisations-grid">
+      <article class="realisations-item fade-in">
+        <img src="assets/real-1.webp" alt="Trophée personnalisé doré – R3D PRINT CI"/>
+        <h3>Trophée événementiel</h3>
+        <p>Structure imprimée 3D + finition dorée satinée.</p>
+      </article>
+      <article class="realisations-item fade-in">
+        <img src="assets/real-2.webp" alt="Gravure laser bois – R3D PRINT CI"/>
+        <h3>Plaque bois gravée</h3>
+        <p>Gravure nette, contraste homogène.</p>
+      </article>
+      <article class="realisations-item fade-in">
+        <img src="assets/real-3.webp" alt="Prototype mécanique – R3D PRINT CI"/>
+        <h3>Prototype mécanique</h3>
+        <p>Montage précis, test de tolérances.</p>
+      </article>
+      <article class="realisations-item fade-in">
+        <img src="assets/real-4.webp" alt="Signalétique gravée – R3D PRINT CI"/>
+        <h3>Signalétique</h3>
+        <p>Lecture claire, matériaux durables.</p>
+      </article>
+      <article class="realisations-item fade-in">
+        <img src="assets/real-5.webp" alt="Objet déco imprimé – R3D PRINT CI"/>
+        <h3>Objet déco</h3>
+        <p>Surface lissée, teinte uniforme.</p>
+      </article>
+      <article class="realisations-item fade-in">
+        <img src="assets/real-6.webp" alt="Accessoire sur mesure – R3D PRINT CI"/>
+        <h3>Accessoire sur mesure</h3>
+        <p>Adaptation parfaite à l’usage client.</p>
+      </article>
     </div>
   </section>
 
@@ -77,5 +74,7 @@
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
+
+  <script defer src="assets/main.js"></script>
 </body>
 </html>
