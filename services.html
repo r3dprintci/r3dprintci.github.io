@@ -2,19 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos Services – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services – R3D PRINT CI</title>
+  <meta name="description" content="Impression 3D, gravure laser, prototypage à Abidjan. Découvrez l’ensemble des services R3D PRINT CI."/>
+  <link rel="stylesheet" href="assets/style.css"/>
 </head>
-
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      <a href="index.html" class="logo-link" aria-label="R3D PRINT CI">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
-      <nav class="main-nav">
+      <nav id="navMenu" class="nav" aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
           <li><a href="services.html" class="active">Services</a></li>
@@ -23,6 +23,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
     </div>
   </header>
 
@@ -32,32 +33,34 @@
     <p>Découvrez les solutions sur mesure de R3D PRINT CI pour donner vie à vos idées, du concept à la réalisation.</p>
   </section>
 
-  <!-- CE QUE NOUS PROPOSONS -->
-  <section class="services-intro">
-    <h2>Ce que nous proposons</h2>
-    <p>R3D PRINT CI met à votre disposition des technologies de fabrication avancées, adaptées à tous vos besoins en impression, gravure et prototypage à Abidjan.</p>
-  </section>
+  <!-- LISTE SERVICES -->
+  <section class="services-section container">
+    <div class="services-intro fade-in">
+      <h2>Ce que nous proposons</h2>
+      <p>R3D PRINT CI met à votre disposition des technologies de fabrication avancées, adaptées à tous vos besoins en impression, gravure et prototypage à Abidjan.</p>
+    </div>
 
-  <!-- LISTE DES SERVICES -->
-  <section class="services-page">
-    <div class="service-grid">
-      <div class="service">
-        <img src="assets/impression3d.webp" alt="Impression 3D" />
-        <h3>Impression 3D</h3>
-        <p>Réalisation de prototypes, objets décoratifs, pièces techniques et projets sur mesure en impression FDM et résine.</p>
-      </div>
+    <div class="services-grid">
+      <article id="impression3d" class="service-card fade-in">
+        <img src="assets/serv-3d.webp" alt="Impression 3D R3D PRINT CI"/>
+        <h3>Impression 3D (FDM & Résine)</h3>
+        <p>PLA, PETG, résine… choix des matériaux selon résistance, finition et usage (intérieur/extérieur). Dimensions ajustées au besoin.</p>
+        <a href="devis.html" class="btn gold">Demander un devis</a>
+      </article>
 
-      <div class="service">
-        <img src="assets/gravurelaser.webp" alt="Gravure Laser" />
-        <h3>Gravure laser</h3>
-        <p>Gravure de précision sur bois, métal, cuir, acrylique ou verre pour des créations personnalisées et professionnelles.</p>
-      </div>
+      <article id="gravure" class="service-card fade-in">
+        <img src="assets/serv-laser.webp" alt="Gravure Laser R3D PRINT CI"/>
+        <h3>Gravure Laser</h3>
+        <p>Bois, métal, cuir, verre : marquage fin, durabilité et esthétisme. Idéal pour cadeaux, plaques et signalétique.</p>
+        <a href="devis.html" class="btn gold">Demander un devis</a>
+      </article>
 
-      <div class="service">
-        <img src="assets/prototypage.webp" alt="Prototypage rapide" />
-        <h3>Prototypage rapide</h3>
-        <p>Conception et réalisation de maquettes fonctionnelles et prototypes industriels pour concrétiser vos idées rapidement.</p>
-      </div>
+      <article id="prototypage" class="service-card fade-in">
+        <img src="assets/serv-proto.webp" alt="Prototypage rapide R3D PRINT CI"/>
+        <h3>Prototypage Rapide</h3>
+        <p>Itérations agiles, ajustements immédiats, tests fonctionnels. Accompagnement de l’idée au produit fini.</p>
+        <a href="devis.html" class="btn gold">Demander un devis</a>
+      </article>
     </div>
   </section>
 
@@ -65,5 +68,7 @@
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
+
+  <script defer src="assets/main.js"></script>
 </body>
 </html>
