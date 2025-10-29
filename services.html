@@ -1,126 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nos services – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="assets/logo.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>R3D PRINT CI – Services</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
 </head>
-
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
       </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html" class="active">Services</a></li>
+          <li><a class="active" href="services.html">Services</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
           <li><a href="devis.html">Devis</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()">
-        <span></span>
-      </button>
+      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Nos services</h1>
-    <p>Découvrez les solutions sur mesure de R3D PRINT CI pour donner vie à vos idées, du concept à la réalisation.</p>
-  </section>
-
-  <!-- SECTION SERVICES -->
-  <section class="services-section">
+  <!-- INTRO -->
+  <section class="fade-in">
     <div class="container">
-      <div class="services-intro fade-in">
-        <h2>Ce que nous proposons</h2>
-        <p>R3D PRINT CI met à votre disposition des technologies de fabrication avancées, adaptées à tous vos besoins en impression, gravure et prototypage à Abidjan.</p>
-      </div>
+      <h1>Nos services</h1>
+      <p>Découvrez les solutions sur mesure de R3D PRINT CI pour donner vie à vos idées, du concept à la réalisation.</p>
 
-      <div class="services-grid fade-in">
-        <div class="service-card">
-          <img src="assets/impression3d.webp" alt="Impression 3D">
-          <h3>Impression 3D</h3>
-          <p>Donnez forme à vos idées grâce à une impression 3D de précision. Nous travaillons avec différents matériaux selon vos besoins.</p>
-        </div>
+      <div class="services-grid">
+        <article class="service-item slide-in-left">
+          <img src="assets/impression3d.webp" alt="Impression 3D"/>
+          <h3 style="margin:12px 0 6px;">Impression 3D</h3>
+          <p>PLA, PETG, ASA, TPU… pièces résistantes, décoratives et techniques.</p>
+        </article>
 
-        <div class="service-card">
-          <img src="assets/gravurelaser.webp" alt="Gravure Laser">
-          <h3>Gravure Laser</h3>
-          <p>Personnalisez vos objets avec une gravure laser haute définition, adaptée aux métaux, bois, plastiques et verre.</p>
-        </div>
+        <article class="service-item fade-in">
+          <img src="assets/gravurelaser.webp" alt="Gravure laser"/>
+          <h3 style="margin:12px 0 6px;">Gravure laser</h3>
+          <p>Personnalisation fine : métal, bois, cuir, acrylique, verre traité.</p>
+        </article>
 
-        <div class="service-card">
-          <img src="assets/prototypage.webp" alt="Prototypage rapide">
-          <h3>Prototypage rapide</h3>
-          <p>Transformez vos concepts en prototypes fonctionnels et réalisez des tests avant production.</p>
-        </div>
+        <article class="service-item slide-in-right">
+          <img src="assets/prototypage.webp" alt="Prototypage rapide"/>
+          <h3 style="margin:12px 0 6px;">Prototypage rapide</h3>
+          <p>Conception, test, ajustements et production pilote.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION POURQUOI CHOISIR R3D -->
-  <section class="services-why fade-in">
+  <!-- POURQUOI NOUS CHOISIR -->
+  <section class="fade-in">
     <div class="container">
       <h2>Pourquoi choisir R3D PRINT CI ?</h2>
       <p>Une approche artisanale et technologique combinée. Nous faisons de chaque projet un objet unique, maîtrisé et abouti.</p>
+
+      <div class="services-grid">
+        <article class="card">
+          <h3 style="color:#c9af6b;margin-bottom:8px;">Qualité</h3>
+          <p>Finitions propres, contrôle qualité, matériaux rigoureusement sélectionnés.</p>
+        </article>
+        <article class="card">
+          <h3 style="color:#c9af6b;margin-bottom:8px;">Rapidité</h3>
+          <p>Délais optimisés, communication claire, livraison fiable.</p>
+        </article>
+        <article class="card">
+          <h3 style="color:#c9af6b;margin-bottom:8px;">Innovation</h3>
+          <p>Veille technologique permanente, solutions techniques adaptées.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- SECTION NOTRE MÉTHODE DE TRAVAIL -->
-  <section class="method-section fade-in">
+  <!-- MÉTHODE DE TRAVAIL -->
+  <section class="fade-in">
     <div class="container">
       <h2>Notre méthode de travail</h2>
       <p>Chez R3D PRINT CI, chaque projet passe par des étapes précises pour garantir la qualité et la durabilité du résultat final.</p>
 
-      <div class="method-grid">
-        <div class="method-step">
-          <div class="method-icon">🧩</div>
+      <div class="services-grid">
+        <article class="card slide-in-left">
           <h3>1. Étude du projet</h3>
-          <p>Nous analysons vos besoins et objectifs pour définir la meilleure approche technique et esthétique.</p>
-        </div>
-
-        <div class="method-step">
-          <div class="method-icon">🖥️</div>
+          <p>Analyse des besoins et objectifs pour définir la meilleure approche.</p>
+        </article>
+        <article class="card fade-in">
           <h3>2. Modélisation 3D</h3>
-          <p>Nos experts créent ou optimisent vos fichiers 3D pour une production fidèle à vos attentes.</p>
-        </div>
-
-        <div class="method-step">
-          <div class="method-icon">⚙️</div>
+          <p>Création/optimisation des fichiers 3D pour une production fidèle.</p>
+        </article>
+        <article class="card slide-in-right">
           <h3>3. Production & Finition</h3>
-          <p>Nous réalisons la fabrication, le polissage et la finition avec un contrôle qualité rigoureux.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION NOS ENGAGEMENTS -->
-  <section class="services-engagements fade-in">
-    <div class="container">
-      <h2>Nos engagements</h2>
-      <div class="engagements-grid">
-        <div class="engagement-card">
-          <h3>Qualité</h3>
-          <p>Des productions précises et durables grâce à un savoir-faire artisanal combiné à une technologie de pointe.</p>
-        </div>
-
-        <div class="engagement-card">
-          <h3>Rapidité</h3>
-          <p>Des délais optimisés et une réactivité adaptée à vos besoins professionnels et particuliers.</p>
-        </div>
-
-        <div class="engagement-card">
-          <h3>Innovation</h3>
-          <p>Une veille technologique constante pour intégrer les dernières avancées en impression et gravure.</p>
-        </div>
+          <p>Fabrication, polissage et contrôle qualité rigoureux.</p>
+        </article>
       </div>
     </div>
   </section>
