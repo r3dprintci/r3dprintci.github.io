@@ -1,5 +1,5 @@
 /* =========================================================
-   STYLE GLOBAL R3D PRINT CI — VERSION PREMIUM UNIFIÉE (MAJ)
+   STYLE GLOBAL R3D PRINT CI — VERSION PREMIUM UNIFIÉE (FINAL)
    ========================================================= */
 * {
   margin: 0;
@@ -144,7 +144,7 @@ section p {
   box-shadow: 0 4px 15px rgba(201,175,107,0.15);
   padding: 25px;
   transition: all 0.4s ease;
-  text-align: center; /* ✅ centrage global des titres et textes */
+  text-align: center;
 }
 
 .card:hover, .service-item:hover, .realisation-item:hover {
@@ -193,7 +193,7 @@ img {
 }
 
 /* =========================================================
-   CONTACT (référence design)
+   CONTACT
    ========================================================= */
 .contact-section {
   background: #fff;
@@ -206,7 +206,6 @@ img {
   align-items: stretch;
   justify-content: center;
 }
-
 .contact-info, .contact-form {
   background: #fff;
   border: 1px solid #e8d9a2;
@@ -219,14 +218,12 @@ img {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(201,175,107,0.35);
 }
-
 .contact-info h2, .contact-form h2 {
   text-align: center;
   color: var(--gold);
   font-weight: 700;
   margin-bottom: 20px;
 }
-
 .contact-link {
   color: var(--gold);
   text-decoration: none;
@@ -236,6 +233,115 @@ img {
 .contact-link:hover {
   color: var(--gold-hover);
   text-decoration: underline;
+}
+
+/* =========================================================
+   FORMULAIRE DEVIS
+   ========================================================= */
+#devisForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #e8d9a2;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(201,175,107,0.2);
+  padding: 35px 30px;
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+#devisForm label {
+  display: block;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 6px;
+}
+
+#devisForm input,
+#devisForm select,
+#devisForm textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0c98d;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fffdf7;
+}
+#devisForm input:focus,
+#devisForm select:focus,
+#devisForm textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(201,175,107,0.4);
+  outline: none;
+  background: #fffef9;
+}
+
+.service-panel {
+  grid-column: 1 / -1;
+  background: #fffaf0;
+  border-radius: 12px;
+  border: 1px solid #e8d9a2;
+  padding: 20px;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(201,175,107,0.15);
+}
+.service-panel h3 {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+#devisForm .btn {
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Pastilles de couleur */
+#colorChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+#colorChips input[type="color"] {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#colorChips input[type="color"]:hover {
+  transform: scale(1.1);
+}
+#colorChips button#addColor {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 0;
+}
+
+/* Bloc résumé */
+#resume {
+  background: #fff;
+  border: 1px solid #e8d9a2;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(201,175,107,0.2);
+  padding: 30px;
+  margin-top: 30px;
+  text-align: left;
+}
+#resume h3 {
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 /* =========================================================
