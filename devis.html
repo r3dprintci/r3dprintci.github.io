@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>R3D PRINT CI — Demande de devis</title>
+  <title>Demander un devis – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
+
+  <!-- Activation du mode application mobile (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c8a951">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
 </head>
 
 <body>
@@ -28,38 +37,85 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero fade-in" style="text-align:center;padding:100px 20px 70px;">
-    <h1>Demander un devis</h1>
-    <p>Obtenez une estimation rapide et personnalisée selon votre projet.</p>
-  </section>
-
-  <!-- CHOIX TYPE DE SERVICE -->
-  <section class="fade-in" style="text-align:center;">
+  <!-- FORMULAIRE DEVIS -->
+  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
     <div class="container">
-      <h2>Choisissez votre type de service</h2>
-      <p>Sélectionnez le domaine correspondant à votre demande :</p>
-      <div class="service-type-grid" style="display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-top:25px;">
-        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
-        <button class="btn gold service-choice" data-service="laser">🔥 Gravure Laser</button>
-        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
-      </div>
+      <h1>Demander un devis</h1>
+      <p>Remplissez le formulaire ci-dessous et recevez une estimation personnalisée selon votre projet.</p>
     </div>
   </section>
 
-  <!-- FORMULAIRE DYNAMIQUE -->
-  <section id="formContainer" class="fade-in" style="padding-top:40px;"></section>
+  <section class="fade-in">
+    <div class="container">
+      <form id="devisForm" class="devis-form" onsubmit="return envoyerDevis(event)">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required placeholder="Votre nom complet" />
 
-  <!-- RÉSUMÉ / CONFIRMATION -->
-  <section id="resume" class="fade-in" style="max-width:950px;margin:auto;padding:30px 15px;"></section>
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required placeholder="exemple@email.com" />
+
+        <label for="telephone">Numéro de téléphone</label>
+        <input type="tel" id="telephone" name="telephone" required placeholder="+225 ..." />
+
+        <label for="type">Type de service</label>
+        <select id="type" name="type" required>
+          <option value="">-- Sélectionnez un service --</option>
+          <option value="impression3d">Impression 3D</option>
+          <option value="gravurelaser">Gravure laser</option>
+          <option value="prototypage">Prototypage</option>
+        </select>
+
+        <label for="details">Détails du projet</label>
+        <textarea id="details" name="details" rows="5" placeholder="Décrivez brièvement votre projet..."></textarea>
+
+        <label>Couleurs souhaitées (choix multiple possible)</label>
+        <div class="color-selector">
+          <label><input type="checkbox" name="couleurs" value="Noir"/><span class="color-dot" style="background:#000;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Blanc"/><span class="color-dot" style="background:#fff;border:1px solid #ccc;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Doré"/><span class="color-dot" style="background:#c8a951;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Argenté"/><span class="color-dot" style="background:#c0c0c0;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Rouge"/><span class="color-dot" style="background:#d32f2f;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Bleu"/><span class="color-dot" style="background:#1976d2;"></span></label>
+          <label><input type="checkbox" name="couleurs" value="Vert"/><span class="color-dot" style="background:#388e3c;"></span></label>
+        </div>
+
+        <label for="fichier">Fichier ou croquis (optionnel)</label>
+        <input type="file" id="fichier" name="fichier" accept=".jpg,.jpeg,.png,.stl,.obj,.pdf" />
+
+        <button type="submit" class="btn gold halo-anim" style="margin-top:20px;">📩 Envoyer la demande</button>
+      </form>
+
+      <div id="confirmation" class="confirmation-message" style="display:none;margin-top:30px;">
+        <h3>✅ Votre demande a bien été envoyée !</h3>
+        <p>Merci de votre intérêt. Nous vous contacterons dans les plus brefs délais.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPT ENVOI -->
+  <script>
+    function envoyerDevis(event) {
+      event.preventDefault();
+
+      // Simulation d'envoi (message de confirmation)
+      document.getElementById("devisForm").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+
+      // Redirection WhatsApp (facultative)
+      const nom = document.getElementById("nom").value;
+      const type = document.getElementById("type").value;
+      const message = encodeURIComponent(`Bonjour, je suis ${nom} et je souhaite un devis pour ${type}.`);
+      window.open(`https://wa.me/2250707070707?text=${message}`, "_blank");
+
+      return false;
+    }
+  </script>
+
   <script defer src="assets/main.js"></script>
-  <script defer src="assets/devis.js"></script>
 </body>
 </html>
