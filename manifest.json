@@ -1,0 +1,21 @@
+{
+  "name": "R3D PRINT CI",
+  "short_name": "R3D PRINT CI",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f7f4ef",
+  "theme_color": "#c8a951",
+  "description": "Impression 3D, gravure laser et prototypage sur mesure à Abidjan.",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
