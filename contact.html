@@ -45,14 +45,28 @@
     </div>
   </section>
 
-  <!-- COORDONNÉES -->
+  <!-- BLOC NOS COORDONNÉES -->
   <section class="fade-in">
-    <div class="container" style="text-align:center;">
+    <div class="container">
       <h2>Nos coordonnées</h2>
-      <p>📍 Abidjan, Côte d’Ivoire</p>
-      <p>📞 Téléphone : <strong>+225 07 07 07 07 07</strong></p>
-      <p>💬 WhatsApp : <a href="https://wa.me/2250707070707" target="_blank" class="contact-link">Discuter</a></p>
-      <p>✉️ Email : <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a></p>
+      <div class="contact-info">
+        <div class="contact-card">
+          <h3>📍 Adresse</h3>
+          <p>Abidjan, Côte d’Ivoire</p>
+        </div>
+        <div class="contact-card">
+          <h3>📞 Téléphone</h3>
+          <p>+225 07 07 07 07 07</p>
+        </div>
+        <div class="contact-card">
+          <h3>💬 WhatsApp</h3>
+          <p><a href="https://wa.me/2250707070707" target="_blank" class="contact-link">Discuter avec nous</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>✉️ Email</h3>
+          <p><a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -113,6 +127,11 @@
       window.open(`https://wa.me/2250707070707?text=${message}`, "_blank");
 
       return false;
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("open");
     }
   </script>
 
