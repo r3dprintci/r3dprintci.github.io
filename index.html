@@ -6,6 +6,15 @@
   <title>R3D PRINT CI – L’art de donner vie à vos idées</title>
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
+
+  <!-- Activation du mode application mobile (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c8a951">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
 </head>
 
 <body>
@@ -139,4 +148,3 @@
   <script defer src="assets/main.js"></script>
 </body>
 </html>
-
