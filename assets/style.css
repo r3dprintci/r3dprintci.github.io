@@ -1,9 +1,8 @@
 /* -------------------------------
    STYLE GLOBAL – R3D PRINT CI
-   Version officielle : 29 octobre 2025
+   Version finale : mise à jour contact 2025
    ------------------------------- */
 
-/* RESET DE BASE */
 * {
   margin: 0;
   padding: 0;
@@ -146,7 +145,7 @@ body {
 }
 
 /* -------------------------------
-   BOUTONS ET LIENS
+   BOUTONS
    ------------------------------- */
 .btn {
   display: inline-block;
@@ -166,37 +165,6 @@ body {
 
 .gold {
   background-color: #c8a951;
-}
-
-.contact-link {
-  color: #c8a951;
-  text-decoration: underline;
-}
-
-.contact-link:hover {
-  text-decoration: none;
-}
-
-/* Halo animation autour du bouton */
-.halo-anim {
-  position: relative;
-  overflow: hidden;
-}
-
-.halo-anim::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.halo-anim:hover::after {
-  opacity: 1;
 }
 
 /* -------------------------------
@@ -264,24 +232,32 @@ p {
 }
 
 /* -------------------------------
-   FORMULAIRE DEVIS ET CONTACT
+   FORMULAIRES (Devis + Contact)
    ------------------------------- */
 .devis-form,
 #contactForm {
   max-width: 600px;
-  margin: auto;
+  margin: 40px auto;
   background: #fff;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.devis-form h2,
+#contactForm h2 {
+  text-align: center;
+  color: #c8a951;
+  margin-bottom: 25px;
 }
 
 .devis-form label,
 #contactForm label {
   display: block;
   margin-bottom: 6px;
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  color: #444;
+  text-align: left;
 }
 
 .devis-form input,
@@ -290,12 +266,13 @@ p {
 #contactForm input,
 #contactForm textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 18px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1em;
-  outline: none;
+  background: #fafafa;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .devis-form input:focus,
@@ -303,6 +280,18 @@ p {
 #contactForm input:focus,
 #contactForm textarea:focus {
   border-color: #c8a951;
+  box-shadow: 0 0 4px rgba(200,169,81,0.3);
+  outline: none;
+}
+
+/* Message de confirmation */
+.confirmation-message {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 /* Sélecteur de couleurs (pastilles) */
@@ -360,34 +349,8 @@ p {
   }
 }
 
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: slideLeft 1s forwards;
-}
-
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(20px);
-  animation: slideRight 1s forwards;
-}
-
-@keyframes slideLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* -------------------------------
-   RÉACTIVITÉ MOBILE GÉNÉRALE
+   RÉACTIVITÉ MOBILE
    ------------------------------- */
 @media (max-width: 768px) {
   h1 {
@@ -401,33 +364,29 @@ p {
   .btn {
     padding: 10px 20px;
   }
-}
 
-/* -------------------------------
-   AJOUT 2025 : CORRECTION MOBILE PAGE SERVICES
-   ------------------------------- */
-@media (max-width: 768px) {
   .service-section {
     flex-direction: column;
     text-align: center;
-  }
-
-  .service-section .service-text {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .service-section .service-image {
-    width: 100%;
-    margin-top: 15px;
   }
 
   .service-section .service-image img {
     width: 90%;
     max-width: 350px;
     height: auto;
-    border-radius: 10px;
     display: block;
     margin: 0 auto;
+  }
+
+  .devis-form,
+  #contactForm {
+    padding: 20px;
+  }
+
+  .devis-form input,
+  #contactForm input,
+  .devis-form textarea,
+  #contactForm textarea {
+    font-size: 0.95em;
   }
 }
