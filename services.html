@@ -2,17 +2,27 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>R3D PRINT CI – Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos Services – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
+
+  <!-- Activation du mode application mobile (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c8a951">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
       <nav id="navMenu" class="nav">
         <ul>
@@ -27,77 +37,87 @@
     </div>
   </header>
 
-  <!-- INTRO -->
-  <section class="fade-in">
+  <!-- SECTION INTRO -->
+  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
     <div class="container">
       <h1>Nos services</h1>
-      <p>Découvrez les solutions sur mesure de R3D PRINT CI pour donner vie à vos idées, du concept à la réalisation.</p>
+      <p>Découvrez l’étendue de notre savoir-faire en impression 3D, gravure laser et prototypage sur mesure.</p>
+    </div>
+  </section>
 
-      <div class="services-grid">
-        <article class="service-item slide-in-left">
-          <img src="assets/impression3d.webp" alt="Impression 3D"/>
-          <h3 style="margin:12px 0 6px;">Impression 3D</h3>
-          <p>PLA, PETG, ASA, TPU… pièces résistantes, décoratives et techniques.</p>
-        </article>
-
-        <article class="service-item fade-in">
-          <img src="assets/gravurelaser.webp" alt="Gravure laser"/>
-          <h3 style="margin:12px 0 6px;">Gravure laser</h3>
-          <p>Personnalisation fine : métal, bois, cuir, acrylique, verre traité.</p>
-        </article>
-
-        <article class="service-item slide-in-right">
-          <img src="assets/prototypage.webp" alt="Prototypage rapide"/>
-          <h3 style="margin:12px 0 6px;">Prototypage rapide</h3>
-          <p>Conception, test, ajustements et production pilote.</p>
-        </article>
+  <!-- IMPRESSION 3D -->
+  <section class="fade-in">
+    <div class="container service-section">
+      <div class="service-text">
+        <h2>🧱 Impression 3D</h2>
+        <p>
+          Donnez vie à vos idées grâce à nos imprimantes 3D professionnelles.  
+          Que ce soit pour un prototype, un objet décoratif ou une pièce fonctionnelle,  
+          nous vous garantissons un résultat précis, solide et esthétique.
+        </p>
+        <ul>
+          <li>Prototypes industriels et maquettes</li>
+          <li>Objets décoratifs et personnalisés</li>
+          <li>Pièces de remplacement sur mesure</li>
+        </ul>
+        <a href="devis.html" class="btn gold" style="margin-top:15px;">Demander un devis</a>
+      </div>
+      <div class="service-image">
+        <img src="assets/impression3d.webp" alt="Service Impression 3D">
       </div>
     </div>
   </section>
 
-  <!-- POURQUOI NOUS CHOISIR -->
-  <section class="fade-in">
-    <div class="container">
-      <h2>Pourquoi choisir R3D PRINT CI ?</h2>
-      <p>Une approche artisanale et technologique combinée. Nous faisons de chaque projet un objet unique, maîtrisé et abouti.</p>
-
-      <div class="services-grid">
-        <article class="card">
-          <h3 style="color:#c9af6b;margin-bottom:8px;">Qualité</h3>
-          <p>Finitions propres, contrôle qualité, matériaux rigoureusement sélectionnés.</p>
-        </article>
-        <article class="card">
-          <h3 style="color:#c9af6b;margin-bottom:8px;">Rapidité</h3>
-          <p>Délais optimisés, communication claire, livraison fiable.</p>
-        </article>
-        <article class="card">
-          <h3 style="color:#c9af6b;margin-bottom:8px;">Innovation</h3>
-          <p>Veille technologique permanente, solutions techniques adaptées.</p>
-        </article>
+  <!-- GRAVURE LASER -->
+  <section class="fade-in" style="background:#fffaf0;">
+    <div class="container service-section reverse">
+      <div class="service-text">
+        <h2>🔥 Gravure laser</h2>
+        <p>
+          Sublimez vos objets avec des gravures de haute précision sur bois, métal, acrylique, verre et plus encore.  
+          Idéal pour les plaques professionnelles, trophées, cartes de visite ou objets promotionnels.
+        </p>
+        <ul>
+          <li>Gravure sur métal, bois, acrylique, cuir, verre</li>
+          <li>Découpe de formes personnalisées</li>
+          <li>Idéal pour cadeaux, plaques ou signalétiques</li>
+        </ul>
+        <a href="devis.html" class="btn gold" style="margin-top:15px;">Faire graver un objet</a>
+      </div>
+      <div class="service-image">
+        <img src="assets/gravurelaser.webp" alt="Service Gravure Laser">
       </div>
     </div>
   </section>
 
-  <!-- MÉTHODE DE TRAVAIL -->
+  <!-- PROTOTYPAGE -->
   <section class="fade-in">
-    <div class="container">
-      <h2>Notre méthode de travail</h2>
-      <p>Chez R3D PRINT CI, chaque projet passe par des étapes précises pour garantir la qualité et la durabilité du résultat final.</p>
-
-      <div class="services-grid">
-        <article class="card slide-in-left">
-          <h3>1. Étude du projet</h3>
-          <p>Analyse des besoins et objectifs pour définir la meilleure approche.</p>
-        </article>
-        <article class="card fade-in">
-          <h3>2. Modélisation 3D</h3>
-          <p>Création/optimisation des fichiers 3D pour une production fidèle.</p>
-        </article>
-        <article class="card slide-in-right">
-          <h3>3. Production & Finition</h3>
-          <p>Fabrication, polissage et contrôle qualité rigoureux.</p>
-        </article>
+    <div class="container service-section">
+      <div class="service-text">
+        <h2>⚙️ Prototypage rapide</h2>
+        <p>
+          Passez de l’idée au produit concret grâce à nos solutions de prototypage.  
+          Nous vous accompagnons à chaque étape : modélisation, impression, ajustement et finition.
+        </p>
+        <ul>
+          <li>Modélisation 3D sur mesure</li>
+          <li>Optimisation technique des pièces</li>
+          <li>Assemblages fonctionnels et testables</li>
+        </ul>
+        <a href="devis.html" class="btn gold" style="margin-top:15px;">Commencer un projet</a>
       </div>
+      <div class="service-image">
+        <img src="assets/prototypage.webp" alt="Service Prototypage Rapide">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="text-align:center;padding:80px 20px;">
+    <div class="container">
+      <h2>Un projet en tête ?</h2>
+      <p>Nous vous aidons à le concrétiser, du concept à la production finale.</p>
+      <a href="devis.html" class="btn gold halo-anim" style="margin-top:15px;">Demander un devis</a>
     </div>
   </section>
 
