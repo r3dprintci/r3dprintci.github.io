@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
 
-  <!-- Icônes dorées (Font Awesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Activation du mode application mobile (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c8a951">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
 </head>
 
 <body>
@@ -16,7 +22,7 @@
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
       <nav id="navMenu" class="nav">
         <ul>
@@ -24,77 +30,68 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
           <li><a href="devis.html">Devis</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a class="active" href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="hamburger" onclick="toggleMenu()">
-        <span></span>
-      </button>
+      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- SECTION CONTACT -->
-  <section class="contact-section">
+  <!-- HERO -->
+  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
     <div class="container">
-      <div class="contact-header fade-in">
-        <h1>Contactez-nous</h1>
-        <p>Une question, un projet, une idée à concrétiser ?<br>
-        Notre équipe vous répond sous 24h ouvrées.</p>
-      </div>
+      <h1>Contactez-nous</h1>
+      <p>Besoin d’un renseignement ou d’un accompagnement sur mesure ? Nous sommes à votre écoute.</p>
+    </div>
+  </section>
 
-      <div class="contact-grid">
-        <!-- Bloc coordonnées -->
-        <div class="contact-info slide-in-left">
-          <h2>Nos coordonnées</h2>
-          <p>
-            <i class="fa-solid fa-phone"></i>
-            <a href="tel:+2250757841323" class="contact-link">+225 07 57 84 13 23</a>
-          </p>
-          <p>
-            <i class="fa-brands fa-whatsapp"></i>
-            <a href="https://wa.me/2250757841323" target="_blank" class="contact-link">+225 07 57 84 13 23</a>
-          </p>
-          <p>
-            <i class="fa-solid fa-envelope"></i>
-            <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a>
-          </p>
-          <p>
-            <i class="fa-solid fa-location-dot"></i>
-            Abidjan, Côte d’Ivoire
-          </p>
-          <p style="margin-top:10px;">Disponible du lundi au samedi, de 9h à 19h.</p>
-        </div>
+  <!-- COORDONNÉES -->
+  <section class="fade-in">
+    <div class="container" style="text-align:center;">
+      <h2>Nos coordonnées</h2>
+      <p>📍 Abidjan, Côte d’Ivoire</p>
+      <p>📞 Téléphone : <strong>+225 07 07 07 07 07</strong></p>
+      <p>💬 WhatsApp : <a href="https://wa.me/2250707070707" target="_blank" class="contact-link">Discuter</a></p>
+      <p>✉️ Email : <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a></p>
+    </div>
+  </section>
 
-        <!-- Bloc formulaire -->
-        <div class="contact-form slide-in-right">
-          <h2>Envoyer un message</h2>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="nom">Nom complet</label>
-              <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
-            </div>
+  <!-- FORMULAIRE DE CONTACT -->
+  <section class="fade-in">
+    <div class="container">
+      <h2>Envoyez-nous un message</h2>
+      <form id="contactForm" onsubmit="return envoyerMessage(event)">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required placeholder="Votre nom" />
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
-            </div>
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required placeholder="exemple@email.com" />
 
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
-            </div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
 
-            <button type="submit" class="btn gold halo-anim">Envoyer</button>
-          </form>
-        </div>
+        <button type="submit" class="btn gold halo-anim" style="margin-top:20px;">📩 Envoyer</button>
+      </form>
+
+      <div id="confirmation" style="display:none;margin-top:30px;text-align:center;">
+        <h3>✅ Message envoyé !</h3>
+        <p>Merci pour votre message. Nous vous répondrons rapidement.</p>
       </div>
     </div>
   </section>
 
-  <!-- IMAGE DE CONCLUSION -->
-  <section class="contact-image-section fade-in">
-    <div class="contact-image-container">
-      <img src="assets/impression3d.webp" alt="R3D Impression 3D Abidjan">
+  <!-- MAP -->
+  <section class="fade-in">
+    <div class="container" style="text-align:center;">
+      <h2>Nous trouver</h2>
+      <iframe
+        src="https://www.google.com/maps?q=Abidjan,+Côte+d’Ivoire&output=embed"
+        width="100%"
+        height="350"
+        style="border:0;border-radius:10px;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
     </div>
   </section>
 
@@ -102,6 +99,22 @@
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
+
+  <!-- SCRIPT ENVOI -->
+  <script>
+    function envoyerMessage(event) {
+      event.preventDefault();
+
+      document.getElementById("contactForm").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+
+      const nom = document.getElementById("nom").value;
+      const message = encodeURIComponent(`Bonjour, je suis ${nom}. ${document.getElementById("message").value}`);
+      window.open(`https://wa.me/2250707070707?text=${message}`, "_blank");
+
+      return false;
+    }
+  </script>
 
   <script defer src="assets/main.js"></script>
 </body>
