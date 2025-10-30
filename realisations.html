@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>R3D PRINT CI – Réalisations</title>
-  <link rel="stylesheet" href="assets/style.css"/>
-  <link rel="icon" href="assets/logo.png" type="image/png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos Réalisations – R3D PRINT CI</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+
+  <!-- Activation du mode application mobile (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c8a951">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo"/>
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
       <nav id="navMenu" class="nav">
         <ul>
@@ -27,39 +37,69 @@
     </div>
   </header>
 
-  <!-- INTRO -->
-  <section class="fade-in">
+  <!-- HERO -->
+  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
     <div class="container">
       <h1>Nos réalisations</h1>
-      <p>Découvrez des exemples de projets créés et produits par R3D PRINT CI : du prototype à la finition dorée.</p>
+      <p>Explorez quelques projets réalisés pour nos clients — entre impression 3D, gravure laser et prototypage sur mesure.</p>
     </div>
   </section>
 
-  <!-- EXEMPLES RÉCENTS -->
+  <!-- FILTRES -->
+  <section class="fade-in" style="text-align:center;">
+    <div class="container">
+      <div class="filter-buttons" style="margin-bottom:30px;">
+        <button class="btn gold active" onclick="filterSelection('all')">Tout</button>
+        <button class="btn gold" onclick="filterSelection('impression')">Impression 3D</button>
+        <button class="btn gold" onclick="filterSelection('gravure')">Gravure laser</button>
+        <button class="btn gold" onclick="filterSelection('proto')">Prototypage</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
   <section class="fade-in">
     <div class="container">
-      <h2>Exemples récents</h2>
-      <p>Chaque création reflète notre engagement envers la qualité, la précision et la satisfaction de nos clients.</p>
-
-      <div class="realisation-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
-        <article class="realisation-item slide-in-left">
-          <img src="assets/impression3d.webp" alt="Pièce 3D finition dorée"/>
-          <h3 style="margin-top:10px;">Pièce 3D – Finition dorée</h3>
-          <p>Impression, ponçage, métallisation, vernis de protection.</p>
+      <div class="gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;">
+        <!-- Impression 3D -->
+        <article class="gallery-item impression">
+          <img src="assets/img/realisations1.jpg" alt="Trophée 3D doré">
+          <p class="caption">Trophée doré imprimé en PLA Silk Gold</p>
+        </article>
+        <article class="gallery-item impression">
+          <img src="assets/img/realisations2.jpg" alt="Pièce technique imprimée">
+          <p class="caption">Pièce technique en ASA résistante à la chaleur</p>
         </article>
 
-        <article class="realisation-item fade-in">
-          <img src="assets/gravurelaser.webp" alt="Gravure laser sur acrylique"/>
-          <h3 style="margin-top:10px;">Gravure – Acrylique</h3>
-          <p>Découpe et gravure haute précision pour signalétique.</p>
+        <!-- Gravure -->
+        <article class="gallery-item gravure">
+          <img src="assets/img/realisations3.jpg" alt="Gravure sur métal">
+          <p class="caption">Gravure personnalisée sur plaque inox</p>
+        </article>
+        <article class="gallery-item gravure">
+          <img src="assets/img/realisations4.jpg" alt="Gravure sur bois">
+          <p class="caption">Logo gravé au laser sur support bois clair</p>
         </article>
 
-        <article class="realisation-item slide-in-right">
-          <img src="assets/prototypage.webp" alt="Prototype ajustements"/>
-          <h3 style="margin-top:10px;">Prototype – Ajustements</h3>
-          <p>Itérations rapides et tests dimensionnels avant production.</p>
+        <!-- Prototypage -->
+        <article class="gallery-item proto">
+          <img src="assets/img/realisations5.jpg" alt="Prototype fonctionnel">
+          <p class="caption">Prototype fonctionnel pour pièce mécanique</p>
+        </article>
+        <article class="gallery-item proto">
+          <img src="assets/img/realisations6.jpg" alt="Maquette design">
+          <p class="caption">Maquette design d’objet décoratif moderne</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="text-align:center;padding:80px 20px;">
+    <div class="container">
+      <h2>Envie de créer votre propre projet ?</h2>
+      <p>Contactez-nous dès maintenant pour un devis personnalisé.</p>
+      <a href="devis.html" class="btn gold halo-anim" style="margin-top:15px;">Demander un devis</a>
     </div>
   </section>
 
@@ -67,6 +107,18 @@
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
+
+  <!-- SCRIPT DE FILTRAGE -->
+  <script>
+    function filterSelection(category) {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+      });
+      document.querySelectorAll('.filter-buttons .btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
 
   <script defer src="assets/main.js"></script>
 </body>
