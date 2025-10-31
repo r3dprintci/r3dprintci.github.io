@@ -37,7 +37,7 @@
     </div>
   </header>
 
-  <!-- FORMULAIRE DEVIS -->
+  <!-- HERO -->
   <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
     <div class="container">
       <h1>Demander un devis</h1>
@@ -45,49 +45,52 @@
     </div>
   </section>
 
-  <section class="fade-in">
+  <!-- FORMULAIRE DEVIS PREMIUM -->
+  <section class="fade-in" style="background:#fffaf3;">
     <div class="container">
-      <form id="devisForm" class="devis-form" onsubmit="return envoyerDevis(event)">
-        <label for="nom">Nom complet</label>
-        <input type="text" id="nom" name="nom" required placeholder="Votre nom complet" />
+      <div class="form-card" style="background:#fff;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);padding:30px;border:2px solid #c8a951;max-width:700px;margin:auto;">
+        <form id="devisForm" class="devis-form" onsubmit="return envoyerDevis(event)">
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" name="nom" required placeholder="Votre nom complet" />
 
-        <label for="email">Adresse e-mail</label>
-        <input type="email" id="email" name="email" required placeholder="exemple@email.com" />
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" name="email" required placeholder="exemple@email.com" />
 
-        <label for="telephone">Numéro de téléphone</label>
-        <input type="tel" id="telephone" name="telephone" required placeholder="+225 ..." />
+          <label for="telephone">Numéro de téléphone</label>
+          <input type="tel" id="telephone" name="telephone" required placeholder="+225 ..." />
 
-        <label for="type">Type de service</label>
-        <select id="type" name="type" required>
-          <option value="">-- Sélectionnez un service --</option>
-          <option value="impression3d">Impression 3D</option>
-          <option value="gravurelaser">Gravure laser</option>
-          <option value="prototypage">Prototypage</option>
-        </select>
+          <label for="type">Type de service</label>
+          <select id="type" name="type" required>
+            <option value="">-- Sélectionnez un service --</option>
+            <option value="impression3d">Impression 3D</option>
+            <option value="gravurelaser">Gravure laser</option>
+            <option value="prototypage">Prototypage</option>
+          </select>
 
-        <label for="details">Détails du projet</label>
-        <textarea id="details" name="details" rows="5" placeholder="Décrivez brièvement votre projet..."></textarea>
+          <label for="details">Détails du projet</label>
+          <textarea id="details" name="details" rows="5" placeholder="Décrivez brièvement votre projet..."></textarea>
 
-        <label>Couleurs souhaitées (choix multiple possible)</label>
-        <div class="color-selector">
-          <label><input type="checkbox" name="couleurs" value="Noir"/><span class="color-dot" style="background:#000;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Blanc"/><span class="color-dot" style="background:#fff;border:1px solid #ccc;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Doré"/><span class="color-dot" style="background:#c8a951;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Argenté"/><span class="color-dot" style="background:#c0c0c0;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Rouge"/><span class="color-dot" style="background:#d32f2f;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Bleu"/><span class="color-dot" style="background:#1976d2;"></span></label>
-          <label><input type="checkbox" name="couleurs" value="Vert"/><span class="color-dot" style="background:#388e3c;"></span></label>
+          <label>Couleurs souhaitées (choix multiple possible)</label>
+          <div class="color-selector">
+            <label><input type="checkbox" name="couleurs" value="Noir"/><span class="color-dot" style="background:#000;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Blanc"/><span class="color-dot" style="background:#fff;border:1px solid #ccc;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Doré"/><span class="color-dot" style="background:#c8a951;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Argenté"/><span class="color-dot" style="background:#c0c0c0;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Rouge"/><span class="color-dot" style="background:#d32f2f;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Bleu"/><span class="color-dot" style="background:#1976d2;"></span></label>
+            <label><input type="checkbox" name="couleurs" value="Vert"/><span class="color-dot" style="background:#388e3c;"></span></label>
+          </div>
+
+          <label for="fichier">Fichier ou croquis (optionnel)</label>
+          <input type="file" id="fichier" name="fichier" accept=".jpg,.jpeg,.png,.stl,.obj,.pdf" />
+
+          <button type="submit" class="btn gold halo-anim" style="margin-top:20px;">📩 Envoyer la demande</button>
+        </form>
+
+        <div id="confirmation" class="confirmation-message" style="display:none;margin-top:30px;">
+          <h3>✅ Votre demande a bien été envoyée !</h3>
+          <p>Merci de votre intérêt. Nous vous contacterons dans les plus brefs délais.</p>
         </div>
-
-        <label for="fichier">Fichier ou croquis (optionnel)</label>
-        <input type="file" id="fichier" name="fichier" accept=".jpg,.jpeg,.png,.stl,.obj,.pdf" />
-
-        <button type="submit" class="btn gold halo-anim" style="margin-top:20px;">📩 Envoyer la demande</button>
-      </form>
-
-      <div id="confirmation" class="confirmation-message" style="display:none;margin-top:30px;">
-        <h3>✅ Votre demande a bien été envoyée !</h3>
-        <p>Merci de votre intérêt. Nous vous contacterons dans les plus brefs délais.</p>
       </div>
     </div>
   </section>
@@ -97,22 +100,24 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPT ENVOI -->
+  <!-- SCRIPT -->
   <script>
     function envoyerDevis(event) {
       event.preventDefault();
-
-      // Simulation d'envoi (message de confirmation)
       document.getElementById("devisForm").style.display = "none";
       document.getElementById("confirmation").style.display = "block";
 
-      // Redirection WhatsApp (facultative)
       const nom = document.getElementById("nom").value;
       const type = document.getElementById("type").value;
       const message = encodeURIComponent(`Bonjour, je suis ${nom} et je souhaite un devis pour ${type}.`);
       window.open(`https://wa.me/2250707070707?text=${message}`, "_blank");
 
       return false;
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("open");
     }
   </script>
 
