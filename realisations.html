@@ -6,24 +6,12 @@
   <title>Nos réalisations – R3D PRINT CI</title>
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
-
-  <!-- Activation du mode application mobile (PWA) -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#c8a951">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-  </script>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
+      <a href="index.html"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -33,65 +21,27 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-overlay"></div>
       <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
+  <section class="fade-in">
     <div class="container">
-      <h1>Nos réalisations</h1>
-      <p>Découvrez quelques-uns de nos projets en impression 3D, gravure laser et prototypage réalisés pour nos clients.</p>
-    </div>
-  </section>
-
-  <!-- GALERIE PREMIUM -->
-  <section class="fade-in" style="background:#fffaf3;">
-    <div class="container">
-      <h2>Galerie de nos créations</h2>
-      <div class="gallery-wrapper">
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="assets/shot1.jpg" alt="Trophée doré personnalisé" />
-            <div class="caption">Trophée doré personnalisé</div>
-          </div>
-          <div class="gallery-item">
-            <img src="assets/shot2.jpg" alt="Gravure laser sur métal" />
-            <div class="caption">Gravure laser sur métal</div>
-          </div>
-          <div class="gallery-item">
-            <img src="assets/shot3.jpg" alt="Prototype technique sur mesure" />
-            <div class="caption">Prototype technique sur mesure</div>
-          </div>
-          <div class="gallery-item">
-            <img src="assets/shot4.jpg" alt="Objet décoratif imprimé 3D" />
-            <div class="caption">Objet décoratif imprimé 3D</div>
-          </div>
-        </div>
+      <h2>Nos réalisations</h2>
+      <p>Quelques exemples de notre savoir-faire en impression 3D, gravure laser et prototypage.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="assets/shot1.jpg" alt="Trophée sur mesure" /></div>
+        <div class="gallery-item"><img src="assets/shot2.jpg" alt="Gravure sur métal" /></div>
+        <div class="gallery-item"><img src="assets/shot3.jpg" alt="Prototype fonctionnel" /></div>
+        <div class="gallery-item"><img src="assets/shot4.jpg" alt="Objet décoratif" /></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="fade-in" style="text-align:center;padding:80px 20px;">
-    <div class="container">
-      <h2>Vous souhaitez une création unique ?</h2>
-      <p>Racontez-nous votre idée, nous la rendrons réelle grâce à nos technologies de pointe.</p>
-      <a href="devis.html" class="btn gold halo-anim" style="margin-top:15px;">Demander un devis</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      nav.classList.toggle("open");
-    }
-  </script>
 
   <script defer src="assets/main.js"></script>
 </body>
