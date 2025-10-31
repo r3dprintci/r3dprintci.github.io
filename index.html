@@ -5,11 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>R3D PRINT CI – L’art de donner vie à vos idées</title>
   <meta name="description" content="Impression 3D, gravure laser et prototypage sur mesure à Abidjan. R3D PRINT CI transforme vos idées en objets concrets.">
-  <link rel="stylesheet" href="assets/style.css?v=3" />
+  
+  <!-- Empêche le cache navigateur -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="assets/style.css?v=4" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
 </head>
 
 <body>
+
+  <!-- ✅ Correction GitHub Pages : forcer le chargement complet de index.html -->
+  <script>
+    if (window.location.pathname === "/" && !window.location.hash) {
+      window.location.replace(window.location.origin + "/index.html?v=" + Date.now());
+    }
+  </script>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
@@ -136,20 +150,14 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- 🔒 Redirection automatique HTTP → HTTPS + /index.html -->
+  <!-- 🔒 HTTPS automatique -->
   <script>
-    // Forcer HTTPS
     if (window.location.protocol !== "https:") {
       window.location.href = "https://" + window.location.host + window.location.pathname;
-    }
-
-    // Redirection racine → index.html
-    if (window.location.hostname === "r3dprint.pro" && window.location.pathname === "/") {
-      window.location.replace("https://r3dprint.pro/index.html");
     }
   </script>
 
   <!-- SCRIPTS PRINCIPAUX -->
-  <script defer src="assets/main.js"></script>
+  <script defer src="assets/main.js?v=4"></script>
 </body>
 </html>
