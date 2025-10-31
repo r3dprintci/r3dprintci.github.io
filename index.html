@@ -37,10 +37,10 @@
         window.location.href = "https://" + window.location.host + window.location.pathname;
       }
 
-      // Rediriger la racine vers index.html
-      if (window.location.pathname === "/" || window.location.pathname === "") {
-        window.location.replace(window.location.origin + "/index.html?v=" + Date.now());
-      }
+      // Rediriger la racine vers index.html (sans paramètre inutile)
+if (window.location.pathname === "/" || window.location.pathname === "") {
+  window.location.replace(window.location.origin + "/index.html");
+}
     })();
   </script>
 
@@ -164,5 +164,6 @@
   <script defer src="assets/main.js?v=7"></script>
 </body>
 </html>
+
 
 
