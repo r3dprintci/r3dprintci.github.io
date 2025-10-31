@@ -64,15 +64,18 @@ body {
   color: #c8a951;
 }
 
-/* Hamburger (mobile) */
+/* -------------------------------
+   HAMBURGER MENU
+   ------------------------------- */
 .hamburger {
   display: none;
+  position: relative;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   background: none;
   border: none;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  position: relative;
 }
 
 .hamburger span,
@@ -80,19 +83,38 @@ body {
 .hamburger span::after {
   content: "";
   position: absolute;
+  left: 0;
   width: 100%;
   height: 3px;
   background: #c8a951;
-  transition: all 0.3s ease;
+  border-radius: 3px;
+  transition: all 0.4s ease;
 }
 
 .hamburger span::before {
   top: -8px;
 }
+
 .hamburger span::after {
   top: 8px;
 }
 
+/* Animation des barres (croix quand ouvert) */
+.hamburger.is-active span {
+  background: transparent;
+}
+
+.hamburger.is-active span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.hamburger.is-active span::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* Navigation mobile */
 @media (max-width: 900px) {
   .nav {
     position: absolute;
