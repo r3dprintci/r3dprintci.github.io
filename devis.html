@@ -3,13 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demande de devis – R3D PRINT CI</title>
-  <meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, de gravure laser ou de prototypage avec R3D PRINT CI à Abidjan.">
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Demander un devis – R3D PRINT CI</title>
+  <meta name="description" content="Obtenez un devis rapide pour vos projets d'impression 3D, de gravure laser ou de prototypage sur mesure avec R3D PRINT CI.">
+
+  <!-- Anti-cache -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css?v=6" />
 </head>
 
 <body>
+  <!-- Nettoyage des caches anciens -->
+  <script>
+    (function () {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (r) { r.unregister(); });
+        });
+      }
+      if (window.caches && caches.keys) {
+        caches.keys().then(function (keys) {
+          keys.forEach(function (k) { caches.delete(k); });
+        });
+      }
+    })();
+  </script>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
@@ -33,40 +55,35 @@
   <section class="hero fade-in">
     <div class="container">
       <h1>Demandez votre devis sur mesure</h1>
-      <p>Choisissez le service souhaité pour créer votre demande personnalisée.</p>
+      <p>Choisissez votre type de projet et recevez un devis détaillé dans les plus brefs délais.</p>
     </div>
   </section>
 
   <!-- CHOIX DE SERVICE -->
   <section class="fade-in">
-    <div class="container" style="text-align:center;">
-      <div class="service-choice-container">
-        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
-        <button class="btn gold service-choice" data-service="laser">✨ Gravure Laser</button>
-        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
+    <div class="container">
+      <h2>Choisissez le service souhaité</h2>
+      <div class="service-selector">
+        <button class="service-choice" data-service="3d">🧱 Impression 3D</button>
+        <button class="service-choice" data-service="laser">💎 Gravure Laser</button>
+        <button class="service-choice" data-service="proto">⚙️ Prototypage</button>
       </div>
     </div>
   </section>
 
-  <!-- FORMULAIRE DYNAMIQUE -->
-  <section class="fade-in">
-    <div class="container" id="formContainer" style="margin-top:40px;">
-      <!-- Le formulaire sera généré ici par devis.js -->
+  <!-- FORMULAIRE -->
+  <section>
+    <div class="container">
+      <div id="formContainer" class="fade-in"></div>
+      <div id="resume" class="fade-in"></div>
     </div>
-  </section>
-
-  <!-- RÉSUMÉ DE LA DEMANDE -->
-  <section class="fade-in">
-    <div class="container" id="resume"></div>
   </section>
 
   <!-- CTA SUPPLÉMENTAIRE -->
-  <section class="fade-in cta">
-    <div class="container">
-      <h2>Besoin d’un accompagnement ?</h2>
-      <p>Notre équipe vous guide dans la création et la production de vos projets.</p>
-      <a href="contact.html" class="btn gold halo-anim">Nous contacter</a>
-    </div>
+  <section style="text-align:center;padding:80px 20px;">
+    <h2>Besoin d’aide pour définir votre projet ?</h2>
+    <p>Notre équipe est disponible pour vous guider dans le choix du service le plus adapté.</p>
+    <a href="contact.html" class="btn gold halo-anim" style="margin-top:15px;">📞 Contactez-nous</a>
   </section>
 
   <!-- FOOTER -->
@@ -75,7 +92,7 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script defer src="assets/main.js"></script>
-  <script defer src="assets/devis.js"></script>
+  <script defer src="assets/main.js?v=6"></script>
+  <script defer src="assets/devis.js?v=6"></script>
 </body>
 </html>
