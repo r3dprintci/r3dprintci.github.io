@@ -1,6 +1,6 @@
 /* -------------------------------
    STYLE GLOBAL – R3D PRINT CI
-   Version finale : mise à jour contact + coordonnées
+   Version finale premium 2025
    ------------------------------- */
 
 * {
@@ -155,7 +155,9 @@ body {
   border-radius: 30px;
   text-decoration: none;
   font-weight: 500;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
@@ -163,8 +165,21 @@ body {
   transform: translateY(-2px);
 }
 
-.gold {
-  background-color: #c8a951;
+/* Effet halo doré sur les boutons */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
 }
 
 /* -------------------------------
@@ -190,7 +205,7 @@ p {
 }
 
 /* -------------------------------
-   SERVICES PAGE
+   SERVICES
    ------------------------------- */
 .service-section {
   display: flex;
@@ -211,24 +226,64 @@ p {
 }
 
 /* -------------------------------
-   RÉALISATIONS
+   GALERIE RÉALISATIONS
    ------------------------------- */
+.gallery-wrapper {
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid #c8a951;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 30px;
+  margin-top: 30px;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
 
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .gallery-item img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(200,169,81,0.25) 10%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
 }
 
 .gallery-item .caption {
   text-align: center;
   margin-top: 10px;
   color: #555;
+  font-size: 0.95em;
 }
 
 /* -------------------------------
@@ -362,7 +417,7 @@ p {
 }
 
 /* -------------------------------
-   ANIMATIONS
+   ANIMATIONS GÉNÉRALES
    ------------------------------- */
 .fade-in {
   opacity: 0;
@@ -378,7 +433,7 @@ p {
 }
 
 /* -------------------------------
-   MOBILE
+   RÉACTIVITÉ MOBILE
    ------------------------------- */
 @media (max-width: 768px) {
   h1 {
