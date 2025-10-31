@@ -99,7 +99,6 @@ body {
   top: 8px;
 }
 
-/* Animation des barres (croix quand ouvert) */
 .hamburger.is-active span {
   background: transparent;
 }
@@ -158,7 +157,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Effet halo doré sur les boutons */
 .btn::after {
   content: "";
   position: absolute;
@@ -334,7 +332,6 @@ p {
   box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
-/* Couleurs pastilles */
 .color-selector {
   display: flex;
   flex-wrap: wrap;
@@ -362,7 +359,7 @@ p {
 }
 
 /* -------------------------------
-   BLOC "NOS COORDONNÉES"
+   CONTACT INFO
    ------------------------------- */
 .contact-info {
   display: grid;
@@ -425,9 +422,6 @@ p {
   }
 }
 
-/* -------------------------------
-   ANIMATION D'APPARITION AU SCROLL
-   ------------------------------- */
 .reveal {
   opacity: 0;
   transform: scale(0.97) translateY(30px);
@@ -440,7 +434,7 @@ p {
 }
 
 /* -------------------------------
-   FOND SEMI-TRANSPARENT (menu ouvert)
+   OVERLAY MENU MOBILE
    ------------------------------- */
 .nav-overlay {
   position: fixed;
@@ -462,7 +456,7 @@ p {
 }
 
 /* -------------------------------
-   NAVIGATION MOBILE – SLIDE LATÉRAL
+   MENU MOBILE SLIDE + LIENS DORÉS
    ------------------------------- */
 @media (max-width: 900px) {
   .nav {
@@ -498,25 +492,43 @@ p {
   .nav.open {
     transform: translateX(0);
   }
+
+  /* Animation dorée progressive */
+  .nav ul li {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeSlideUp 0.6s forwards;
+  }
+
+  .nav.open ul li:nth-child(1) { animation-delay: 0.1s; }
+  .nav.open ul li:nth-child(2) { animation-delay: 0.2s; }
+  .nav.open ul li:nth-child(3) { animation-delay: 0.3s; }
+  .nav.open ul li:nth-child(4) { animation-delay: 0.4s; }
+  .nav.open ul li:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(10px); color: #fff; }
+    to { opacity: 1; transform: translateY(0); color: #c8a951; }
+  }
+
+  .nav.open ul li a {
+    color: #444;
+    transition: color 0.3s ease;
+  }
+
+  .nav.open ul li a:hover {
+    color: #c8a951;
+  }
 }
 
 /* -------------------------------
    RÉACTIVITÉ MOBILE
    ------------------------------- */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 1.7em;
-  }
-  h2 {
-    font-size: 1.4em;
-  }
-  .btn {
-    padding: 10px 20px;
-  }
-  .service-section {
-    flex-direction: column;
-    text-align: center;
-  }
+  h1 { font-size: 1.7em; }
+  h2 { font-size: 1.4em; }
+  .btn { padding: 10px 20px; }
+  .service-section { flex-direction: column; text-align: center; }
   .service-section img {
     width: 90%;
     max-width: 350px;
@@ -524,8 +536,5 @@ p {
     display: block;
     margin: 0 auto;
   }
-  .devis-form,
-  #contactForm {
-    padding: 20px;
-  }
+  .devis-form, #contactForm { padding: 20px; }
 }
