@@ -14,12 +14,11 @@
   <!-- Icône et style -->
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="preload" as="image" href="assets/logo.png" />
-<link rel="stylesheet" href="https://r3dprint.pro/assets/style.css?v=1001" />
-
+  <link rel="stylesheet" href="https://r3dprint.pro/assets/style.css?v=1003" />
 </head>
 
 <body>
-  <!-- Nettoyage des anciens caches et redirection automatique -->
+  <!-- Nettoyage des anciens caches et redirection propre -->
   <script>
     (function () {
       // Supprimer anciens Service Workers
@@ -37,10 +36,10 @@
         window.location.href = "https://" + window.location.host + window.location.pathname;
       }
 
-      // Rediriger la racine vers index.html (sans paramètre inutile)
-if (window.location.pathname === "/" || window.location.pathname === "") {
-  window.location.replace(window.location.origin + "/index.html");
-}
+      // Rediriger la racine vers index.html (sans paramètre ?v)
+      if (window.location.pathname === "/" || window.location.pathname === "") {
+        window.location.replace(window.location.origin + "/index.html");
+      }
     })();
   </script>
 
@@ -164,6 +163,3 @@ if (window.location.pathname === "/" || window.location.pathname === "") {
   <script defer src="assets/main.js?v=7"></script>
 </body>
 </html>
-
-
-
