@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos Services – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Nos services – R3D PRINT CI</title>
+  <meta name="description" content="Découvrez les services R3D PRINT CI : impression 3D, gravure laser et prototypage rapide. La technologie au service de votre créativité à Abidjan.">
+  <link rel="stylesheet" href="assets/style.css?v=5" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
-
-  <!-- Activation du mode application mobile (PWA) -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#c8a951">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-  </script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c8a951" />
 </head>
 
 <body>
@@ -33,91 +27,67 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-overlay"></div>
       <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
 
-  <!-- SECTION INTRO -->
-  <section class="hero fade-in" style="text-align:center;padding:100px 20px 80px;">
+  <!-- HERO -->
+  <section class="hero fade-in">
     <div class="container">
       <h1>Nos services</h1>
-      <p>Découvrez l’étendue de notre savoir-faire en impression 3D, gravure laser et prototypage sur mesure.</p>
+      <p>Innovation, précision et qualité au cœur de chaque création.</p>
     </div>
   </section>
 
-  <!-- IMPRESSION 3D -->
+  <!-- SERVICE 1 -->
   <section class="fade-in">
     <div class="container service-section">
-      <div class="service-text">
-        <h2>🧱 Impression 3D</h2>
-        <p>
-          Donnez vie à vos idées grâce à nos imprimantes 3D professionnelles.  
-          Que ce soit pour un prototype, un objet décoratif ou une pièce fonctionnelle,  
-          nous vous garantissons un résultat précis, solide et esthétique.
-        </p>
-        <ul>
-          <li>Prototypes industriels et maquettes</li>
-          <li>Objets décoratifs et personnalisés</li>
-          <li>Pièces de remplacement sur mesure</li>
-        </ul>
-        <a href="devis.html" class="btn gold" style="margin-top:15px;">Demander un devis</a>
-      </div>
       <div class="service-image">
-        <img src="assets/impression3d.webp" alt="Service Impression 3D">
+        <img src="assets/impression3d.webp" alt="Impression 3D" />
+      </div>
+      <div class="service-text">
+        <h2>Impression 3D</h2>
+        <p>Transformez vos idées en objets réels. Notre service d’impression 3D vous permet de créer des prototypes, pièces décoratives ou objets techniques, avec une précision millimétrique et des finitions impeccables.</p>
+        <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
       </div>
     </div>
   </section>
 
-  <!-- GRAVURE LASER -->
+  <!-- SERVICE 2 -->
   <section class="fade-in" style="background:#fffaf0;">
     <div class="container service-section reverse">
-      <div class="service-text">
-        <h2>🔥 Gravure laser</h2>
-        <p>
-          Sublimez vos objets avec des gravures de haute précision sur bois, métal, acrylique, verre et plus encore.  
-          Idéal pour les plaques professionnelles, trophées, cartes de visite ou objets promotionnels.
-        </p>
-        <ul>
-          <li>Gravure sur métal, bois, acrylique, cuir, verre</li>
-          <li>Découpe de formes personnalisées</li>
-          <li>Idéal pour cadeaux, plaques ou signalétiques</li>
-        </ul>
-        <a href="devis.html" class="btn gold" style="margin-top:15px;">Faire graver un objet</a>
-      </div>
       <div class="service-image">
-        <img src="assets/gravurelaser.webp" alt="Service Gravure Laser">
+        <img src="assets/gravurelaser.webp" alt="Gravure Laser" />
+      </div>
+      <div class="service-text">
+        <h2>Gravure Laser</h2>
+        <p>Personnalisez vos objets avec des gravures précises et durables sur métal, bois, verre, cuir ou plastique. Idéal pour trophées, plaques, signalétiques et objets promotionnels haut de gamme.</p>
+        <a href="devis.html" class="btn gold halo-anim">Personnaliser un projet</a>
       </div>
     </div>
   </section>
 
-  <!-- PROTOTYPAGE -->
+  <!-- SERVICE 3 -->
   <section class="fade-in">
     <div class="container service-section">
-      <div class="service-text">
-        <h2>⚙️ Prototypage rapide</h2>
-        <p>
-          Passez de l’idée au produit concret grâce à nos solutions de prototypage.  
-          Nous vous accompagnons à chaque étape : modélisation, impression, ajustement et finition.
-        </p>
-        <ul>
-          <li>Modélisation 3D sur mesure</li>
-          <li>Optimisation technique des pièces</li>
-          <li>Assemblages fonctionnels et testables</li>
-        </ul>
-        <a href="devis.html" class="btn gold" style="margin-top:15px;">Commencer un projet</a>
-      </div>
       <div class="service-image">
-        <img src="assets/prototypage.webp" alt="Service Prototypage Rapide">
+        <img src="assets/prototypage.webp" alt="Prototypage rapide" />
+      </div>
+      <div class="service-text">
+        <h2>Prototypage rapide</h2>
+        <p>Du concept au modèle tangible, nous vous accompagnons dans chaque étape de la création. Testez vos designs, validez vos formes et préparez votre production en toute sérénité.</p>
+        <a href="devis.html" class="btn gold halo-anim">Créer un prototype</a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section style="text-align:center;padding:80px 20px;">
+  <section class="fade-in cta">
     <div class="container">
-      <h2>Un projet en tête ?</h2>
-      <p>Nous vous aidons à le concrétiser, du concept à la production finale.</p>
-      <a href="devis.html" class="btn gold halo-anim" style="margin-top:15px;">Demander un devis</a>
+      <h2>Un projet à concrétiser ?</h2>
+      <p>Contactez-nous et bénéficiez d’un accompagnement sur mesure.</p>
+      <a href="contact.html" class="btn gold halo-anim">Contactez-nous</a>
     </div>
   </section>
 
@@ -126,6 +96,7 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
+  <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
 </body>
 </html>
