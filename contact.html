@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – R3D PRINT CI</title>
   <meta name="description" content="Contactez R3D PRINT CI à Abidjan pour toute demande d’impression 3D, de gravure laser ou de prototypage sur mesure.">
-  <link rel="stylesheet" href="assets/style.css?v=5" />
+  <link rel="stylesheet" href="assets/style.css?v=6" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#c8a951" />
@@ -36,11 +36,11 @@
   <section class="hero fade-in">
     <div class="container">
       <h1>Contactez-nous</h1>
-      <p>Notre équipe vous répond dans les plus brefs délais, 7j/7.</p>
+      <p>Notre équipe est à votre écoute et vous répond sous 24h.</p>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- SECTION CONTACT -->
   <section class="fade-in">
     <div class="container contact-container">
       <!-- COORDONNÉES -->
@@ -59,14 +59,18 @@
           ✉️ <strong>Email :</strong><br>
           <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a>
         </p>
-        <hr style="border:0;height:1px;background:linear-gradient(to right,#d4c08c,#c8a951,#d4c08c);margin:20px 0;">
-        <p style="font-style:italic;">R3D PRINT CI – L’art de donner vie à vos idées.</p>
+
+        <div class="contact-divider"></div>
+
+        <p style="font-style:italic;text-align:center;">
+          R3D PRINT CI – L’art de donner vie à vos idées.
+        </p>
       </div>
 
       <!-- FORMULAIRE -->
       <div class="contact-form">
         <h2>Envoyez-nous un message</h2>
-        <form class="fade-in visible" style="display:flex;flex-direction:column;gap:15px;">
+        <form class="fade-in visible" id="contactForm" style="display:flex;flex-direction:column;gap:15px;">
           <label>Nom complet</label>
           <input type="text" placeholder="Votre nom complet" required>
 
@@ -83,7 +87,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="fade-in cta">
+  <section class="cta fade-in">
     <div class="container">
       <h2>Besoin d’un devis rapide ?</h2>
       <p>Accédez à notre formulaire complet en ligne en un clic.</p>
@@ -98,5 +102,10 @@
 
   <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </body>
 </html>
