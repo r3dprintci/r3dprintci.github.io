@@ -136,8 +136,14 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- Redirection automatique vers /index.html -->
+  <!-- 🔒 Redirection automatique HTTP → HTTPS + /index.html -->
   <script>
+    // Forcer HTTPS
+    if (window.location.protocol !== "https:") {
+      window.location.href = "https://" + window.location.host + window.location.pathname;
+    }
+
+    // Redirection racine → index.html
     if (window.location.hostname === "r3dprint.pro" && window.location.pathname === "/") {
       window.location.replace("https://r3dprint.pro/index.html");
     }
