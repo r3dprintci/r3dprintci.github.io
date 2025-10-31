@@ -4,14 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="description" content="Contactez R3D PRINT CI à Abidjan pour toute demande d’impression 3D, de gravure laser ou de prototypage sur mesure.">
+  <link rel="stylesheet" href="assets/style.css?v=5" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c8a951" />
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -26,44 +32,71 @@
     </div>
   </header>
 
-  <section class="fade-in">
+  <!-- HERO -->
+  <section class="hero fade-in">
     <div class="container">
-      <h2>Contactez-nous</h2>
-
-      <div class="contact-info">
-        <div class="contact-card">
-          <h3>📍 Adresse</h3>
-          <p>Abidjan, Côte d’Ivoire</p>
-        </div>
-        <div class="contact-card">
-          <h3>📞 Téléphone / WhatsApp</h3>
-          <p>+225 07 07 07 07 07</p>
-        </div>
-        <div class="contact-card">
-          <h3>📧 Email</h3>
-          <p>contact@r3dprintci.com</p>
-        </div>
-      </div>
-
-      <form id="contactForm" class="fade-in">
-        <label>Nom complet</label>
-        <input type="text" required />
-
-        <label>Email</label>
-        <input type="email" required />
-
-        <label>Message</label>
-        <textarea rows="5" placeholder="Votre message..."></textarea>
-
-        <button type="submit" class="btn gold">Envoyer</button>
-      </form>
+      <h1>Contactez-nous</h1>
+      <p>Notre équipe vous répond dans les plus brefs délais, 7j/7.</p>
     </div>
   </section>
 
+  <!-- CONTACT SECTION -->
+  <section class="fade-in">
+    <div class="container contact-container">
+      <!-- COORDONNÉES -->
+      <div class="contact-info">
+        <h2>Nos coordonnées</h2>
+        <p>
+          📍 <strong>Adresse :</strong><br>
+          Abidjan, Côte d’Ivoire<br><br>
+
+          📞 <strong>Téléphone :</strong><br>
+          <a href="tel:+22507070707" class="contact-link">+225 07 07 07 07</a><br><br>
+
+          💬 <strong>WhatsApp :</strong><br>
+          <a href="https://wa.me/22507070707" target="_blank" class="contact-link">+225 07 07 07 07</a><br><br>
+
+          ✉️ <strong>Email :</strong><br>
+          <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a>
+        </p>
+        <hr style="border:0;height:1px;background:linear-gradient(to right,#d4c08c,#c8a951,#d4c08c);margin:20px 0;">
+        <p style="font-style:italic;">R3D PRINT CI – L’art de donner vie à vos idées.</p>
+      </div>
+
+      <!-- FORMULAIRE -->
+      <div class="contact-form">
+        <h2>Envoyez-nous un message</h2>
+        <form class="fade-in visible" style="display:flex;flex-direction:column;gap:15px;">
+          <label>Nom complet</label>
+          <input type="text" placeholder="Votre nom complet" required>
+
+          <label>Adresse e-mail</label>
+          <input type="email" placeholder="exemple@email.com" required>
+
+          <label>Message</label>
+          <textarea rows="5" placeholder="Décrivez votre demande ici..." required></textarea>
+
+          <button class="btn gold halo-anim" type="submit">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="fade-in cta">
+    <div class="container">
+      <h2>Besoin d’un devis rapide ?</h2>
+      <p>Accédez à notre formulaire complet en ligne en un clic.</p>
+      <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
+  <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
 </body>
 </html>
