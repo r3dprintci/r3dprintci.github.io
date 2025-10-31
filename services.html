@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos services – R3D PRINT CI</title>
-  <meta name="description" content="Découvrez les services R3D PRINT CI : impression 3D, gravure laser et prototypage rapide. La technologie au service de votre créativité à Abidjan.">
-  <link rel="stylesheet" href="assets/style.css?v=5" />
+  <meta name="description" content="Découvrez les services R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
+  <link rel="stylesheet" href="assets/style.css?v=6" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#c8a951" />
@@ -36,57 +36,81 @@
   <section class="hero fade-in">
     <div class="container">
       <h1>Nos services</h1>
-      <p>Innovation, précision et qualité au cœur de chaque création.</p>
+      <p>Des solutions sur mesure pour vos projets de création, de personnalisation et de prototypage.</p>
     </div>
   </section>
 
-  <!-- SERVICE 1 -->
+  <!-- IMPRESSION 3D -->
   <section class="fade-in">
     <div class="container service-section">
       <div class="service-image">
-        <img src="assets/impression3d.webp" alt="Impression 3D" />
+        <img src="assets/impression3d.webp" alt="Impression 3D R3D PRINT CI">
       </div>
       <div class="service-text">
         <h2>Impression 3D</h2>
-        <p>Transformez vos idées en objets réels. Notre service d’impression 3D vous permet de créer des prototypes, pièces décoratives ou objets techniques, avec une précision millimétrique et des finitions impeccables.</p>
+        <p>
+          Notre expertise en impression 3D nous permet de produire des objets sur mesure, 
+          du prototype fonctionnel à la pièce décorative, en utilisant différents matériaux 
+          tels que le PLA, le PETG, l’ABS ou encore la résine.
+        </p>
+        <p>
+          Grâce à des imprimantes professionnelles haute précision, nous réalisons vos projets 
+          avec des finitions parfaites et des délais rapides.
+        </p>
         <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICE 2 -->
+  <!-- GRAVURE LASER -->
   <section class="fade-in" style="background:#fffaf0;">
     <div class="container service-section reverse">
       <div class="service-image">
-        <img src="assets/gravurelaser.webp" alt="Gravure Laser" />
+        <img src="assets/gravurelaser.webp" alt="Gravure laser sur métal et bois">
       </div>
       <div class="service-text">
-        <h2>Gravure Laser</h2>
-        <p>Personnalisez vos objets avec des gravures précises et durables sur métal, bois, verre, cuir ou plastique. Idéal pour trophées, plaques, signalétiques et objets promotionnels haut de gamme.</p>
-        <a href="devis.html" class="btn gold halo-anim">Personnaliser un projet</a>
+        <h2>Gravure laser</h2>
+        <p>
+          Nous personnalisons vos supports à l’aide de la technologie de gravure laser. 
+          Que ce soit sur bois, métal, acrylique, verre ou cuir, chaque création est 
+          réalisée avec une extrême précision.
+        </p>
+        <p>
+          Idéal pour des plaques professionnelles, des objets décoratifs, des cadeaux d’entreprise 
+          ou encore des trophées sur mesure.
+        </p>
+        <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICE 3 -->
+  <!-- PROTOTYPAGE -->
   <section class="fade-in">
     <div class="container service-section">
       <div class="service-image">
-        <img src="assets/prototypage.webp" alt="Prototypage rapide" />
+        <img src="assets/prototypage.webp" alt="Prototypage rapide à Abidjan">
       </div>
       <div class="service-text">
-        <h2>Prototypage rapide</h2>
-        <p>Du concept au modèle tangible, nous vous accompagnons dans chaque étape de la création. Testez vos designs, validez vos formes et préparez votre production en toute sérénité.</p>
-        <a href="devis.html" class="btn gold halo-anim">Créer un prototype</a>
+        <h2>Prototypage</h2>
+        <p>
+          Donnez forme à vos idées avec notre service de prototypage rapide. 
+          Nous accompagnons les entreprises, designers et inventeurs dans la conception, 
+          le test et la validation de leurs produits avant la production finale.
+        </p>
+        <p>
+          Obtenez un rendu concret de votre projet en un temps record, avec un accompagnement 
+          technique complet de la conception à la finition.
+        </p>
+        <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="fade-in cta">
+  <section class="cta fade-in">
     <div class="container">
-      <h2>Un projet à concrétiser ?</h2>
-      <p>Contactez-nous et bénéficiez d’un accompagnement sur mesure.</p>
+      <h2>Besoin d’un service personnalisé ?</h2>
+      <p>Notre équipe vous guide de la conception à la réalisation, selon vos besoins.</p>
       <a href="contact.html" class="btn gold halo-anim">Contactez-nous</a>
     </div>
   </section>
@@ -98,5 +122,10 @@
 
   <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </body>
 </html>
