@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demande de devis – R3D PRINT CI</title>
   <meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, de gravure laser ou de prototypage avec R3D PRINT CI à Abidjan.">
-  <link rel="stylesheet" href="assets/style.css?v=6" />
+  <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#c8a951" />
 </head>
 
 <body>
@@ -27,7 +25,6 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <div class="nav-overlay"></div>
       <button class="hamburger" onclick="toggleMenu()"><span></span></button>
     </div>
   </header>
@@ -54,7 +51,7 @@
   <!-- FORMULAIRE DYNAMIQUE -->
   <section class="fade-in">
     <div class="container" id="formContainer" style="margin-top:40px;">
-      <!-- Le formulaire est injecté ici par devis.js -->
+      <!-- Le formulaire sera généré ici par devis.js -->
     </div>
   </section>
 
@@ -80,10 +77,5 @@
   <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
   <script defer src="assets/devis.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-  </script>
 </body>
 </html>
