@@ -11,30 +11,32 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <!-- Icônes et styles -->
+  <!-- Icône et style -->
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="preload" as="image" href="assets/logo.png" />
   <link rel="stylesheet" href="assets/style.css?v=7" />
 </head>
 
 <body>
-  <!-- Nettoyage du cache + redirections automatiques -->
+  <!-- Nettoyage des anciens caches et redirection automatique -->
   <script>
     (function () {
-      // Suppression d’anciens caches
+      // Supprimer anciens Service Workers
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
       }
+
+      // Vider anciens caches
       if (window.caches && caches.keys) {
         caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
       }
 
-      // Forcer HTTPS si nécessaire
+      // Forcer HTTPS
       if (window.location.protocol !== "https:") {
         window.location.href = "https://" + window.location.host + window.location.pathname;
       }
 
-      // Redirection propre vers /index.html si on est à la racine
+      // Rediriger la racine vers index.html
       if (window.location.pathname === "/" || window.location.pathname === "") {
         window.location.replace(window.location.origin + "/index.html?v=" + Date.now());
       }
@@ -75,7 +77,10 @@
   <section class="fade-in">
     <div class="container">
       <h2>Bienvenue chez R3D PRINT CI</h2>
-      <p>Nous allions précision, design et innovation pour transformer vos idées en objets concrets. Découvrez notre univers, où artisanat et technologie 3D se rencontrent.</p>
+      <p>
+        Nous allions précision, design et innovation pour transformer vos idées en objets concrets.
+        Découvrez notre univers, où artisanat et technologie 3D se rencontrent.
+      </p>
     </div>
   </section>
 
@@ -83,7 +88,11 @@
   <section class="fade-in">
     <div class="container">
       <h2>Nos services</h2>
-      <p>Un aperçu de nos domaines d’expertise — découvrez tous les détails sur la page <a href="services.html" class="contact-link">Services</a>.</p>
+      <p>
+        Un aperçu de nos domaines d’expertise — découvrez tous les détails sur la page
+        <a href="services.html" class="contact-link">Services</a>.
+      </p>
+
       <div class="services-grid">
         <article class="card slide-in-left">
           <img src="assets/impressions3d.webp" alt="Impression 3D" loading="lazy" />
@@ -113,7 +122,11 @@
   <section class="fade-in">
     <div class="container">
       <h2>Quelques réalisations</h2>
-      <p>Un aperçu de notre savoir-faire. Retrouvez davantage d’exemples sur la page <a href="realisations.html" class="contact-link">Réalisations</a>.</p>
+      <p>
+        Un aperçu de notre savoir-faire. Retrouvez davantage d’exemples sur la page
+        <a href="realisations.html" class="contact-link">Réalisations</a>.
+      </p>
+
       <div class="realisation-grid">
         <article class="slide-in-left"><img src="assets/shot1.jpg" alt="Trophée doré" loading="lazy" /></article>
         <article class="fade-in"><img src="assets/shot2.jpg" alt="Gravure sur métal" loading="lazy" /></article>
@@ -146,7 +159,7 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- JS -->
+  <!-- SCRIPTS -->
   <script defer src="assets/main.js?v=7"></script>
 </body>
 </html>
