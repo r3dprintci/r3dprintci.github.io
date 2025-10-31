@@ -433,6 +433,20 @@ p {
 }
 
 /* -------------------------------
+   ANIMATION D'APPARITION AU SCROLL
+   ------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: scale(0.97) translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* -------------------------------
    RÉACTIVITÉ MOBILE
    ------------------------------- */
 @media (max-width: 768px) {
@@ -449,7 +463,7 @@ p {
     flex-direction: column;
     text-align: center;
   }
-  .service-section .service-image img {
+  .service-section img {
     width: 90%;
     max-width: 350px;
     height: auto;
