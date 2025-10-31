@@ -1,6 +1,11 @@
-// R3D PRINT CI - Service Worker pour la mise en cache
-const CACHE_NAME = "r3dprintci-v1";
-const ASSETS_TO_CACHE = [
+/* ============================================================
+   R3D PRINT CI – SERVICE WORKER OFFICIEL (version finale 2025)
+   Fonction : mise en cache intelligente pour PWA
+============================================================ */
+
+const CACHE_NAME = "r3dprintci-cache-v2025";
+const urlsToCache = [
+  "./",
   "index.html",
   "services.html",
   "realisations.html",
@@ -8,56 +13,65 @@ const ASSETS_TO_CACHE = [
   "contact.html",
   "assets/style.css",
   "assets/main.js",
+  "assets/devis.js",
   "assets/logo.png",
-  "assets/impression3d.webp",
-  "assets/gravurelaser.webp",
-  "assets/prototypage.webp",
-  "assets/shot1.jpg",
-  "assets/shot2.jpg",
-  "assets/shot3.jpg",
-  "assets/shot4.jpg"
+  "assets/icons/icon-192.png",
+  "assets/icons/icon-512.png"
 ];
 
-// Installation et mise en cache initiale
+/* --- INSTALLATION ET MISE EN CACHE INITIALE --- */
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("📦 Mise en cache des fichiers R3D PRINT CI");
-      return cache.addAll(ASSETS_TO_CACHE);
+      console.log("Mise en cache initiale...");
+      return cache.addAll(urlsToCache);
     })
   );
 });
 
-// Activation et suppression des anciens caches
+/* --- ACTIVATION ET NETTOYAGE DES ANCIENS CACHES --- */
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log("🧹 Suppression de l'ancien cache :", key);
-            return caches.delete(key);
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log("Suppression ancien cache :", cache);
+            return caches.delete(cache);
           }
         })
-      );
+      )
+    )
+  );
+});
+
+/* --- STRATÉGIE DE FETCH : CACHE PUIS RÉSEAU --- */
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      // Si trouvé dans le cache → retourne la ressource
+      if (response) return response;
+
+      // Sinon → télécharge depuis le réseau et met en cache
+      return fetch(event.request).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200) {
+          return networkResponse;
+        }
+
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseToCache);
+        });
+
+        return networkResponse;
+      });
     })
   );
 });
 
-// Interception des requêtes et réponse depuis le cache
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Retourne la réponse du cache si dispo, sinon télécharge depuis le réseau
-      return (
-        cachedResponse ||
-        fetch(event.request).then((networkResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        })
-      );
-    })
-  );
+/* --- EVENTUEL MESSAGE DE CONFIRMATION --- */
+self.addEventListener("message", (event) => {
+  if (event.data === "updateSW") {
+    self.skipWaiting();
+  }
 });
