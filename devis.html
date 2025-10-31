@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demander un devis – R3D PRINT CI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Demande de devis – R3D PRINT CI</title>
+  <link rel="stylesheet" href="assets/style.css?v=3" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <script defer src="assets/devis.js"></script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c8a951" />
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -27,43 +31,44 @@
     </div>
   </header>
 
-  <section class="fade-in">
+  <!-- HERO -->
+  <section class="hero fade-in">
     <div class="container">
-      <h2>Demandez un devis rapide</h2>
-      <form class="devis-form">
-        <label>Nom complet</label>
-        <input type="text" required>
-
-        <label>Email</label>
-        <input type="email" required>
-
-        <label>Service souhaité</label>
-        <select required>
-          <option>Impression 3D</option>
-          <option>Gravure laser</option>
-          <option>Prototypage</option>
-        </select>
-
-        <label>Couleur(s) souhaitée(s)</label>
-        <div class="color-selector">
-          <input type="radio" id="or" name="color"><label for="or" class="color-dot" style="background:#d4af37;"></label>
-          <input type="radio" id="argent" name="color"><label for="argent" class="color-dot" style="background:#c0c0c0;"></label>
-          <input type="radio" id="noir" name="color"><label for="noir" class="color-dot" style="background:#000;"></label>
-          <input type="radio" id="blanc" name="color"><label for="blanc" class="color-dot" style="background:#fff;border:1px solid #ccc;"></label>
-        </div>
-
-        <label>Détails du projet</label>
-        <textarea rows="5" placeholder="Décrivez votre projet..."></textarea>
-
-        <button type="submit" class="btn gold">Envoyer</button>
-      </form>
+      <h1>Demandez votre devis sur mesure</h1>
+      <p>Choisissez le type de service souhaité pour démarrer votre demande.</p>
     </div>
   </section>
 
+  <!-- CHOIX DE SERVICE -->
+  <section class="fade-in">
+    <div class="container" style="text-align:center;">
+      <div class="service-choice-container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px;">
+        <button class="btn gold service-choice" data-service="3d">🧱 Impression 3D</button>
+        <button class="btn gold service-choice" data-service="laser">✨ Gravure Laser</button>
+        <button class="btn gold service-choice" data-service="proto">⚙️ Prototypage</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE DYNAMIQUE -->
+  <section class="fade-in">
+    <div class="container" id="formContainer" style="margin-top:40px;">
+      <!-- Le formulaire apparaîtra ici dynamiquement -->
+    </div>
+  </section>
+
+  <!-- RÉSUMÉ DE LA DEMANDE -->
+  <section class="fade-in">
+    <div class="container" id="resume"></div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
+  <!-- SCRIPTS -->
   <script defer src="assets/main.js"></script>
+  <script defer src="assets/devis.js"></script>
 </body>
 </html>
