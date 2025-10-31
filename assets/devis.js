@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!formContainer || !serviceButtons.length) return;
 
-  // Activation des boutons de service
   serviceButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       serviceButtons.forEach(b => b.classList.remove("active"));
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Fonction de génération du formulaire selon le service ===
   function renderForm(service) {
     let html = "";
 
@@ -28,42 +26,29 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="service-panel fade-in visible">
           <h3>Impression 3D</h3>
           <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
-          <label>Nature de l’objet</label><input type="text" placeholder="Ex : prototype, trophée, pièce mécanique">
-          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 15 x 10 x 5">
-          <label>Lieu d’utilisation</label>
-          <select><option value="">Choisissez...</option><option>Intérieur</option><option>Extérieur</option></select>
-          <label>Couleurs souhaitées</label>
-          <div id="colorChips">
-            <input type="color" value="#c9af6b">
-            <button id="addColor">+</button>
-          </div>
+          <label>Nature de l’objet</label><input type="text" placeholder="Prototype, trophée...">
+          <label>Dimensions (cm)</label><input type="text" placeholder="15 x 10 x 5">
+          <label>Couleurs souhaitées</label><input type="color" value="#c9af6b">
           <label>Photos de référence</label><input type="file" multiple accept="image/*">
         </div>`;
     }
-
     else if (service === "laser") {
       html = `
         <div class="service-panel fade-in visible">
           <h3>Gravure Laser</h3>
           <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
-          <label>Type d’objet</label><input type="text" placeholder="Ex : plaque, bouteille, trophée">
-          <label>Quantité</label><input type="number" placeholder="Ex : 5">
-          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 10 x 5 x 2">
-          <label>Matériau</label>
-          <select><option>Bois</option><option>Métal</option><option>Verre</option><option>PVC</option><option>Autre</option></select>
+          <label>Type d’objet</label><input type="text" placeholder="Plaque, bouteille...">
+          <label>Matériau</label><select><option>Bois</option><option>Métal</option><option>Verre</option></select>
           <label>Photos de référence</label><input type="file" multiple accept="image/*">
         </div>`;
     }
-
     else if (service === "proto") {
       html = `
         <div class="service-panel fade-in visible">
           <h3>Prototypage</h3>
           <label>Nom complet</label><input type="text" placeholder="Votre nom complet" required>
-          <label>Nature du prototype</label><input type="text" placeholder="Ex : boîtier, pièce technique">
-          <label>Dimensions (cm)</label><input type="text" placeholder="Ex : 20 x 10 x 8">
-          <label>Matériau souhaité</label>
-          <select><option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option></select>
+          <label>Nature du prototype</label><input type="text" placeholder="Boîtier, pièce...">
+          <label>Dimensions (cm)</label><input type="text" placeholder="20 x 10 x 8">
           <label>Photos de référence</label><input type="file" multiple accept="image/*">
         </div>`;
     }
@@ -71,41 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
     formContainer.innerHTML = `
       <form id="devisForm" class="fade-in visible">
         ${html}
-        <div style="grid-column: 1 / -1; text-align:center; margin-top:25px;">
+        <div style="text-align:center;margin-top:25px;">
           <button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button>
         </div>
       </form>
     `;
 
-    setupColorAdder();
     setupSubmit(service);
   }
 
-  // === Gestion de l’ajout de couleurs ===
-  function setupColorAdder() {
-    const addBtn = document.getElementById("addColor");
-    const container = document.getElementById("colorChips");
-    if (!addBtn || !container) return;
-    addBtn.addEventListener("click", e => {
-      e.preventDefault();
-      const newColor = document.createElement("input");
-      newColor.type = "color";
-      newColor.style.opacity = "0";
-      newColor.style.transition = "opacity 0.4s ease";
-      container.insertBefore(newColor, addBtn);
-      setTimeout(() => (newColor.style.opacity = "1"), 50);
-    });
-  }
-
-  // === Gestion du résumé final ===
   function setupSubmit(service) {
     const btn = document.getElementById("submitDevis");
     if (!btn) return;
     btn.addEventListener("click", () => {
-      const name = document.querySelector("#devisForm input[type='text']")?.value.trim() || "";
       resumeContainer.innerHTML = `
         <div class="fade-in visible" style="text-align:center;padding:35px;background:#fffaf0;border-radius:14px;margin-top:30px;">
-          <h3 style="color:#c9af6b;">Merci ${name || "cher client"} !</h3>
+          <h3 style="color:#c9af6b;">Merci !</h3>
           <p>Votre demande de <strong>${getServiceName(service)}</strong> a bien été enregistrée.<br>Vous recevrez une réponse sous 24h.</p>
         </div>`;
       window.scrollTo({ top: resumeContainer.offsetTop - 80, behavior: "smooth" });
