@@ -1,173 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>R3D PRINT CI – L’art de donner vie à vos idées</title>
-  <meta name="description" content="Impression 3D, gravure laser et prototypage sur mesure à Abidjan. R3D PRINT CI transforme vos idées en objets concrets.">
-
-  <!-- Icône -->
-  <link rel="icon" href="assets/logo.png" type="image/png" />
-
-  <!-- Style principal -->
-  <link rel="stylesheet" href="assets/style.css?v=14" />
-
-  <!-- Anti-flash blanc -->
-  <style>body{opacity:0;transition:opacity .4s ease}</style>
-  <script>window.addEventListener('load',()=>document.body.style.opacity='1');</script>
-</head>
-
-<body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
-
-      <nav id="navMenu" class="nav">
-        <ul>
-          <li><a class="active" href="index.html">Accueil</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="devis.html">Devis</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero fade-in">
-    <div class="container">
-      <h1>L’art de donner vie à vos idées</h1>
-      <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
-      <p style="margin-top:20px;">
-        <a href="devis.html" class="btn gold halo-anim">💬 Demander un devis rapide</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- À PROPOS - BANNIÈRE DE BIENVENUE -->
-  <section class="bienvenue-section fade-in">
-    <div class="banniere-bienvenue">
-      <div class="banniere-overlay">
-        <div class="container">
-          <h2>Bienvenue chez R3D PRINT CI</h2>
-          <p>
-            Chez <strong>R3D PRINT CI</strong>, nous allions <strong>précision</strong>, <strong>design</strong> et
-            <strong>innovation</strong> pour donner vie à vos idées.
-          </p>
-          <p style="margin-top:15px;">
-            Que ce soit pour la création d’objets décoratifs, de prototypes techniques ou de pièces sur mesure,
-            notre équipe vous accompagne de la conception à la réalisation avec soin et expertise.
-          </p>
-          <a href="services.html" class="btn gold halo-anim" style="margin-top:30px;">Découvrir nos services</a>
-        </div>
+<!-- À PROPOS - BANNIÈRE DE BIENVENUE CENTRÉE -->
+<section class="bienvenue-section fade-in">
+  <div class="banniere-bienvenue">
+    <div class="banniere-overlay">
+      <div class="container bienvenue-contenu">
+        <h2>Bienvenue chez R3D PRINT CI</h2>
+        <p>
+          Chez <strong>R3D PRINT CI</strong>, nous allions <strong>précision</strong>, <strong>design</strong> et
+          <strong>innovation</strong> pour donner vie à vos idées.
+        </p>
+        <p style="margin-top:15px;">
+          Que ce soit pour la création d’objets décoratifs, de prototypes techniques ou de pièces sur mesure,
+          notre équipe vous accompagne de la conception à la réalisation avec soin et expertise.
+        </p>
+        <a href="services.html" class="btn gold halo-anim" style="margin-top:30px;">Découvrir nos services</a>
       </div>
     </div>
-  </section>
-
-  <!-- NOS SERVICES -->
-  <section class="fade-in" style="background:#fffaf0;padding:80px 20px;">
-    <div class="container">
-      <h2>Nos services</h2>
-      <p style="text-align:center;color:#555;max-width:700px;margin:0 auto 30px;">
-        Explorez nos domaines d’expertise — impression 3D, gravure laser et prototypage.
-      </p>
-
-      <div class="services-grid">
-        <article class="card slide-in-left">
-          <img src="assets/impression3d.webp" alt="Impression 3D" loading="lazy" />
-          <h3>Impression 3D</h3>
-          <p>
-            Donnez forme à vos projets grâce à une impression 3D de haute précision, adaptée à vos besoins personnels ou professionnels.
-          </p>
-          <a href="services.html" class="btn gold">En savoir plus</a>
-        </article>
-
-        <article class="card fade-in">
-          <img src="assets/gravurelaser.webp" alt="Gravure laser" loading="lazy" />
-          <h3>Gravure laser</h3>
-          <p>
-            Personnalisez vos supports avec élégance : gravure sur métal, bois, verre ou plastique, pour des créations uniques.
-          </p>
-          <a href="services.html" class="btn gold">Découvrir</a>
-        </article>
-
-        <article class="card slide-in-right">
-          <img src="assets/prototypage.webp" alt="Prototypage rapide" loading="lazy" />
-          <h3>Prototypage</h3>
-          <p>
-            Testez vos idées avant la production finale : prototypes fonctionnels, pièces techniques ou maquettes détaillées.
-          </p>
-          <a href="services.html" class="btn gold">Explorer</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- RÉALISATIONS -->
-  <section class="fade-in" style="padding:80px 20px;">
-    <div class="container">
-      <h2>Quelques réalisations</h2>
-      <p style="text-align:center;color:#555;max-width:700px;margin:0 auto 30px;">
-        Un aperçu de notre savoir-faire. Découvrez plus de projets sur la page
-        <a href="realisations.html" class="contact-link" style="color:#c9af6b;">Réalisations</a>.
-      </p>
-
-      <div class="realisation-grid">
-        <article class="realisation-item slide-in-left">
-          <img src="assets/shot1.jpg" alt="Trophée doré" loading="lazy" />
-        </article>
-
-        <article class="realisation-item fade-in">
-          <img src="assets/shot2.jpg" alt="Gravure sur métal" loading="lazy" />
-        </article>
-
-        <article class="realisation-item slide-in-right">
-          <img src="assets/shot3.jpg" alt="Prototype rapide" loading="lazy" />
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- POURQUOI NOUS CHOISIR -->
-  <section class="fade-in" style="background:#fffaf0;padding:80px 20px;">
-    <div class="container">
-      <h2>Pourquoi choisir R3D PRINT CI ?</h2>
-      <div class="services-grid">
-        <article class="card">
-          <h3>Qualité</h3>
-          <p>Des finitions impeccables et des matériaux rigoureusement sélectionnés.</p>
-        </article>
-        <article class="card">
-          <h3>Innovation</h3>
-          <p>Des technologies de pointe pour des résultats précis et modernes.</p>
-        </article>
-        <article class="card">
-          <h3>Réactivité</h3>
-          <p>Une équipe disponible et flexible pour répondre rapidement à vos besoins.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="fade-in" style="text-align:center;padding:80px 20px;">
-    <h2>Prêt à concrétiser votre projet ?</h2>
-    <p>Nous vous accompagnons de l’idée au produit fini, avec passion et précision.</p>
-    <a href="devis.html" class="btn gold halo-anim" style="margin-top:15px;">Demander un devis</a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer fade-in">
-    <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
-  </footer>
-
-  <!-- Script -->
-  <script defer src="assets/main.js?v=14"></script>
-</body>
-</html>
+  </div>
+</section>
