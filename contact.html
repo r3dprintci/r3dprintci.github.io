@@ -4,18 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – R3D PRINT CI</title>
-  <meta name="description" content="Contactez R3D PRINT CI à Abidjan pour vos projets d’impression 3D, gravure laser et prototypage sur mesure.">
-  <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/style.css" />
 </head>
-
 <body>
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
+      <a href="index.html"><img src="assets/logo.png" class="logo" alt="R3D PRINT CI"></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -29,75 +24,38 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero fade-in">
     <div class="container">
       <h1>Contactez-nous</h1>
-      <p>Notre équipe vous répond dans les plus brefs délais.</p>
+      <p>Une équipe réactive à votre écoute.</p>
     </div>
   </section>
 
-  <!-- SECTION CONTACT -->
   <section class="fade-in">
-    <div class="container contact-container">
-      
-      <!-- COORDONNÉES -->
-      <div class="contact-info">
-        <h2>Nos coordonnées</h2>
-        <p>
-          📍 <strong>Adresse :</strong><br>
-          Abidjan, Côte d’Ivoire<br><br>
-
-          📞 <strong>Téléphone :</strong><br>
-          <a href="tel:+22507070707" class="contact-link">+225 07 07 07 07</a><br><br>
-
-          💬 <strong>WhatsApp :</strong><br>
-          <a href="https://wa.me/22507070707" target="_blank" class="contact-link">+225 07 07 07 07</a><br><br>
-
-          ✉️ <strong>Email :</strong><br>
-          <a href="mailto:contact@r3dprintci.com" class="contact-link">contact@r3dprintci.com</a>
-        </p>
-
-        <div class="contact-divider"></div>
-
-        <p style="font-style:italic;text-align:center;">
-          R3D PRINT CI – L’art de donner vie à vos idées.
-        </p>
+    <div class="container form-grid">
+      <label>Nom complet</label>
+      <input type="text" placeholder="Votre nom complet">
+      <label>Email</label>
+      <input type="text" placeholder="Votre adresse e-mail">
+      <label>Message</label>
+      <textarea placeholder="Votre message..." rows="5"></textarea>
+      <div class="form-actions">
+        <button class="btn gold halo-anim">Envoyer le message</button>
       </div>
+    </div>
 
-      <!-- FORMULAIRE -->
-      <div class="contact-form">
-        <h2>Envoyez-nous un message</h2>
-        <form id="contactForm" style="display:flex;flex-direction:column;gap:15px;">
-          <label>Nom complet</label>
-          <input type="text" placeholder="Votre nom complet" required>
-
-          <label>Adresse e-mail</label>
-          <input type="email" placeholder="exemple@email.com" required>
-
-          <label>Message</label>
-          <textarea rows="5" placeholder="Décrivez votre demande ici..." required></textarea>
-
-          <button class="btn gold halo-anim" type="submit">Envoyer le message</button>
-        </form>
-      </div>
+    <div class="container" style="text-align:center;margin-top:50px;">
+      <h2>Nos coordonnées</h2>
+      <p><strong>📍 Adresse :</strong> Abidjan, Côte d’Ivoire</p>
+      <p><strong>📞 Téléphone :</strong> +225 07 77 77 77 77</p>
+      <p><strong>📧 Email :</strong> contact@r3dprint.pro</p>
+      <p><strong>💬 WhatsApp :</strong> +225 07 77 77 77 77</p>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta fade-in">
-    <div class="container">
-      <h2>Besoin d’un devis rapide ?</h2>
-      <p>Accédez à notre formulaire complet en ligne en un clic.</p>
-      <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
-
   <script defer src="assets/main.js"></script>
 </body>
 </html>
