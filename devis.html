@@ -3,14 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demande de devis – R3D PRINT CI</title>
+  <title>Demander un devis – R3D PRINT CI</title>
+  <meta name="description" content="Demandez un devis personnalisé pour vos projets d’impression 3D, gravure laser ou prototypage sur mesure.">
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c9af6b" />
+  <link rel="stylesheet" href="assets/style.css?v=9" />
 </head>
+
 <body>
-  <header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header fade-in">
     <div class="container">
-      <a href="index.html"><img src="assets/logo.png" class="logo" alt="R3D PRINT CI"></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -24,31 +31,45 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero fade-in">
     <div class="container">
-      <h1>Demander un devis</h1>
-      <p>Choisissez le type de service et décrivez votre projet.</p>
+      <h1>Demandez votre devis sur mesure</h1>
+      <p>Choisissez un service, précisez vos besoins et recevez une estimation rapide.</p>
     </div>
   </section>
 
+  <!-- CHOIX DU SERVICE -->
   <section class="fade-in">
     <div class="container">
+      <h2>Quel service souhaitez-vous ?</h2>
       <div class="service-selector">
-        <button class="service-choice" data-service="3d">Impression 3D</button>
-        <button class="service-choice" data-service="laser">Gravure laser</button>
-        <button class="service-choice" data-service="proto">Prototypage</button>
+        <button class="service-choice" data-service="3d">🧱 Impression 3D</button>
+        <button class="service-choice" data-service="laser">🔦 Gravure Laser</button>
+        <button class="service-choice" data-service="proto">⚙️ Prototypage</button>
       </div>
 
-      <div id="formContainer"></div>
+      <!-- FORMULAIRE GÉNÉRÉ DYNAMIQUEMENT -->
+      <div id="formContainer" class="form-grid"></div>
+
+      <!-- RÉSUMÉ FINAL -->
       <div id="resume"></div>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <!-- CTA -->
+  <section class="fade-in" style="text-align:center;padding:60px 20px;">
+    <h2>Un projet ? Une idée ?</h2>
+    <p>Contactez-nous pour toute demande spécifique ou projet sur mesure.</p>
+    <a href="contact.html" class="btn gold halo-anim">📞 Nous contacter</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer fade-in">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <script defer src="assets/devis.js"></script>
-  <script defer src="assets/main.js"></script>
+  <script src="assets/main.js?v=9" defer></script>
+  <script src="assets/devis.js?v=9" defer></script>
 </body>
 </html>
