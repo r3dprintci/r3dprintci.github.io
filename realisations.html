@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos réalisations – R3D PRINT CI</title>
+  <title>Nos Réalisations – R3D PRINT CI</title>
+  <meta name="description" content="Découvrez les projets réalisés par R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
+
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css?v=12" />
+
+  <!-- Empêcher le flash blanc -->
+  <style>body{opacity:0;transition:opacity .4s ease}</style>
+  <script>
+    window.addEventListener('load', ()=>document.body.style.opacity='1');
+  </script>
 </head>
+
 <body>
-  <header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header fade-in">
     <div class="container">
-      <a href="index.html"><img src="assets/logo.png" class="logo" alt="R3D PRINT CI"></a>
+      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -24,25 +34,61 @@
     </div>
   </header>
 
-  <section class="hero fade-in">
+  <!-- SECTION PRINCIPALE -->
+  <section class="fade-in">
     <div class="container">
       <h1>Quelques réalisations</h1>
-      <p>Découvrez un aperçu de nos projets récents.</p>
+      <p>Explorez nos créations : impression 3D, gravure laser et projets de prototypage réalisés pour nos clients à Abidjan et ailleurs.</p>
+
+      <!-- Filtres -->
+      <div class="service-selector fade-in">
+        <button class="service-choice active">Tout</button>
+        <button class="service-choice">Impression 3D</button>
+        <button class="service-choice">Gravure Laser</button>
+        <button class="service-choice">Prototypage</button>
+      </div>
+
+      <!-- Galerie -->
+      <div class="realisation-grid">
+        <article class="realisation-item slide-in-left">
+          <img src="assets/shot1.jpg" alt="Trophée doré" loading="lazy" />
+          <h3>Trophée Doré</h3>
+          <p>Impression 3D finition or mat pour un tournoi d’entreprise.</p>
+        </article>
+
+        <article class="realisation-item fade-in">
+          <img src="assets/shot2.jpg" alt="Gravure sur métal" loading="lazy" />
+          <h3>Gravure sur Métal</h3>
+          <p>Gravure laser 1064nm sur plaque en aluminium brossé.</p>
+        </article>
+
+        <article class="realisation-item slide-in-right">
+          <img src="assets/shot3.jpg" alt="Prototype fonctionnel" loading="lazy" />
+          <h3>Prototype Technique</h3>
+          <p>Conception et impression d’un prototype mécanique sur mesure.</p>
+        </article>
+
+        <article class="realisation-item fade-in">
+          <img src="assets/shot4.jpg" alt="Pièce décorative" loading="lazy" />
+          <h3>Pièce décorative</h3>
+          <p>Objet design imprimé en PLA soie doré pour un projet décoratif.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="fade-in">
-    <div class="container realisation-grid">
-      <article><img src="assets/shot1.jpg" alt="Trophée doré"></article>
-      <article><img src="assets/shot2.jpg" alt="Gravure métal"></article>
-      <article><img src="assets/shot3.jpg" alt="Prototype rapide"></article>
-      <article><img src="assets/shot4.jpg" alt="Pièce décorative"></article>
-    </div>
+  <!-- CTA -->
+  <section class="fade-in" style="text-align:center;padding:80px 20px;">
+    <h2>Envie de concrétiser votre idée ?</h2>
+    <p>Nous réalisons vos projets sur mesure avec passion et précision.</p>
+    <a href="devis.html" class="btn gold halo-anim" style="margin-top:20px;">Demander un devis</a>
   </section>
 
-  <footer class="site-footer">
+  <!-- FOOTER -->
+  <footer class="site-footer fade-in">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
-  <script defer src="assets/main.js"></script>
+
+  <script defer src="assets/main.js?v=12"></script>
 </body>
 </html>
