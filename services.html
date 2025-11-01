@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos services – R3D PRINT CI</title>
+  <title>Nos Services – R3D PRINT CI</title>
+  <meta name="description" content="Découvrez les services de R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
+
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css?v=12" />
+
+  <!-- Empêcher le flash blanc -->
+  <style>body{opacity:0;transition:opacity .4s ease}</style>
+  <script>
+    window.addEventListener('load', ()=>document.body.style.opacity='1');
+  </script>
 </head>
+
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html"><img src="assets/logo.png" class="logo" alt="R3D PRINT CI"></a>
+      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -24,36 +34,46 @@
     </div>
   </header>
 
-  <section class="hero fade-in">
-    <div class="container">
-      <h1>Nos services</h1>
-      <p>Impression 3D, gravure laser et prototypage sur mesure à Abidjan.</p>
-    </div>
-  </section>
-
+  <!-- SECTION PRINCIPALE -->
   <section class="fade-in">
-    <div class="container services-grid">
-      <article class="card slide-in-left">
-        <img src="assets/impression3d.webp" alt="Impression 3D">
-        <h2>Impression 3D</h2>
-        <p>Des impressions précises pour tous vos besoins, du prototype à la pièce décorative.</p>
-      </article>
-      <article class="card fade-in">
-        <img src="assets/gravurelaser.webp" alt="Gravure laser">
-        <h2>Gravure laser</h2>
-        <p>Gravure et découpe sur bois, métal, plexiglas, verre et cuir.</p>
-      </article>
-      <article class="card slide-in-right">
-        <img src="assets/prototypage.webp" alt="Prototypage">
-        <h2>Prototypage</h2>
-        <p>Du concept à la réalité, nous transformons vos idées en prototypes tangibles.</p>
-      </article>
+    <div class="container">
+      <h1>Nos Services</h1>
+      <p>De l'idée à la réalisation, nous vous accompagnons dans tous vos projets personnalisés à Abidjan et ailleurs.</p>
+
+      <div class="services-grid">
+        <article class="card slide-in-left">
+          <img src="assets/impression3d.webp" alt="Impression 3D" loading="lazy" />
+          <h3>Impression 3D</h3>
+          <p>Création sur mesure, production de pièces techniques, décoratives ou artistiques, avec une précision millimétrique.</p>
+        </article>
+
+        <article class="card fade-in">
+          <img src="assets/gravurelaser.webp" alt="Gravure laser" loading="lazy" />
+          <h3>Gravure Laser</h3>
+          <p>Gravure fine sur métal, verre, bois, plastique et cuir pour des projets professionnels et décoratifs uniques.</p>
+        </article>
+
+        <article class="card slide-in-right">
+          <img src="assets/prototypage.webp" alt="Prototypage" loading="lazy" />
+          <h3>Prototypage Rapide</h3>
+          <p>Testez vos idées, concevez des prototypes fonctionnels et ajustez vos modèles avant la production finale.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <!-- CTA -->
+  <section class="fade-in" style="text-align:center;padding:70px 20px;">
+    <h2>Besoin d’un accompagnement sur mesure ?</h2>
+    <p>Contactez-nous dès maintenant pour concrétiser votre idée.</p>
+    <a href="devis.html" class="btn gold halo-anim" style="margin-top:20px;">Demander un devis</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer fade-in">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
-  <script defer src="assets/main.js"></script>
+
+  <script defer src="assets/main.js?v=12"></script>
 </body>
 </html>
