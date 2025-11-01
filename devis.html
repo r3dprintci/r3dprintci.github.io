@@ -3,41 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demander un devis – R3D PRINT CI</title>
-  <meta name="description" content="Obtenez un devis rapide pour vos projets d'impression 3D, de gravure laser ou de prototypage sur mesure avec R3D PRINT CI.">
-
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
+  <title>Demande de devis – R3D PRINT CI</title>
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="assets/style.css?v=6" />
+  <link rel="stylesheet" href="/assets/style.css" />
 </head>
-
 <body>
-  <!-- Nettoyage des caches anciens -->
-  <script>
-    (function () {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function (regs) {
-          regs.forEach(function (r) { r.unregister(); });
-        });
-      }
-      if (window.caches && caches.keys) {
-        caches.keys().then(function (keys) {
-          keys.forEach(function (k) { caches.delete(k); });
-        });
-      }
-    })();
-  </script>
-
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
+      <a href="index.html"><img src="assets/logo.png" class="logo" alt="R3D PRINT CI"></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -51,48 +24,31 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero fade-in">
     <div class="container">
-      <h1>Demandez votre devis sur mesure</h1>
-      <p>Choisissez votre type de projet et recevez un devis détaillé dans les plus brefs délais.</p>
+      <h1>Demander un devis</h1>
+      <p>Choisissez le type de service et décrivez votre projet.</p>
     </div>
   </section>
 
-  <!-- CHOIX DE SERVICE -->
   <section class="fade-in">
     <div class="container">
-      <h2>Choisissez le service souhaité</h2>
       <div class="service-selector">
-        <button class="service-choice" data-service="3d">🧱 Impression 3D</button>
-        <button class="service-choice" data-service="laser">💎 Gravure Laser</button>
-        <button class="service-choice" data-service="proto">⚙️ Prototypage</button>
+        <button class="service-choice" data-service="3d">Impression 3D</button>
+        <button class="service-choice" data-service="laser">Gravure laser</button>
+        <button class="service-choice" data-service="proto">Prototypage</button>
       </div>
+
+      <div id="formContainer"></div>
+      <div id="resume"></div>
     </div>
   </section>
 
-  <!-- FORMULAIRE -->
-  <section>
-    <div class="container">
-      <div id="formContainer" class="fade-in"></div>
-      <div id="resume" class="fade-in"></div>
-    </div>
-  </section>
-
-  <!-- CTA SUPPLÉMENTAIRE -->
-  <section style="text-align:center;padding:80px 20px;">
-    <h2>Besoin d’aide pour définir votre projet ?</h2>
-    <p>Notre équipe est disponible pour vous guider dans le choix du service le plus adapté.</p>
-    <a href="contact.html" class="btn gold halo-anim" style="margin-top:15px;">📞 Contactez-nous</a>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script defer src="assets/main.js?v=6"></script>
-  <script defer src="assets/devis.js?v=6"></script>
+  <script defer src="assets/devis.js"></script>
+  <script defer src="assets/main.js"></script>
 </body>
 </html>
