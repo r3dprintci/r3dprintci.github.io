@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#c9af6b" />
-  <link rel="stylesheet" href="assets/style.css?v=10" />
+  <link rel="stylesheet" href="assets/style.css?v=11" />
 </head>
 
 <body>
@@ -82,24 +82,59 @@
   </section>
 
   <!-- FORMULAIRE -->
-  <section class="fade-in">
-    <div class="container" style="max-width:700px;margin:auto;padding:50px 20px;">
-      <h2 style="text-align:center;color:#c9af6b;margin-bottom:30px;">Envoyez-nous un message</h2>
-      <form class="form-grid">
-        <label>Nom complet</label>
-        <input type="text" placeholder="Votre nom complet" required>
+  <section class="fade-in" style="padding:70px 20px;">
+    <div class="container" style="max-width:700px;margin:auto;">
+      <h2 style="text-align:center;color:#c9af6b;margin-bottom:40px;">Envoyez-nous un message</h2>
+      <form class="form-grid" style="
+        background:#fff;
+        border-radius:16px;
+        padding:40px 35px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.05);
+        border:1px solid #eee;
+      ">
+        <label style="font-weight:600;color:#444;">Nom complet</label>
+        <input type="text" placeholder="Votre nom complet" required style="
+          padding:14px;
+          border-radius:8px;
+          border:1.8px solid #ddd;
+          font-size:1rem;
+          transition:all 0.3s ease;
+        ">
 
-        <label>Email</label>
-        <input type="email" placeholder="exemple@email.com" required>
+        <label style="font-weight:600;color:#444;">Email</label>
+        <input type="email" placeholder="exemple@email.com" required style="
+          padding:14px;
+          border-radius:8px;
+          border:1.8px solid #ddd;
+          font-size:1rem;
+          transition:all 0.3s ease;
+        ">
 
-        <label>Objet</label>
-        <input type="text" placeholder="Sujet de votre message">
+        <label style="font-weight:600;color:#444;">Objet</label>
+        <input type="text" placeholder="Sujet de votre message" style="
+          padding:14px;
+          border-radius:8px;
+          border:1.8px solid #ddd;
+          font-size:1rem;
+          transition:all 0.3s ease;
+        ">
 
-        <label>Message</label>
-        <textarea rows="5" placeholder="Votre message ici..." required></textarea>
+        <label style="font-weight:600;color:#444;">Message</label>
+        <textarea rows="5" placeholder="Votre message ici..." required style="
+          padding:14px;
+          border-radius:8px;
+          border:1.8px solid #ddd;
+          font-size:1rem;
+          transition:all 0.3s ease;
+          resize:none;
+        "></textarea>
 
-        <div class="form-actions">
-          <button type="submit" class="btn gold halo-anim">📨 Envoyer</button>
+        <div class="form-actions" style="text-align:center;margin-top:25px;">
+          <button type="submit" class="btn gold halo-anim" style="
+            padding:14px 35px;
+            font-size:1.05rem;
+            border-radius:50px;
+          ">📨 Envoyer le message</button>
         </div>
       </form>
     </div>
@@ -110,6 +145,6 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <script src="assets/main.js?v=10" defer></script>
+  <script src="assets/main.js?v=11" defer></script>
 </body>
 </html>
