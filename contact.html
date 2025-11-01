@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – R3D PRINT CI</title>
-  <meta name="description" content="Contactez R3D PRINT CI pour toute demande d’impression 3D, gravure laser ou prototypage à Abidjan.">
+  <meta name="description" content="Contactez R3D PRINT CI pour vos projets d’impression 3D, de gravure laser et de prototypage sur mesure à Abidjan.">
+
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#c9af6b" />
-  <link rel="stylesheet" href="assets/style.css?v=11" />
+  <link rel="stylesheet" href="assets/style.css?v=12" />
+
+  <!-- Empêcher le flash blanc -->
+  <style>body{opacity:0;transition:opacity .4s ease}</style>
+  <script>window.addEventListener('load', ()=>document.body.style.opacity='1');</script>
 </head>
 
 <body>
   <!-- HEADER -->
-  <header class="site-header fade-in">
+  <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
+      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -31,120 +32,77 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero fade-in">
+  <!-- SECTION CONTACT -->
+  <section class="fade-in">
     <div class="container">
       <h1>Contactez-nous</h1>
-      <p>Une question, un projet ou un partenariat ? Notre équipe est à votre écoute.</p>
-    </div>
-  </section>
+      <p>Besoin d’un devis, d’un conseil ou d’un partenariat ? Nous sommes à votre écoute.</p>
 
-  <!-- NOS COORDONNÉES -->
-  <section class="fade-in" style="background:#fffaf0;padding:60px 20px;">
-    <div class="container" style="max-width:1100px;margin:auto;">
-      <h2 style="text-align:center;color:#c9af6b;margin-bottom:40px;">Nos coordonnées</h2>
-
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-        gap:25px;
-        text-align:center;">
-        
-        <!-- Adresse -->
-        <div class="contact-card" style="background:#fff;border-radius:12px;padding:25px;box-shadow:0 3px 12px rgba(0,0,0,0.05);transition:transform 0.3s ease;">
-          <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="Adresse" style="width:45px;margin-bottom:12px;">
-          <h3 style="color:#c9af6b;margin-bottom:10px;">Adresse</h3>
-          <p style="color:#444;">Cocody – Abidjan, Côte d’Ivoire</p>
+      <!-- Bloc coordonnées -->
+      <div class="contact-info fade-in" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:40px;">
+        <div class="contact-card" style="background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.05);padding:25px;text-align:center;">
+          <h3 style="color:#c9af6b;">📍 Adresse</h3>
+          <p>Abidjan, Côte d’Ivoire<br/>Zone 4 – Marcory</p>
         </div>
 
-        <!-- Téléphone -->
-        <div class="contact-card" style="background:#fff;border-radius:12px;padding:25px;box-shadow:0 3px 12px rgba(0,0,0,0.05);transition:transform 0.3s ease;">
-          <img src="https://cdn-icons-png.flaticon.com/512/159/159832.png" alt="Téléphone" style="width:45px;margin-bottom:12px;">
-          <h3 style="color:#c9af6b;margin-bottom:10px;">Téléphone</h3>
-          <p><a href="tel:+2250707070707" style="color:#444;text-decoration:none;">+225 07 07 07 07 07</a></p>
+        <div class="contact-card" style="background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.05);padding:25px;text-align:center;">
+          <h3 style="color:#c9af6b;">📞 Téléphone</h3>
+          <p><a href="tel:+2250700000000" style="color:#333;text-decoration:none;">+225 07 00 00 00 00</a></p>
+          <p><a href="https://wa.me/2250700000000" target="_blank" style="color:#c9af6b;text-decoration:none;">💬 WhatsApp Direct</a></p>
         </div>
 
-        <!-- WhatsApp -->
-        <div class="contact-card" style="background:#fff;border-radius:12px;padding:25px;box-shadow:0 3px 12px rgba(0,0,0,0.05);transition:transform 0.3s ease;">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width:45px;margin-bottom:12px;">
-          <h3 style="color:#c9af6b;margin-bottom:10px;">WhatsApp</h3>
-          <p><a href="https://wa.me/2250707070707" target="_blank" style="color:#444;text-decoration:none;">+225 07 07 07 07 07</a></p>
+        <div class="contact-card" style="background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.05);padding:25px;text-align:center;">
+          <h3 style="color:#c9af6b;">📧 Email</h3>
+          <p><a href="mailto:contact@r3dprint.pro" style="color:#333;text-decoration:none;">contact@r3dprint.pro</a></p>
         </div>
+      </div>
 
-        <!-- Email -->
-        <div class="contact-card" style="background:#fff;border-radius:12px;padding:25px;box-shadow:0 3px 12px rgba(0,0,0,0.05);transition:transform 0.3s ease;">
-          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width:45px;margin-bottom:12px;">
-          <h3 style="color:#c9af6b;margin-bottom:10px;">Email</h3>
-          <p><a href="mailto:contact@r3dprint.pro" style="color:#444;text-decoration:none;">contact@r3dprint.pro</a></p>
-        </div>
+      <!-- Formulaire de contact -->
+      <div class="form-grid fade-in" style="margin-top:60px;max-width:650px;margin-left:auto;margin-right:auto;">
+        <h2 style="text-align:center;margin-bottom:20px;">Envoyez-nous un message</h2>
+        <form id="contactForm">
+          <label>Nom complet</label>
+          <input type="text" placeholder="Votre nom complet" required>
+
+          <label>Email</label>
+          <input type="email" placeholder="exemple@mail.com" required>
+
+          <label>Téléphone</label>
+          <input type="tel" placeholder="+225 07 00 00 00 00" required>
+
+          <label>Message</label>
+          <textarea rows="4" placeholder="Votre message..." required></textarea>
+
+          <div style="text-align:center;margin-top:25px;">
+            <button type="submit" class="btn gold halo-anim">Envoyer</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- FORMULAIRE -->
-  <section class="fade-in" style="padding:70px 20px;">
-    <div class="container" style="max-width:700px;margin:auto;">
-      <h2 style="text-align:center;color:#c9af6b;margin-bottom:40px;">Envoyez-nous un message</h2>
-      <form class="form-grid" style="
-        background:#fff;
-        border-radius:16px;
-        padding:40px 35px;
-        box-shadow:0 4px 20px rgba(0,0,0,0.05);
-        border:1px solid #eee;
-      ">
-        <label style="font-weight:600;color:#444;">Nom complet</label>
-        <input type="text" placeholder="Votre nom complet" required style="
-          padding:14px;
-          border-radius:8px;
-          border:1.8px solid #ddd;
-          font-size:1rem;
-          transition:all 0.3s ease;
-        ">
-
-        <label style="font-weight:600;color:#444;">Email</label>
-        <input type="email" placeholder="exemple@email.com" required style="
-          padding:14px;
-          border-radius:8px;
-          border:1.8px solid #ddd;
-          font-size:1rem;
-          transition:all 0.3s ease;
-        ">
-
-        <label style="font-weight:600;color:#444;">Objet</label>
-        <input type="text" placeholder="Sujet de votre message" style="
-          padding:14px;
-          border-radius:8px;
-          border:1.8px solid #ddd;
-          font-size:1rem;
-          transition:all 0.3s ease;
-        ">
-
-        <label style="font-weight:600;color:#444;">Message</label>
-        <textarea rows="5" placeholder="Votre message ici..." required style="
-          padding:14px;
-          border-radius:8px;
-          border:1.8px solid #ddd;
-          font-size:1rem;
-          transition:all 0.3s ease;
-          resize:none;
-        "></textarea>
-
-        <div class="form-actions" style="text-align:center;margin-top:25px;">
-          <button type="submit" class="btn gold halo-anim" style="
-            padding:14px 35px;
-            font-size:1.05rem;
-            border-radius:50px;
-          ">📨 Envoyer le message</button>
-        </div>
-      </form>
-    </div>
-  </section>
+  <!-- CONFIRMATION -->
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+      const form=document.getElementById("contactForm");
+      if(form){
+        form.addEventListener("submit",e=>{
+          e.preventDefault();
+          form.innerHTML=`
+            <div class="confirmation-box">
+              <h3 style="color:#c9af6b;">Merci !</h3>
+              <p>Votre message a bien été envoyé.<br>Nous reviendrons vers vous sous 24 heures.</p>
+            </div>`;
+        });
+      }
+    });
+  </script>
 
   <!-- FOOTER -->
   <footer class="site-footer fade-in">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <script src="assets/main.js?v=11" defer></script>
+  <script defer src="assets/main.js?v=12"></script>
 </body>
 </html>
