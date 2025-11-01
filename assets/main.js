@@ -1,17 +1,6 @@
 /* ============================================================
-   R3D PRINT CI – Script principal
-   Version Premium 2025 (sécurisée et fluide)
+   R3D PRINT CI – SCRIPT PRINCIPAL PREMIUM 2025
    ============================================================ */
-
-/* --- Apparition fluide & fond propre --- */
-document.documentElement.style.backgroundColor = "#fff";
-document.body.style.opacity = "0";
-document.body.style.transition = "opacity 0.6s ease";
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.body.style.opacity = "1";
-  }, 120);
-});
 
 /* --- MENU HAMBURGER --- */
 function toggleMenu() {
@@ -22,61 +11,77 @@ function toggleMenu() {
   btn.classList.toggle("is-active");
 }
 
-/* --- INITIALISATION --- */
+/* --- FERMETURE AUTOMATIQUE DU MENU --- */
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".hamburger");
   const nav = document.getElementById("navMenu");
 
-  // Ouvrir / fermer le menu
   if (btn) btn.addEventListener("click", toggleMenu);
 
-  // Fermer le menu quand on clique sur un lien
+  // Ferme le menu au clic sur un lien
   if (nav) {
-    nav.querySelectorAll("a").forEach(link => {
+    nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
-        btn.classList.remove("is-active");
+        if (btn) btn.classList.remove("is-active");
       });
     });
   }
+});
 
-  /* --- ANIMATIONS AU SCROLL --- */
-  const reveals = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
-  const reveal = () => {
+/* --- ANIMATIONS D’APPARITION AU SCROLL --- */
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedElements = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
+
+  const revealOnScroll = () => {
     const windowHeight = window.innerHeight;
-    reveals.forEach(el => {
-      if (el.getBoundingClientRect().top < windowHeight - 100) {
+    animatedElements.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      if (top < windowHeight - 100) {
         el.classList.add("visible");
       }
     });
   };
-  window.addEventListener("scroll", reveal);
-  reveal();
 
-  /* --- Service Worker (mise en cache intelligente) --- */
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js").then(reg => {
-      console.log("✅ Service Worker actif :", reg.scope);
-    }).catch(err => {
-      console.warn("❌ Service Worker erreur :", err);
-    });
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+  revealOnScroll();
+});
+
+/* --- TRANSITION DOUCE AU CHARGEMENT --- */
+window.addEventListener("load", () => {
+  document.body.style.opacity = "0";
+  document.body.style.transition = "opacity 0.6s ease";
+  setTimeout(() => {
+    document.body.style.opacity = "1";
+  }, 100);
+});
+
+/* --- NETTOYAGE AUTOMATIQUE DU CACHE ET SERVICE WORKER --- */
+(async () => {
+  try {
+    // Supprime les anciens caches
+    if (window.caches && caches.keys) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => caches.delete(k)));
+    }
+
+    // Désenregistre les anciens service workers
+    if ("serviceWorker" in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const r of regs) await r.unregister();
+    }
+  } catch (e) {
+    console.warn("Nettoyage du cache ignoré :", e);
   }
-});
+})();
 
-/* --- DÉTECTION HORS LIGNE / EN LIGNE --- */
-window.addEventListener("offline", () => {
-  const banner = document.createElement("div");
-  banner.id = "offlineBanner";
-  banner.textContent = "⚠️ Vous êtes hors ligne – affichage depuis le cache";
-  banner.style.cssText = `
-    position: fixed; top: 0; left: 0; right: 0;
-    background: #c9af6b; color: #fff; text-align: center;
-    padding: 8px; font-size: 14px; z-index: 9999;
-  `;
-  document.body.appendChild(banner);
-});
+/* --- REDIRECTION HTTPS ET CORRECTION DE L’INDEX --- */
+if (window.location.protocol !== "https:") {
+  window.location.href = "https://" + window.location.host + window.location.pathname;
+}
 
-window.addEventListener("online", () => {
-  const banner = document.getElementById("offlineBanner");
-  if (banner) banner.remove();
-});
+// Si on accède à la racine sans fichier index.html, on force la redirection
+if (window.location.pathname === "/" || window.location.pathname === "") {
+  window.location.replace(window.location.origin + "/index.html");
+}
