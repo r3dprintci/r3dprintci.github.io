@@ -9,10 +9,10 @@
   <!-- Icône -->
   <link rel="icon" href="assets/logo.png" type="image/png" />
 
-  <!-- Styles (v12) -->
-  <link rel="stylesheet" href="assets/style.css?v=12" />
+  <!-- Style principal -->
+  <link rel="stylesheet" href="assets/style.css?v=13" />
 
-  <!-- Anti-flash blanc (affiche la page seulement après le chargement) -->
+  <!-- Anti-flash blanc -->
   <style>body{opacity:0;transition:opacity .4s ease}</style>
   <script>window.addEventListener('load',()=>document.body.style.opacity='1');</script>
 </head>
@@ -51,81 +51,86 @@
   </section>
 
   <!-- À PROPOS -->
-  <section class="fade-in">
-    <div class="container">
+  <section class="fade-in" style="padding:80px 20px;background:#fff;">
+    <div class="container" style="max-width:900px;text-align:center;">
       <h2>Bienvenue chez R3D PRINT CI</h2>
-      <p>
-        Nous allions précision, design et innovation pour transformer vos idées en objets concrets.
-        Découvrez notre univers, où artisanat et technologie 3D se rencontrent.
+      <p style="font-size:1.1rem;color:#555;margin-top:15px;">
+        Chez <strong>R3D PRINT CI</strong>, nous allions <strong>précision</strong>, <strong>design</strong> et
+        <strong>innovation</strong> pour donner vie à vos idées.
+        <br><br>
+        Que ce soit pour la création d’objets décoratifs, de prototypes techniques ou de pièces sur mesure,
+        notre équipe vous accompagne de la conception à la réalisation avec soin et expertise.
       </p>
+      <a href="services.html" class="btn gold halo-anim" style="margin-top:30px;">Découvrir nos services</a>
     </div>
   </section>
 
-  <!-- NOS SERVICES (aperçu) -->
-  <section class="fade-in">
+  <!-- NOS SERVICES -->
+  <section class="fade-in" style="background:#fffaf0;padding:80px 20px;">
     <div class="container">
       <h2>Nos services</h2>
-      <p>
-        Un aperçu de nos domaines d’expertise — découvrez tous les détails sur la page
-        <a href="services.html" class="contact-link">Services</a>.
+      <p style="text-align:center;color:#555;max-width:700px;margin:0 auto 30px;">
+        Explorez nos domaines d’expertise — impression 3D, gravure laser et prototypage.
       </p>
 
       <div class="services-grid">
         <article class="card slide-in-left">
-          <!-- ⚠️ Nom de fichier correct : impression3d.webp -->
           <img src="assets/impression3d.webp" alt="Impression 3D" loading="lazy" />
           <h3>Impression 3D</h3>
-          <p>Réalisez vos pièces sur mesure, prototypes ou objets décoratifs avec une précision millimétrique.</p>
+          <p>
+            Donnez forme à vos projets grâce à une impression 3D de haute précision, adaptée à vos besoins personnels ou professionnels.
+          </p>
           <a href="services.html" class="btn gold">En savoir plus</a>
         </article>
 
         <article class="card fade-in">
           <img src="assets/gravurelaser.webp" alt="Gravure laser" loading="lazy" />
           <h3>Gravure laser</h3>
-          <p>Personnalisez vos supports avec des gravures précises sur métal, bois, verre et plus encore.</p>
+          <p>
+            Personnalisez vos supports avec élégance : gravure sur métal, bois, verre ou plastique, pour des créations uniques.
+          </p>
           <a href="services.html" class="btn gold">Découvrir</a>
         </article>
 
         <article class="card slide-in-right">
           <img src="assets/prototypage.webp" alt="Prototypage rapide" loading="lazy" />
           <h3>Prototypage</h3>
-          <p>De l’idée au modèle tangible — testez, ajustez et finalisez vos projets rapidement.</p>
+          <p>
+            Testez vos idées avant la production finale : prototypes fonctionnels, pièces techniques ou maquettes détaillées.
+          </p>
           <a href="services.html" class="btn gold">Explorer</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- RÉALISATIONS (aperçu) -->
-  <section class="fade-in">
+  <!-- RÉALISATIONS -->
+  <section class="fade-in" style="padding:80px 20px;">
     <div class="container">
       <h2>Quelques réalisations</h2>
-      <p>
-        Un aperçu de notre savoir-faire. Retrouvez davantage d’exemples sur la page
-        <a href="realisations.html" class="contact-link">Réalisations</a>.
+      <p style="text-align:center;color:#555;max-width:700px;margin:0 auto 30px;">
+        Un aperçu de notre savoir-faire. Découvrez plus de projets sur la page
+        <a href="realisations.html" class="contact-link" style="color:#c9af6b;">Réalisations</a>.
       </p>
 
       <div class="realisation-grid">
         <article class="realisation-item slide-in-left">
           <img src="assets/shot1.jpg" alt="Trophée doré" loading="lazy" />
-          <h3 style="margin-top:10px;">Trophée doré</h3>
         </article>
 
         <article class="realisation-item fade-in">
           <img src="assets/shot2.jpg" alt="Gravure sur métal" loading="lazy" />
-          <h3 style="margin-top:10px;">Gravure sur métal</h3>
         </article>
 
         <article class="realisation-item slide-in-right">
           <img src="assets/shot3.jpg" alt="Prototype rapide" loading="lazy" />
-          <h3 style="margin-top:10px;">Prototype rapide</h3>
         </article>
       </div>
     </div>
   </section>
 
   <!-- POURQUOI NOUS CHOISIR -->
-  <section class="fade-in" style="background:#fffaf0;">
+  <section class="fade-in" style="background:#fffaf0;padding:80px 20px;">
     <div class="container">
       <h2>Pourquoi choisir R3D PRINT CI ?</h2>
       <div class="services-grid">
@@ -157,7 +162,7 @@
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- Script principal (v12) -->
-  <script defer src="assets/main.js?v=12"></script>
+  <!-- Script -->
+  <script defer src="assets/main.js?v=13"></script>
 </body>
 </html>
