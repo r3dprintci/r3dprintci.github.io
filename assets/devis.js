@@ -1,5 +1,5 @@
 // =============================================================
-// R3D PRINT CI - DEVIS PREMIUM PDF + WHATSAPP (Version corrigée 2025)
+// R3D PRINT CI - DEMANDE DE DEVIS PAR WHATSAPP (Version stable 2025)
 // =============================================================
 document.addEventListener("DOMContentLoaded", () => {
   const formContainer = document.getElementById("formContainer");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!formContainer || !serviceButtons.length) return;
 
-  // === Boutons de choix de service ===
+  // === Boutons de sélection de service ===
   serviceButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       serviceButtons.forEach(b => b.classList.remove("active"));
@@ -19,12 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Génération du formulaire ===
+  // === Génération du formulaire selon le service ===
   function renderForm(service) {
-    // On vide seulement le container sans détruire l’événement
     formContainer.innerHTML = "";
-
-    // On supprime la classe fade-in qui provoquait le bug d’effacement
     formContainer.classList.remove("fade-in");
 
     let html = "";
@@ -69,10 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     }
 
-    // On injecte le HTML sans animation automatique
+    // Injection sans animation auto
     formContainer.innerHTML = html;
-
-    // On ajoute un léger fondu manuel (plus sûr)
     formContainer.style.opacity = "0";
     setTimeout(() => {
       formContainer.style.transition = "opacity 0.5s ease";
@@ -82,12 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSubmit(service);
   }
 
-  // === Envoi et génération du PDF ===
+  // === Envoi WhatsApp (version texte professionnelle) ===
   function setupSubmit(service) {
     const btn = document.getElementById("submitDevis");
     if (!btn) return;
 
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", () => {
       const date = new Date();
       const dateStr = date.toLocaleDateString("fr-FR");
       const heureStr = date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
@@ -105,74 +100,30 @@ document.addEventListener("DOMContentLoaded", () => {
         : service === "laser" ? "Gravure Laser"
         : "Prototypage";
 
-      const message = `📩 *NOUVELLE DEMANDE DE DEVIS – R3D PRINT CI*
+      const message = `📋 *NOUVELLE DEMANDE DE DEVIS – R3D PRINT CI*
 ──────────────────────────────
-🧱 *Service :* ${serviceName}
+🏷️ *Service :* ${serviceName}
 👤 *Nom :* ${nom}
 📦 *Objet :* ${objet}
 📏 *Dimensions :* ${dimensions}
 🎨 *Couleur(s) :* ${couleur}
-🏷️ *Matériau :* ${materiau}
+🏗️ *Matériau :* ${materiau}
 🔢 *Quantité :* ${quantite}
 📍 *Lieu :* ${lieu}
-📁 *Fichiers :* à envoyer dans cette conversation WhatsApp
 ──────────────────────────────
 🕓 *Date :* ${dateStr} à ${heureStr}
-🌐 *Origine :* https://r3dprint.pro`;
+💬 *Envoyé via :* https://r3dprint.pro
+──────────────────────────────
+📎 *Veuillez envoyer vos photos de référence dans cette conversation WhatsApp.*`;
 
       const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
 
-      // === Génération du PDF ===
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      const logo = new Image();
-      logo.src = "assets/logo.png";
-      await new Promise(res => { logo.onload = res; });
-
-      doc.addImage(logo, "PNG", 80, 10, 50, 25);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(201, 175, 107);
-      doc.text("R3D PRINT CI – DEMANDE DE DEVIS", 105, 50, null, null, "center");
-      doc.setDrawColor(201, 175, 107);
-      doc.line(20, 55, 190, 55);
-
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(40, 40, 40);
-
-      const infos = [
-        `📅 Date : ${dateStr} à ${heureStr}`,
-        `🧱 Service : ${serviceName}`,
-        `👤 Nom : ${nom}`,
-        `📦 Objet : ${objet}`,
-        `📏 Dimensions : ${dimensions}`,
-        `🎨 Couleur(s) : ${couleur}`,
-        `🏷️ Matériau : ${materiau}`,
-        `🔢 Quantité : ${quantite}`,
-        `📍 Lieu : ${lieu}`,
-      ];
-
-      let y = 70;
-      infos.forEach(t => {
-        doc.text(t, 25, y);
-        y += 10;
-      });
-
-      doc.setTextColor(201, 175, 107);
-      doc.text("Merci pour votre confiance.", 105, y + 10, null, null, "center");
-      doc.text("R3D PRINT CI – L’art de donner vie à vos idées", 105, y + 20, null, null, "center");
-      doc.text("Service Client – +225 07 57 84 13 23", 105, y + 30, null, null, "center");
-
-      const fileName = `Devis_R3DPRINTCI_${nom.replace(/\s+/g, "_")}_${dateStr.replace(/\//g, "-")}.pdf`;
-      doc.save(fileName);
-
       resumeContainer.innerHTML = `
         <div class="confirmation-box visible">
           <h3>✅ Devis envoyé avec succès</h3>
-          <p>Merci <strong>${nom}</strong> ! Votre demande de <strong>${serviceName}</strong> a bien été transmise.<br>
-          Le devis PDF a été généré et téléchargé automatiquement.</p>
-          <a href="confirmation.html" class="btn gold halo-anim">Voir la page de confirmation</a>
+          <p>Merci <strong>${nom}</strong> ! Votre demande de <strong>${serviceName}</strong> a bien été transmise via WhatsApp.<br>
+          Vous recevrez une réponse personnalisée sous 24h ouvrées.</p>
         </div>`;
     });
   }
