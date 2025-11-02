@@ -1,164 +1,128 @@
 // =============================================================
-// R3D PRINT CI - FORMULAIRE DEVIS (version stable premium 2025)
+// R3D PRINT CI - DEVIS WHATSAPP PRO (Version Premium 2025)
 // =============================================================
-
 document.addEventListener("DOMContentLoaded", () => {
   const formContainer = document.getElementById("formContainer");
   const serviceButtons = document.querySelectorAll(".service-choice");
   const resumeContainer = document.getElementById("resume");
 
+  const whatsappNumber = "2250757841323";
+
   if (!formContainer || !serviceButtons.length) return;
 
-  // --- Sélection du service ---
+  // Activation des boutons de choix de service
   serviceButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       serviceButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       renderForm(btn.dataset.service);
-      window.scrollTo({ top: formContainer.offsetTop - 80, behavior: "smooth" });
+      window.scrollTo({ top: formContainer.offsetTop - 100, behavior: "smooth" });
     });
   });
 
-  // --- Création du formulaire selon le service ---
+  // === Génération dynamique du formulaire selon le service ===
   function renderForm(service) {
     let html = "";
 
     if (service === "3d") {
       html = `
         <div class="service-panel fade-in visible">
-          <h3 style="color:#c9af6b;text-align:center;margin-bottom:25px;">🧱 Impression 3D</h3>
-          ${field("Nom complet","text","Votre nom complet",true)}
-          ${field("Nature de l’objet","text","Ex : prototype, trophée, pièce mécanique")}
-          ${field("Dimensions (cm)","text","Ex : 15 x 10 x 5")}
-          <label class="label">Lieu d’utilisation</label>
-          <select class="input">
-            <option value="">Choisissez...</option>
-            <option>Intérieur</option>
-            <option>Extérieur</option>
-          </select>
-          <label class="label">Couleurs souhaitées</label>
-          <div id="colorChips" class="color-chips">
-            <input type="color" value="#c9af6b" class="color-btn">
-            <button id="addColor" class="add-color">+</button>
-          </div>
-          <label class="label">Photos de référence</label>
-          <input type="file" multiple accept="image/*" class="input">
+          <h3>🧱 Impression 3D</h3>
+          <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
+          <label>Nature de l’objet</label><input id="objet" type="text" placeholder="Ex : prototype, trophée, pièce mécanique">
+          <label>Dimensions (cm)</label><input id="dimensions" type="text" placeholder="Ex : 15 x 10 x 5">
+          <label>Lieu d’utilisation</label>
+          <select id="lieu"><option value="">Choisissez...</option><option>Intérieur</option><option>Extérieur</option></select>
+          <label>Couleurs souhaitées</label><input id="couleur" type="text" placeholder="Ex : doré, noir, blanc">
+          <label>Photos ou fichiers (à envoyer sur WhatsApp après l’envoi)</label><input id="fichiers" type="file" multiple accept="image/*">
+          <div class="form-actions"><button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button></div>
         </div>`;
     }
 
     else if (service === "laser") {
       html = `
         <div class="service-panel fade-in visible">
-          <h3 style="color:#c9af6b;text-align:center;margin-bottom:25px;">🔦 Gravure Laser</h3>
-          ${field("Nom complet","text","Votre nom complet",true)}
-          ${field("Type d’objet","text","Ex : plaque, bouteille, trophée")}
-          ${field("Quantité","number","Ex : 5")}
-          ${field("Dimensions (cm)","text","Ex : 10 x 5 x 2")}
-          <label class="label">Matériau</label>
-          <select class="input">
-            <option>Bois</option><option>Métal</option><option>Verre</option>
-            <option>PVC</option><option>Autre</option>
-          </select>
-          <label class="label">Photos de référence</label>
-          <input type="file" multiple accept="image/*" class="input">
+          <h3>🔦 Gravure Laser</h3>
+          <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
+          <label>Type d’objet</label><input id="objet" type="text" placeholder="Ex : plaque, bouteille, trophée">
+          <label>Quantité</label><input id="quantite" type="number" placeholder="Ex : 5">
+          <label>Dimensions (cm)</label><input id="dimensions" type="text" placeholder="Ex : 10 x 5 x 2">
+          <label>Matériau</label>
+          <select id="materiau"><option>Bois</option><option>Métal</option><option>Verre</option><option>PVC</option><option>Autre</option></select>
+          <label>Photos ou fichiers (à envoyer sur WhatsApp après l’envoi)</label><input id="fichiers" type="file" multiple accept="image/*">
+          <div class="form-actions"><button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button></div>
         </div>`;
     }
 
     else if (service === "proto") {
       html = `
         <div class="service-panel fade-in visible">
-          <h3 style="color:#c9af6b;text-align:center;margin-bottom:25px;">⚙️ Prototypage</h3>
-          ${field("Nom complet","text","Votre nom complet",true)}
-          ${field("Nature du prototype","text","Ex : boîtier, pièce technique")}
-          ${field("Dimensions (cm)","text","Ex : 20 x 10 x 8")}
-          <label class="label">Matériau souhaité</label>
-          <select class="input">
-            <option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option>
-          </select>
-          <label class="label">Photos de référence</label>
-          <input type="file" multiple accept="image/*" class="input">
+          <h3>⚙️ Prototypage</h3>
+          <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
+          <label>Nature du prototype</label><input id="objet" type="text" placeholder="Ex : boîtier, pièce technique">
+          <label>Dimensions (cm)</label><input id="dimensions" type="text" placeholder="Ex : 20 x 10 x 8">
+          <label>Matériau souhaité</label>
+          <select id="materiau"><option>PLA</option><option>PETG</option><option>Résine</option><option>Autre</option></select>
+          <label>Photos ou fichiers (à envoyer sur WhatsApp après l’envoi)</label><input id="fichiers" type="file" multiple accept="image/*">
+          <div class="form-actions"><button type="button" class="btn gold halo-anim" id="submitDevis">Envoyer la demande</button></div>
         </div>`;
     }
 
-    formContainer.innerHTML = `
-      <form id="devisForm" class="fade-in visible" style="
-        background:#fff;
-        border-radius:16px;
-        padding:40px 35px;
-        box-shadow:0 4px 20px rgba(0,0,0,0.05);
-        border:1px solid #eee;
-        max-width:700px;
-        margin:auto;">
-        ${html}
-        <div style="text-align:center;margin-top:30px;">
-          <button type="button" class="btn gold halo-anim" id="submitDevis"
-            style="padding:14px 35px;font-size:1.05rem;border-radius:50px;">📨 Envoyer la demande</button>
-        </div>
-      </form>
-    `;
-
-    styleEnhancements();
-    setupColorAdder();
+    formContainer.innerHTML = html;
     setupSubmit(service);
   }
 
-  // === Champ texte ou nombre ===
-  function field(label, type, placeholder, required = false) {
-    return `
-      <label class="label">${label}</label>
-      <input type="${type}" placeholder="${placeholder}" ${required ? "required" : ""} class="input">
-    `;
-  }
-
-  // === Ajout d’un champ couleur ===
-  function setupColorAdder() {
-    const addBtn = document.getElementById("addColor");
-    const container = document.getElementById("colorChips");
-    if (!addBtn || !container) return;
-    addBtn.addEventListener("click", e => {
-      e.preventDefault();
-      const newColor = document.createElement("input");
-      newColor.type = "color";
-      newColor.className = "color-btn";
-      container.insertBefore(newColor, addBtn);
-    });
-  }
-
-  // === Soumission du formulaire ===
+  // === Envoi du message WhatsApp professionnel ===
   function setupSubmit(service) {
     const btn = document.getElementById("submitDevis");
     if (!btn) return;
+
     btn.addEventListener("click", () => {
-      const name = document.querySelector("#devisForm input[type='text']")?.value.trim() || "";
+      const date = new Date();
+      const dateStr = date.toLocaleDateString("fr-FR");
+      const heureStr = date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+
+      // Récupération des champs
+      const nom = document.getElementById("nom")?.value || "Non précisé";
+      const objet = document.getElementById("objet")?.value || "Non précisé";
+      const dimensions = document.getElementById("dimensions")?.value || "Non précisées";
+      const lieu = document.getElementById("lieu")?.value || "";
+      const couleur = document.getElementById("couleur")?.value || "";
+      const quantite = document.getElementById("quantite")?.value || "";
+      const materiau = document.getElementById("materiau")?.value || "";
+
+      const serviceName =
+        service === "3d" ? "Impression 3D"
+        : service === "laser" ? "Gravure Laser"
+        : "Prototypage";
+
+      // Message formaté professionnellement
+      const message = `📩 *NOUVELLE DEMANDE DE DEVIS – R3D PRINT CI*
+──────────────────────────────
+🧱 *Service :* ${serviceName}
+👤 *Nom :* ${nom}
+📦 *Objet :* ${objet}
+📏 *Dimensions :* ${dimensions}
+🎨 *Couleur(s) :* ${couleur}
+🏷️ *Matériau :* ${materiau}
+🔢 *Quantité :* ${quantite}
+📍 *Lieu d’utilisation :* ${lieu || "Non précisé"}
+📁 *Fichiers :* à envoyer dans cette conversation WhatsApp
+──────────────────────────────
+🕓 *Date :* ${dateStr} à ${heureStr}
+🌐 *Origine :* https://r3dprint.pro`;
+
+      // Encodage et ouverture de WhatsApp
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+
+      // Confirmation visuelle sur le site
       resumeContainer.innerHTML = `
-        <div class="confirmation-box">
-          <h3 style="color:#c9af6b;">Merci ${name || "cher client"} !</h3>
-          <p>Votre demande de <strong>${getServiceName(service)}</strong> a bien été enregistrée.<br>
-          Vous recevrez une réponse sous 24h.</p>
+        <div class="confirmation-box fade-in visible">
+          <h3>✅ Demande envoyée avec succès</h3>
+          <p>Merci <strong>${nom}</strong> ! Votre demande de <strong>${serviceName}</strong> a été transmise à notre équipe.<br>
+          Vous allez être redirigé vers WhatsApp pour compléter votre envoi.</p>
         </div>`;
-      window.scrollTo({ top: resumeContainer.offsetTop - 100, behavior: "smooth" });
-    });
-  }
-
-  // === Nom du service lisible ===
-  function getServiceName(code) {
-    return code === "3d" ? "service d’impression 3D"
-      : code === "laser" ? "service de gravure laser"
-      : "service de prototypage";
-  }
-
-  // === Appliquer le style des inputs ===
-  function styleEnhancements() {
-    const inputs = document.querySelectorAll(".input");
-    inputs.forEach(input => {
-      input.addEventListener("focus", () => {
-        input.style.borderColor = "#c9af6b";
-        input.style.boxShadow = "0 0 6px rgba(201,175,107,0.3)";
-      });
-      input.addEventListener("blur", () => {
-        input.style.borderColor = "#ddd";
-        input.style.boxShadow = "none";
-      });
     });
   }
 });
