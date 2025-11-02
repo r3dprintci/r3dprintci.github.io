@@ -229,6 +229,50 @@ section:nth-child(even) {
 }
 
 /* ------------------------------------------------------------
+   BLOC RÉALISATIONS – Images cadrées et alignées
+------------------------------------------------------------- */
+.realisation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.realisation-grid article {
+  background: #fffdf8;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+}
+
+.realisation-grid article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(201,175,107,0.2);
+}
+
+.realisation-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.realisation-grid article:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .realisation-grid img {
+    height: 190px;
+  }
+}
+
+/* ------------------------------------------------------------
    FOOTER
 ------------------------------------------------------------- */
 .site-footer {
