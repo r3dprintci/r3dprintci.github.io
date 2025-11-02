@@ -1,5 +1,5 @@
 // =============================================================
-// R3D PRINT CI - DEVIS PREMIUM PDF + WHATSAPP (Version 2025)
+// R3D PRINT CI - DEVIS PREMIUM PDF + WHATSAPP (Version corrigée 2025)
 // =============================================================
 document.addEventListener("DOMContentLoaded", () => {
   const formContainer = document.getElementById("formContainer");
@@ -15,17 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
       serviceButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       renderForm(btn.dataset.service);
-      window.scrollTo({ top: formContainer.offsetTop - 100, behavior: "smooth" });
+      window.scrollTo({ top: formContainer.offsetTop - 80, behavior: "smooth" });
     });
   });
 
   // === Génération du formulaire ===
   function renderForm(service) {
+    // On vide seulement le container sans détruire l’événement
+    formContainer.innerHTML = "";
+
+    // On supprime la classe fade-in qui provoquait le bug d’effacement
+    formContainer.classList.remove("fade-in");
+
     let html = "";
 
     if (service === "3d") {
       html = `
-        <div class="service-panel fade-in visible">
+        <div class="service-panel visible">
           <h3>🧱 Impression 3D</h3>
           <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
           <label>Nature de l’objet</label><input id="objet" type="text" placeholder="Ex : prototype, trophée, pièce mécanique">
@@ -38,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     } else if (service === "laser") {
       html = `
-        <div class="service-panel fade-in visible">
+        <div class="service-panel visible">
           <h3>🔦 Gravure Laser</h3>
           <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
           <label>Type d’objet</label><input id="objet" type="text" placeholder="Ex : plaque, bouteille, trophée">
@@ -51,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     } else if (service === "proto") {
       html = `
-        <div class="service-panel fade-in visible">
+        <div class="service-panel visible">
           <h3>⚙️ Prototypage</h3>
           <label>Nom complet</label><input id="nom" type="text" placeholder="Votre nom complet" required>
           <label>Nature du prototype</label><input id="objet" type="text" placeholder="Ex : boîtier, pièce technique">
@@ -63,7 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     }
 
+    // On injecte le HTML sans animation automatique
     formContainer.innerHTML = html;
+
+    // On ajoute un léger fondu manuel (plus sûr)
+    formContainer.style.opacity = "0";
+    setTimeout(() => {
+      formContainer.style.transition = "opacity 0.5s ease";
+      formContainer.style.opacity = "1";
+    }, 100);
+
     setupSubmit(service);
   }
 
@@ -152,9 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const fileName = `Devis_R3DPRINTCI_${nom.replace(/\s+/g, "_")}_${dateStr.replace(/\//g, "-")}.pdf`;
       doc.save(fileName);
 
-      // === Fenêtre de confirmation ===
       resumeContainer.innerHTML = `
-        <div class="confirmation-box fade-in visible">
+        <div class="confirmation-box visible">
           <h3>✅ Devis envoyé avec succès</h3>
           <p>Merci <strong>${nom}</strong> ! Votre demande de <strong>${serviceName}</strong> a bien été transmise.<br>
           Le devis PDF a été généré et téléchargé automatiquement.</p>
