@@ -482,12 +482,17 @@ textarea {
 section .btn.gold {
   display: inline-block;
   margin: 0 auto;
-  text-align: center;
+}
+
+.hero p,
+section p {
+  text-align: center !important;
 }
 
 section p a.btn.gold {
   display: inline-block;
   margin: 15px auto 0;
+  text-align: center;
 }
 
 /* ------------------------------------------------------------
