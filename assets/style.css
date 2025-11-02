@@ -476,6 +476,21 @@ textarea {
 }
 
 /* ------------------------------------------------------------
+   CORRECTION – CENTRAGE DU BOUTON "DÉCOUVRIR NOS SERVICES"
+------------------------------------------------------------- */
+.hero .btn.gold,
+section .btn.gold {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section p a.btn.gold {
+  display: inline-block;
+  margin: 15px auto 0;
+}
+
+/* ------------------------------------------------------------
    RESPONSIVE GLOBAL
 ------------------------------------------------------------- */
 @media (max-width: 600px) {
