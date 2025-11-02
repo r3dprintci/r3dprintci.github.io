@@ -1,12 +1,13 @@
 /* ============================================================
-   STYLE GLOBAL PREMIUM – R3D PRINT CI (Version stable 2025)
+   STYLE GLOBAL – R3D PRINT CI (Version Premium Stable 2025)
    ============================================================ */
 
-/* --- Réinitialisation --- */
+/* RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
 html {
@@ -14,59 +15,73 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  color: #222;
-  background-color: #fffdf8;
-  overflow-x: hidden;
+  background: #fffdf8;
+  color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* --- Conteneur global --- */
+/* CONTAINERS */
 .container {
   width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: auto;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
+/* TITRES GÉNÉRAUX */
+h1, h2, h3 {
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.7rem;
+  color: #c9af6b;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   HEADER & NAVIGATION
+------------------------------------------------------------- */
 
 .site-header {
-  background: #fffdf8;
-  border-bottom: 1px solid rgba(201, 175, 107, 0.2);
-  box-shadow: 0 2px 10px rgba(201, 175, 107, 0.1);
+  background: white;
+  border-bottom: 2px solid #f3e9d4;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .site-header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 15px 0;
 }
 
 .logo {
   height: 55px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
 }
 
 .nav ul {
-  display: flex;
-  gap: 25px;
   list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
 .nav a {
   text-decoration: none;
-  color: #222;
-  font-weight: 500;
+  color: #333;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
@@ -75,11 +90,15 @@ body {
   color: #c9af6b;
 }
 
-/* --- Hamburger menu (mobile) --- */
+/* Hamburger */
 .hamburger {
   display: none;
-  background: none;
+  flex-direction: column;
+  width: 28px;
+  height: 18px;
+  justify-content: space-between;
   border: none;
+  background: none;
   cursor: pointer;
 }
 
@@ -87,213 +106,180 @@ body {
 .hamburger::before,
 .hamburger::after {
   display: block;
-  width: 25px;
+  background: #333;
   height: 3px;
-  background: #c9af6b;
-  margin: 5px auto;
+  border-radius: 3px;
   transition: all 0.3s ease;
 }
 
-/* ============================================================
-   SECTIONS ET TITRES
-   ============================================================ */
+@media (max-width: 768px) {
+  .nav ul {
+    flex-direction: column;
+    position: fixed;
+    top: 65px;
+    right: -100%;
+    background: #fffdf8;
+    width: 80%;
+    height: calc(100vh - 65px);
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s ease;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.05);
+  }
 
-section {
-  padding: 80px 20px;
+  .nav.open ul {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ------------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------------- */
+.hero {
+  background: linear-gradient(to right, #fff8e8, #fffdf8);
+  padding: 120px 20px 90px;
   text-align: center;
 }
 
-h1, h2, h3 {
-  text-align: center;
-  color: #333;
-}
-
-h1 {
-  font-size: 2rem;
+.hero h1 {
+  font-size: 2.2rem;
   color: #c9af6b;
+  margin-bottom: 12px;
 }
 
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #b89f5d;
+.hero p {
+  color: #555;
+  font-size: 1.05rem;
 }
 
-h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: #c9af6b;
-}
-
-p {
-  color: #333;
-  margin-bottom: 15px;
-  line-height: 1.7;
-}
-
-/* ============================================================
-   BOUTONS
-   ============================================================ */
-
+/* ------------------------------------------------------------
+   BOUTONS GÉNÉRAUX
+------------------------------------------------------------- */
 .btn {
   display: inline-block;
-  background: #c9af6b;
-  color: #fff;
   text-decoration: none;
-  padding: 10px 25px;
+  padding: 12px 28px;
   border-radius: 50px;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn.gold {
   background: linear-gradient(135deg, #d6c185, #c9af6b);
-  box-shadow: 0 3px 10px rgba(201, 175, 107, 0.3);
+  color: white;
+  border: none;
 }
 
 .btn.gold:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(201, 175, 107, 0.4);
+  background: linear-gradient(135deg, #c9af6b, #bda868);
+  transform: translateY(-2px);
 }
 
-/* ============================================================
-   HERO
-   ============================================================ */
-
-.hero {
-  background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
-  padding: 120px 20px 100px;
+/* ------------------------------------------------------------
+   SECTIONS STANDARD
+------------------------------------------------------------- */
+section {
+  padding: 80px 20px;
 }
 
-.hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  color: #b89f5d;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-/* ============================================================
-   CARTES (SERVICES, REALISATIONS)
-   ============================================================ */
-
-.card {
+section:nth-child(even) {
   background: #fffaf0;
+}
+
+/* ------------------------------------------------------------
+   CARTES (Services / Réalisations)
+------------------------------------------------------------- */
+.card {
+  background: #fffdf8;
+  border: 1.5px solid rgba(201,175,107,0.3);
   border-radius: 14px;
-  padding: 25px 20px;
-  box-shadow: 0 4px 12px rgba(201, 175, 107, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+  padding: 25px;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(201, 175, 107, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(201,175,107,0.15);
 }
 
 .card img {
   width: 100%;
-  height: 220px;
+  height: 170px;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
+/* ------------------------------------------------------------
+   GRILLES (Services / Réalisations)
+------------------------------------------------------------- */
 .services-grid,
 .realisation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
-  margin-top: 25px;
 }
 
-/* ============================================================
+/* ------------------------------------------------------------
    FOOTER
-   ============================================================ */
-
+------------------------------------------------------------- */
 .site-footer {
-  background: #fffaf0;
-  padding: 25px 20px;
   text-align: center;
+  padding: 25px;
+  background: #fffaf0;
+  color: #333;
+  border-top: 2px solid #f3e9d4;
   font-size: 0.9rem;
-  color: #555;
-  border-top: 1px solid rgba(201, 175, 107, 0.3);
 }
 
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
-
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 768px) {
-  .nav ul {
-    display: none;
-    flex-direction: column;
-    background: #fffaf0;
-    padding: 15px;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    border: 1px solid rgba(201, 175, 107, 0.2);
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(201, 175, 107, 0.15);
-  }
-
-  .nav.open ul {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
-}
-
-/* ============================================================
-   FORMULAIRES GÉNÉRAUX (Devis, Contact)
-   ============================================================ */
-
-.form-grid, .service-panel {
+/* ------------------------------------------------------------
+   FORMULAIRES (Devis & Contact)
+------------------------------------------------------------- */
+.service-panel,
+.form-grid,
+.contact-form {
   display: flex;
   flex-direction: column;
   gap: 14px;
   background: #fff;
-  padding: 25px 30px;
+  padding: 30px 35px;
   border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-  max-width: 650px;
+  box-shadow: 0 4px 15px rgba(201,175,107,0.1);
+  max-width: 600px;
   margin: 30px auto;
-  transition: all 0.3s ease;
+  text-align: left;
+  border: 1px solid rgba(201,175,107,0.3);
+}
+
+.service-panel h3,
+.contact-form h3 {
+  color: #c9af6b;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgba(201,175,107,0.3);
+  padding-bottom: 6px;
 }
 
 label {
-  font-weight: 500;
+  font-weight: 600;
   color: #333;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="file"],
+input,
 select,
 textarea {
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1.5px solid #ddd;
   background-color: #fff;
@@ -307,110 +293,20 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: #c9af6b;
-  box-shadow: 0 0 6px rgba(201, 175, 107, 0.3);
+  box-shadow: 0 0 6px rgba(201,175,107,0.3);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .form-actions {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
-.confirmation-box {
-  background: #fffaf0;
-  border: 2px solid #c9af6b;
-  border-radius: 12px;
-  padding: 30px;
-  text-align: center;
-  max-width: 600px;
-  margin: 25px auto;
-  box-shadow: 0 4px 10px rgba(201, 175, 107, 0.2);
-}
-
-/* ============================================================
-   PAGE DEVIS SPÉCIFIQUE
-   ============================================================ */
-
-.service-selector {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 30px 0;
-}
-
-.service-choice {
-  background: #fff;
-  border: 2px solid #c9af6b;
-  color: #c9af6b;
-  padding: 12px 26px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.service-choice:hover {
-  background: #c9af6b;
-  color: white;
-  transform: translateY(-2px);
-}
-
-.service-choice.active {
-  background: linear-gradient(135deg, #d6c185, #c9af6b);
-  color: white;
-  box-shadow: 0 3px 10px rgba(201, 175, 107, 0.3);
-}
-
-.service-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  background: #fff;
-  padding: 30px 35px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(201, 175, 107, 0.1);
-  max-width: 600px;
-  margin: 30px auto;
-  text-align: left;
-  border: 1px solid rgba(201, 175, 107, 0.3);
-  animation: fadeIn 0.8s ease;
-}
-
-.service-panel h3 {
-  color: #c9af6b;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-  border-bottom: 1px solid rgba(201, 175, 107, 0.3);
-  padding-bottom: 6px;
-}
-
-.service-panel label {
-  font-weight: 600;
-  color: #333;
-  margin-top: 5px;
-}
-
-.service-panel input,
-.service-panel select {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  background-color: #fff;
-  font-size: 0.95rem;
-  color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-panel input:focus,
-.service-panel select:focus {
-  outline: none;
-  border-color: #c9af6b;
-  box-shadow: 0 0 6px rgba(201, 175, 107, 0.3);
-}
-
+/* Confirmation box */
 .confirmation-box {
   background: #fffaf0;
   border: 2px solid #c9af6b;
@@ -419,28 +315,145 @@ textarea:focus {
   text-align: center;
   max-width: 600px;
   margin: 35px auto;
-  box-shadow: 0 4px 10px rgba(201, 175, 107, 0.2);
-  animation: fadeIn 1s ease forwards;
+  box-shadow: 0 4px 10px rgba(201,175,107,0.2);
 }
 
-.confirmation-box h3 {
+/* ------------------------------------------------------------
+   ANIMATIONS
+------------------------------------------------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-left.visible,
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ------------------------------------------------------------
+   PAGE CONTACT – Bloc Envoyez-nous un message
+------------------------------------------------------------- */
+.contact-form {
+  background: #fffdf8;
+  border: 1.5px solid rgba(201, 175, 107, 0.4);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 20px rgba(201, 175, 107, 0.1);
+  max-width: 650px;
+  margin: 40px auto;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.contact-form:hover {
+  box-shadow: 0 6px 25px rgba(201, 175, 107, 0.2);
+}
+
+.contact-form h3 {
+  text-align: center;
+  font-weight: 700;
   color: #c9af6b;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(201, 175, 107, 0.3);
+  padding-bottom: 10px;
 }
 
-.confirmation-box p {
+.contact-form label {
+  display: block;
+  font-weight: 600;
   color: #333;
-  font-size: 0.95rem;
+  margin-top: 12px;
+  margin-bottom: 5px;
 }
 
-/* Responsive */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #ddd;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #c9af6b;
+  box-shadow: 0 0 6px rgba(201, 175, 107, 0.3);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button {
+  display: inline-block;
+  background: linear-gradient(135deg, #d6c185, #c9af6b);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, #c9af6b, #bda868);
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE GLOBAL
+------------------------------------------------------------- */
 @media (max-width: 600px) {
-  .service-panel {
-    padding: 20px;
+  section {
+    padding: 60px 15px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .service-panel,
+  .contact-form {
+    padding: 25px 20px;
     width: 90%;
   }
-  .service-choice {
-    width: 100%;
-    text-align: center;
+
+  .btn {
+    font-size: 0.95rem;
   }
 }
