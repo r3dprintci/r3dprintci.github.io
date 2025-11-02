@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmation de demande | R3D PRINT CI</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    body {
+      background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 20px;
+      font-family: "Poppins", sans-serif;
+      color: #3a3a3a;
+    }
+    .confirmation-box {
+      background: #ffffff;
+      border: 2px solid #c9af6b;
+      border-radius: 16px;
+      padding: 40px 35px;
+      box-shadow: 0 4px 20px rgba(201, 175, 107, 0.2);
+      max-width: 520px;
+      animation: fadeIn 1s ease;
+    }
+    .confirmation-box img { width: 90px; margin-bottom: 15px; }
+    h1 { color: #c9af6b; font-size: 1.8rem; margin-bottom: 10px; }
+    p { font-size: 1rem; line-height: 1.6; margin-bottom: 20px; }
+    .btn-home {
+      background: linear-gradient(135deg, #d6c185, #c9af6b);
+      color: white; border: none; padding: 12px 24px;
+      border-radius: 50px; font-size: 1rem; font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(201,175,107,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-home:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(201,175,107,0.4); }
+    @keyframes fadeIn { from {opacity:0;transform:translateY(20px);} to {opacity:1;transform:translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="confirmation-box fade-in">
+    <img src="assets/logo.png" alt="R3D PRINT CI Logo" />
+    <h1>Merci pour votre demande 💬</h1>
+    <p>Votre demande de devis a bien été transmise à notre équipe.<br>
+    Vous allez être contacté sous 24h pour finaliser les détails de votre projet.</p>
+    <a href="index.html" class="btn-home">⬅️ Retour à l’accueil</a>
+  </div>
+</body>
+</html>
