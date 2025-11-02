@@ -3,24 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos Réalisations – R3D PRINT CI</title>
-  <meta name="description" content="Découvrez les projets réalisés par R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
-
+  <title>Nos réalisations | R3D PRINT CI</title>
+  <meta name="description" content="Découvrez les réalisations de R3D PRINT CI : impression 3D, gravure laser et prototypage sur mesure à Abidjan.">
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="assets/style.css?v=12" />
-
-  <!-- Empêcher le flash blanc -->
-  <style>body{opacity:0;transition:opacity .4s ease}</style>
-  <script>
-    window.addEventListener('load', ()=>document.body.style.opacity='1');
-  </script>
+  <link rel="stylesheet" href="assets/style.css?v=14" />
 </head>
 
 <body>
   <!-- HEADER -->
-  <header class="site-header fade-in">
+  <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="R3D PRINT CI" class="logo" /></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+      </a>
       <nav id="navMenu" class="nav">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -34,61 +29,76 @@
     </div>
   </header>
 
-  <!-- SECTION PRINCIPALE -->
-  <section class="fade-in">
+  <!-- HERO -->
+  <section class="hero fade-in">
     <div class="container">
-      <h1>Quelques réalisations</h1>
-      <p>Explorez nos créations : impression 3D, gravure laser et projets de prototypage réalisés pour nos clients à Abidjan et ailleurs.</p>
+      <h1>Nos réalisations</h1>
+      <p>Découvrez quelques-uns de nos projets en impression 3D, gravure laser et prototypage.</p>
+    </div>
+  </section>
 
-      <!-- Filtres -->
-      <div class="service-selector fade-in">
-        <button class="service-choice active">Tout</button>
-        <button class="service-choice">Impression 3D</button>
-        <button class="service-choice">Gravure Laser</button>
-        <button class="service-choice">Prototypage</button>
-      </div>
+  <!-- GALERIE DE RÉALISATIONS -->
+  <section class="fade-in" style="background: linear-gradient(180deg, #fffaf0 0%, #fefcf8 100%); padding: 80px 20px;">
+    <div class="container">
+      <h2>Quelques exemples de nos créations</h2>
+      <p>Un aperçu de notre savoir-faire à travers divers projets réalisés pour nos clients.</p>
 
-      <!-- Galerie -->
-      <div class="realisation-grid">
-        <article class="realisation-item slide-in-left">
-          <img src="assets/shot1.jpg" alt="Trophée doré" loading="lazy" />
-          <h3>Trophée Doré</h3>
-          <p>Impression 3D finition or mat pour un tournoi d’entreprise.</p>
+      <div class="services-grid">
+        <!-- Trophées personnalisés -->
+        <article class="card service-card" style="background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
+              border: 1px solid rgba(201, 175, 107, 0.3);
+              box-shadow: 0 3px 10px rgba(201, 175, 107, 0.15);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/shot1.jpg" alt="Trophée personnalisé" />
+          <h3>Trophées personnalisés</h3>
+          <p>Des trophées conçus sur mesure pour des événements sportifs et professionnels, alliant élégance et originalité.</p>
         </article>
 
-        <article class="realisation-item fade-in">
-          <img src="assets/shot2.jpg" alt="Gravure sur métal" loading="lazy" />
-          <h3>Gravure sur Métal</h3>
-          <p>Gravure laser 1064nm sur plaque en aluminium brossé.</p>
+        <!-- Gravure laser sur bois -->
+        <article class="card service-card" style="background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
+              border: 1px solid rgba(201, 175, 107, 0.3);
+              box-shadow: 0 3px 10px rgba(201, 175, 107, 0.15);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/shot2.jpg" alt="Gravure laser sur bois" />
+          <h3>Gravure laser sur bois</h3>
+          <p>Des plaques et enseignes gravées au laser pour un rendu précis et durable, parfait pour les entreprises et la décoration intérieure.</p>
         </article>
 
-        <article class="realisation-item slide-in-right">
-          <img src="assets/shot3.jpg" alt="Prototype fonctionnel" loading="lazy" />
-          <h3>Prototype Technique</h3>
-          <p>Conception et impression d’un prototype mécanique sur mesure.</p>
+        <!-- Prototypage industriel -->
+        <article class="card service-card" style="background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
+              border: 1px solid rgba(201, 175, 107, 0.3);
+              box-shadow: 0 3px 10px rgba(201, 175, 107, 0.15);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/shot3.jpg" alt="Prototypage industriel" />
+          <h3>Prototypage industriel</h3>
+          <p>Réalisation de prototypes techniques pour tests fonctionnels et validations mécaniques, avec finitions professionnelles.</p>
         </article>
 
-        <article class="realisation-item fade-in">
-          <img src="assets/shot4.jpg" alt="Pièce décorative" loading="lazy" />
-          <h3>Pièce décorative</h3>
-          <p>Objet design imprimé en PLA soie doré pour un projet décoratif.</p>
+        <!-- Plaques professionnelles -->
+        <article class="card service-card" style="background: linear-gradient(180deg, #fffaf0 0%, #f9f5e6 100%);
+              border: 1px solid rgba(201, 175, 107, 0.3);
+              box-shadow: 0 3px 10px rgba(201, 175, 107, 0.15);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/shot4.jpg" alt="Plaque professionnelle" />
+          <h3>Plaques professionnelles</h3>
+          <p>Création de plaques nominatives et signalétiques gravées au laser, avec un rendu premium pour bureaux et commerces.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="fade-in" style="text-align:center;padding:80px 20px;">
-    <h2>Envie de concrétiser votre idée ?</h2>
-    <p>Nous réalisons vos projets sur mesure avec passion et précision.</p>
-    <a href="devis.html" class="btn gold halo-anim" style="margin-top:20px;">Demander un devis</a>
+  <section style="text-align:center; padding:80px 20px;">
+    <h2>Un projet en tête ?</h2>
+    <p>Nous donnons vie à vos idées grâce à notre expertise en impression 3D et gravure laser.</p>
+    <a href="devis.html" class="btn gold halo-anim">Demander un devis</a>
   </section>
 
   <!-- FOOTER -->
-  <footer class="site-footer fade-in">
+  <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <script defer src="assets/main.js?v=12"></script>
+  <script defer src="assets/main.js"></script>
 </body>
 </html>
