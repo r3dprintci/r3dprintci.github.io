@@ -297,3 +297,28 @@ body {
 .realisation-grid article:hover {
   transform: translateY(-5px);
 }
+
+/* ============================================================
+   FIX FINAL – CENTRAGE DU BOUTON "DÉCOUVRIR NOS SERVICES"
+   ============================================================ */
+
+section .btn.gold {
+  display: inline-block;
+  margin: 25px auto 0;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+section p {
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  section .btn.gold {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
