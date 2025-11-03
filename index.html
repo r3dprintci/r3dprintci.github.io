@@ -5,40 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>R3D PRINT CI – L’art de donner vie à vos idées</title>
   <meta name="description" content="Impression 3D, gravure laser et prototypage sur mesure à Abidjan. R3D PRINT CI transforme vos idées en objets concrets.">
-
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <!-- Icône et style -->
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link rel="stylesheet" href="assets/style.css?v=8" />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
-  <!-- Nettoyage cache et forçage HTTPS -->
-  <script>
-    (function () {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-      }
-      if (window.caches && caches.keys) {
-        caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
-      }
-      if (window.location.protocol !== "https:") {
-        window.location.href = "https://" + window.location.host + window.location.pathname;
-      }
-    })();
-  </script>
-
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo-link">
         <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
       </a>
-
       <nav id="navMenu" class="nav">
         <ul>
           <li><a class="active" href="index.html">Accueil</a></li>
@@ -48,12 +25,8 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-
-      <!-- ✅ HAMBURGER CORRIGÉ -->
       <button class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
@@ -73,20 +46,13 @@
   <section class="fade-in">
     <div class="container">
       <h2>Bienvenue chez R3D PRINT CI</h2>
-      <p>
-        Chez R3D PRINT CI, nous allions précision, design et innovation pour donner vie à vos idées.
-      </p>
-      <p>
-        Que ce soit pour la création d’objets décoratifs, de prototypes techniques ou de pièces sur mesure,
-        notre équipe vous accompagne de la conception à la réalisation avec soin et expertise.
-      </p>
-      <a href="services.html" class="btn gold">Découvrir nos services</a>
+      <p>Chez R3D PRINT CI, nous allions précision, design et innovation pour donner vie à vos idées.<br>
+      Que ce soit pour la création d’objets décoratifs, de prototypes techniques ou de pièces sur mesure, notre équipe vous accompagne de la conception à la réalisation avec soin et expertise.</p>
     </div>
   </section>
 
   <!-- NOS SERVICES -->
-<section class="fade-in nos-services-section">
-
+  <section class="fade-in" id="nos-services">
     <div class="container">
       <h2>Nos services</h2>
       <p>Un aperçu de nos domaines d’expertise — découvrez tous les détails sur la page <a href="services.html" class="contact-link">Services</a>.</p>
@@ -96,22 +62,33 @@
           <img src="assets/impression3d.webp" alt="Impression 3D" />
           <h3>Impression 3D</h3>
           <p>Réalisez vos pièces sur mesure, prototypes ou objets décoratifs avec une précision millimétrique.</p>
-          <a href="services.html" class="btn gold">En savoir plus</a>
+          <div class="btn-wrapper">
+            <a href="services.html" class="btn gold">En savoir plus</a>
+          </div>
         </article>
 
         <article class="card fade-in">
           <img src="assets/gravurelaser.webp" alt="Gravure laser" />
           <h3>Gravure laser</h3>
           <p>Personnalisez vos supports avec des gravures précises sur métal, bois, verre et plus encore.</p>
-          <a href="services.html" class="btn gold">Découvrir</a>
+          <div class="btn-wrapper">
+            <a href="services.html" class="btn gold">Découvrir</a>
+          </div>
         </article>
 
         <article class="card slide-in-right">
-          <img src="assets/prototypage.webp" alt="Prototypage" />
+          <img src="assets/prototypage.webp" alt="Prototypage rapide" />
           <h3>Prototypage</h3>
           <p>De l’idée au modèle tangible — testez, ajustez et finalisez vos projets rapidement.</p>
-          <a href="services.html" class="btn gold">Explorer</a>
+          <div class="btn-wrapper">
+            <a href="services.html" class="btn gold">Explorer</a>
+          </div>
         </article>
+      </div>
+
+      <!-- BOUTON CENTRAL CORRECTEMENT CENTRÉ -->
+      <div style="text-align:center; margin-top:40px;">
+        <a href="services.html" class="btn gold halo-anim">✨ Découvrir nos services ✨</a>
       </div>
     </div>
   </section>
@@ -135,9 +112,9 @@
     <div class="container">
       <h2>Pourquoi choisir R3D PRINT CI ?</h2>
       <div class="services-grid">
-        <article><h3>Qualité</h3><p>Des finitions impeccables et des matériaux rigoureusement sélectionnés.</p></article>
-        <article><h3>Innovation</h3><p>Des technologies de pointe pour des résultats précis et modernes.</p></article>
-        <article><h3>Réactivité</h3><p>Une équipe disponible et flexible pour répondre rapidement à vos besoins.</p></article>
+        <article class="card"><h3>Qualité</h3><p>Des finitions impeccables et des matériaux rigoureusement sélectionnés.</p></article>
+        <article class="card"><h3>Innovation</h3><p>Des technologies de pointe pour des résultats précis et modernes.</p></article>
+        <article class="card"><h3>Réactivité</h3><p>Une équipe disponible et flexible pour répondre rapidement à vos besoins.</p></article>
       </div>
     </div>
   </section>
@@ -150,12 +127,10 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="site-footer fade-in">
+  <footer class="site-footer">
     <p>© 2025 R3D PRINT CI – Tous droits réservés.</p>
   </footer>
 
-  <!-- SCRIPT -->
-  <script defer src="assets/main.js?v=8"></script>
+  <script defer src="assets/main.js"></script>
 </body>
 </html>
-
