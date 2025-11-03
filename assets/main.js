@@ -1,43 +1,40 @@
 /* ============================================================
-   R3D PRINT CI – MAIN SCRIPT (Version stable corrigée 2025)
+   R3D PRINT CI – MAIN SCRIPT (Version corrigée finale 2025)
    ============================================================ */
 
 /* --- MENU HAMBURGER MOBILE --- */
 function toggleMenu() {
-  const nav = document.querySelector(".nav ul");
+  const nav = document.querySelector("#navMenu");
   const btn = document.querySelector(".hamburger");
 
   if (!nav || !btn) return;
 
+  // Bascule de l’état
   nav.classList.toggle("open");
   btn.classList.toggle("is-active");
-
-  if (nav.classList.contains("open")) {
-    nav.style.right = "0";
-  } else {
-    nav.style.right = "-100%";
-  }
 }
 
 /* --- INITIALISATION GLOBALE --- */
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".hamburger");
-  const nav = document.querySelector(".nav ul");
+  const nav = document.querySelector("#navMenu");
 
-  // Vérifie la présence des éléments avant d’attacher les événements
-  if (btn) btn.addEventListener("click", toggleMenu);
+  // Vérifie la présence du bouton avant d’attacher les événements
+  if (btn) {
+    btn.addEventListener("click", toggleMenu);
+  }
 
+  // Fermer le menu lorsqu’un lien est cliqué
   if (nav) {
     nav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
         btn.classList.remove("is-active");
-        nav.style.right = "-100%";
       });
     });
   }
 
-  // === ANIMATIONS AU SCROLL ===
+  // Animation des éléments au défilement
   const reveals = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
 
   function revealOnScroll() {
@@ -52,12 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Appels sécurisés
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // exécution immédiate
+  revealOnScroll(); // Exécution initiale
 });
 
-/* --- ANIMATION D’APPARITION DOUCE DE LA PAGE --- */
+/* --- EFFET D’APPARITION DOUCE --- */
 window.addEventListener("load", () => {
   document.body.style.opacity = "0";
   document.body.style.transition = "opacity 0.6s ease";
