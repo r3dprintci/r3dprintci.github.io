@@ -1,63 +1,53 @@
 /* ============================================================
-   R3D PRINT CI – MAIN SCRIPT (Version corrigée finale 2025)
+   R3D PRINT CI – MAIN SCRIPT (Version stable 2025)
    ============================================================ */
 
 /* --- MENU HAMBURGER MOBILE --- */
 function toggleMenu() {
-  const nav = document.querySelector("#navMenu");
+  const nav = document.getElementById("navMenu");
   const btn = document.querySelector(".hamburger");
 
   if (!nav || !btn) return;
 
-  // Bascule de l’état
   nav.classList.toggle("open");
   btn.classList.toggle("is-active");
 }
 
-/* --- INITIALISATION GLOBALE --- */
+/* --- FERMETURE AUTO DU MENU --- */
 document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("navMenu");
   const btn = document.querySelector(".hamburger");
-  const nav = document.querySelector("#navMenu");
 
-  // Vérifie la présence du bouton avant d’attacher les événements
-  if (btn) {
-    btn.addEventListener("click", toggleMenu);
-  }
-
-  // Fermer le menu lorsqu’un lien est cliqué
-  if (nav) {
-    nav.querySelectorAll("a").forEach(link => {
+  if (nav && btn) {
+    // Fermer le menu quand on clique sur un lien
+    nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
         btn.classList.remove("is-active");
       });
     });
   }
+});
 
-  // Animation des éléments au défilement
-  const reveals = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
+/* --- ANIMATIONS AU SCROLL --- */
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
 
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    const revealPoint = 120;
-
-    reveals.forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < windowHeight - revealPoint) {
-        el.classList.add("visible");
-      }
+  function reveal() {
+    const triggerBottom = window.innerHeight * 0.85;
+    elements.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      if (top < triggerBottom) el.classList.add("visible");
     });
   }
 
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Exécution initiale
+  reveal();
+  window.addEventListener("scroll", reveal);
 });
 
-/* --- EFFET D’APPARITION DOUCE --- */
+/* --- FONDU D'APPARITION --- */
 window.addEventListener("load", () => {
   document.body.style.opacity = "0";
   document.body.style.transition = "opacity 0.6s ease";
-  setTimeout(() => {
-    document.body.style.opacity = "1";
-  }, 100);
+  setTimeout(() => (document.body.style.opacity = "1"), 100);
 });
