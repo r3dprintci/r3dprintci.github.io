@@ -253,7 +253,6 @@ body {
    FIX – PAGE D'ACCUEIL (IMAGES SERVICES & RÉALISATIONS)
    ============================================================ */
 
-/* --- IMAGES DES BLOCS "NOS SERVICES" --- */
 .services-grid img {
   width: 100%;
   height: 200px;
@@ -268,7 +267,6 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* --- IMAGES DES BLOCS "QUELQUES RÉALISATIONS" --- */
 .realisation-grid img {
   width: 100%;
   height: 230px;
@@ -283,7 +281,6 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.18);
 }
 
-/* --- ESPACEMENT ET ALIGNEMENT --- */
 .services-grid article,
 .realisation-grid article {
   text-align: center;
@@ -299,11 +296,11 @@ body {
 }
 
 /* ============================================================
-   FIX FINAL – CENTRAGE UNIQUE DU BOUTON "DÉCOUVRIR NOS SERVICES"
+   FIX FINAL – CENTRAGE PRÉCIS DU BOUTON "DÉCOUVRIR NOS SERVICES"
    ============================================================ */
 
-/* On cible uniquement la section Nos services */
-section:nth-of-type(3) .btn.gold {
+/* Cible uniquement la section contenant le titre "Nos services" */
+section:has(h2:contains("Nos services")) .btn.gold {
   display: block;
   margin: 25px auto 0;
   text-align: center;
@@ -312,15 +309,15 @@ section:nth-of-type(3) .btn.gold {
   transform: translateX(-50%);
 }
 
-/* Texte centré uniquement dans cette section */
-section:nth-of-type(3) p {
+/* Centrage du texte dans cette même section */
+section:has(h2:contains("Nos services")) p {
   text-align: center;
   width: 100%;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  section:nth-of-type(3) .btn.gold {
+  section:has(h2:contains("Nos services")) .btn.gold {
     left: 50%;
     transform: translateX(-50%);
   }
