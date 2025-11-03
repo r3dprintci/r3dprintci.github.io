@@ -124,10 +124,6 @@ body {
     gap: 15px;
   }
 
-  .nav.open li {
-    margin: 0;
-  }
-
   .nav.open a {
     color: #c9af6b;
     font-weight: 600;
@@ -142,12 +138,6 @@ body {
     background: #c9af6b;
     color: #fff;
   }
-}
-
-/* --- ANIMATION DU MENU --- */
-@keyframes fadeInMenu {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- HERO --- */
@@ -221,38 +211,6 @@ body {
   gap: 25px;
 }
 
-.realisation-grid img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* --- FOOTER --- */
-.site-footer {
-  text-align: center;
-  padding: 25px 10px;
-  background: #fffaf0;
-  border-top: 2px solid #c9af6b;
-  color: #444;
-  font-size: 0.9rem;
-}
-
-/* --- ANIMATIONS APPARITION --- */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================================
-   FIX – PAGE D'ACCUEIL (IMAGES SERVICES & RÉALISATIONS)
-   ============================================================ */
-
 .services-grid img {
   width: 100%;
   height: 200px;
@@ -295,12 +253,21 @@ body {
   transform: translateY(-5px);
 }
 
+/* --- FOOTER --- */
+.site-footer {
+  text-align: center;
+  padding: 25px 10px;
+  background: #fffaf0;
+  border-top: 2px solid #c9af6b;
+  color: #444;
+  font-size: 0.9rem;
+}
+
 /* ============================================================
-   FIX FINAL – CENTRAGE PRÉCIS DU BOUTON "DÉCOUVRIR NOS SERVICES"
+   FIX FINAL – CENTRAGE DU BOUTON "DÉCOUVRIR NOS SERVICES"
    ============================================================ */
 
-/* Cible uniquement la section contenant le titre "Nos services" */
-section:has(h2:contains("Nos services")) .btn.gold {
+.nos-services-section .btn.gold {
   display: block;
   margin: 25px auto 0;
   text-align: center;
@@ -309,16 +276,7 @@ section:has(h2:contains("Nos services")) .btn.gold {
   transform: translateX(-50%);
 }
 
-/* Centrage du texte dans cette même section */
-section:has(h2:contains("Nos services")) p {
+.nos-services-section p {
   text-align: center;
   width: 100%;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  section:has(h2:contains("Nos services")) .btn.gold {
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
