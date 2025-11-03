@@ -1,87 +1,61 @@
 /* ============================================================
-   STYLE GLOBAL – R3D PRINT CI (Version Premium Stable 2025)
+   R3D PRINT CI - STYLE GLOBAL PREMIUM 2025
    ============================================================ */
 
-/* RESET GLOBAL */
+/* --- RESET & BASE --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", Arial, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
-  background: #fffdf8;
+  font-family: 'Poppins', sans-serif;
   color: #333;
+  background-color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background 0.4s ease;
 }
 
-/* CONTAINERS */
+/* --- CONTAINERS --- */
 .container {
   width: 90%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-/* TITRES GÉNÉRAUX */
-h1, h2, h3 {
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 1.7rem;
-  color: #c9af6b;
-}
-
-p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  color: #333;
-  text-align: center;
-}
-
-/* ------------------------------------------------------------
-   HEADER & NAVIGATION
-------------------------------------------------------------- */
-
+/* --- HEADER --- */
 .site-header {
-  background: white;
-  border-bottom: 2px solid #f3e9d4;
+  background: #fff;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .site-header .container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  justify-content: space-between;
 }
 
 .logo {
   height: 55px;
 }
 
+/* --- NAVIGATION --- */
 .nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 .nav a {
   text-decoration: none;
-  color: #333;
-  font-weight: 600;
+  color: #444;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -90,137 +64,156 @@ p {
   color: #c9af6b;
 }
 
-/* Hamburger */
+/* --- HAMBURGER --- */
 .hamburger {
   display: none;
   flex-direction: column;
-  width: 28px;
-  height: 18px;
   justify-content: space-between;
-  border: none;
+  width: 25px;
+  height: 18px;
   background: none;
+  border: none;
   cursor: pointer;
 }
 
-.hamburger span,
-.hamburger::before,
-.hamburger::after {
+.hamburger span {
   display: block;
-  background: #333;
   height: 3px;
-  border-radius: 3px;
+  width: 100%;
+  background-color: #c9af6b;
+  border-radius: 5px;
   transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .nav ul {
-    flex-direction: column;
-    position: fixed;
-    top: 65px;
-    right: -100%;
-    background: #fffdf8;
-    width: 80%;
-    height: calc(100vh - 65px);
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    transition: right 0.4s ease;
-    box-shadow: -4px 0 12px rgba(0,0,0,0.05);
-  }
+.hamburger.is-active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
 
-  .nav.open ul {
-    right: 0;
+/* --- NAV MOBILE --- */
+@media (max-width: 900px) {
+  .nav {
+    display: none;
   }
 
   .hamburger {
     display: flex;
   }
+
+  .nav.open {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #fffaf0, #f8f3e0);
+    text-align: center;
+    padding: 25px 0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    border-top: 2px solid #c9af6b;
+    animation: fadeInMenu 0.4s ease forwards;
+  }
+
+  .nav.open ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav.open li {
+    margin: 0;
+  }
+
+  .nav.open a {
+    color: #c9af6b;
+    font-weight: 600;
+    font-size: 1.15rem;
+    display: inline-block;
+    padding: 10px 0;
+    width: 100%;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .nav.open a:hover {
+    background: #c9af6b;
+    color: #fff;
+  }
 }
 
-/* ------------------------------------------------------------
-   HERO SECTION
-------------------------------------------------------------- */
+/* --- ANIMATION DU MENU --- */
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- HERO --- */
 .hero {
-  background: linear-gradient(to right, #fff8e8, #fffdf8);
-  padding: 120px 20px 90px;
   text-align: center;
+  padding: 100px 20px 80px;
+  background: linear-gradient(180deg, #fffaf0, #ffffff);
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  color: #c9af6b;
-  margin-bottom: 12px;
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .hero p {
+  font-size: 1.1rem;
   color: #555;
-  font-size: 1.05rem;
 }
 
-/* ------------------------------------------------------------
-   BOUTONS GÉNÉRAUX
-------------------------------------------------------------- */
+/* --- BOUTONS --- */
 .btn {
   display: inline-block;
   text-decoration: none;
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .btn.gold {
   background: linear-gradient(135deg, #d6c185, #c9af6b);
-  color: white;
+  color: #fff;
   border: none;
 }
 
 .btn.gold:hover {
-  background: linear-gradient(135deg, #c9af6b, #bda868);
+  background: linear-gradient(135deg, #c9af6b, #bfa45d);
   transform: translateY(-2px);
 }
 
-/* ------------------------------------------------------------
-   SECTIONS STANDARD
-------------------------------------------------------------- */
-section {
-  padding: 80px 20px;
+.halo-anim {
+  box-shadow: 0 0 10px rgba(201, 175, 107, 0.3);
+  animation: halo 2s infinite ease-in-out;
 }
 
-section:nth-child(even) {
-  background: #fffaf0;
+@keyframes halo {
+  0%, 100% { box-shadow: 0 0 10px rgba(201, 175, 107, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(201, 175, 107, 0.5); }
 }
 
-/* ------------------------------------------------------------
-   CARTES (Services / Réalisations)
-------------------------------------------------------------- */
+/* --- CARTES & BLOCS --- */
 .card {
-  background: #fffdf8;
-  border: 1.5px solid rgba(201,175,107,0.3);
+  background: linear-gradient(135deg, #fffaf0, #fdf7e9);
   border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
   padding: 25px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(201,175,107,0.15);
 }
 
-.card img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-
-/* ------------------------------------------------------------
-   GRILLES (Services / Réalisations)
-------------------------------------------------------------- */
+/* --- GRILLES --- */
 .services-grid,
 .realisation-grid {
   display: grid;
@@ -228,296 +221,30 @@ section:nth-child(even) {
   gap: 25px;
 }
 
-/* ------------------------------------------------------------
-   BLOC RÉALISATIONS – Images cadrées et alignées
-------------------------------------------------------------- */
-.realisation-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  justify-items: center;
-}
-
-.realisation-grid article {
-  background: #fffdf8;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-  max-width: 350px;
-}
-
-.realisation-grid article:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(201,175,107,0.2);
-}
-
 .realisation-grid img {
   width: 100%;
-  height: 230px;
+  height: 250px;
   object-fit: cover;
-  object-position: center;
-  border-radius: 12px;
-  transition: transform 0.4s ease;
+  border-radius: 10px;
 }
 
-.realisation-grid article:hover img {
-  transform: scale(1.05);
-}
-
-@media (max-width: 600px) {
-  .realisation-grid img {
-    height: 190px;
-  }
-}
-
-/* ------------------------------------------------------------
-   FOOTER
-------------------------------------------------------------- */
+/* --- FOOTER --- */
 .site-footer {
   text-align: center;
-  padding: 25px;
+  padding: 25px 10px;
   background: #fffaf0;
-  color: #333;
-  border-top: 2px solid #f3e9d4;
+  border-top: 2px solid #c9af6b;
+  color: #444;
   font-size: 0.9rem;
 }
 
-/* ------------------------------------------------------------
-   FORMULAIRES (Devis & Contact)
-------------------------------------------------------------- */
-.service-panel,
-.form-grid,
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  background: #fff;
-  padding: 30px 35px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(201,175,107,0.1);
-  max-width: 600px;
-  margin: 30px auto;
-  text-align: left;
-  border: 1px solid rgba(201,175,107,0.3);
-}
-
-.service-panel h3,
-.contact-form h3 {
-  color: #c9af6b;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-  border-bottom: 1px solid rgba(201,175,107,0.3);
-  padding-bottom: 6px;
-}
-
-label {
-  font-weight: 600;
-  color: #333;
-  margin-top: 5px;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  background-color: #fff;
-  font-size: 0.95rem;
-  color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #c9af6b;
-  box-shadow: 0 0 6px rgba(201,175,107,0.3);
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.form-actions {
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* Confirmation box */
-.confirmation-box {
-  background: #fffaf0;
-  border: 2px solid #c9af6b;
-  border-radius: 14px;
-  padding: 30px;
-  text-align: center;
-  max-width: 600px;
-  margin: 35px auto;
-  box-shadow: 0 4px 10px rgba(201,175,107,0.2);
-}
-
-/* ------------------------------------------------------------
-   ANIMATIONS
-------------------------------------------------------------- */
+/* --- ANIMATIONS APPARITION --- */
 .fade-in {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.slide-in-left.visible,
-.slide-in-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ------------------------------------------------------------
-   PAGE CONTACT – Bloc Envoyez-nous un message
-------------------------------------------------------------- */
-.contact-form {
-  background: #fffdf8;
-  border: 1.5px solid rgba(201, 175, 107, 0.4);
-  border-radius: 16px;
-  padding: 40px 30px;
-  box-shadow: 0 4px 20px rgba(201, 175, 107, 0.1);
-  max-width: 650px;
-  margin: 40px auto;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.contact-form:hover {
-  box-shadow: 0 6px 25px rgba(201, 175, 107, 0.2);
-}
-
-.contact-form h3 {
-  text-align: center;
-  font-weight: 700;
-  color: #c9af6b;
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  border-bottom: 1px solid rgba(201, 175, 107, 0.3);
-  padding-bottom: 10px;
-}
-
-.contact-form label {
-  display: block;
-  font-weight: 600;
-  color: #333;
-  margin-top: 12px;
-  margin-bottom: 5px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  background-color: #fff;
-  font-size: 1rem;
-  color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #c9af6b;
-  box-shadow: 0 0 6px rgba(201, 175, 107, 0.3);
-}
-
-.contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.contact-form button {
-  display: inline-block;
-  background: linear-gradient(135deg, #d6c185, #c9af6b);
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 20px;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-.contact-form button:hover {
-  background: linear-gradient(135deg, #c9af6b, #bda868);
-  transform: translateY(-2px);
-}
-
-/* ------------------------------------------------------------
-   CORRECTION – CENTRAGE DU BOUTON "DÉCOUVRIR NOS SERVICES"
-------------------------------------------------------------- */
-.hero .btn.gold,
-section .btn.gold {
-  display: inline-block;
-  margin: 0 auto;
-}
-
-.hero p,
-section p {
-  text-align: center !important;
-}
-
-section p a.btn.gold {
-  display: inline-block;
-  margin: 15px auto 0;
-  text-align: center;
-}
-
-/* ------------------------------------------------------------
-   RESPONSIVE GLOBAL
-------------------------------------------------------------- */
-@media (max-width: 600px) {
-  section {
-    padding: 60px 15px;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  .card img {
-    height: 150px;
-  }
-
-  .service-panel,
-  .contact-form {
-    padding: 25px 20px;
-    width: 90%;
-  }
-
-  .btn {
-    font-size: 0.95rem;
-  }
 }
