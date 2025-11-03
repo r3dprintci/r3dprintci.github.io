@@ -1,5 +1,5 @@
 /* ============================================================
-   R3D PRINT CI - STYLE GLOBAL PREMIUM 2025
+   R3D PRINT CI - STYLE GLOBAL PREMIUM 2025 (VERSION STABLE)
    ============================================================ */
 
 /* --- RESET & BASE --- */
@@ -247,4 +247,53 @@ body {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============================================================
+   FIX – PAGE D'ACCUEIL (IMAGES SERVICES & RÉALISATIONS)
+   ============================================================ */
+
+/* --- IMAGES DES BLOCS "NOS SERVICES" --- */
+.services-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.services-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* --- IMAGES DES BLOCS "QUELQUES RÉALISATIONS" --- */
+.realisation-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.realisation-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* --- ESPACEMENT ET ALIGNEMENT --- */
+.services-grid article,
+.realisation-grid article {
+  text-align: center;
+  background: linear-gradient(135deg, #fffaf0, #fdf7e9);
+  border-radius: 14px;
+  padding: 18px;
+  transition: transform 0.3s ease;
+}
+
+.services-grid article:hover,
+.realisation-grid article:hover {
+  transform: translateY(-5px);
 }
