@@ -10,24 +10,32 @@
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
-      </a>
-      <nav id="navMenu" class="nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a class="active" href="services.html">Services</a></li>
-          <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="devis.html">Devis</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" onclick="toggleMenu()"><span></span></button>
-    </div>
-  </header>
+ <!-- HEADER -->
+<header class="site-header fade-in">
+  <div class="container">
+    <a href="index.html" class="logo-link">
+      <img src="assets/logo.png" alt="R3D PRINT CI" class="logo" />
+    </a>
+
+    <nav id="navMenu" class="nav">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="realisations.html">Réalisations</a></li>
+        <li><a href="devis.html">Devis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Bouton hamburger (mobile) -->
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
 
   <!-- HERO -->
   <section class="hero fade-in">
