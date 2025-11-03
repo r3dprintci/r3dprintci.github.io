@@ -1,58 +1,67 @@
 /* ============================================================
-   FIX FINAL – HAMBURGER MENU (Mobile & Fenêtre réduite)
+   R3D PRINT CI – MAIN SCRIPT (Version stable corrigée 2025)
    ============================================================ */
-@media (max-width: 768px) {
-  .nav ul {
-    position: fixed;
-    top: 65px;
-    right: -100%;
-    width: 80%;
-    height: calc(100vh - 65px);
-    background: #fffdf8;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    transition: right 0.4s ease;
-    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-  }
 
-  .nav ul.open {
-    right: 0 !important;
-  }
+/* --- MENU HAMBURGER MOBILE --- */
+function toggleMenu() {
+  const nav = document.querySelector(".nav ul");
+  const btn = document.querySelector(".hamburger");
 
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 26px;
-    height: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-  }
+  if (!nav || !btn) return;
 
-  .hamburger span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background: #333;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-  }
+  nav.classList.toggle("open");
+  btn.classList.toggle("is-active");
 
-  .hamburger.is-active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .hamburger.is-active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.is-active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+  if (nav.classList.contains("open")) {
+    nav.style.right = "0";
+  } else {
+    nav.style.right = "-100%";
   }
 }
+
+/* --- INITIALISATION GLOBALE --- */
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".hamburger");
+  const nav = document.querySelector(".nav ul");
+
+  // Vérifie la présence des éléments avant d’attacher les événements
+  if (btn) btn.addEventListener("click", toggleMenu);
+
+  if (nav) {
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        btn.classList.remove("is-active");
+        nav.style.right = "-100%";
+      });
+    });
+  }
+
+  // === ANIMATIONS AU SCROLL ===
+  const reveals = document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right");
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 120;
+
+    reveals.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add("visible");
+      }
+    });
+  }
+
+  // Appels sécurisés
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // exécution immédiate
+});
+
+/* --- ANIMATION D’APPARITION DOUCE DE LA PAGE --- */
+window.addEventListener("load", () => {
+  document.body.style.opacity = "0";
+  document.body.style.transition = "opacity 0.6s ease";
+  setTimeout(() => {
+    document.body.style.opacity = "1";
+  }, 100);
+});
