@@ -1,210 +1,224 @@
-/* =========================
-   STYLE GLOBAL DU SITE R3D PRINT CI
-   ========================= */
+/* ============================================================
+   R3D PRINT CI - STYLE GLOBAL (VERSION STABLE - FIX PROPORTIONS)
+   ============================================================
+   - Corrige tailles bannières, images et blocs (responsive)
+   - Conserve thème doré, boutons centrés et menu hamburger
+*/
 
-/* Réinitialisation */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ---------- RESET & BASE ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
-  font-family: 'Poppins', IMPACT;
-  background-color: #f0f0f0; /* ✅ Fond blanc restauré */
-  color: #363;
-  line-height: 1.6;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+  background: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* =========================
-   HEADER / NAVIGATION
-   ========================= */
-
-header {
-  background: linear-gradient(to right, #d4af37, #f5e6b3); /* ✅ Bande dorée */
-  color: #f0f0f0;
-  padding: 10px 0;
+/* ---------- LAYOUT CONTAINER ---------- */
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5%;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.navbar a:hover {
-  color: #000;
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger span {
-  height: 3px;
-  width: 25px;
-  background: white;
-  margin: 4px 0;
-  transition: 0.4s;
-}
-
-.nav-links {
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: linear-gradient(to right, #d4af37, #f5e6b3);
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 20px 0;
-    text-align: center;
-  }
-  .nav-links.active {
-    display: flex;
-  }
-}
-
-/* =========================
-   SECTION HERO (ACCUEIL)
-   ========================= */
-
-.hero {
+/* ---------- HEADER ---------- */
+.site-header {
   background: #fff;
-  text-align: center;
-  padding: 150px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.site-header .container {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 12px 0;
+}
+.logo img { height: 56px; width: auto; display:block; }
+
+/* ---------- NAV ---------- */
+.nav ul {
+  list-style:none;
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+.nav a {
+  color:#333;
+  text-decoration:none;
+  font-weight:600;
+  padding:6px 4px;
+  transition: color .18s ease;
+}
+.nav a:hover, .nav a.active { color:#c9af6b; }
+
+/* ---------- HAMBURGER ---------- */
+.hamburger { display:none; background:none; border:0; cursor:pointer; padding:6px; }
+.hamburger span { display:block; height:3px; width:26px; background:#c9af6b; border-radius:3px; margin:4px 0; transition:all .25s ease; }
+.hamburger.is-active span:nth-child(1){ transform:rotate(45deg) translateY(6px); }
+.hamburger.is-active span:nth-child(2){ opacity:0; transform:scale(0); }
+.hamburger.is-active span:nth-child(3){ transform:rotate(-45deg) translateY(-6px); }
+
+/* Mobile nav handling */
+@media (max-width:900px){
+  .nav ul { display:none; position:fixed; right:0; top:70px; width:80%; max-width:340px; height:calc(100vh - 70px); background:linear-gradient(180deg,#fffaf0,#f8f3e0); flex-direction:column; align-items:center; gap:18px; padding-top:30px; box-shadow:-6px 0 20px rgba(0,0,0,0.08); }
+  .nav ul.open { display:flex; }
+  .hamburger { display:block; }
 }
 
-.hero h1 {
-  font-size: 2.8em;
-  color: #333;
+/* ---------- HERO (BANNIÈRE) ---------- */
+/* Use a moderate min and max height to keep proportions */
+.hero {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 32px 20px;
+  background: linear-gradient(180deg, rgba(249,244,235,1), rgba(255,250,240,1));
 }
 
-.hero p {
-  margin: 20px 0;
-  font-size: 1.1em;
+/* If you use a hero image, ensure cover and constrained heights */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.08;
 }
 
-/* Bouton principal */
-.btn {
-  display: inline-block;
-  background: linear-gradient(to right, #d4af37, #f5e6b3);
-  color: #000;
-  font-weight: bold;
-  padding: 12px 30px;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: 0.3s;
-  margin: 20px auto; /* ✅ Centrage horizontal */
+/* central hero content sizing */
+.hero .container { padding: 10px 0; max-width:1100px; }
+.hero h1 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); color:#2b2b2b; margin-bottom:12px; font-weight:700; }
+.hero p { font-size: clamp(0.95rem, 1.6vw, 1.05rem); color:#444; max-width:900px; margin:0 auto 18px; }
+
+/* Set a soft visual hero height (not fixed) but capped for large screens */
+@media (min-width:1100px) {
+  .hero { padding: 60px 20px; }
+  .hero .container { padding-top: 10px; padding-bottom: 10px; }
 }
 
-.btn:hover {
-  background: linear-gradient(to right, #b9972f, #e0c875);
-  transform: scale(1.05);
+/* ---------- SECTIONS ---------- */
+section { padding: 56px 0; }
+.section-white { background: #fff; }       /* explicit white blocks */
+.section-soft { background: #fffaf0; }    /* subtle gold blocks */
+
+/* ---------- GRID & CARDS ---------- */
+.services-grid, .realisation-grid {
+  display:grid;
+  gap:22px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items:start;
 }
 
-/* Centrage parfait du bouton sur la page */
-.hero .btn {
-  display: block;
-  width: fit-content;
-  margin: 30px auto 0 auto; /* ✅ Centre parfaitement */
-}
-
-/* =========================
-   BLOCS DORÉS
-   ========================= */
-
-.section-gold {
-  background: linear-gradient(to right, #fff7dc, #f9f2d0);
-  padding: 60px 20px;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-  margin: 40px 10%;
-}
-
-.section-gold h2 {
-  color: #d4af37;
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* =========================
-   CARTES ET IMAGES
-   ========================= */
-
+/* card base */
 .card {
-  background: #fff7dc;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
-  overflow: hidden;
-  transition: transform 0.3s;
+  background: linear-gradient(180deg, #fff, #fffaf7);
+  border-radius:12px;
+  overflow:hidden;
+  padding:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  transition: transform .28s ease, box-shadow .28s ease;
+  text-align:center;
+}
+.card:hover { transform: translateY(-6px); box-shadow:0 10px 26px rgba(0,0,0,0.08); }
+
+/* ---------- IMAGE SIZING (uniform, responsive) ---------- */
+/* Default image height for cards & services */
+.card img,
+.services-grid img,
+.realisation-grid img {
+  width:100%;
+  height: 200px;         /* consistent default */
+  object-fit: cover;     /* keeps central subject */
+  border-radius:10px;
+  display:block;
+  margin-bottom:14px;
 }
 
-.card:hover {
-  transform: scale(1.03);
+/* Slightly larger on very wide screens for better presence */
+@media (min-width:1000px){
+  .realisation-grid img { height: 230px; }
+  .card img { height: 210px; }
 }
 
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+/* Smaller screens reduce height to avoid oversized banners */
+@media (max-width:520px){
+  .card img, .services-grid img, .realisation-grid img { height:150px; }
 }
 
-/* =========================
-   BOUTONS SECONDAIRES
-   ========================= */
+/* Realisation grid center items */
+.realisation-grid { justify-items:center; }
+.realisation-grid article { width:100%; max-width:380px; }
 
-.btn-secondary {
-  display: inline-block;
-  background: linear-gradient(to right, #d4af37, #f5e6b3);
-  color: #000;
-  font-weight: bold;
-  padding: 10px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  margin-top: 15px;
-  transition: 0.3s;
+/* ---------- BUTTONS ---------- */
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:12px 26px;
+  border-radius:30px;
+  font-weight:600;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn.gold {
+  background: linear-gradient(135deg,#d6c185,#c9af6b);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(201,175,107,0.12);
+}
+.btn.gold:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(201,175,107,0.18); }
+
+/* centered wrapper to use around CTAs */
+.centered-button { text-align:center; margin-top:18px; }
+
+/* ---------- FORMS ---------- */
+.form-panel, .contact-form, .service-panel {
+  width:100%;
+  max-width:720px;
+  margin: 18px auto;
+  padding:24px;
+  background: linear-gradient(180deg,#fff,#fffdf5);
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+.form-panel label, .contact-form label { display:block; font-weight:600; margin-bottom:8px; color:#333; }
+.form-panel input, .form-panel select, .form-panel textarea,
+.contact-form input, .contact-form select, .contact-form textarea {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:8px;
+  margin-bottom:14px;
+  font-size:1rem;
 }
 
-.btn-secondary:hover {
-  background: linear-gradient(to right, #b9972f, #e0c875);
+/* ---------- FOOTER ---------- */
+.site-footer {
+  text-align:center;
+  padding:22px 16px;
+  background: linear-gradient(180deg,#fffaf0,#fdf7e9);
+  border-top:1px solid rgba(201,175,107,0.16);
+  color:#333;
 }
 
-/* =========================
-   FOOTER
-   ========================= */
-
-footer {
-  background: linear-gradient(to right, #d4af37, #f5e6b3);
-  color: #000;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 50px;
-  font-weight: bold;
+/* ---------- SMALL SCREEN ADJUSTMENTS ---------- */
+@media(max-width:900px){
+  .container { width:94%; }
+  .hero { padding:40px 12px; }
+  section { padding:40px 0; }
+  .card { padding:14px; }
+  .centered-button { margin-top:12px; }
 }
+
+/* ---------- UTILITIES ---------- */
+a { -webkit-tap-highlight-color: transparent; color:inherit; }
+.block-gold { background: linear-gradient(180deg,#fffaf0,#f8f2de); border-radius:12px; padding:18px; box-shadow:0 6px 16px rgba(201,175,107,0.06); }
+
+/* ---------- SAFEGUARD RULES (override accidental global gold) ---------- */
+/* Force specific elements to stay white if needed */
+.force-white { background: #ffffff !important; }
