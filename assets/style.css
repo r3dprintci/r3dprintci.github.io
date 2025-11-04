@@ -11,8 +11,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fff; /* ✅ Fond blanc restauré */
-  color: #333;
+  background-color: #f0f0f0; /* ✅ Fond blanc restauré */
+  color: #363;
   line-height: 1.6;
 }
 
@@ -22,7 +22,7 @@ body {
 
 header {
   background: linear-gradient(to right, #d4af37, #f5e6b3); /* ✅ Bande dorée */
-  color: #fff;
+  color: #f0f0f0;
   padding: 10px 0;
 }
 
@@ -96,7 +96,7 @@ header {
 .hero {
   background: #fff;
   text-align: center;
-  padding: 100px 20px;
+  padding: 150px 20px;
 }
 
 .hero h1 {
