@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', IMPACT;
   background-color: #f0f0f0; /* ✅ Fond blanc restauré */
   color: #363;
   line-height: 1.6;
