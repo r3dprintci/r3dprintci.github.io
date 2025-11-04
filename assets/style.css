@@ -1,42 +1,36 @@
-/* ===============================
-   STYLE GLOBAL - R3D PRINT CI
-   =============================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ============================
+   STYLE GLOBAL PREMIUM R3D PRINT CI
+   ============================ */
 
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #fff;
-  color: #333;
-  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffdf7;
+  color: #222;
+  overflow-x: hidden;
 }
 
-/* ===============================
-   HEADER & NAVBAR
-   =============================== */
+/* HEADER ET MENU */
 header {
-  background: linear-gradient(90deg, #c6a969, #f2d795);
-  color: #fff;
-  padding: 10px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 4px solid #c6a969; /* Fine ligne dorée de séparation */
+  background-color: #fff8e1;
+  padding: 15px 60px;
+  border-bottom: 3px solid #d4af37; /* fine ligne dorée de séparation */
 }
 
 header img {
-  width: 150px;
-  height: auto;
+  height: 60px;
+  width: auto;
 }
 
-/* Menu horizontal aligné à droite */
 nav ul {
   display: flex;
   list-style: none;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
@@ -44,175 +38,130 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
+  color: #222;
   font-weight: 600;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
-  color: #333;
+  color: #d4af37;
 }
 
-/* ===============================
-   SECTION HERO (bannière accueil)
-   =============================== */
+/* SECTION HERO / BANNIÈRE */
 .hero {
-  background-color: #f9f3e3; /* Blanc doré clair distinct du header */
-  color: #333;
+  position: relative;
   text-align: center;
+  background: linear-gradient(to bottom, #fff8e1 0%, #fffdf7 100%);
   padding: 120px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  font-weight: 700;
-  color: #c6a969;
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #222;
 }
 
 .hero p {
   font-size: 1.2rem;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  color: #333;
 }
 
-/* Bouton doré centré */
-.btn {
-  background-color: #c6a969;
-  color: #fff;
-  padding: 12px 30px;
+/* BOUTON DORÉ CENTRAL */
+.btn-gold {
+  display: inline-block;
+  background-color: #d4af37;
+  color: white;
+  padding: 14px 35px;
+  border: none;
   border-radius: 30px;
   text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  transition: all 0.3s ease;
-  border: 2px solid #fff;
+  font-weight: 600;
+  transition: background 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #f2d795;
-  color: #333;
-  transform: scale(1.05);
+.btn-gold:hover {
+  background-color: #b8912f;
 }
 
-/* Centrage horizontal du bouton principal */
-.hero .btn {
-  display: inline-block;
-  margin-top: 20px;
+/* SECTION IMAGES ET BLOCS */
+.section {
+  padding: 80px 20px;
   text-align: center;
 }
 
-/* ===============================
-   SECTIONS GÉNÉRALES
-   =============================== */
-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-section h2 {
-  color: #c6a969;
-  margin-bottom: 40px;
+.section h2 {
   font-size: 2rem;
-  font-weight: 700;
+  margin-bottom: 40px;
+  color: #222;
 }
 
-/* ===============================
-   BLOCS AVEC FOND DORÉ
-   =============================== */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
 .card {
-  background-color: #f9f3e3;
-  border: 1px solid #e2c787;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 20px;
+  background-color: #fff8e1;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 300px;
   transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 }
 
-/* ===============================
-   RÉALISATIONS - IMAGES
-   =============================== */
-.realisation img {
+.card img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
+  height: 200px;
+  object-fit: cover; /* ✅ garde les bonnes proportions */
 }
 
-/* ===============================
-   CONTACT / FORMULAIRES
-   =============================== */
-form {
-  background-color: #f9f3e3;
-  border: 1px solid #e2c787;
-  border-radius: 12px;
-  padding: 25px;
-  max-width: 600px;
-  margin: 0 auto;
+.card-content {
+  padding: 20px;
 }
 
-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
+.card-content h3 {
+  color: #d4af37;
+  margin-bottom: 10px;
 }
 
-form input, form textarea, form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.card-content p {
   font-size: 1rem;
+  color: #444;
 }
 
-form button {
-  background-color: #c6a969;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-form button:hover {
-  background-color: #b29355;
-}
-
-/* ===============================
-   FOOTER
-   =============================== */
+/* FOOTER */
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 10px;
+  background-color: #fff8e1;
+  color: #222;
   text-align: center;
-  font-size: 0.9rem;
+  padding: 25px;
+  border-top: 3px solid #d4af37;
+  font-size: 0.95rem;
 }
 
-/* ===============================
-   RESPONSIVE (mobile/tablette)
-   =============================== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   nav ul {
     flex-direction: column;
-    margin-top: 10px;
+    width: 100%;
   }
 
   nav ul li {
@@ -220,18 +169,10 @@ footer {
   }
 
   .hero {
-    padding: 100px 10px;
+    padding: 80px 15px;
   }
 
   .hero h1 {
     font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .btn {
-    padding: 10px 25px;
   }
 }
